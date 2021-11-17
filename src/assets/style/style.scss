@@ -1,0 +1,33 @@
+@import './colors.scss';
+@import './props.scss';
+
+html,
+body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+}
+
+:disabled::placeholder {
+    color: $unqiue_placeholder-disabled-color;
+}
+
+::placeholder {
+    color: $unqiue_placeholder-color;
+}
+
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+*:focus {
+    outline: none;
+}

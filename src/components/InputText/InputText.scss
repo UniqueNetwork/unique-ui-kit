@@ -1,0 +1,113 @@
+@import '../../assets/style/colors.scss';
+@import '../../assets/style/props.scss';
+
+.unique-input-text {
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    width: 250px;
+    font-size: 13px;
+
+    &.with-icon {
+        .input-wrapper {
+            &:after {
+                position: absolute;
+                content: '';
+                width: 18px;
+                height: 18px;
+                right: 12px;
+            }
+            input {
+                width: 100%;
+                padding-right: 40px;
+            }
+        }
+    }
+
+    &.icon-edit {
+        .input-wrapper {
+            &:after {
+                background: url('../../assets/svg/edit.svg') no-repeat center
+                    center / contain;
+                top: 10px;
+            }
+        }
+    }
+
+    &.icon-eye {
+        .input-wrapper {
+            &:after {
+                background: url('../../assets/svg/eye.svg') no-repeat center
+                    center / contain;
+                top: 12px;
+            }
+        }
+    }
+
+    &.error {
+        .input-wrapper {
+            input {
+                border: 1px solid $unique_error;
+            }
+        }
+        .status-text {
+            color: $unique_error;
+        }
+    }
+
+    label {
+        color: $unqiue_base-text;
+        display: block;
+        font-size: 16px;
+        font-weight: 600;
+        height: 24px;
+        line-height: 24px;
+        margin-bottom: 5px;
+        position: relative;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .input-wrapper {
+        position: relative;
+        input {
+            outline: none;
+            padding: 11px 12px;
+            border: 1px solid $unique_base-border;
+            border-radius: $border-raduis;
+            min-width: 200px;
+            width: 100%;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+
+            &:focus {
+                border: 1px solid $unique_focus-border;
+            }
+
+            &:disabled {
+                background-color: $unique_disabled-gray;
+                color: $unique_disabled-text;
+            }
+        }
+    }
+
+    .additional-text {
+        color: $unqiue_base-gray;
+        font-size: 14px;
+        height: 22px;
+        line-height: 22px;
+        margin-bottom: 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .status-text {
+        color: $unqiue_base-gray;
+        font-size: 14px;
+        min-height: 22px;
+        line-height: 22px;
+        margin-top: 8px;
+    }
+}
