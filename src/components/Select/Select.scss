@@ -1,0 +1,147 @@
+@import '../../assets/style/colors.scss';
+@import '../../assets/style/props.scss';
+
+.unique-select {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    position: relative;
+    width: 250px;
+
+    label {
+        color: $unqiue_base-text;
+        display: block;
+        font-size: 16px;
+        font-weight: 600;
+        height: 24px;
+        line-height: 24px;
+        margin-bottom: 5px;
+        overflow: hidden;
+        position: relative;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+    }
+
+    .additional-text {
+        color: $unqiue_base-gray;
+        font-size: 14px;
+        height: 22px;
+        line-height: 22px;
+        margin-bottom: 12px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+    }
+
+    .status-text {
+        color: $unqiue_base-gray;
+        font-size: 14px;
+        line-height: 22px;
+        margin-top: 8px;
+        min-height: 22px;
+        width: 100%;
+    }
+
+    .select-wrapper {
+        position: relative;
+        width: 100%;
+
+        &.dropped {
+            .select-value {
+                border: 1px solid $unique_focus-border;
+            }
+        }
+
+        .select-value {
+            border: 1px solid $unique_base-border;
+            border-radius: $border-raduis;
+            cursor: pointer;
+            outline: none;
+            padding: 11px 10px;
+            position: relative;
+            width: calc(100% - 22px);
+
+            .select-placeholder {
+                color: $unqiue_placeholder-color;
+            }
+
+            &:focus {
+                border: 1px solid $unique_focus-border;
+            }
+        }
+
+        .select-dropdown {
+            background-color: $unique_base-bg;
+            border: 1px solid $unique_base-border;
+            border-radius: $border-raduis;
+            padding: 8px;
+            position: absolute;
+            left: 0;
+            top: 46px;
+            width: calc(100% - 18px);
+            z-index: 1;
+
+            .dropdown-option {
+                cursor: pointer;
+                height: 32px;
+                line-height: 32px;
+                padding: 0 8px;
+                position: relative;
+                width: calc(100% - 16px);
+
+                &:not(:last-child) {
+                    margin-bottom: 3px;
+                }
+
+                &:hover,
+                &.selected {
+                    background-color: $unique_blue-light;
+                    color: $unique_blue-light-text;
+                }
+            }
+        }
+
+        &:after {
+            background-color: $unqiue_base-gray;
+            content: '';
+            height: 4px;
+            mask-image: url('../../assets/svg/triangle.svg');
+            position: absolute;
+            right: 14px;
+            top: 18px;
+            width: 8px;
+            -webkit-mask-image: url('../../assets/svg/triangle.svg');
+        }
+
+        &.dropped:after {
+            top: 17px;
+            transform: rotate(180deg);
+        }
+
+        &.disabled {
+            background-color: $unique_disabled-gray;
+            color: $unique_disabled-text;
+            &:after {
+                background-color: $unique_disabled-text;
+            }
+            .select-value {
+                cursor: default;
+                .select-placeholder {
+                    color: $unqiue_placeholder-disabled-color;
+                }
+            }
+        }
+    }
+
+    &.error {
+        .select-wrapper {
+            .select-value {
+                border: 1px solid $unique_error;
+            }
+        }
+        .status-text {
+            color: $unique_error;
+        }
+    }
+}

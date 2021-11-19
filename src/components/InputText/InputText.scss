@@ -7,6 +7,42 @@
     position: relative;
     width: 250px;
 
+    label {
+        color: $unqiue_base-text;
+        display: block;
+        font-size: 16px;
+        font-weight: 600;
+        height: 24px;
+        line-height: 24px;
+        margin-bottom: 5px;
+        overflow: hidden;
+        position: relative;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+    }
+
+    .additional-text {
+        color: $unqiue_base-gray;
+        font-size: 14px;
+        height: 22px;
+        line-height: 22px;
+        margin-bottom: 12px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+    }
+
+    .status-text {
+        color: $unqiue_base-gray;
+        font-size: 14px;
+        line-height: 22px;
+        margin-top: 8px;
+        min-height: 22px;
+        width: 100%;
+    }
+
     &.with-icon {
         .input-wrapper {
             &.disabled:after {
@@ -28,26 +64,26 @@
             }
             input {
                 padding-right: 40px;
-                width: 100%;
+                width: calc(100% - 52px);
             }
         }
     }
 
-    &.icon-edit {
+    &.icon-pencil {
         .input-wrapper {
             &:after {
-                -webkit-mask-image: url('../../assets/svg/edit.svg');
-                mask-image: url('../../assets/svg/edit.svg');
+                -webkit-mask-image: url('../../assets/svg/pencil.svg');
+                mask-image: url('../../assets/svg/pencil.svg');
                 top: 9px;
             }
         }
     }
 
-    &.icon-eye {
+    &.icon-eye-closed {
         .input-wrapper {
             &:after {
-                -webkit-mask-image: url('../../assets/svg/eye.svg');
-                mask-image: url('../../assets/svg/eye.svg');
+                -webkit-mask-image: url('../../assets/svg/eye_closed.svg');
+                mask-image: url('../../assets/svg/eye_closed.svg');
                 top: 12px;
             }
         }
@@ -64,52 +100,15 @@
         }
     }
 
-    label {
-        color: $unqiue_base-text;
-        display: block;
-        font-size: 16px;
-        font-weight: 600;
-        height: 24px;
-        line-height: 24px;
-        margin-bottom: 5px;
-        overflow: hidden;
-        position: relative;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    .additional-text {
-        color: $unqiue_base-gray;
-        font-size: 14px;
-        height: 22px;
-        line-height: 22px;
-        margin-bottom: 12px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    .status-text {
-        color: $unqiue_base-gray;
-        font-size: 14px;
-        line-height: 22px;
-        margin-top: 8px;
-        min-height: 22px;
-    }
-
     .input-wrapper {
         position: relative;
 
         input {
             border: 1px solid $unique_base-border;
             border-radius: $border-raduis;
-            box-sizing: border-box;
             outline: none;
             padding: 11px 12px;
-            min-width: 200px;
-            width: 100%;
-            -moz-box-sizing: border-box;
-            -webkit-box-sizing: border-box;
+            width: calc(100% - 26px);
 
             &:focus {
                 border: 1px solid $unique_focus-border;

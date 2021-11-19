@@ -1,12 +1,7 @@
 import React, { FC } from 'react';
 import { Layout } from './components';
-import { InputTextStoryBook } from './books';
 import './assets/style/style.scss';
 
-const App: FC = () => (
-    <Layout>
-        <InputTextStoryBook />
-    </Layout>
-);
+const App: FC = () => <Layout />;
 
 export default App;

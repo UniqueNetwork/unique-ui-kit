@@ -18,6 +18,9 @@ export const InputText: FC<InputTextProps> = ({
     className,
     error,
     disabled,
+    value,
+    defaultValue,
+    onChange,
     ...props
 }: InputTextProps) => (
     <div className={classNames('unique-input-text', className, { error })}>
@@ -26,7 +29,14 @@ export const InputText: FC<InputTextProps> = ({
             <div className="additional-text">{additionalText}</div>
         )}
         <div className={classNames('input-wrapper', { disabled })}>
-            <input id={id} disabled={disabled} type="text" {...props} />
+            <input
+                id={id}
+                disabled={disabled}
+                value={value?.toString()}
+                defaultValue={defaultValue?.toString()}
+                type="text"
+                {...props}
+            />
         </div>
         {statusText && <div className="status-text">{statusText}</div>}
     </div>

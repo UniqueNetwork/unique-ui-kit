@@ -63,7 +63,7 @@ export const Icon = Template.bind({});
 
 Icon.args = {
     placeholder: 'Placeholder',
-    className: 'with-icon icon-edit'
+    className: 'with-icon icon-pencil'
 };
 
 Icon.storyName = 'Minimal w/ icon';

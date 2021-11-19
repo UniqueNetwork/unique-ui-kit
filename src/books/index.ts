@@ -1,1 +1,0 @@
-export { InputTextStoryBook } from './InputTextStoryBook';
