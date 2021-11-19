@@ -1,8 +1,0 @@
-version: '3'
-services:
-  storybook:
-    ports:
-      - "8086:6006"
-    build:
-      context: ../
-      dockerfile: .deploy/storybook.Dockerfile
