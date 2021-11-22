@@ -1,0 +1,73 @@
+<Meta title="Colors/Base colors" />
+
+<style>{`
+  .colors-wrapper{
+    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    row-gap: 20px;
+    align-items: center;
+  }
+
+  .color {
+    position: relative;
+    width: 100px;
+    height: 40px;
+    border-radius: 4px;
+  }
+
+  .color.primary{
+    background: #1db0ff;
+  }
+  
+  .color.secondary{
+    background: #040b1d;
+  }
+
+  .color.blue-grey{
+    background: #7f90a1;
+  }
+
+  .color.grey{
+    background: #81858e;
+  }
+  
+  .color.additional-positive{
+    background: #2dbf15;
+  }
+  
+  .color.additional-warning{
+    background: #f9a400;
+  }
+  
+  .color.additional-negative{
+    background: #ff6335;
+  }
+`}</style>
+
+<div class="colors-wrapper">
+    <div>color</div>
+    <div>sass variable</div>
+    <div>hex</div>
+    <div class="color primary"></div>
+    <div>$color-primary</div>
+    <div>#1DB0FF</div>
+    <div class="color secondary"></div>
+    <div>$color-secondary</div>
+    <div>#040B1D</div>
+    <div class="color blue-grey"></div>
+    <div>$color-blue-grey</div>
+    <div>#7F90A1</div>
+    <div class="color grey"></div>
+    <div>$color-grey</div>
+    <div>#81858E</div>
+    <div class="color additional-positive"></div>
+    <div>$color-additional-positive</div>
+    <div>#2DBF15</div>
+    <div class="color additional-warning"></div>
+    <div>$color-additional-warning</div>
+    <div>#F9A400</div>
+    <div class="color additional-negative"></div>
+    <div>$color-additional-negative</div>
+    <div>#FF6335</div>
+</div>

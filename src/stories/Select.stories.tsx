@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Select } from '../components';
 
 export default {
-    title: 'Select',
+    title: 'Components/Select',
     component: Select
 } as ComponentMeta<typeof Select>;
 
@@ -24,7 +24,6 @@ const Template: ComponentStory<typeof Select> = (args) => {
 };
 
 const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5'];
-// const options = [1,2,3,4,5];
 
 export const Default = Template.bind({});
 
