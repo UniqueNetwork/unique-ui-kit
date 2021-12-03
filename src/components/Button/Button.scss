@@ -1,0 +1,136 @@
+@import "../../assets/style/colors.scss";
+@import "../../assets/style/props.scss";
+@import "../../assets/tokens/colors.scss";
+@import "../../assets/tokens/palette.scss";
+
+.button {
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: $border-raduis;
+    cursor: pointer;
+    border-width: 1px;
+    border-style: solid;
+
+    &.primary {
+        background: $color-primary-500;
+        border-color: $color-primary-500;
+        color: $color-additional-color-light;
+        &:hover {
+            background: $color-primary-400;
+            border-color: $color-primary-400;
+        }
+        &:active {
+            background: $color-primary-600;
+            border-color: $color-primary-600;
+        }
+    }
+
+    &.secondary {
+        background: $color-secondary-500;
+        border-color: $color-secondary-500;
+        color: $color-additional-color-light;
+        &:hover {
+            background: $color-secondary-400;
+            border-color: $color-secondary-400;
+        }
+        &:active {
+            background: $color-secondary-600;
+            border-color: $color-secondary-600;
+        }
+    }
+
+    &.outlined {
+        background: $color-additional-color-light;
+        border-color: $color-primary-500;
+        color: $color-primary-500;
+        &:hover {
+            background: $color-primary-100;
+            color: $color-primary-400;
+            border-color: $color-primary-400;
+        }
+        &:active {
+            color: $color-primary-600;
+            border-color: $color-primary-600;
+        }
+    }
+
+    &.tertiary {
+        background: $color-additional-color-light;
+        border-color: $color-grey-500;
+        color: $color-grey-500;
+        &:hover {
+            background: $color-blue-grey-100;
+            border-color: $color-grey-400;
+        }
+        &:active {
+            color: $color-grey-600;
+            border-color: $color-grey-600;
+        }
+    }
+
+    &.danger {
+        color: $color-coral-500;
+        border-color: $color-coral-500;
+        background: $color-additional-color-light;
+        &:hover {
+            background: $color-coral-100;
+            border-color: $color-coral-400;
+        }
+        &:active {
+            background: $color-additional-color-light;
+            border-color: $color-coral-600;
+            color: $color-coral-600;
+        }
+    }
+    &.disabled,
+    &.disabled:hover,
+    &.disabled:active {
+        cursor: default;
+        color: $color-blue-grey-300;
+        border-color: $color-blue-grey-300;
+        background: $color-grey-100;
+    }
+
+    &.height-size-s {
+        padding-top: 4px;
+        padding-bottom: 4px;
+        font-size: 14px;
+        line-height: 21px;
+    }
+
+    &.height-size-m {
+        padding-top: 7px;
+        padding-bottom: 7px;
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    &.width-size-s {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    &.width-size-m {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    &.width-size-full {
+        width: 100%;
+    }
+
+    .icon {
+        width: 12px;
+        height: 10px;
+
+        &.icon-left {
+            margin-right: 10px;
+        }
+
+        &.icon-right {
+            margin-left: 10px;
+        }
+    }
+}
