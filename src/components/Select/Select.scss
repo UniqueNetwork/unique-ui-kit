@@ -1,14 +1,13 @@
-@import '../../assets/style/colors.scss';
-@import '../../assets/style/props.scss';
+@import '../../assets/styles/index.scss';
 
 .unique-select {
-    font-family: 'Roboto', sans-serif;
-    font-size: 13px;
+    font-family: $font-family;
+    font-size: $font-size;
     position: relative;
     width: 250px;
 
     label {
-        color: $unqiue_base-text;
+        color: $color-secondary-500;
         display: block;
         font-size: 16px;
         font-weight: 600;
@@ -23,7 +22,7 @@
     }
 
     .additional-text {
-        color: $unqiue_base-gray;
+        color: $color-grey-500;
         font-size: 14px;
         height: 22px;
         line-height: 22px;
@@ -35,7 +34,7 @@
     }
 
     .status-text {
-        color: $unqiue_base-gray;
+        color: $color-grey-500;
         font-size: 14px;
         line-height: 22px;
         margin-top: 8px;
@@ -49,13 +48,13 @@
 
         &.dropped {
             .select-value {
-                border: 1px solid $unique_focus-border;
+                border: 1px solid $color-grey-400;
             }
         }
 
         .select-value {
-            border: 1px solid $unique_base-border;
-            border-radius: $border-raduis;
+            border: 1px solid $color-grey-300;
+            border-radius: $border-radius;
             cursor: pointer;
             outline: none;
             padding: 11px 10px;
@@ -63,18 +62,18 @@
             width: calc(100% - 22px);
 
             .select-placeholder {
-                color: $unqiue_placeholder-color;
+                color: $color-grey-400;
             }
 
             &:focus {
-                border: 1px solid $unique_focus-border;
+                border: 1px solid $color-grey-400;
             }
         }
 
         .select-dropdown {
-            background-color: $unique_base-bg;
-            border: 1px solid $unique_base-border;
-            border-radius: $border-raduis;
+            background-color: $color-additional-light;
+            border: 1px solid $color-grey-300;
+            border-radius: $border-radius;
             padding: 8px;
             position: absolute;
             left: 0;
@@ -96,14 +95,14 @@
 
                 &:hover,
                 &.selected {
-                    background-color: $unique_blue-light;
-                    color: $unique_blue-light-text;
+                    background-color: $color-primary-100;
+                    color: $color-primary-500;
                 }
             }
         }
 
         &:after {
-            background-color: $unqiue_base-gray;
+            background-color: $color-grey-500;
             content: '';
             height: 4px;
             mask-image: url('../../assets/svg/triangle.svg');
@@ -120,15 +119,15 @@
         }
 
         &.disabled {
-            background-color: $unique_disabled-gray;
-            color: $unique_disabled-text;
+            background-color: $color-grey-100;
+            color: $color-blue-grey-400;
             &:after {
-                background-color: $unique_disabled-text;
+                background-color: $color-blue-grey-400;
             }
             .select-value {
                 cursor: default;
                 .select-placeholder {
-                    color: $unqiue_placeholder-disabled-color;
+                    color: $color-grey-400;
                 }
             }
         }
@@ -137,11 +136,11 @@
     &.error {
         .select-wrapper {
             .select-value {
-                border: 1px solid $unique_error;
+                border: 1px solid $color-additional-negative-500;
             }
         }
         .status-text {
-            color: $unique_error;
+            color: $color-additional-negative-500;
         }
     }
 }

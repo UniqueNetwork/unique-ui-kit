@@ -1,0 +1,46 @@
+{
+    "color": {
+        "unique": {
+            "primary": {
+                "description": "primary color description",
+                "type": "color",
+                "value": "#1db0ff"
+            },
+            "secondary": {
+                "description": "secondary color description",
+                "type": "color",
+                "value": "#040b1d"
+            },
+            "blue-grey": {
+                "description": "blue-grey color description",
+                "type": "color",
+                "value": "#7f90a1"
+            },
+            "basic-grey": {
+                "description": "grey color description",
+                "type": "color",
+                "value": "#81858e"
+            },
+            "additional-positive": {
+                "description": "additional-positive color description",
+                "type": "color",
+                "value": "#2dbf15"
+            },
+            "additional-warning": {
+                "description": "additional-warning color description",
+                "type": "color",
+                "value": "#f9a400"
+            },
+            "additional-negative": {
+                "description": "additional-negative color description",
+                "type": "color",
+                "value": "#ff6335"
+            },
+            "additional-light": {
+                "description": "additional-light color description",
+                "type": "color",
+                "value": "#ffffff"
+            }
+        }
+    }
+}
