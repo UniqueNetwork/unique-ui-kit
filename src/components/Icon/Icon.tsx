@@ -1,3 +1,7 @@
+/**
+ * @author Anna Mikhailova <amikhailova@usetech.com>
+ */
+
 import {
     FC
 } from 'react';
