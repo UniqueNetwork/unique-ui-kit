@@ -122,15 +122,21 @@
     }
 
     .icon {
-        width: 12px;
-        height: 10px;
-
         &.icon-left {
             margin-right: 10px;
         }
 
         &.icon-right {
             margin-left: 10px;
+        }
+
+        svg{
+            width: 12px;
+            height: 10px;
+
+            path{
+                fill:currentColor;
+            }
         }
     }
 }

@@ -15,6 +15,7 @@ const Template1: ComponentStory<typeof Button> = (args) => (
     
     <table>
         <caption><strong>HeightSize/WidthSize</strong></caption>
+        <tbody>
          <tr><th>s/s</th><th>s/m</th><th>m/s</th><th>m/m</th><th style={{'minWidth':200}}>m/full</th></tr>
         <tr><td>{getButton(param[11])}</td><td>{getButton(param[12])}</td><td>{getButton(param[13])}</td><td>{getButton(param[14])}</td><td>{getButton(param[15])}</td></tr>
         <tr><td>{getButton(param[21])}</td><td>{getButton(param[22])}</td><td>{getButton(param[23])}</td><td>{getButton(param[24])}</td><td>{getButton(param[25])}</td></tr>
@@ -24,6 +25,7 @@ const Template1: ComponentStory<typeof Button> = (args) => (
         <tr><td>{getButton(param[61])}</td><td>{getButton(param[62])}</td><td>{getButton(param[63])}</td><td>{getButton(param[64])}</td><td>{getButton(param[65])}</td></tr>
         <tr><td>{getButton(param[71])}</td><td>{getButton(param[72])}</td><td>{getButton(param[73])}</td><td>{getButton(param[74])}</td><td>{getButton(param[75])}</td></tr>
         <tr><td>{getButton(param[81])}</td><td>{getButton(param[82])}</td><td>{getButton(param[83])}</td><td>{getButton(param[84])}</td><td>{getButton(param[85])}</td></tr>
+        </tbody>
     </table>
 );
 
