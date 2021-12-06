@@ -1,0 +1,53 @@
+@import '../../assets/style/colors.scss';
+@import '../../assets/style/props.scss';
+
+.unique-tabs-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.unique-tab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 198px;
+    height: 38px;
+    background-color: $unique_base-bg;
+    border: 1px solid $unique_blue-bg;
+    border-radius: 0;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: $unique_blue-light-text;
+    cursor: pointer;
+
+    margin-right: 5px;
+
+    &:first-of-type {
+        border-radius: 4px 0px 0px 4px;
+    }
+
+    &:last-of-type {
+        border-radius: 0px 4px 4px 0px;
+    }
+
+    &.disabled {
+        color: $unique_disabled-tab-text;
+        border-color: $unique_disabled-border;
+        background-color: $unique_base-bg;
+        cursor: unset;
+    }
+    
+    &.condition {
+        color: $unqiue_white-text;
+        background-color: $unique_blue-bg;
+    }
+
+    &.disabled.condition {
+      color: $unique_disabled-tab-text;
+      background-color: $unique_gray-bg;
+    }
+}
