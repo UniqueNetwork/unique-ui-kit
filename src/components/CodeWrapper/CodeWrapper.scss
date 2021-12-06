@@ -1,0 +1,27 @@
+@import '../../assets/styles/index.scss';
+
+.unique-code-wrapper {
+    font-family: $font-family;
+    font-size: $font-size;
+    font-weight: $font-weight;
+    pre {
+        display: block;
+        font-family: Courier;
+        font-size: $font-size;
+        font-weight: bold;
+        line-height: 20px;
+        margin: 0;
+        position: relative;
+        padding: 20px;
+    }
+
+    &.dark pre {
+        background-color: #5c5f67;
+        color: #c0e9ff;
+    }
+
+    &.light pre {
+        background-color: #fff4e0;
+        color: #00669e;
+    }
+}

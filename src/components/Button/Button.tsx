@@ -1,3 +1,7 @@
+/**
+ * @author Anna Mikhailova <amikhailova@usetech.com>
+ */
+
 import React, {
     ButtonHTMLAttributes,
     FC
@@ -15,10 +19,11 @@ interface ComponentProps {
     children?: React.ReactNode;
     className?: string;
     heightSize?: 's' | 'm';
-    widthSize?: 's' | 'm' | 'full';
+    widthSize?: 's' | 'm';
     view?: TView;
     leftIcon?: string;
     rightIcon?: string;
+    wide?: boolean;
 }
 
 export const Button: FC<TButtonProps> = ({
@@ -30,6 +35,7 @@ export const Button: FC<TButtonProps> = ({
     view = 'primary',
     className,
     disabled = false,
+    wide = false,
     onClick
 }: TButtonProps) => {
 
@@ -41,12 +47,11 @@ export const Button: FC<TButtonProps> = ({
             { disabled },
             `height-size-${heightSize}`,
             `width-size-${widthSize}`,
+            { wide },
             className,
         ),
         onClick,
     };
-
-    console.log(arrowLeft);
 
     return (
         <button {...componentProps}>

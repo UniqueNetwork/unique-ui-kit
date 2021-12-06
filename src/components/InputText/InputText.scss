@@ -1,14 +1,14 @@
-@import '../../assets/style/colors.scss';
-@import '../../assets/style/props.scss';
+@import '../../assets/styles/index.scss';
 
 .unique-input-text {
-    font-family: 'Roboto', sans-serif;
-    font-size: 13px;
+    font-family: $font-family;
+    font-size: $font-size;
+    font-weight: $font-weight;
     position: relative;
     width: 250px;
 
     label {
-        color: $unqiue_base-text;
+        color: $color-secondary-500;
         display: block;
         font-size: 16px;
         font-weight: 600;
@@ -23,7 +23,7 @@
     }
 
     .additional-text {
-        color: $unqiue_base-gray;
+        color: $color-grey-500;
         font-size: 14px;
         height: 22px;
         line-height: 22px;
@@ -35,7 +35,7 @@
     }
 
     .status-text {
-        color: $unqiue_base-gray;
+        color: $color-grey-500;
         font-size: 14px;
         line-height: 22px;
         margin-top: 8px;
@@ -46,11 +46,11 @@
     &.with-icon {
         .input-wrapper {
             &.disabled:after {
-                background-color: $unique_disabled-text;
+                background-color: $color-blue-grey-400;
             }
             &:after {
                 content: '';
-                background-color: $unqiue_base-gray;
+                background-color: $color-grey-500;
                 height: 18px;
                 position: absolute;
                 -webkit-mask-position: center center;
@@ -92,11 +92,11 @@
     &.error {
         .input-wrapper {
             input {
-                border: 1px solid $unique_error;
+                border: 1px solid $color-coral-500;
             }
         }
         .status-text {
-            color: $unique_error;
+            color: $color-coral-500;
         }
     }
 
@@ -104,22 +104,22 @@
         position: relative;
 
         input {
-            border: 1px solid $unique_base-border;
-            border-radius: $border-raduis;
+            border: 1px solid $color-grey-300;
+            border-radius: $border-radius;
             outline: none;
             padding: 11px 12px;
             width: calc(100% - 26px);
 
             &:focus {
-                border: 1px solid $unique_focus-border;
+                border: 1px solid $color-grey-400;
             }
 
             &:disabled {
-                background-color: $unique_disabled-gray;
-                color: $unique_disabled-text;
+                background-color: $color-grey-100;
+                color: $color-blue-grey-400;
 
                 &::placeholder {
-                    color: $unqiue_placeholder-disabled-color;
+                    color: $color-grey-400;
                 }
             }
         }

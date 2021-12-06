@@ -1,0 +1,47 @@
+@function color($group, $variant) {
+    @return map-get(map-get(map-get($color, $group), $variant), 'value');
+}
+
+// base colors
+$color-primary-500: color('unique', 'primary');
+$color-secondary-500: color('unique', 'secondary');
+$color-blue-grey-500: color('unique', 'blue-grey');
+$color-grey-500: color('unique', 'basic-grey');
+$color-coral-500: color('unique', 'basic-coral');
+$color-additional-positive-500: color('unique', 'additional-positive');
+$color-additional-warning-500: color('unique', 'additional-warning');
+$color-additional-light: color('unique', 'additional-light');
+
+// color palette
+$color-primary-100: lighten($color-primary-500, 42%);
+$color-primary-200: lighten($color-primary-500, 32%);
+$color-primary-300: lighten($color-primary-500, 15%);
+$color-primary-400: lighten($color-primary-500, 7%);
+$color-primary-600: darken($color-primary-500, 15%);
+$color-primary-700: darken($color-primary-500, 25%);
+$color-secondary-100: lighten($color-secondary-500, 20%);
+$color-secondary-200: lighten($color-secondary-500, 16%);
+$color-secondary-300: lighten($color-secondary-500, 12%);
+$color-secondary-400: lighten($color-secondary-500, 8%);
+$color-secondary-600: darken($color-secondary-500, 2%);
+$color-secondary-700: darken($color-secondary-500, 4%);
+$color-blue-grey-100: lighten($color-blue-grey-500, 40%);
+$color-blue-grey-200: lighten($color-blue-grey-500, 25%);
+$color-blue-grey-300: lighten($color-blue-grey-500, 15%);
+$color-blue-grey-400: lighten($color-blue-grey-500, 10%);
+$color-blue-grey-600: darken($color-blue-grey-500, 10%);
+$color-blue-grey-700: darken($color-blue-grey-500, 15%);
+$color-grey-100: lighten($color-grey-500, 40%);
+$color-grey-200: lighten($color-grey-500, 35%);
+$color-grey-300: lighten($color-grey-500, 30%);
+$color-grey-400: lighten($color-grey-500, 25%);
+$color-grey-600: darken($color-grey-500, 10%);
+$color-grey-700: darken($color-grey-500, 15%);
+$color-coral-100: lighten($color-coral-500, 36%);
+$color-coral-200: lighten($color-coral-500, 28%);
+$color-coral-300: lighten($color-coral-500, 20%);
+$color-coral-400: lighten($color-coral-500, 15%);
+$color-coral-600: darken($color-coral-500, 8%);
+$color-coral-700: darken($color-coral-500, 12%);
+$color-additional-positive-100: lighten($color-additional-positive-500, 53%);
+$color-additional-warning-100: lighten($color-additional-warning-500, 45%);
