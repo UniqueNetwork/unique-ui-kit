@@ -1,5 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Button } from '../components';
+import arrowLeft from '../assets/svg/arrow_left.svg';
 import arrowRight from '../assets/svg/arrow_right.svg';
 
 export default {
@@ -48,7 +49,7 @@ Tertiary.args = {
     view: 'tertiary',
     heightSize: 'm',
     widthSize: 's',
-    leftIcon: '',
+    leftIcon: arrowLeft,
     rightIcon: '',
     disabled: false,
     wide: false

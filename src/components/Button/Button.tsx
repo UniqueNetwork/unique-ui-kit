@@ -8,8 +8,9 @@ import React, {
 } from 'react';
 import cn from 'classnames';
 import './Button.scss';
-import { Icon } from '../Sgv/Svg';
+import { Icon } from '../Icon/Icon';
 import arrowLeft from '../../assets/svg/arrow_left.svg';
+import arrowRight from '../../assets/svg/arrow_right.svg';
 
 type TButtonProps = ComponentProps & Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'disabled' | 'onClick'>;
 
@@ -55,12 +56,9 @@ export const Button: FC<TButtonProps> = ({
 
     return (
         <button {...componentProps}>
-            {/* {leftIcon && <img className={cn('icon', 'icon-left')} src={leftIcon} />} */}
             {leftIcon && <Icon className={cn('icon', 'icon-left')}  path={arrowLeft}/>}
             {children}
-            {rightIcon && <img className={cn('icon', 'icon-right')} src={rightIcon} />}
+            {rightIcon && <Icon className={cn('icon', 'icon-right')} path={arrowRight} />}
         </button>
     )
 };
-
-// еще нужен кэш: если в кэше нет иконки - делает запрос за ней, записывает в кэш
