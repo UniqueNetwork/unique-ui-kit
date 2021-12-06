@@ -24,8 +24,8 @@ export const Default = Template.bind({});
 Default.args = {
   tabsNames: ["Label 1", "Label 2", "Label 3"],
   tabsContent: [<>1</>, <>2</>, <>3</>],
-  condtitionTabIndex: 1,
-  disabledTabsIndex: [2],
+  tabConditionIndex: 1,
+  tabsDisabledIndex: [2],
 };
 
 Default.storyName = "Default";

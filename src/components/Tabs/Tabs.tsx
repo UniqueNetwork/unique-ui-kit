@@ -1,3 +1,7 @@
+/**
+ * @author Roman Beganov <rbeganov@usetech.com>
+ */
+
 import React, { FC, ReactElement, useEffect, useState } from "react";
 import { Tab } from "./Tab";
 import "./Tabs.scss";
@@ -5,26 +9,28 @@ import "./Tabs.scss";
 interface TabsProps {
   tabsNames: string[];
   tabsContent: ReactElement[];
+  tabConditionIndex?: number;
+  tabsDisabledIndex: number[];
   setContentIndex: (id: number) => void;
-  condtitionTabIndex: number;
-  disabledTabsIndex: number[];
 }
 
 export const Tabs: FC<TabsProps> = ({
   tabsNames,
   tabsContent,
+  tabConditionIndex,
+  tabsDisabledIndex,
   setContentIndex,
-  condtitionTabIndex,
-  disabledTabsIndex,
   ...props
 }: TabsProps) => {
-  const [conditionTab, setCondutionTab] = useState(0);
+  const [conditionTab, setCondutionTab] = useState(tabConditionIndex);
 
   useEffect(() => {
-    setCondutionTab(condtitionTabIndex);
-    setContentIndex(condtitionTabIndex);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [condtitionTabIndex]);
+    if (tabConditionIndex) {
+      setCondutionTab(tabConditionIndex);
+      setContentIndex(tabConditionIndex);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tabConditionIndex]);
 
   const clickOnTab = (id: number) => {
     setCondutionTab(id);
@@ -35,12 +41,12 @@ export const Tabs: FC<TabsProps> = ({
       {tabsNames.map((tab, index) => {
         return (
           <Tab
-            label={tab}
             key={index}
-            index={index}
-            click={clickOnTab}
-            condition={conditionTab === index}
-            disabled={disabledTabsIndex && disabledTabsIndex.includes(index)}
+            tabIndex={index}
+            tabLabel={tab}
+            clickOnTab={clickOnTab}
+            tabCondition={conditionTab == index}
+            tabDisabled={tabsDisabledIndex && tabsDisabledIndex.includes(index)}
           />
         );
       })}

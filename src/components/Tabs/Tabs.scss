@@ -1,5 +1,4 @@
-@import '../../assets/style/colors.scss';
-@import '../../assets/style/props.scss';
+@import '../../assets/styles/index.scss';
 
 .unique-tabs-container {
   display: flex;
@@ -13,15 +12,14 @@
     position: relative;
     width: 198px;
     height: 38px;
-    background-color: $unique_base-bg;
-    border: 1px solid $unique_blue-bg;
+    border: 1px solid $color-primary-500;
     border-radius: 0;
     font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
-    color: $unique_blue-light-text;
+    color: $color-primary-500;
     cursor: pointer;
 
     margin-right: 5px;
@@ -35,19 +33,20 @@
     }
 
     &.disabled {
-        color: $unique_disabled-tab-text;
-        border-color: $unique_disabled-border;
-        background-color: $unique_base-bg;
+        color: $color-blue-grey-600;
+        border-color: $color-blue-grey-300;
         cursor: unset;
     }
     
     &.condition {
-        color: $unqiue_white-text;
-        background-color: $unique_blue-bg;
+        color: $color-additional-light;
+        background-color: $color-primary-500;
+        border-color: $color-primary-500;
     }
 
     &.disabled.condition {
-      color: $unique_disabled-tab-text;
-      background-color: $unique_gray-bg;
+      color: $color-blue-grey-600;
+      background-color: $color-blue-grey-100;
+      border-color: $color-blue-grey-300;
     }
 }
