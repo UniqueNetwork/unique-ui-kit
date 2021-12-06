@@ -5,9 +5,20 @@
 import React, { FC } from 'react';
 import './Layout.scss';
 
-export const Layout: FC = ({ children }) => (
+interface LayoutProps {
+    children: any;
+    header?: string;
+    footer?: string;
+}
+
+export const Layout: FC<LayoutProps> = ({
+    children,
+    header,
+    footer
+}: LayoutProps) => (
     <div className="basic-layout">
-        <header></header>
+        <header>{header}</header>
         <main>{children}</main>
+        <footer>{footer}</footer>
     </div>
 );
