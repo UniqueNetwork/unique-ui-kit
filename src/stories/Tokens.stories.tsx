@@ -16,8 +16,8 @@ export const Json = Token.bind({});
 
 Json.args = {
     title: 'Token example',
-    code: JSON.stringify(token),
-    theme: 'light'
+    code: token,
+    theme: 'dark'
 };
 
 Json.storyName = 'Token example';

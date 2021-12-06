@@ -4,24 +4,37 @@
     font-family: $font-family;
     font-size: $font-size;
     font-weight: $font-weight;
-    pre {
-        display: block;
-        font-family: Courier;
-        font-size: $font-size;
-        font-weight: bold;
-        line-height: 20px;
-        margin: 0;
-        position: relative;
+
+    pre.__json-pretty__ {
         padding: 20px;
+        margin-bottom: 0;
     }
 
-    &.dark pre {
-        background-color: #5c5f67;
-        color: #c0e9ff;
+    &.dark {
+        pre.__json-pretty__ {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+
+            .__json-key__ {
+                color: #7cdcfe;
+            }
+            .__json-string__ {
+                color: #ce9178;
+            }
+        }
     }
 
-    &.light pre {
-        background-color: #fff4e0;
-        color: #00669e;
+    &.light {
+        pre.__json-pretty__ {
+            background-color: $color-blue-grey-100;
+            color: #818588;
+
+            .__json-key__ {
+                color: #0451a5;
+            }
+            .__json-string__ {
+                color: #ff5500;
+            }
+        }
     }
 }
