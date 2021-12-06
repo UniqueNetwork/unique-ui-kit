@@ -1,14 +1,11 @@
-@import "../../assets/style/colors.scss";
-@import "../../assets/style/props.scss";
-@import "../../assets/tokens/colors.scss";
-@import "../../assets/tokens/palette.scss";
+@import "../../assets/styles/index.scss";
 
 .button {
-    font-family: "Roboto", sans-serif;
+    font-family: $font-family;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: $border-raduis;
+    border-radius: $border-radius;
     cursor: pointer;
     border-width: 1px;
     border-style: solid;
@@ -16,7 +13,7 @@
     &.primary {
         background: $color-primary-500;
         border-color: $color-primary-500;
-        color: $color-additional-color-light;
+        color: $color-additional-light;
         &:hover {
             background: $color-primary-400;
             border-color: $color-primary-400;
@@ -30,7 +27,7 @@
     &.secondary {
         background: $color-secondary-500;
         border-color: $color-secondary-500;
-        color: $color-additional-color-light;
+        color: $color-additional-light;
         &:hover {
             background: $color-secondary-400;
             border-color: $color-secondary-400;
@@ -42,7 +39,7 @@
     }
 
     &.outlined {
-        background: $color-additional-color-light;
+        background: $color-additional-light;
         border-color: $color-primary-500;
         color: $color-primary-500;
         &:hover {
@@ -57,7 +54,7 @@
     }
 
     &.tertiary {
-        background: $color-additional-color-light;
+        background: $color-additional-light;
         border-color: $color-grey-500;
         color: $color-grey-500;
         &:hover {
@@ -73,13 +70,13 @@
     &.danger {
         color: $color-coral-500;
         border-color: $color-coral-500;
-        background: $color-additional-color-light;
+        background: $color-additional-light;
         &:hover {
             background: $color-coral-100;
             border-color: $color-coral-400;
         }
         &:active {
-            background: $color-additional-color-light;
+            background: $color-additional-light;
             border-color: $color-coral-600;
             color: $color-coral-600;
         }
@@ -96,7 +93,7 @@
     &.height-size-s {
         padding-top: 4px;
         padding-bottom: 4px;
-        font-size: 14px;
+        font-size: $font-size;
         line-height: 21px;
     }
 
@@ -117,7 +114,7 @@
         padding-right: 24px;
     }
 
-    &.width-size-full {
+    &.wide {
         width: 100%;
     }
 
