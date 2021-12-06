@@ -91,11 +91,11 @@
     &.error {
         .input-wrapper {
             input {
-                border: 1px solid $color-additional-negative-500;
+                border: 1px solid $color-coral-500;
             }
         }
         .status-text {
-            color: $color-additional-negative-500;
+            color: $color-coral-500;
         }
     }
 

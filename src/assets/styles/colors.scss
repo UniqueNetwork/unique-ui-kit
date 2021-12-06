@@ -7,9 +7,9 @@ $color-primary-500: color('unique', 'primary');
 $color-secondary-500: color('unique', 'secondary');
 $color-blue-grey-500: color('unique', 'blue-grey');
 $color-grey-500: color('unique', 'basic-grey');
+$color-coral-500: color('unique', 'basic-coral');
 $color-additional-positive-500: color('unique', 'additional-positive');
 $color-additional-warning-500: color('unique', 'additional-warning');
-$color-additional-negative-500: color('unique', 'additional-negative');
 $color-additional-light: color('unique', 'additional-light');
 
 // color palette
@@ -37,6 +37,11 @@ $color-grey-300: lighten($color-grey-500, 30%);
 $color-grey-400: lighten($color-grey-500, 25%);
 $color-grey-600: darken($color-grey-500, 10%);
 $color-grey-700: darken($color-grey-500, 15%);
+$color-coral-100: lighten($color-coral-500, 36%);
+$color-coral-200: lighten($color-coral-500, 28%);
+$color-coral-300: lighten($color-coral-500, 20%);
+$color-coral-400: lighten($color-coral-500, 15%);
+$color-coral-600: darken($color-coral-500, 8%);
+$color-coral-700: darken($color-coral-500, 12%);
 $color-additional-positive-100: lighten($color-additional-positive-500, 53%);
 $color-additional-warning-100: lighten($color-additional-warning-500, 45%);
-$color-additional-negative-100: lighten($color-additional-negative-500, 36%);

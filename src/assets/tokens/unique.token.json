@@ -21,6 +21,11 @@
                 "type": "color",
                 "value": "#81858e"
             },
+            "basic-coral": {
+                "description": "coral color description",
+                "type": "color",
+                "value": "#ff6335"
+            },
             "additional-positive": {
                 "description": "additional-positive color description",
                 "type": "color",
@@ -30,11 +35,6 @@
                 "description": "additional-warning color description",
                 "type": "color",
                 "value": "#f9a400"
-            },
-            "additional-negative": {
-                "description": "additional-negative color description",
-                "type": "color",
-                "value": "#ff6335"
             },
             "additional-light": {
                 "description": "additional-light color description",
