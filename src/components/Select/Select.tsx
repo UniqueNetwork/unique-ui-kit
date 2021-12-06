@@ -1,3 +1,7 @@
+/**
+ * @author Pavel Kalachev <pkalachev@usetech.com>
+ */
+
 import React, { FC, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { ComponentProps } from '../../types';
