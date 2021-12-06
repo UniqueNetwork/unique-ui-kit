@@ -2,8 +2,8 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
+import React, { FC } from "react";
 import classNames from 'classnames';
-import React, { FC } from 'react';
 import { ComponentProps } from '../../types';
 import './InputText.scss';
 
