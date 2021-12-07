@@ -8,9 +8,7 @@ export default {
     component: Button
 } as ComponentMeta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = (args) => (
-    <Button {...args}/>
-);
+const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 
 export const Primary = Template.bind({});
 
@@ -22,8 +20,8 @@ Primary.args = {
     leftIcon: '',
     rightIcon: '',
     disabled: false,
-    wide: false,
-}
+    wide: false
+};
 
 Primary.storyName = 'Primary';
 
@@ -33,7 +31,7 @@ Secondary.args = {
     children: 'Button',
     view: 'secondary',
     heightSize: 's',
-    widthSize: 'm',
+    widthSize: 's',
     leftIcon: '',
     rightIcon: arrowRight,
     disabled: false,
