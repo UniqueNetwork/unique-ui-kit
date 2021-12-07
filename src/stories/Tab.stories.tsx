@@ -1,31 +1,36 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { useState } from "react";
-import { Tabs } from "../components";
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { useState } from 'react';
+import { Tabs } from '../components';
 
 export default {
-  title: "Components/Tabs",
-  component: Tabs,
+    title: 'Components/Tabs',
+    component: Tabs
 } as ComponentMeta<typeof Tabs>;
 
 const Template: ComponentStory<typeof Tabs> = (args) => {
-  const [contentIndex, setContentIndex] = useState(0);
+    const [contentIndex, setContentIndex] = useState(0);
 
-  return (
-    <>
-      <Tabs {...args} setContentIndex={(id) => setContentIndex(id)} />
-      <br />
-      <pre>Content: {args.tabsContent[contentIndex]}</pre>
-    </>
-  );
+    return (
+        <>
+            <Tabs
+                {...args}
+                changeContentIndex={(id: number) => {
+                    setContentIndex(id);
+                }}
+            />
+            <br />
+            <pre>Content: {args.contents[contentIndex]}</pre>
+        </>
+    );
 };
 
 export const Default = Template.bind({});
 
 Default.args = {
-  tabsNames: ["Label 1", "Label 2", "Label 3"],
-  tabsContent: [<>1</>, <>2</>, <>3</>],
-  tabConditionIndex: 1,
-  tabsDisabledIndex: [2],
+    titles: ['Label 1', 'Label 2', 'Label 3'],
+    contents: [<>1</>, <>2</>, <>3</>],
+    activeIndex: 0,
+    disabledIndex: [2]
 };
 
-Default.storyName = "Default";
+Default.storyName = 'Default';

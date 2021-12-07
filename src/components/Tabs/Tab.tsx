@@ -2,36 +2,36 @@
  * @author Roman Beganov <rbeganov@usetech.com>
  */
 
-import React, { FC } from 'react';
 import classNames from 'classnames';
+import React, { FC } from 'react';
 
 interface TabProps {
-    tabIndex: number;
-    tabLabel: string;
-    tabCondition: boolean;
-    clickOnTab: (id: number) => void;
-    tabDisabled?: boolean;
+    index: number;
+    title: string;
+    active: boolean;
+    onClickTab: (id: number) => void;
+    disabled?: boolean;
 }
 
 export const Tab: FC<TabProps> = ({
-    tabIndex,
-    tabLabel,
-    tabCondition,
-    clickOnTab,
-    tabDisabled,
+    index,
+    title,
+    active,
+    onClickTab,
+    disabled,
     ...props
 }: TabProps) => (
     <div
         onClick={() => {
-            if (!tabDisabled) {
-                clickOnTab(tabIndex);
+            if (!disabled) {
+                onClickTab(index);
             }
         }}
         className={classNames('unique-tab', {
-            disabled: tabDisabled,
-            'condition ': tabCondition
+            disabled,
+            active
         })}
     >
-        {tabLabel}
+        {title}
     </div>
 );

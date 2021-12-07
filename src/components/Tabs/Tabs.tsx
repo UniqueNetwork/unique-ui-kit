@@ -7,48 +7,39 @@ import { Tab } from './Tab';
 import './Tabs.scss';
 
 interface TabsProps {
-    tabsNames: string[];
-    tabsContent: ReactElement[];
-    tabConditionIndex?: number;
-    tabsDisabledIndex: number[];
-    setContentIndex: (id: number) => void;
+    titles: string[];
+    contents: ReactElement[];
+    activeIndex?: number;
+    disabledIndex?: number[];
+    changeContentIndex: (id: number) => void;
 }
 
 export const Tabs: FC<TabsProps> = ({
-    tabsNames,
-    tabsContent,
-    tabConditionIndex,
-    tabsDisabledIndex,
-    setContentIndex,
-    ...props
+    titles,
+    contents,
+    activeIndex,
+    disabledIndex,
+    changeContentIndex
 }: TabsProps) => {
-    const [conditionTab, setCondutionTab] = useState(tabConditionIndex);
+    const [activeTab, setActiveTab] = useState(activeIndex || 0);
 
-    useEffect(() => {
-        if (tabConditionIndex) {
-            setCondutionTab(tabConditionIndex);
-            setContentIndex(tabConditionIndex);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [tabConditionIndex]);
-
-    const clickOnTab = (id: number) => {
-        setCondutionTab(id);
-        setContentIndex(id);
+    const onClickTab = (id: number) => {
+        setActiveTab(id);
+        changeContentIndex(id);
     };
+
     return (
-        <div className="unique-tabs-container">
-            {tabsNames.map((tab, index) => {
+        <div className="unique-tabs-wrapper">
+            {titles.map((tab, index) => {
                 return (
                     <Tab
                         key={index}
-                        tabIndex={index}
-                        tabLabel={tab}
-                        clickOnTab={clickOnTab}
-                        tabCondition={conditionTab == index}
-                        tabDisabled={
-                            tabsDisabledIndex &&
-                            tabsDisabledIndex.includes(index)
+                        index={index}
+                        title={tab}
+                        onClickTab={onClickTab}
+                        active={activeTab == index}
+                        disabled={
+                            disabledIndex && disabledIndex.includes(index)
                         }
                     />
                 );
