@@ -2,14 +2,12 @@
  * @author Anna Mikhailova <amikhailova@usetech.com>
  */
 
-import React, {
-    ButtonHTMLAttributes,
-    FC
-} from 'react';
+import { ButtonHTMLAttributes, FC } from 'react';
 import cn from 'classnames';
 import './Button.scss';
 
-type TButtonProps = ComponentProps & Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'disabled' | 'onClick'>;
+type TButtonProps = ComponentProps &
+    Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'disabled' | 'onClick'>;
 
 type TView = 'primary' | 'secondary' | 'tertiary' | 'outlined' | 'danger';
 
@@ -36,7 +34,6 @@ export const Button: FC<TButtonProps> = ({
     wide = false,
     onClick
 }: TButtonProps) => {
-
     const componentProps = {
         disabled,
         className: cn(
@@ -46,16 +43,16 @@ export const Button: FC<TButtonProps> = ({
             `height-size-${heightSize}`,
             `width-size-${widthSize}`,
             { wide },
-            className,
+            className
         ),
-        onClick,
+        onClick
     };
 
     return (
         <button {...componentProps}>
-            {leftIcon && <img className={cn('icon', 'icon-left')} src={leftIcon} />}
+            {leftIcon && <img className={'icon icon-left'} src={leftIcon} />}
             {children}
-            {rightIcon && <img className={cn('icon', 'icon-right')} src={rightIcon} />}
+            {rightIcon && <img className={'icon icon-right'} src={rightIcon} />}
         </button>
-    )
+    );
 };
