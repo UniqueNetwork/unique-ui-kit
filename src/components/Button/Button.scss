@@ -119,9 +119,6 @@
     }
 
     .icon {
-        width: 12px;
-        height: 10px;
-
         &.icon-left {
             margin-right: 10px;
             margin-left: 2px;
@@ -130,6 +127,11 @@
         &.icon-right {
             margin-left: 10px;
             margin-right: 2px;
+        }
+
+        svg{
+            width: 12px;
+            height: 10px;
         }
     }
 }

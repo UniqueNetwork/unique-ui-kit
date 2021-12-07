@@ -5,6 +5,9 @@
 import { ButtonHTMLAttributes, FC } from 'react';
 import cn from 'classnames';
 import './Button.scss';
+import { Icon } from '../../components';
+import arrowLeft from '../../assets/svg/arrow_left.svg';
+import arrowRight from '../../assets/svg/arrow_right.svg';
 
 type TButtonProps = ComponentProps &
     Pick<ButtonHTMLAttributes<HTMLButtonElement>, 'disabled' | 'onClick'>;
@@ -50,9 +53,11 @@ export const Button: FC<TButtonProps> = ({
 
     return (
         <button {...componentProps}>
-            {leftIcon && <img className={'icon icon-left'} src={leftIcon} />}
+            {leftIcon && <Icon className={'icon icon-left'} path={arrowLeft} />}
             {children}
-            {rightIcon && <img className={'icon icon-right'} src={rightIcon} />}
+            {rightIcon && (
+                <Icon className={'icon icon-right'} path={arrowRight} />
+            )}
         </button>
     );
 };
