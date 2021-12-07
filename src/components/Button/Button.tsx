@@ -5,7 +5,7 @@
 import { ButtonHTMLAttributes, FC } from 'react';
 import cn from 'classnames';
 import './Button.scss';
-import { Icon } from '../Icon/Icon';
+import { Icon } from '../../components';
 import arrowLeft from '../../assets/svg/arrow_left.svg';
 import arrowRight from '../../assets/svg/arrow_right.svg';
 
@@ -53,9 +53,11 @@ export const Button: FC<TButtonProps> = ({
 
     return (
         <button {...componentProps}>
-            {leftIcon && <Icon className={'icon icon-left'}  path={arrowLeft}/>}
+            {leftIcon && <Icon className={'icon icon-left'} path={arrowLeft} />}
             {children}
-            {rightIcon && <Icon className={'icon icon-right'} path={arrowRight} />}
+            {rightIcon && (
+                <Icon className={'icon icon-right'} path={arrowRight} />
+            )}
         </button>
-    )
+    );
 };
