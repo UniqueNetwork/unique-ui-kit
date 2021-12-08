@@ -24,8 +24,9 @@
 
     .checkmark {
       position: absolute;
-      width: 20px;
-      height: 20px;
+      box-sizing: border-box;
+      width: 22px;
+      height: 22px;
       border: 1px solid $color-grey-300;
       border-radius: 4px;
       margin-top: 1px;
@@ -64,9 +65,6 @@
     }
 
     &.disabled {
-      input {
-        background-color: red;
-      }
       .checkmark {
         background-color: $color-grey-300;
       }
@@ -82,9 +80,8 @@
     &.checkbox-size {
       &-s {
         .checkmark {
-          width: 18px;
-          height: 18px;
-          margin-top: 0;
+          width: 20px;
+          height: 20px;
           &.checked::after {
             height: 16px;
             width: 16px;
