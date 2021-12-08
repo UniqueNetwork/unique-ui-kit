@@ -16,6 +16,12 @@
       width: 0;
     }
 
+    &:hover {
+      .checkmark {
+        border-color: $color-primary-500;
+      }
+    }
+
     .checkmark {
       position: absolute;
       width: 20px;
