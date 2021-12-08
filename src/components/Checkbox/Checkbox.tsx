@@ -2,8 +2,8 @@
  * @author Roman Beganov <rbeganov@usetech.com>
  */
 
-import classNames from 'classnames';
 import React, { FC } from 'react';
+import classNames from 'classnames';
 import './Checkbox.scss';
 
 interface CheckboxProps {
