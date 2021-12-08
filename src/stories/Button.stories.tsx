@@ -45,7 +45,7 @@ export const Tertiary = Template.bind({});
 Tertiary.args = {
     children: 'Button',
     view: 'tertiary',
-    heightSize: 'm',
+    heightSize: 's',
     widthSize: 's',
     leftIcon: arrowLeft,
     rightIcon: '',
