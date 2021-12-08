@@ -5,3 +5,4 @@ export { InputText } from './InputText/InputText';
 export { Layout } from './Layout/Layout';
 export { Pagination } from './Pagination/Pagination';
 export { Select } from './Select/Select';
+export { Tabs } from './Tabs/Tabs';
