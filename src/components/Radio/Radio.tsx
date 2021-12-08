@@ -7,39 +7,37 @@ import classNames from 'classnames';
 import './Radio.scss';
 
 interface RadioProps {
-    value?: boolean;
-    label?: string;
+    checked: boolean;
+    label: string;
+    size: 's' | 'm' | 'l';
     disabled?: boolean;
-    size?: 's';
-    onChange?: (value: boolean) => void;
+    onChange: (value: boolean) => void;
 }
 
 export const Radio: FC<RadioProps> = ({
-    value = false,
+    checked,
     label,
-    disabled = false,
-    size,
-    onChange,
-    ...props
+    size = 'm',
+    disabled,
+    onChange
 }: RadioProps) => (
     <div
-        className={classNames(
-            'unique-radio-wrapper',
-            size && `radio-size-${size}`,
-            { disabled }
-        )}
+        className={classNames('unique-radio-wrapper', `radio-size-${size}`, {
+            disabled
+        })}
         {...(!disabled && {
-            onClick: () => onChange?.(!value)
+            onClick: () => onChange(!checked)
         })}
     >
         <input
             type="radio"
             name={label}
+            id={label}
             className="radio"
-            checked={value}
+            checked={checked}
             onChange={(e) => e.preventDefault()}
         />
-        <span className={classNames('inner', { checked: value })}></span>
+        <span className={classNames('inner', { checked })} />
         <label>{label}</label>
     </div>
 );

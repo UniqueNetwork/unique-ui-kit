@@ -8,83 +8,44 @@ export default {
 } as ComponentMeta<typeof Radio>;
 
 const Template: ComponentStory<typeof Radio> = (args) => {
-    const [radioStatus, setradioStatus] = useState(args.value);
-
-    useEffect(() => {
-        setradioStatus(args.value);
-    }, [args.value]);
-    return (
-        <>
-            <Radio
-                {...args}
-                value={radioStatus}
-                onChange={(value) => {
-                    setradioStatus(value);
-                }}
-            />
-        </>
-    );
+    const [checked, setChecked] = useState(args.checked);
+    return <Radio {...args} checked={checked} onChange={setChecked} />;
 };
 
 export const Default = Template.bind({});
 
 Default.args = {
     label: 'Label',
-    value: false,
-    disabled: false
+    size: 's'
 };
 
 Default.storyName = 'Default';
 
-export const Active = Template.bind({});
+export const Size = Template.bind({});
 
-Active.args = {
-    label: 'Label',
-    value: true,
-    disabled: false
+Size.args = {
+    label: 'Label'
 };
 
-Active.storyName = 'Default w/ active';
+Size.storyName = 'Default w/ size';
+
+export const Checked = Template.bind({});
+
+Checked.args = {
+    label: 'Label',
+    size: 's',
+    checked: true
+};
+
+Checked.storyName = 'Default w/ checked';
 
 export const Disable = Template.bind({});
 
 Disable.args = {
     label: 'Label',
-    value: true,
+    size: 's',
+    checked: true,
     disabled: true
 };
 
 Disable.storyName = 'Default w/ disable';
-
-export const Small = Template.bind({});
-
-Small.args = {
-    label: 'Label',
-    value: false,
-    disabled: false,
-    size: 's'
-};
-
-Small.storyName = 'Small';
-
-export const SmallActive = Template.bind({});
-
-SmallActive.args = {
-    label: 'Label',
-    value: true,
-    disabled: false,
-    size: 's'
-};
-
-SmallActive.storyName = 'Small w/ active';
-
-export const SmallDisable = Template.bind({});
-
-SmallDisable.args = {
-    label: 'Label',
-    value: true,
-    disabled: true,
-    size: 's'
-};
-
-SmallDisable.storyName = 'Small w/ disable';
