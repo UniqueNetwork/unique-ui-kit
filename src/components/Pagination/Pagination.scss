@@ -34,9 +34,14 @@
             color: $color-additional-light;
             border-radius: $border-radius;
         }
+
+        &.disabled{
+            pointer-events: none;
+            color: $color-blue-grey-300;
+        }
     }
 
-    .icon {
+    .button {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -45,6 +50,10 @@
         height: 32px;
         cursor: pointer;
         color: $color-secondary-500;
+
+        &:hover {
+            color: $color-primary-500;
+        }
 
         &.disabled {
             color: $color-blue-grey-300;

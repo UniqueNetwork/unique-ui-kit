@@ -2,89 +2,103 @@
  * @author Anna Mikhailova <amikhailova@usetech.com>
  */
 
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import cn from 'classnames';
 import './Pagination.scss';
 import { Icon } from '../../components';
 import caretRight from '../../assets/svg/caret_right.svg';
+import caretLeft from '../../assets/svg/caret_left.svg';
 
 interface IPaginationProps {
     pageCount: number;
-    currentPage?: number;
-    onPageChange?: (currentPage: number) => {};
+    currentPage: number;
     className?: string;
+    disabled?: boolean;
+    showPrevButton?: boolean;
+    showNextButton?: boolean;
+    onChange?: (currentPage: number) => void;
 }
 
 export const Pagination: FC<IPaginationProps> = ({
     pageCount,
     currentPage = 0,
-    onPageChange,
-    className
+    className,
+    disabled = false,
+    showPrevButton = true,
+    showNextButton = true,
+    onChange
 }: IPaginationProps) => {
-    const [activePage, setCurrentPage] = useState(currentPage);
-
-    const onClick = (page: number) => {
-        setCurrentPage(page);
-        onPageChange!(page);
+    //Todo: обернуть в useCallback
+    const prevPage = () => {
+        if (!disabledPrev) {
+            onChange!(currentPage - 1);
+        }
     };
 
     const nextPage = () => {
         if (!disabledNext) {
-            setCurrentPage(activePage + 1);
+            onChange!(currentPage + 1);
         }
     };
 
-    const firstPages = [1, 2, 3, 4, 5, 6, 7];
+    const firstPages = new Array(pageCount <= 7 ? pageCount : 7).fill(0).map((_, i) => i + 1);
     const lastPages = [];
     for (let i = pageCount; i > pageCount - 7; i--) {
         lastPages.unshift(i);
     }
-    if (pageCount <= 7) {
-        firstPages.length = pageCount;
-    }
 
-    const disabledNext = pageCount === activePage;
-    const showFirstThreeDots = (pageCount!==8) && (activePage - 2 > 1);
-    const showLastThreeDots = (pageCount!==8) && (pageCount - 2 > activePage);
+    const disabledNext = pageCount === currentPage || disabled;
+    const disabledPrev = currentPage === 1 || disabled;
+    const showThreeDots = pageCount > 8;
+
+    // Todo:в компонент
     const threeDots = <span className="three-dots cell">...</span>;
+
+    // Todo:в компонент
     const elem = (page: number) => {
         return (
             <li
                 key={page}
-                className={cn('element cell', { active: page === activePage })}
-                onClick={() => onClick(page)}
+                className={cn(
+                    'element cell',
+                    { active: page === currentPage && !disabled },
+                    { disabled }
+                )}
+                onClick={() => onChange!(page)}
             >
                 {page.toLocaleString()}
             </li>
         );
     };
+
+    //  Todo:отдельные компоненты
     const lessEightPagesView = <>{firstPages.map((page) => elem(page))}</>;
 
-    const firstSevenPagesView = (
+    const pagesFromBeginView = (
         <>
             {firstPages.map((page) => elem(page))}
-            {showLastThreeDots && threeDots}
-            {pageCount > activePage && elem(pageCount)}
+            {showThreeDots && threeDots}
+            {pageCount > currentPage && elem(pageCount)}
         </>
     );
 
-    const lastSevenPagesView = (
+    const pagesBeforeEndView = (
         <>
             {elem(1)}
-            {showFirstThreeDots && threeDots}
+            {showThreeDots && threeDots}
             {lastPages.map((page) => elem(page))}
         </>
     );
 
     const allPagesView = (
         <>
-            {activePage > 2 && elem(1)}
-            {showFirstThreeDots && threeDots}
-            {activePage > 1 && elem(activePage - 1)}
-            {elem(activePage)}
-            {pageCount > activePage + 1 && elem(activePage + 1)}
-            {showLastThreeDots && threeDots}
-            {pageCount > activePage && elem(pageCount)}
+            {elem(1)}
+            {threeDots}
+            {elem(currentPage - 1)}
+            {elem(currentPage)}
+            {elem(currentPage + 1)}
+            {threeDots}
+            {elem(pageCount)}
         </>
     );
 
@@ -93,11 +107,11 @@ export const Pagination: FC<IPaginationProps> = ({
             case pageCount < 8:
                 return lessEightPagesView;
 
-            case activePage <= 4:
-                return firstSevenPagesView;
+            case currentPage <= 4:
+                return pagesFromBeginView;
 
-            case activePage > pageCount -6:
-                return lastSevenPagesView;
+            case currentPage > pageCount - 6:
+                return pagesBeforeEndView;
 
             default:
                 return allPagesView;
@@ -106,12 +120,21 @@ export const Pagination: FC<IPaginationProps> = ({
 
     return (
         <ul className={`${className} unique-pagination-wrapper`}>
+            {showPrevButton && (
+                <Icon
+                    className={cn('button', { disabled: disabledPrev })}
+                    path={caretLeft}
+                    onClick={prevPage}
+                />
+            )}
             {paginationContent()}
-            <Icon
-                className={cn('icon', { disabled: disabledNext })}
-                path={caretRight}
-                onClick={nextPage}
-            />
+            {showNextButton && (
+                <Icon
+                    className={cn('button', { disabled: disabledNext })}
+                    path={caretRight}
+                    onClick={nextPage}
+                />
+            )}
         </ul>
     );
 };
