@@ -5,6 +5,7 @@
 import React, { FC } from 'react';
 import classNames from 'classnames';
 import './Checkbox.scss';
+import { Icon } from '..';
 
 interface CheckboxProps {
     checked: boolean;
@@ -39,7 +40,16 @@ export const Checkbox: FC<CheckboxProps> = ({
             checked={checked}
             onChange={(e) => e.preventDefault()}
         />
-        <span className={classNames('checkmark', { checked })}></span>
+        <span className={classNames('checkmark', { checked })}>
+            {checked && (
+                <Icon
+                    name="checked"
+                    color="#fff"
+                    size={size === 's' ? 16 : 18}
+                />
+            )}
+        </span>
+
         <label>{label}</label>
     </div>
 );

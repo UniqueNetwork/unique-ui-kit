@@ -22,26 +22,13 @@
         box-sizing: border-box;
         border: 1px solid $color-grey-300;
         border-radius: $border-radius;
+        display: flex;
+        align-items: center;
     }
 
     .checkmark.checked {
         background-color: $color-primary-500;
         border: 1px solid $color-primary-500;
-        &:after {
-            content: '';
-            position: absolute;
-            -webkit-mask-repeat: no-repeat;
-            -webkit-mask-position: center center;
-            -webkit-mask-size: contain;
-            mask-position: center center;
-            mask-repeat: no-repeat;
-            mask-size: contain;
-            top: 1px;
-            left: 1px;
-            background-color: $color-primary-100;
-            -webkit-mask-image: url('../../assets/svg/checked.svg');
-            mask-image: url('../../assets/svg/checked.svg');
-        }
     }
 
     label {
@@ -70,10 +57,6 @@
             .checkmark {
                 width: 20px;
                 height: 20px;
-                &.checked::after {
-                    height: 16px;
-                    width: 16px;
-                }
             }
             label {
                 font-size: $font-size;
@@ -85,10 +68,6 @@
             .checkmark {
                 width: 22px;
                 height: 22px;
-                &.checked::after {
-                    height: 18px;
-                    width: 18px;
-                }
             }
             label {
                 font-size: 16px;
