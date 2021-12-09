@@ -51,10 +51,8 @@ export const Pagination: FC<IPaginationProps> = ({
     const disabledPrev = currentPage === 1 || disabled;
     const showThreeDots = pageCount > 8;
 
-    // Todo:в компонент
     const threeDots = <span className="three-dots cell">...</span>;
 
-    // Todo:в компонент
     const elem = (page: number) => {
         return (
             <li
@@ -71,7 +69,6 @@ export const Pagination: FC<IPaginationProps> = ({
         );
     };
 
-    //  Todo:отдельные компоненты
     const lessEightPagesView = <>{firstPages.map((page) => elem(page))}</>;
 
     const pagesFromBeginView = (
