@@ -5,13 +5,13 @@
 import React, { FC } from 'react';
 import Icons from '../../assets/svg/icons.svg';
 
-interface IIconProps {
+export interface IconProps {
     name: string;
     color: string;
     size: number;
 }
 
-export const Icon: FC<IIconProps> = ({ name, color, size }: IIconProps) => (
+export const Icon: FC<IconProps> = ({ name, color, size }: IconProps) => (
     <svg
         className={`icon icon-${name}`}
         fill={color}
