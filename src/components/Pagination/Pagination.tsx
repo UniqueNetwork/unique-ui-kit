@@ -33,9 +33,14 @@ export const Pagination: FC<IPaginationProps> = ({
             setCurrentPage(activePage + 1);
         }
     };
-    const pages = [1, 2, 3, 4, 5];
-    if (pageCount <= 5) {
-        pages.length = pageCount;
+
+    const firstPages = [1, 2, 3, 4, 5, 6, 7];
+    const lastPages = [];
+    for (let i = pageCount; i > pageCount - 7; i--) {
+        lastPages.unshift(i);
+    }
+    if (pageCount <= 7) {
+        firstPages.length = pageCount;
     }
 
     const disabledNext = pageCount === activePage;
@@ -53,9 +58,25 @@ export const Pagination: FC<IPaginationProps> = ({
             </div>
         );
     };
-    const fivePagesView = <>{pages.map((page) => elem(page))}</>;
+    const fivePagesView = <>{firstPages.map((page) => elem(page))}</>;
 
-    const fullPagesView = (
+    const firstSevenPagesView = (
+        <>
+            {firstPages.map((page) => elem(page))}
+            {showLastThreeDots && threeDots}
+            {pageCount > activePage && elem(pageCount)}
+        </>
+    );
+
+    const lastSevenPagesView = (
+        <>
+            {elem(1)}
+            {showFirstThreeDots && threeDots}
+            {lastPages.map((page) => elem(page))}
+        </>
+    );
+
+    const allPagesView = (
         <>
             {activePage > 2 && elem(1)}
             {showFirstThreeDots && threeDots}
@@ -67,11 +88,25 @@ export const Pagination: FC<IPaginationProps> = ({
         </>
     );
 
-    const paginationContent = pageCount <= 5 ? fivePagesView : fullPagesView;
+    const paginationContent = () => {
+        switch (true) {
+            case pageCount <= 5:
+                return fivePagesView;
+
+            case activePage <= 4:
+                return firstSevenPagesView;
+
+            case activePage > pageCount -6:
+                return lastSevenPagesView;
+
+            default:
+                return allPagesView;
+        }
+    };
 
     return (
         <div className={`${className} unique-pagination-wrapper`}>
-            {paginationContent}
+            {paginationContent()}
             <Icon
                 className={cn('icon', { disabled: disabledNext })}
                 path={caretRight}
