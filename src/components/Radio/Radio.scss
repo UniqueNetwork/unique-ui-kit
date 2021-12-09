@@ -1,5 +1,13 @@
 @import '../../assets/styles/index.scss';
 
+.unique-radio-group-wrapper {
+  display: flex;
+  flex-direction: column;
+  .unique-radio-wrapper {
+    margin-bottom: 5px;
+  }
+};
+
 .unique-radio-wrapper {
     font-family: $font-family;
     font-size: $font-size;

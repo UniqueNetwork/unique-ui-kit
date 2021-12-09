@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import React, { useEffect, useState } from 'react';
 import { Radio } from '../components';
 
 export default {
@@ -7,45 +7,43 @@ export default {
     component: Radio
 } as ComponentMeta<typeof Radio>;
 
-const Template: ComponentStory<typeof Radio> = (args) => {
-    const [checked, setChecked] = useState(args.checked);
-    return <Radio {...args} checked={checked} onChange={setChecked} />;
+const Template: ComponentStory<typeof Radio.Group> = (args) => {
+    const [value, setValue] = useState(args.options[0].value);
+    return (
+        <Radio.Group
+            options={args.options}
+            size={args.size}
+            value={value}
+            onChange={setValue}
+        />
+    );
 };
 
 export const Default = Template.bind({});
 
 Default.args = {
-    label: 'Label',
-    size: 's'
+    options: [{ value: 'Apple' }, { value: 'Banana' }, { value: 'Panama' }]
 };
 
 Default.storyName = 'Default';
 
-export const Size = Template.bind({});
+export const DefaultSize = Template.bind({});
 
-Size.args = {
-    label: 'Label'
+DefaultSize.args = {
+    options: [{ value: 'Apple' }, { value: 'Banana' }, { value: 'Panama' }],
+    size: 's'
 };
 
-Size.storyName = 'Default w/ size';
+DefaultSize.storyName = 'Default w/ size';
 
-export const Checked = Template.bind({});
+export const DefaultDisabled = Template.bind({});
 
-Checked.args = {
-    label: 'Label',
-    size: 's',
-    checked: true
+DefaultDisabled.args = {
+    options: [
+        { value: 'Apple', disabled: true },
+        { value: 'Banana' },
+        { value: 'Panama' }
+    ]
 };
 
-Checked.storyName = 'Default w/ checked';
-
-export const Disable = Template.bind({});
-
-Disable.args = {
-    label: 'Label',
-    size: 's',
-    checked: true,
-    disabled: true
-};
-
-Disable.storyName = 'Default w/ disable';
+DefaultDisabled.storyName = 'Default w/ disabled';

@@ -6,17 +6,17 @@ import React, { FC } from 'react';
 import classNames from 'classnames';
 import './Radio.scss';
 
-interface RadioProps {
+export interface RadioProps {
     checked: boolean;
-    label: string;
-    size: 's' | 'm' | 'l';
+    value: string | number;
+    size?: 's' | 'm';
     disabled?: boolean;
-    onChange: (value: boolean) => void;
+    onChange: (value: string | number) => void;
 }
 
-export const Radio: FC<RadioProps> = ({
+export const InternalRadio: FC<RadioProps> = ({
     checked,
-    label,
+    value,
     size = 'm',
     disabled,
     onChange
@@ -26,18 +26,18 @@ export const Radio: FC<RadioProps> = ({
             disabled
         })}
         {...(!disabled && {
-            onClick: () => onChange(!checked)
+            onClick: () => onChange(value)
         })}
     >
         <input
             type="radio"
-            name={label}
-            id={label}
+            name={value.toString()}
+            id={value.toString()}
             className="radio"
             checked={checked}
             onChange={(e) => e.preventDefault()}
         />
         <span className={classNames('inner', { checked })} />
-        <label>{label}</label>
+        <label>{value}</label>
     </div>
 );
