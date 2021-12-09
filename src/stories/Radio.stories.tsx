@@ -7,10 +7,10 @@ export default {
     component: Radio
 } as ComponentMeta<typeof Radio>;
 
-const Template: ComponentStory<typeof Radio.Group> = (args) => {
+const Template: ComponentStory<typeof Radio> = (args) => {
     const [value, setValue] = useState(args.options[0].value);
     return (
-        <Radio.Group
+        <Radio
             options={args.options}
             size={args.size}
             value={value}
@@ -40,8 +40,8 @@ export const DefaultDisabled = Template.bind({});
 
 DefaultDisabled.args = {
     options: [
-        { value: 'Apple', disabled: true },
-        { value: 'Banana' },
+        { value: 'Apple' },
+        { value: 'Banana', disabled: true },
         { value: 'Panama' }
     ]
 };
