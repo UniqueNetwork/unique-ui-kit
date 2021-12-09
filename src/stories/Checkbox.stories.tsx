@@ -21,20 +21,10 @@ Default.args = {
 
 Default.storyName = 'Default';
 
-export const Size = Template.bind({});
-
-Size.args = {
-    label: 'Label',
-    size: 'm'
-};
-
-Size.storyName = 'Default w/ size';
-
 export const Checked = Template.bind({});
 
 Checked.args = {
     label: 'Label',
-    size: 's',
     checked: true
 };
 
@@ -44,7 +34,6 @@ export const Disable = Template.bind({});
 
 Disable.args = {
     label: 'Label',
-    size: 's',
     checked: true,
     disabled: true
 };

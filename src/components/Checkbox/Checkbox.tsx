@@ -9,7 +9,7 @@ import './Checkbox.scss';
 interface CheckboxProps {
     checked: boolean;
     label: string;
-    size: 's' | 'm' | 'l';
+    size: 's' | 'm';
     disabled?: boolean;
     onChange: (value: boolean) => void;
 }
@@ -18,7 +18,7 @@ export const Checkbox: FC<CheckboxProps> = ({
     checked,
     label,
     disabled,
-    size = 'm',
+    size = 's',
     onChange
 }: CheckboxProps) => (
     <div
