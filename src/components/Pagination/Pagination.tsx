@@ -44,21 +44,21 @@ export const Pagination: FC<IPaginationProps> = ({
     }
 
     const disabledNext = pageCount === activePage;
-    const showFirstThreeDots = activePage - 2 > 1;
-    const showLastThreeDots = pageCount - 2 > activePage;
+    const showFirstThreeDots = (pageCount!==8) && (activePage - 2 > 1);
+    const showLastThreeDots = (pageCount!==8) && (pageCount - 2 > activePage);
     const threeDots = <span className="three-dots cell">...</span>;
     const elem = (page: number) => {
         return (
-            <div
+            <li
                 key={page}
                 className={cn('element cell', { active: page === activePage })}
                 onClick={() => onClick(page)}
             >
-                {page}
-            </div>
+                {page.toLocaleString()}
+            </li>
         );
     };
-    const fivePagesView = <>{firstPages.map((page) => elem(page))}</>;
+    const lessEightPagesView = <>{firstPages.map((page) => elem(page))}</>;
 
     const firstSevenPagesView = (
         <>
@@ -90,8 +90,8 @@ export const Pagination: FC<IPaginationProps> = ({
 
     const paginationContent = () => {
         switch (true) {
-            case pageCount <= 5:
-                return fivePagesView;
+            case pageCount < 8:
+                return lessEightPagesView;
 
             case activePage <= 4:
                 return firstSevenPagesView;
@@ -105,13 +105,13 @@ export const Pagination: FC<IPaginationProps> = ({
     };
 
     return (
-        <div className={`${className} unique-pagination-wrapper`}>
+        <ul className={`${className} unique-pagination-wrapper`}>
             {paginationContent()}
             <Icon
                 className={cn('icon', { disabled: disabledNext })}
                 path={caretRight}
                 onClick={nextPage}
             />
-        </div>
+        </ul>
     );
 };

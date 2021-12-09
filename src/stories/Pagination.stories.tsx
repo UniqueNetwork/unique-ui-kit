@@ -13,8 +13,8 @@ const Template: ComponentStory<typeof Pagination> = (args) => (
 export const Default = Template.bind({});
 
 Default.args = {
-    pageCount: 100,
-    currentPage: 97,
+    pageCount: 198989,
+    currentPage: 1,
 };
 
 Default.storyName = 'Default';
