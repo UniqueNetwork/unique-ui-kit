@@ -102,34 +102,33 @@
             }
         }
 
-        &:after {
-            background-color: $color-grey-500;
-            content: '';
-            height: 4px;
-            mask-image: url('../../assets/svg/triangle.svg');
+        svg {
             position: absolute;
-            right: 14px;
-            top: 18px;
-            width: 8px;
-            -webkit-mask-image: url('../../assets/svg/triangle.svg');
+            top: 0;
+            right: 0;
+            margin: 17px;
+            cursor: pointer;
+            fill: $color-blue-grey-500;
+            z-index: -1;
         }
 
-        &.dropped:after {
-            top: 17px;
+        &.dropped svg {
             transform: rotate(180deg);
         }
 
         &.disabled {
             background-color: $color-grey-100;
             color: $color-blue-grey-400;
-            &:after {
-                background-color: $color-blue-grey-400;
-            }
             .select-value {
                 cursor: default;
                 .select-placeholder {
                     color: $color-grey-400;
                 }
+            }
+            svg {
+                cursor: initial;
+                fill: $color-blue-grey-400;
+                z-index: 0;
             }
         }
     }

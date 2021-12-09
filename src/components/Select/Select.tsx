@@ -5,6 +5,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { ComponentProps } from '../../types';
+import { Icon } from '..';
 import './Select.scss';
 
 interface SelectProps extends ComponentProps {
@@ -106,6 +107,7 @@ export const Select: FC<SelectProps> = ({
                         ))}
                     </div>
                 )}
+                <Icon name="triangle" size={8} />
             </div>
             {statusText && <div className="status-text">{statusText}</div>}
         </div>

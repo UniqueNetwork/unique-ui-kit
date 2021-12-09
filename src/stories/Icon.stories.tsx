@@ -13,7 +13,6 @@ export const Default = Template.bind({});
 
 Default.args = {
     name: 'arrow-right',
-    color: '#7f90a1',
     size: 20
 };
 
