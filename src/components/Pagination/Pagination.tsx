@@ -2,7 +2,7 @@
  * @author Anna Mikhailova <amikhailova@usetech.com>
  */
 
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
 import cn from 'classnames';
 import './Pagination.scss';
 import { Icon } from '../../components';
@@ -16,6 +16,7 @@ interface IPaginationProps {
     disabled?: boolean;
     showPrevButton?: boolean;
     showNextButton?: boolean;
+    isMobile?: boolean;
     onChange?: (currentPage: number) => void;
 }
 
@@ -26,29 +27,33 @@ export const Pagination: FC<IPaginationProps> = ({
     disabled = false,
     showPrevButton = true,
     showNextButton = true,
+    isMobile = true,
     onChange
 }: IPaginationProps) => {
     //Todo: обернуть в useCallback
-    const prevPage = () => {
+
+    const disabledNext = pageCount === currentPage || disabled;
+    const disabledPrev = currentPage === 1 || disabled;
+
+    const prevPage = useCallback(() => {
         if (!disabledPrev) {
             onChange!(currentPage - 1);
         }
-    };
+    }, [disabledPrev, currentPage]);
 
-    const nextPage = () => {
+    const nextPage = useCallback(() => {
         if (!disabledNext) {
             onChange!(currentPage + 1);
         }
-    };
+    }, [disabledNext, currentPage]);
 
-    const firstPages = new Array(pageCount <= 7 ? pageCount : 7).fill(0).map((_, i) => i + 1);
+    const firstPages = new Array(pageCount <= 7 ? pageCount : 7)
+        .fill(0)
+        .map((_, i) => i + 1);
     const lastPages = [];
     for (let i = pageCount; i > pageCount - 7; i--) {
         lastPages.unshift(i);
     }
-
-    const disabledNext = pageCount === currentPage || disabled;
-    const disabledPrev = currentPage === 1 || disabled;
     const showThreeDots = pageCount > 8;
 
     const threeDots = <span className="three-dots cell">...</span>;
@@ -91,9 +96,9 @@ export const Pagination: FC<IPaginationProps> = ({
         <>
             {elem(1)}
             {threeDots}
-            {elem(currentPage - 1)}
+            {!isMobile && elem(currentPage - 1)}
             {elem(currentPage)}
-            {elem(currentPage + 1)}
+            {!isMobile && elem(currentPage + 1)}
             {threeDots}
             {elem(pageCount)}
         </>
