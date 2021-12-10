@@ -3,56 +3,97 @@
  */
 
 import classNames from 'classnames';
-import React, { FC } from 'react';
+import React, { FC, useState, ChangeEvent, ReactNode, ReactElement } from 'react';
 import './Radio.scss';
 
+type TRadioSize = 's' | 'm';
+
 export interface RadioProps {
-    options: { value: string | number; disabled?: boolean }[];
+    groupName?: string;
+    id?: string;
     value: string | number;
-    size?: 's' | 'm';
-    onChange: (value: number | string) => void;
+    checked?: boolean;
+    size?: TRadioSize;
+    disabled: boolean;
+    onClick?: (value: number | string) => void;
 }
 
-export const Radio: FC<RadioProps> = ({
-    options,
-    value,
+export const Radio: FC<RadioProps> = (props: RadioProps) => {
+    const { groupName, value, size, checked, disabled, onClick } = props;
+
+    return (
+        <div
+            className={classNames(
+                'unique-radio-wrapper',
+                `radio-size-${size}`,
+                {
+                    disabled
+                }
+            )}
+            {...(!disabled && {
+                onClick: () => onClick!(value)
+            })}
+        >
+            <input
+                type="radio"
+                name={groupName}
+                id={value.toString()}
+                className="radio"
+                checked={checked}
+                onChange={(e) => e.preventDefault()}
+            />
+            <span
+                className={classNames('inner', {
+                    checked
+                })}
+            />
+            <label>{value}</label>
+        </div>
+    );
+};
+
+export interface RadioGroupProps {
+    children: ReactElement<RadioProps>[];
+    groupName: string;
+    size?: TRadioSize;
+    onChange?: (
+        value: number | string
+    ) => void;
+}
+
+export const RadioGroup: FC<RadioGroupProps> = ({
+    children,
+    groupName,
     size = 'm',
     onChange
-}: RadioProps) => {
+}: RadioGroupProps) => {
+    const [currentValue, setcurrentValue] = useState('');
+
+    const handleChange = (event: number | string) => {
+        setcurrentValue(event.toString());
+
+        if (onChange) {
+            onChange(event);
+        }
+    };
+
+    const childrenWithProps = React.Children.map(children, (child) => {
+        
+        if (React.isValidElement(child)) {
+            const checked = child.props.value === currentValue;
+
+            return React.cloneElement(child, {
+                ...child.props,
+                checked,
+                groupName,
+                size,
+                onClick: handleChange
+            });
+        }
+        return child;
+    });
+
     return (
-        <div className="unique-radio-group-wrapper">
-            {options.map((radio, index) => {
-                return (
-                    <div
-                        className={classNames(
-                            'unique-radio-wrapper',
-                            `radio-size-${size}`,
-                            {
-                                disabled: radio.disabled
-                            }
-                        )}
-                        key={index}
-                        {...(!radio.disabled && {
-                            onClick: () => onChange(radio.value)
-                        })}
-                    >
-                        <input
-                            type="radio"
-                            name={radio.value.toString()}
-                            id={radio.value.toString()}
-                            className="radio"
-                            checked={radio.value === value}
-                            onChange={(e) => e.preventDefault()}
-                        />
-                        <span
-                            className={classNames('inner', {
-                                checked: radio.value === value
-                            })}
-                        />
-                        <label>{radio.value}</label>
-                    </div>
-                );
-            })}
-        </div>
+        <div className="unique-radio-group-wrapper">{childrenWithProps}</div>
     );
 };
