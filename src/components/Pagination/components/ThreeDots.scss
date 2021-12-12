@@ -1,0 +1,14 @@
+@import "../../../assets/styles/index.scss";
+
+.three-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    user-select: none;
+    @include font-body-m-medium;
+    color: $color-blue-grey-300;
+    align-self: center;
+}

@@ -1,0 +1,31 @@
+@import "../../../assets/styles/index.scss";
+
+.page-element {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    user-select: none;
+
+    @include font-body-m;
+    color: $color-additional-dark;
+    padding: 4px 6px;
+    cursor: pointer;
+
+    &:hover {
+        color: $color-primary-500;
+    }
+
+    &.active {
+        background-color: $color-primary-500;
+        color: $color-additional-light;
+        border-radius: $border-radius;
+    }
+
+    &.disabled {
+        pointer-events: none;
+        color: $color-blue-grey-300;
+    }
+}

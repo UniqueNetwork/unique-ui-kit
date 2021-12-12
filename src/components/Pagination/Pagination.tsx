@@ -5,6 +5,8 @@
 import { FC, useCallback } from 'react';
 import cn from 'classnames';
 import './Pagination.scss';
+import { PageElement } from './components/PageElement';
+import { ThreeDots } from './components/ThreeDots';
 import { Icon } from '../../components';
 import caretRight from '../../assets/svg/caret_right.svg';
 import caretLeft from '../../assets/svg/caret_left.svg';
@@ -27,11 +29,14 @@ export const Pagination: FC<IPaginationProps> = ({
     disabled = false,
     showPrevButton = true,
     showNextButton = true,
-    isMobile = true,
+    isMobile = false,
     onChange
 }: IPaginationProps) => {
-    //Todo: обернуть в useCallback
 
+    //сколько элементов отображается в десктопе от края
+    const viewedElementDesktop = 7;
+    //сколько элементов отображается в мобилке от края
+    const viewedElementMobile = 2;
     const disabledNext = pageCount === currentPage || disabled;
     const disabledPrev = currentPage === 1 || disabled;
 
@@ -47,72 +52,98 @@ export const Pagination: FC<IPaginationProps> = ({
         }
     }, [disabledNext, currentPage]);
 
-    const firstPages = new Array(pageCount <= 7 ? pageCount : 7)
+    const firstPages = new Array(
+        pageCount <= viewedElementDesktop ? pageCount : viewedElementDesktop
+    )
         .fill(0)
         .map((_, i) => i + 1);
+
     const lastPages = [];
-    for (let i = pageCount; i > pageCount - 7; i--) {
+    for (let i = pageCount; i > pageCount - viewedElementDesktop; i--) {
         lastPages.unshift(i);
     }
-    const showThreeDots = pageCount > 8;
 
-    const threeDots = <span className="three-dots cell">...</span>;
+    const showThreeDots = pageCount > viewedElementDesktop + 1;
+    const showThreeDotsMobile = pageCount > viewedElementMobile + 2;
 
-    const elem = (page: number) => {
+    const getElem = (page: number) => {
         return (
-            <li
-                key={page}
-                className={cn(
-                    'element cell',
-                    { active: page === currentPage && !disabled },
-                    { disabled }
-                )}
+            <PageElement
+                page={page}
+                isActive={page === currentPage}
+                disabled={disabled}
                 onClick={() => onChange!(page)}
-            >
-                {page.toLocaleString()}
-            </li>
+            />
         );
     };
 
-    const lessEightPagesView = <>{firstPages.map((page) => elem(page))}</>;
+    const lessEightPagesView = <>{firstPages.map((page) => getElem(page))}</>;
 
     const pagesFromBeginView = (
         <>
-            {firstPages.map((page) => elem(page))}
-            {showThreeDots && threeDots}
-            {pageCount > currentPage && elem(pageCount)}
+            {firstPages.map((page) => getElem(page))}
+            {showThreeDots && <ThreeDots />}
+            {pageCount > currentPage && getElem(pageCount)}
+        </>
+    );
+
+    const pagesFromBeginMobileView = (
+        <>
+            {getElem(1)}
+            {getElem(2)}
+            {showThreeDotsMobile && <ThreeDots />}
+            {pageCount > currentPage && getElem(pageCount)}
         </>
     );
 
     const pagesBeforeEndView = (
         <>
-            {elem(1)}
-            {showThreeDots && threeDots}
-            {lastPages.map((page) => elem(page))}
+            {getElem(1)}
+            {showThreeDots && <ThreeDots />}
+            {lastPages.map((page) => getElem(page))}
+        </>
+    );
+
+    const pagesBeforeEndMobileView = (
+        <>
+            {getElem(1)}
+            {showThreeDotsMobile && <ThreeDots />}
+            {getElem(pageCount - 1)}
+            {getElem(pageCount)}
         </>
     );
 
     const allPagesView = (
         <>
-            {elem(1)}
-            {threeDots}
-            {!isMobile && elem(currentPage - 1)}
-            {elem(currentPage)}
-            {!isMobile && elem(currentPage + 1)}
-            {threeDots}
-            {elem(pageCount)}
+            {getElem(1)}
+            <ThreeDots />
+            {!isMobile && getElem(currentPage - 1)}
+            {getElem(currentPage)}
+            {!isMobile && getElem(currentPage + 1)}
+            <ThreeDots />
+            {getElem(pageCount)}
         </>
     );
 
     const paginationContent = () => {
         switch (true) {
-            case pageCount < 8:
+            case currentPage < viewedElementMobile+1 && isMobile:
+                return pagesFromBeginMobileView;
+
+            case (pageCount < viewedElementDesktop + 1 && !isMobile) ||
+                (pageCount < viewedElementMobile + 3 && isMobile):
                 return lessEightPagesView;
 
-            case currentPage <= 4:
+            case pageCount - currentPage < viewedElementMobile && isMobile:
+                return pagesBeforeEndMobileView;
+
+            case currentPage > viewedElementMobile && isMobile:
+                return allPagesView;
+
+            case currentPage <= viewedElementDesktop - 3:
                 return pagesFromBeginView;
 
-            case currentPage > pageCount - 6:
+            case currentPage > pageCount - viewedElementDesktop - 1:
                 return pagesBeforeEndView;
 
             default:

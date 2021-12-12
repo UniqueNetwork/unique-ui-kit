@@ -13,6 +13,7 @@ const Template: ComponentStory<typeof Pagination> = ({
     disabled,
     showPrevButton,
     showNextButton,
+    isMobile,
     className
 }) => {
     const [activePage, setCurrentPage] = useState(currentPage);
@@ -29,6 +30,7 @@ const Template: ComponentStory<typeof Pagination> = ({
             disabled={disabled}
             showPrevButton={showPrevButton}
             showNextButton={showNextButton}
+            isMobile={isMobile}
             onChange={onPageChange}
         />
     );
@@ -37,8 +39,9 @@ const Template: ComponentStory<typeof Pagination> = ({
 export const Default = Template.bind({});
 
 Default.args = {
-    pageCount: 16,
-    currentPage: 2
+    pageCount: 6,
+    currentPage: 1,
+    isMobile: true
 };
 
 Default.storyName = 'Default';

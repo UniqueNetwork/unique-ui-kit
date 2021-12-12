@@ -3,44 +3,6 @@
 .unique-pagination-wrapper {
     display: flex;
 
-    .cell {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-width: 32px;
-        height: 32px;
-        box-sizing: border-box;
-        user-select: none;
-    }
-
-    .three-dots {
-        @include font-body-m-medium;
-        color: $color-blue-grey-300;
-        align-self: center;
-    }
-
-    .element {
-        @include font-body-m;
-        color: $color-additional-dark;
-        padding: 4px 6px;
-        cursor: pointer;
-
-        &:hover {
-            color: $color-primary-500;
-        }
-
-        &.active {
-            background-color: $color-primary-500;
-            color: $color-additional-light;
-            border-radius: $border-radius;
-        }
-
-        &.disabled{
-            pointer-events: none;
-            color: $color-blue-grey-300;
-        }
-    }
-
     .button {
         display: flex;
         justify-content: center;
