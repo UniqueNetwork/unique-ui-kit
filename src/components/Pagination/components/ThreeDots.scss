@@ -1,5 +1,7 @@
 @import "../../../assets/styles/index.scss";
 
+$mobile: 320px;
+
 .three-dots {
     display: flex;
     justify-content: center;
@@ -11,4 +13,9 @@
     @include font-body-m-medium;
     color: $color-blue-grey-300;
     align-self: center;
+
+    @media screen and (max-width: $mobile) {
+        width: 24px;
+        min-width: 24px;
+    }
 }

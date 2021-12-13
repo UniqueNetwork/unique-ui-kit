@@ -33,9 +33,9 @@ export const Pagination: FC<IPaginationProps> = ({
     onChange
 }: IPaginationProps) => {
 
-    //сколько элементов отображается в десктопе от края
+    //number of pages from side - desktop
     const viewedElementDesktop = 7;
-    //сколько элементов отображается в мобилке от края
+    //number of pages from side - mobile
     const viewedElementMobile = 2;
     const disabledNext = pageCount === currentPage || disabled;
     const disabledPrev = currentPage === 1 || disabled;
@@ -143,7 +143,7 @@ export const Pagination: FC<IPaginationProps> = ({
             case currentPage <= viewedElementDesktop - 3:
                 return pagesFromBeginView;
 
-            case currentPage > pageCount - viewedElementDesktop - 1:
+            case currentPage > pageCount - viewedElementDesktop + 1:
                 return pagesBeforeEndView;
 
             default:
