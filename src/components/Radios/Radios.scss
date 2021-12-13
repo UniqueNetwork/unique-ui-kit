@@ -1,6 +1,6 @@
 @import '../../assets/styles/index.scss';
 
-.unique-radio-wrapper {
+.unique-radios-wrapper {
   font-family: $font-family;
   font-size: $font-size;
   font-weight: $font-weight;
@@ -13,19 +13,15 @@
     display: none;
   }
   
-  &:hover .inner {
-    border-color: $color-primary-500;
-  }
-  
-  &.disabled:hover .inner {
-    border-color: $color-grey-300;
-  }
-  
   .inner {
     position: absolute;
     box-sizing: border-box;
     border: 1px solid $color-grey-300;
     border-radius: 30px;
+  }
+
+  &:hover .inner {
+    border-color: $color-primary-500;
   }
   
   .inner.checked {
@@ -45,6 +41,7 @@
   }
   
   &.disabled {
+    cursor: default;
     .inner {
       &.checked {
         border: 2px solid $color-grey-300;
@@ -53,19 +50,25 @@
         }
       }
     }
+    &:hover {
+     .inner {
+        border-color: $color-grey-300;
+      } 
+    }
     label {
       color: $color-blue-grey-300;
+      cursor: default;
     }
   }
   
   &.radio-size {
     &-s {
       .inner {
-        width: 18px;
-        height: 18px;
+        width: 20px;
+        height: 20px;
         &.checked::after {
-          height: 10px;
-          width: 10px;
+          height: 12px;
+          width: 12px;
           top: 2px;
           left: 2px;
         }
@@ -95,11 +98,11 @@
 }
 
 
-.unique-radio-group-wrapper {
+.unique-radios-group-wrapper {
   display: flex;
   flex-direction: column;
 
-  .unique-radio-wrapper {
+  .unique-radios-wrapper {
     margin-bottom: 10px;
     &:last-of-type {
       margin-bottom: 0

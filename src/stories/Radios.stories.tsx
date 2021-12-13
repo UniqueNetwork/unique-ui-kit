@@ -1,20 +1,20 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import React, { useEffect, useState } from 'react';
-import { Radio } from '../components';
+import { useState } from 'react';
+import { Radios } from '../components';
 
 export default {
-    title: 'Components/Radio',
-    component: Radio
-} as ComponentMeta<typeof Radio>;
+    title: 'Components/Radios',
+    component: Radios
+} as ComponentMeta<typeof Radios>;
 
-const Template: ComponentStory<typeof Radio> = (args) => {
-    const [value, setValue] = useState(args.options[0].value);
+const Template: ComponentStory<typeof Radios> = (args) => {
+    const [selectedValue, setSelectedValue] = useState(args.options[0].value);
     return (
-        <Radio
+        <Radios
             options={args.options}
+            selected={selectedValue}
+            onChange={setSelectedValue}
             size={args.size}
-            value={value}
-            onChange={setValue}
         />
     );
 };
