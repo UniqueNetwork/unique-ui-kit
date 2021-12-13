@@ -1,0 +1,56 @@
+$font-family-body: Inter;
+
+@mixin font-defaults {
+    font: {
+        family: $font-family-body;
+        stretch: normal;
+        style: normal;
+        size: 16px;
+        weight: 400;
+    }
+    letter-spacing: 0;
+    line-height: 24px;
+}
+
+@mixin font-body-xs {
+    @include font-defaults;
+    font: {
+        size: 12px;
+    }
+    line-height: 18px;
+}
+
+@mixin font-body-s {
+    @include font-defaults;
+    font: {
+        size: 14px;
+    }
+    line-height: 21px;
+}
+
+@mixin font-body-m {
+    @include font-defaults;
+}
+
+@mixin font-body-l {
+    @include font-defaults;
+    font: {
+        size: 18px;
+    }
+    line-height: 26px;
+}
+
+.font-body {
+    &-xs {
+        @include font-body-xs;
+    }
+    &-s {
+        @include font-body-s;
+    }
+    &-m {
+        @include font-body-m;
+    }
+    &-l {
+        @include font-body-l;
+    }
+}
