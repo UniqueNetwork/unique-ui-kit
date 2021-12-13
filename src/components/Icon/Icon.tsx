@@ -3,19 +3,10 @@
  */
 
 import React, { FC } from 'react';
+import { IconProps } from '../../types';
 import Icons from '../../assets/svg/icons.svg';
 
-export interface IconProps {
-    name: string;
-    size: number;
-    color?: string;
-}
-
-export const Icon: FC<IconProps> = ({
-    name,
-    size,
-    color = '#7f90a1'
-}: IconProps) => (
+const Icon: FC<IconProps> = ({ name, size, color = '#7f90a1' }: IconProps) => (
     <svg
         className={`icon icon-${name}`}
         fill={color}
@@ -25,3 +16,5 @@ export const Icon: FC<IconProps> = ({
         <use xlinkHref={`${Icons}#icon-${name}`} />
     </svg>
 );
+
+export default Icon;

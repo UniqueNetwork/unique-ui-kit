@@ -15,7 +15,7 @@ interface CheckboxProps {
     onChange: (value: boolean) => void;
 }
 
-export const Checkbox: FC<CheckboxProps> = ({
+const Checkbox: FC<CheckboxProps> = ({
     checked,
     label,
     disabled,
@@ -53,3 +53,5 @@ export const Checkbox: FC<CheckboxProps> = ({
         <label>{label}</label>
     </div>
 );
+
+export default Checkbox;

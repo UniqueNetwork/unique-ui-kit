@@ -14,7 +14,7 @@ interface ToggleProps {
     onChange: (value: boolean) => void;
 }
 
-export const Toggle: FC<ToggleProps> = ({
+const Toggle: FC<ToggleProps> = ({
     on,
     label,
     size = 's',
@@ -33,3 +33,5 @@ export const Toggle: FC<ToggleProps> = ({
         <label>{label}</label>
     </div>
 );
+
+export default Toggle;

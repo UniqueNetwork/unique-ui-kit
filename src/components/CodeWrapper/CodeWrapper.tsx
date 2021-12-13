@@ -12,7 +12,7 @@ interface CodeWrapperProps {
     title?: string;
 }
 
-export const CodeWrapper: FC<CodeWrapperProps> = ({
+const CodeWrapper: FC<CodeWrapperProps> = ({
     code,
     theme,
     title
@@ -22,3 +22,5 @@ export const CodeWrapper: FC<CodeWrapperProps> = ({
         <JSONPretty data={code}></JSONPretty>
     </div>
 );
+
+export default CodeWrapper;

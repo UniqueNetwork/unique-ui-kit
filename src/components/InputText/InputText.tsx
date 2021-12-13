@@ -4,8 +4,8 @@
 
 import React, { FC } from 'react';
 import classNames from 'classnames';
-import { ComponentProps } from '../../types';
-import { Icon, IconProps } from '../Icon/Icon';
+import { Icon } from '..';
+import { ComponentProps, IconProps } from '../../types';
 import './InputText.scss';
 
 interface InputTextProps extends ComponentProps {
@@ -17,7 +17,7 @@ interface InputTextProps extends ComponentProps {
     iconRight?: IconProps;
 }
 
-export const InputText: FC<InputTextProps> = ({
+const InputText: FC<InputTextProps> = ({
     id,
     label,
     additionalText,
@@ -61,3 +61,5 @@ export const InputText: FC<InputTextProps> = ({
         </div>
     );
 };
+
+export default InputText;
