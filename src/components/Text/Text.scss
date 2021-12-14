@@ -1,6 +1,6 @@
 @import "../../assets/styles/index.scss";
-@use "sass:list";
 
+//generate font-styles
 @each $size in xs, s, m, l {
     .unique-font-body-#{$size} {
         @include font-body($size)
@@ -11,27 +11,14 @@
     }
 }
 
-// .color-primary-500{
-//     color:$color-primary-500;
-// }
-
-$colors:();
-
-@each $group in primary, secondary, blue-grey, grey, coral, additional-positive, additional-warning, additional-light, additional-dark {
-    
-    @for $i from 1 through 7 {
-       $colors: append($colors, color-+$group+-+$i+0+0);
-        //.unique-color-#{$group}-#{$i}00 { color: #{$group-#{$group}-#{i}00} }
-    }
+.unique-color-primary-600{
+    color: $color-primary-600;
 }
 
-@each $color in $colors{
-    
-        .unique-#{$color} { color: $color }
-    
+.unique-color-blue-grey-600{
+    color: $color-blue-grey-600;
 }
 
-
-// #{'$color-'+$color+i+'00'};
-
-//$color-#{$color}-#{i}00
+.unique-color-dark-600{
+    color: $color-additional-dark;
+}
