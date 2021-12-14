@@ -14,7 +14,7 @@ interface TabsProps {
     onClick?(index: number): void;
 }
 
-export const Tabs: FC<TabsProps> = ({
+const Tabs: FC<TabsProps> = ({
     labels,
     contents,
     disabledIndexes,
@@ -48,3 +48,5 @@ export const Tabs: FC<TabsProps> = ({
             : contents?.[activeIndex]}
     </div>
 );
+
+export default Tabs;

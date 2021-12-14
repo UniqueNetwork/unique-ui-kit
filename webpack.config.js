@@ -62,7 +62,7 @@ module.exports = {
                     {
                         loader: 'file-loader',
                         options: {
-                            name: 'assets/svg/[hash]-[name].[ext]'
+                            name: '[name].[ext]'
                         }
                     }
                 ]
