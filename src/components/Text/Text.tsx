@@ -3,25 +3,32 @@
  */
 
 import { ReactNode, FC } from 'react';
-import { TColor, TSaturation } from './colors';
+import { TColor } from './colors';
 import './Text.scss';
 
-export interface ITextProps {
+interface ITextProps {
     children: ReactNode;
-    size: 'xs' | 's' | 'm' | 'l';
-    weight: 'regular' | 'medium';
+    size?: 'xs' | 's' | 'm' | 'l';
+    weight?: 'regular' | 'medium';
     color?: TColor;
-    saturation?: TSaturation;
+    className?: string;
 }
 
-export const Text: FC<ITextProps> = ({
+const Text: FC<ITextProps> = ({
     children,
-    color='primary',
-    saturation = '500',
-    size,
+    color = 'dark',
+    size = 'm',
+    className,
     weight = 'regular'
 }: ITextProps) => {
-    console.log('weight', weight);
     const fontWeight = weight === 'medium' ? '-medium' : '';
-    return <span className={`unique-font-body-${size}${fontWeight} unique-color-${color}-${saturation}`}>{children}</span>;
+    return (
+        <span
+            className={`unique-font-body-${size}${fontWeight} unique-color-${color}-600 ${className}`}
+        >
+            {children}
+        </span>
+    );
 };
+
+export default Text;
