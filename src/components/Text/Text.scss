@@ -1,4 +1,5 @@
 @import "../../assets/styles/index.scss";
+@use "sass:list";
 
 @each $size in xs, s, m, l {
     .unique-font-body-#{$size} {
@@ -14,13 +15,23 @@
 //     color:$color-primary-500;
 // }
 
-@each $color in primary, secondary, blue-grey, grey, coral, additional-positive, additional-warning, additional-light, additional-dark {
+$colors:();
+
+@each $group in primary, secondary, blue-grey, grey, coral, additional-positive, additional-warning, additional-light, additional-dark {
     
     @for $i from 1 through 7 {
-        .color-#{$color}-#{$i}00 { color: $color-#{$color}-#{i}00; }
+       $colors: append($colors, color-+$group+-+$i+0+0);
+        //.unique-color-#{$group}-#{$i}00 { color: #{$group-#{$group}-#{i}00} }
     }
 }
 
+@each $color in $colors{
+    
+        .unique-#{$color} { color: $color }
+    
+}
 
 
+// #{'$color-'+$color+i+'00'};
 
+//$color-#{$color}-#{i}00
