@@ -1,0 +1,111 @@
+@import '../../assets/styles/index.scss';
+
+.unique-radio-group-wrapper {
+    display: flex;
+
+    &.vertical {
+        flex-direction: column;
+    }
+
+    &.horizontal {
+        flex-direction: row;
+    }
+
+    .unique-radio-wrapper {
+        font-family: $font-family;
+        font-size: $font-size;
+        font-weight: $font-weight;
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin: 0 20px 10px 0;
+        cursor: pointer;
+
+        input {
+            display: none;
+        }
+
+        .inner {
+            position: absolute;
+            box-sizing: border-box;
+            border: 1px solid $color-grey-300;
+            border-radius: 30px;
+        }
+
+        &:hover .inner {
+            border-color: $color-primary-500;
+        }
+
+        .inner.checked {
+            border: 2px solid $color-primary-500;
+            &:after {
+                content: '';
+                position: absolute;
+                background-color: $color-primary-500;
+                border-radius: 30px;
+            }
+        }
+
+        label {
+            display: block;
+            color: $color-secondary-500;
+            cursor: pointer;
+        }
+
+        &.disabled {
+            cursor: default;
+            .inner {
+                &.checked {
+                    border: 2px solid $color-grey-300;
+                    &:after {
+                        background-color: $color-grey-300;
+                    }
+                }
+            }
+            &:hover {
+                .inner {
+                    border-color: $color-grey-300;
+                }
+            }
+            label {
+                color: $color-blue-grey-300;
+                cursor: default;
+            }
+        }
+
+        &.radio-size {
+            &-s {
+                .inner {
+                    width: 20px;
+                    height: 20px;
+                    &.checked::after {
+                        height: 12px;
+                        width: 12px;
+                        top: 2px;
+                        left: 2px;
+                    }
+                }
+                label {
+                    font-size: $font-size;
+                    margin-left: 28px;
+                }
+            }
+            &-m {
+                .inner {
+                    width: 23px;
+                    height: 23px;
+                    &.checked::after {
+                        height: 13px;
+                        width: 13px;
+                        top: 3px;
+                        left: 3px;
+                    }
+                }
+                label {
+                    font-size: 16px;
+                    margin-left: 30px;
+                }
+            }
+        }
+    }
+}
