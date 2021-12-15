@@ -8,6 +8,8 @@ $base-colors-map: (
     color-coral-500: $color-coral-500,
     color-additional-positive-500: $color-additional-positive-500,
     color-additional-warning-500: $color-additional-warning-500,
+    color-additional-light: $color-additional-light,
+    color-additional-dark: $color-additional-dark
 );
 
 $color-palette-map: (
@@ -49,7 +51,7 @@ $color-palette-map: (
     color-additional-positive-500: $color-additional-positive-500,
     color-additional-positive-100: $color-additional-positive-100,
     color-additional-warning-500: $color-additional-warning-500,
-    color-additional-warning-100: $color-additional-warning-100,
+    color-additional-warning-100: $color-additional-warning-100
 );
 
 .base-colors .unique-color-item {
@@ -108,5 +110,6 @@ $color-palette-map: (
         border-radius: $border-radius;
         height: 40px;
         width: 30%;
+        border: 1px solid #eee;
     }
 }
