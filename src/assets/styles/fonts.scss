@@ -28,8 +28,8 @@ $font-family-header: Raleway;
     }
 }
 
-//mixin for headers
-@mixin font-header($size) {
+//mixin for headings
+@mixin font-heading($size) {
     font: {
         family: $font-family-header;
         stretch: normal;
