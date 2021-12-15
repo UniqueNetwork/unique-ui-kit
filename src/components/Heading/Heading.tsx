@@ -2,7 +2,9 @@
  * @author Anna Mikhailova <amikhailova@usetech.com>
  */
 
+import * as React from 'react';
 import { ReactNode, FC } from 'react';
+import cn from 'classnames';
 import './Heading.scss';
 
 interface IHeadingProps {
@@ -16,10 +18,12 @@ const Heading: FC<IHeadingProps> = ({
     size = '1',
     className
 }: IHeadingProps) => {
+    const Componen: typeof React.Component =
+        `h${size}` as unknown as typeof React.Component;
     return (
-        <span className={`unique-font-heading-${size} ${className}`}>
+        <Componen className={cn(`unique-font-heading-${size}`, className)}>
             {children}
-        </span>
+        </Componen>
     );
 };
 
