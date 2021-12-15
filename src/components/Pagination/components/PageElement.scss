@@ -9,7 +9,7 @@
     box-sizing: border-box;
     user-select: none;
 
-    @include font-body-m;
+    @include font-body(m);
     color: $color-additional-dark;
     padding: 4px 6px;
     cursor: pointer;

@@ -10,7 +10,8 @@ $mobile: 320px;
     height: 32px;
     box-sizing: border-box;
     user-select: none;
-    @include font-body-m-medium;
+    @include font-body(m);
+    font-weight: 500;
     color: $color-blue-grey-300;
     align-self: center;
 
