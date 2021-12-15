@@ -5,11 +5,11 @@
 import React, { FC } from 'react';
 import { IconProps } from '../../types';
 import Icons from '../../assets/svg/icons.svg';
-import classNames from 'classnames';
+import cn from 'classnames';
 
 const Icon: FC<IconProps> = ({ name, size, color = '#7f90a1', className, onClick }: IconProps) => (
     <svg
-        className={classNames(`icon`, `icon-${name}`, className)}
+        className={cn(`icon`, `icon-${name}`, className)}
         fill={color}
         width={size}
         height={size}
