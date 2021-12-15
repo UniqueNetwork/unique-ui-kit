@@ -1,22 +1,21 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Text } from '../components';
+import { Heading } from '../components';
 
 export default {
-    title: 'Components/Text',
-    component: Text
-} as ComponentMeta<typeof Text>;
+    title: 'Components/Heading',
+    component: Heading
+} as ComponentMeta<typeof Heading>;
 
-const Template: ComponentStory<typeof Text> = (args) => (
-    <Text {...args}>
+const Template: ComponentStory<typeof Heading> = (args) => (
+    <Heading {...args}>
         children
-    </Text>
+    </Heading>
 );
 
 export const Default = Template.bind({});
 
 Default.args = {
-    size: 'xs',
-    weight: 'medium',
+    size: 1,
     color: 'dark',
 };
 
@@ -25,7 +24,7 @@ Default.storyName = 'Default';
 export const Primary = Template.bind({});
 
 Primary.args = {
-    size: 'm',
+    size: 2,
     color: 'primary',
 };
 
@@ -34,8 +33,7 @@ Primary.storyName = 'body m-color primary';
 export const BlueGrey = Template.bind({});
 
 BlueGrey.args = {
-    size: 'm',
-    weight: 'medium',
+    size: 3,
     color: 'blue-grey',
 };
 

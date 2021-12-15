@@ -1,13 +1,9 @@
 @import "../../assets/styles/index.scss";
 
 //generate font-styles
-@each $size in xs, s, m, l {
-    .unique-font-body-#{$size} {
-        @include font-body($size)
-    }
-    .unique-font-body-#{$size}-medium {
-        @include font-body($size);
-        font-weight: 500;
+@each $size in 1, 2, 3, 4 {
+    .unique-font-heading-#{$size} {
+        @include font-heading($size)
     }
 }
 
