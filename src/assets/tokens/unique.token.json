@@ -40,7 +40,12 @@
                 "description": "additional-light color description",
                 "type": "color",
                 "value": "#ffffff"
-            }
+            },
+            "additional-dark": {
+                "description": "additional-dark color description",
+                "type": "color",
+                "value": "#040b1d"
+              }
         }
     }
 }
