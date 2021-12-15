@@ -8,7 +8,7 @@ export default {
 
 const Template: ComponentStory<typeof Text> = (args) => (
     <Text {...args}>
-        ghj children
+        children
     </Text>
 );
 
