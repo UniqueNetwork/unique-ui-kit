@@ -28,7 +28,7 @@ $font-family-header: Raleway;
     }
 }
 
-//mixin for headers
+//mixin for headings
 @mixin font-heading($size) {
     font: {
         family: $font-family-header;
