@@ -3,18 +3,6 @@
 //generate font-styles
 @each $size in 1, 2, 3, 4 {
     .unique-font-heading-#{$size} {
-        @include font-heading($size)
+        @include font-heading($size);
     }
-}
-
-.unique-color-primary-600{
-    color: $color-primary-600;
-}
-
-.unique-color-blue-grey-600{
-    color: $color-blue-grey-600;
-}
-
-.unique-color-dark-600{
-    color: $color-additional-dark;
 }

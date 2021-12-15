@@ -38,19 +38,19 @@ $font-family-header: Raleway;
     }
     letter-spacing: 0;
     text-decoration: none;
-    @if ($size== "1") {
+    @if ($size== 1) {
         font-size: 36px;
         line-height: 48px;
     }
-    @else if ($size== "2") {
+    @else if ($size== 2) {
         font-size: 28px;
         line-height: 42px;
     }
-    @else if ($size== "3") {
+    @else if ($size== 3) {
         font-size: 24px;
         line-height: 36px;
     }
-    @else if ($size== "4") {
+    @else if ($size== 4) {
         font-size: 20px;
         line-height: 28px;
     }

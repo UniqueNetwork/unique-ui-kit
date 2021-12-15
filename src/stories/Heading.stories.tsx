@@ -7,16 +7,13 @@ export default {
 } as ComponentMeta<typeof Heading>;
 
 const Template: ComponentStory<typeof Heading> = (args) => (
-    <Heading {...args}>
-        children
-    </Heading>
+    <Heading {...args}>Heading</Heading>
 );
 
 export const Default = Template.bind({});
 
 Default.args = {
-    size: 1,
-    color: 'dark',
+    size: '1'
 };
 
 Default.storyName = 'Default';
@@ -24,17 +21,9 @@ Default.storyName = 'Default';
 export const Primary = Template.bind({});
 
 Primary.args = {
-    size: 2,
-    color: 'primary',
+    size: '2'
 };
 
-Primary.storyName = 'body m-color primary';
+Primary.storyName = 'heading-2';
 
 export const BlueGrey = Template.bind({});
-
-BlueGrey.args = {
-    size: 3,
-    color: 'blue-grey',
-};
-
-BlueGrey.storyName = 'body m-weight medium-color blue-grey';
