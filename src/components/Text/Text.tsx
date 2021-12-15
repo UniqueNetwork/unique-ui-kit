@@ -31,7 +31,7 @@ const Text: FC<ITextProps> = ({
                 {
                     [`unique-color-${color}-600`]: color !== 'dark'
                 },
-                { className }
+                className
             )}
         >
             {children}
