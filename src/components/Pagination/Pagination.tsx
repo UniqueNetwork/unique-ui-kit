@@ -13,8 +13,7 @@ import caretRight from '../../assets/svg/caret_right.svg';
 import caretLeft from '../../assets/svg/caret_left.svg';
 
 interface IPaginationProps {
-    totalCount: number;
-    pageSize: number;
+    pageCount: number;
     currentPage: number;
     className?: string;
     disabled?: boolean;
@@ -25,8 +24,7 @@ interface IPaginationProps {
 }
 
 export const Pagination: FC<IPaginationProps> = ({
-    totalCount,
-    pageSize = 10,
+    pageCount,
     currentPage = 0,
     className,
     disabled = false,
@@ -35,7 +33,6 @@ export const Pagination: FC<IPaginationProps> = ({
     siblingCount = 1,
     onChange
 }: IPaginationProps) => {
-    const pageCount = Math.ceil(totalCount / pageSize);
     const disabledNext = pageCount === currentPage || disabled;
     const disabledPrev = currentPage === 1 || disabled;
 
@@ -57,8 +54,6 @@ export const Pagination: FC<IPaginationProps> = ({
         siblingCount
     });
 
-    console.log('paginationRange', paginationRange);
-
     return (
         <ul className={`${className} unique-pagination-wrapper`}>
             {showPrevButton && (
@@ -68,12 +63,13 @@ export const Pagination: FC<IPaginationProps> = ({
                     onClick={prevPage}
                 />
             )}
-            {paginationRange?.map((pageElement) => {
+            {paginationRange?.map((pageElement, i) => {
                 if (pageElement === 'dots') {
-                    return <ThreeDots />;
+                    return <ThreeDots key={`${pageElement}-${i}`} />;
                 }
                 return (
                     <PageElement
+                        key={pageElement}
                         page={pageElement as number}
                         isActive={pageElement === currentPage}
                         disabled={disabled}

@@ -8,8 +8,7 @@ export default {
 } as ComponentMeta<typeof Pagination>;
 
 const Template: ComponentStory<typeof Pagination> = ({
-    totalCount,
-    pageSize,
+    pageCount,
     currentPage,
     disabled,
     showPrevButton,
@@ -26,8 +25,7 @@ const Template: ComponentStory<typeof Pagination> = ({
     return (
         <Pagination
             className={className}
-            totalCount={totalCount}
-            pageSize={pageSize}
+            pageCount={pageCount}
             currentPage={activePage}
             disabled={disabled}
             showPrevButton={showPrevButton}
@@ -41,8 +39,7 @@ const Template: ComponentStory<typeof Pagination> = ({
 export const Default = Template.bind({});
 
 Default.args = {
-    totalCount: 100,
-    pageSize: 10,
+    pageCount: 10,
     currentPage: 1,
     siblingCount: 0
 };
@@ -52,8 +49,7 @@ Default.storyName = 'Default';
 export const Short = Template.bind({});
 
 Short.args = {
-    totalCount: 30,
-    pageSize: 10,
+    pageCount: 3,
     currentPage: 2,
     siblingCount: 0
 };
@@ -63,8 +59,7 @@ Short.storyName = 'Short w/ buttons';
 export const Long = Template.bind({});
 
 Long.args = {
-    totalCount: 34567,
-    pageSize: 10,
+    pageCount: 3456,
     currentPage: 1,
     siblingCount: 1,
     showPrevButton: false
@@ -75,8 +70,7 @@ Long.storyName = 'Long from begin w/ nextButton';
 export const Disabled = Template.bind({});
 
 Disabled.args = {
-    totalCount: 34567,
-    pageSize: 10,
+    pageCount: 34567,
     currentPage: 1,
     siblingCount: 1,
     showPrevButton: false,
