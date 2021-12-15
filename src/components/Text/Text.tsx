@@ -3,8 +3,10 @@
  */
 
 import { ReactNode, FC } from 'react';
-import { TColor } from './colors';
+import cn from 'classnames';
 import './Text.scss';
+
+type TColor = 'primary' | 'blue-grey' | 'dark';
 
 interface ITextProps {
     children: ReactNode;
@@ -24,7 +26,13 @@ const Text: FC<ITextProps> = ({
     const fontWeight = weight === 'medium' ? '-medium' : '';
     return (
         <span
-            className={`unique-font-body-${size}${fontWeight} unique-color-${color}-600 ${className}`}
+            className={cn(
+                `unique-font-body-${size}${fontWeight}`,
+                {
+                    [`unique-color-${color}-600`]: color !== 'dark'
+                },
+                { className }
+            )}
         >
             {children}
         </span>

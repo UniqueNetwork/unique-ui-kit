@@ -3,11 +3,13 @@
 //generate font-styles
 @each $size in xs, s, m, l {
     .unique-font-body-#{$size} {
-        @include font-body($size)
+        @include font-body($size);
+        color: $color-additional-dark;
     }
     .unique-font-body-#{$size}-medium {
         @include font-body($size);
         font-weight: 500;
+        color: $color-additional-dark;
     }
 }
 
@@ -19,6 +21,6 @@
     color: $color-blue-grey-600;
 }
 
-.unique-color-dark-600{
-    color: $color-additional-dark;
-}
+// .unique-color-dark-600{
+//     color: $color-additional-dark;
+// }
