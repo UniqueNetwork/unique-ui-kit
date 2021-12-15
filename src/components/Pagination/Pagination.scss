@@ -3,23 +3,29 @@
 .unique-pagination-wrapper {
     display: flex;
 
-    .button {
+    .icon-wrapper {
+        width: 32px;
+        height: 32px;
         display: flex;
         justify-content: center;
         align-items: center;
         align-self: center;
-        width: 32px;
-        height: 32px;
         cursor: pointer;
-        color: $color-secondary-500;
-
-        &:hover {
-            color: $color-primary-500;
+        &.disabled {
+            cursor: default;
         }
 
-        &.disabled {
-            color: $color-blue-grey-300;
-            cursor: default;
+        .icon {
+            fill: $color-secondary-500;
+
+            &:hover {
+                fill: $color-primary-500;
+            }
+
+            &.disabled {
+                cursor: default;
+                fill: $color-blue-grey-300;
+            }
         }
     }
 }

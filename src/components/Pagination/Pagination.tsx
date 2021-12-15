@@ -9,8 +9,6 @@ import { PageElement } from './components/PageElement';
 import { ThreeDots } from './components/ThreeDots';
 import { Icon } from '../../components';
 import { usePagination } from './usePagination';
-import caretRight from '../../assets/svg/caret_right.svg';
-import caretLeft from '../../assets/svg/caret_left.svg';
 
 interface IPaginationProps {
     pageCount: number;
@@ -55,13 +53,16 @@ const Pagination: FC<IPaginationProps> = ({
     });
 
     return (
-        <ul className={`${className} unique-pagination-wrapper`}>
+        <ul className={cn(className, `unique-pagination-wrapper`)}>
             {showPrevButton && (
-                <Icon
-                    className={cn('button', { disabled: disabledPrev })}
-                    path={caretLeft}
-                    onClick={prevPage}
-                />
+                <div className={cn('icon-wrapper', { disabled: disabledPrev })}>
+                    <Icon
+                        name="caret-left"
+                        size={11.5}
+                        onClick={prevPage}
+                        className={cn('icon', { disabled: disabledPrev })}
+                    />
+                </div>
             )}
             {paginationRange?.map((pageElement, i) => {
                 if (pageElement === 'dots') {
@@ -78,11 +79,14 @@ const Pagination: FC<IPaginationProps> = ({
                 );
             })}
             {showNextButton && (
-                <Icon
-                    className={cn('button', { disabled: disabledNext })}
-                    path={caretRight}
-                    onClick={nextPage}
-                />
+                <div className={cn('icon-wrapper', { disabled: disabledNext })}>
+                    <Icon
+                        name="caret-right"
+                        size={11.5}
+                        onClick={nextPage}
+                        className={cn('icon', { disabled: disabledNext })}
+                    />
+                </div>
             )}
         </ul>
     );
