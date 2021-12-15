@@ -18,12 +18,27 @@ Default.args = {
 
 Default.storyName = 'Default';
 
-export const Primary = Template.bind({});
+export const Heading2 = Template.bind({});
 
-Primary.args = {
+Heading2.args = {
     size: '2'
 };
 
-Primary.storyName = 'heading-2';
+Heading2.storyName = 'Heading-2';
 
-export const BlueGrey = Template.bind({});
+export const Heading3 = Template.bind({});
+
+Heading3.args = {
+    size: '3'
+};
+
+Heading3.storyName = 'Heading-3';
+
+export const Heading4 = Template.bind({});
+
+Heading4.args = {
+    size: '4'
+};
+
+Heading4.storyName = 'Heading-4';
+

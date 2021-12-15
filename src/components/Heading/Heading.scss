@@ -4,5 +4,6 @@
 @each $size in 1, 2, 3, 4 {
     .unique-font-heading-#{$size} {
         @include font-heading($size);
+        color: $color-additional-dark;
     }
 }
