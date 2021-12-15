@@ -23,7 +23,7 @@ interface IPaginationProps {
     onChange?: (currentPage: number) => void;
 }
 
-export const Pagination: FC<IPaginationProps> = ({
+const Pagination: FC<IPaginationProps> = ({
     pageCount,
     currentPage = 0,
     className,
@@ -87,3 +87,5 @@ export const Pagination: FC<IPaginationProps> = ({
         </ul>
     );
 };
+
+export default Pagination;
