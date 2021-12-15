@@ -17,3 +17,9 @@ export interface ComponentProps {
     onChange?(value: string | number | undefined): void;
     onFocus?(event: ChangeEvent<ComponentType>): void;
 }
+
+export interface IconProps {
+    name: string;
+    size: number;
+    color?: string;
+}

@@ -4,7 +4,8 @@
 
 import React, { FC } from 'react';
 import classNames from 'classnames';
-import { ComponentProps } from '../../types';
+import { Icon } from '..';
+import { ComponentProps, IconProps } from '../../types';
 import './InputText.scss';
 
 interface InputTextProps extends ComponentProps {
@@ -12,9 +13,11 @@ interface InputTextProps extends ComponentProps {
     error?: boolean;
     label?: string;
     statusText?: string;
+    iconLeft?: IconProps;
+    iconRight?: IconProps;
 }
 
-export const InputText: FC<InputTextProps> = ({
+const InputText: FC<InputTextProps> = ({
     id,
     label,
     additionalText,
@@ -24,24 +27,39 @@ export const InputText: FC<InputTextProps> = ({
     disabled,
     value,
     defaultValue,
+    iconLeft,
+    iconRight,
     onChange,
     ...props
-}: InputTextProps) => (
-    <div className={classNames('unique-input-text', className, { error })}>
-        {label && <label htmlFor={id}>{label}</label>}
-        {additionalText && (
-            <div className="additional-text">{additionalText}</div>
-        )}
-        <div className={classNames('input-wrapper', { disabled })}>
-            <input
-                id={id}
-                disabled={disabled}
-                value={value?.toString()}
-                defaultValue={defaultValue?.toString()}
-                type="text"
-                {...props}
-            />
+}: InputTextProps) => {
+    const icon = iconLeft || iconRight;
+    return (
+        <div className={classNames('unique-input-text', className, { error })}>
+            {label && <label htmlFor={id}>{label}</label>}
+            {additionalText && (
+                <div className="additional-text">{additionalText}</div>
+            )}
+            <div
+                className={classNames('input-wrapper', {
+                    'with-icon': icon,
+                    'to-left': iconLeft,
+                    'to-right': iconRight,
+                    disabled
+                })}
+            >
+                <input
+                    id={id}
+                    disabled={disabled}
+                    value={value?.toString()}
+                    defaultValue={defaultValue?.toString()}
+                    type="text"
+                    {...props}
+                />
+                {icon && <Icon {...icon} />}
+            </div>
+            {statusText && <div className="status-text">{statusText}</div>}
         </div>
-        {statusText && <div className="status-text">{statusText}</div>}
-    </div>
-);
+    );
+};
+
+export default InputText;

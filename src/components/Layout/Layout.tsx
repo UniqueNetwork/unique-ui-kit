@@ -11,14 +11,12 @@ interface LayoutProps {
     footer?: string;
 }
 
-export const Layout: FC<LayoutProps> = ({
-    children,
-    header,
-    footer
-}: LayoutProps) => (
+const Layout: FC<LayoutProps> = ({ children, header, footer }: LayoutProps) => (
     <div className="basic-layout">
         <header>{header}</header>
         <main>{children}</main>
         <footer>{footer}</footer>
     </div>
 );
+
+export default Layout;

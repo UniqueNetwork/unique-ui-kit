@@ -1,29 +1,20 @@
 /**
- * @author Anna Mikhailova <amikhailova@usetech.com>
+ * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import { FC } from 'react';
-import { useGetIcon } from './useGetIcon';
-import './Icon.scss';
+import React, { FC } from 'react';
+import { IconProps } from '../../types';
+import Icons from '../../assets/svg/icons.svg';
 
-interface IComponentProps {
-    path: string;
-    className?: string;
-    onClick?: () => void;
-}
+const Icon: FC<IconProps> = ({ name, size, color = '#7f90a1' }: IconProps) => (
+    <svg
+        className={`icon icon-${name}`}
+        fill={color}
+        width={size}
+        height={size}
+    >
+        <use xlinkHref={`${Icons}#icon-${name}`} />
+    </svg>
+);
 
-export const Icon: FC<IComponentProps> = ({
-    path,
-    className,
-    onClick
-}: IComponentProps) => {
-    const icon = useGetIcon(path);
-
-    return (
-        <span
-            className={className}
-            dangerouslySetInnerHTML={{ __html: icon }}
-            onClick={onClick}
-        />
-    );
-};
+export default Icon;

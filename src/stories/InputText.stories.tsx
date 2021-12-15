@@ -59,14 +59,23 @@ Label.args = {
 
 Label.storyName = 'Minimal w/ label';
 
-export const Icon = Template.bind({});
+export const IconRight = Template.bind({});
 
-Icon.args = {
+IconRight.args = {
     placeholder: 'Placeholder',
-    className: 'with-icon icon-pencil'
+    iconRight: { name: 'pencil', size: 18, color: '#7d90a1' }
 };
 
-Icon.storyName = 'Minimal w/ icon';
+IconRight.storyName = 'Minimal w/ icon to right';
+
+export const IconLeft = Template.bind({});
+
+IconLeft.args = {
+    placeholder: 'Placeholder',
+    iconLeft: { name: 'magnify', size: 18, color: '#7d90a1' }
+};
+
+IconLeft.storyName = 'Minimal w/ icon to left';
 
 export const Disabled = Template.bind({});
 

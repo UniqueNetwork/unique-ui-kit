@@ -12,7 +12,7 @@ interface ColorPaletteProps {
     title?: string;
 }
 
-export const ColorPalette: FC<ColorPaletteProps> = ({
+const ColorPalette: FC<ColorPaletteProps> = ({
     palette,
     colors,
     title
@@ -24,3 +24,5 @@ export const ColorPalette: FC<ColorPaletteProps> = ({
         ))}
     </div>
 );
+
+export default ColorPalette;

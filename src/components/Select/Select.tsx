@@ -4,6 +4,7 @@
 
 import React, { FC, useEffect, useState } from 'react';
 import classNames from 'classnames';
+import { Icon } from '..';
 import { ComponentProps } from '../../types';
 import './Select.scss';
 
@@ -15,7 +16,7 @@ interface SelectProps extends ComponentProps {
     statusText?: string;
 }
 
-export const Select: FC<SelectProps> = ({
+const Select: FC<SelectProps> = ({
     id,
     value,
     autoFocus,
@@ -106,8 +107,11 @@ export const Select: FC<SelectProps> = ({
                         ))}
                     </div>
                 )}
+                <Icon name="triangle" size={8} />
             </div>
             {statusText && <div className="status-text">{statusText}</div>}
         </div>
     );
 };
+
+export default Select;
