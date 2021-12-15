@@ -1,3 +1,4 @@
+export { default as Breadcrumbs } from './Breadcrumbs/Breadcrumbs';
 export { default as Checkbox } from './Checkbox/Checkbox';
 export { default as CodeWrapper } from './CodeWrapper/CodeWrapper';
 export { default as ColorItem } from './ColorItem/ColorItem';
