@@ -43,11 +43,10 @@
         width: 100%;
     }
 
-    &.error {
+    &.error,
+    &.error:focus-within {
         .input-wrapper {
-            input {
-                border: 1px solid $color-coral-500;
-            }
+            border: 1px solid $color-coral-500;
         }
         .status-text {
             color: $color-coral-500;
@@ -56,50 +55,50 @@
 
     .input-wrapper {
         position: relative;
+        border: 1px solid $color-grey-300;
+        border-radius: $border-radius;
+        display: flex;
+        align-items: center;
+
+        &:focus-within {
+            border: 1px solid $color-grey-400;
+        }
+
+        &.disabled {
+            background-color: $color-grey-100;
+
+            input {
+                color: $color-blue-grey-400;
+            }
+        }
 
         input {
-            border: 1px solid $color-grey-300;
-            border-radius: $border-radius;
+            color: $color-secondary-500;
             outline: none;
             padding: 11px 12px;
-            width: calc(100% - 26px);
-
-            &:focus {
-                border: 1px solid $color-grey-400;
-            }
-
-            &:disabled {
-                background-color: $color-grey-100;
-                color: $color-blue-grey-400;
-
-                &::placeholder {
-                    color: $color-grey-400;
-                }
+            width: calc(100% - 24px);
+            border: none;
+            background: none;
+            &::placeholder {
+                color: $color-grey-400;
             }
         }
 
         &.with-icon {
             svg {
-                position: absolute;
-                margin: 10px;
-                top: 0;
+                position: relative;
+                margin: 0 10px;
             }
             &.to-right {
+                flex-direction: row;
                 input {
-                    padding-right: 40px;
-                    width: calc(100% - 54px);
-                }
-                svg {
-                    right: 0;
+                    padding: 11px 0px 11px 12px;
                 }
             }
             &.to-left {
+                flex-direction: row-reverse;
                 input {
-                    padding-left: 40px;
-                    width: calc(100% - 54px);
-                }
-                svg {
-                    left: 0px;
+                    padding: 11px 12px 11px 0px;
                 }
             }
         }

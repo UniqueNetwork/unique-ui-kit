@@ -1,69 +1,35 @@
-$font-family-body: Inter;
-
-//миксины для текста
-@mixin font-body-xs {
-    font: {
-        family: $font-family-body;
-        size: 12px;
-        stretch: normal;
-        style: normal;
-        weight: 400;
+@mixin font-body($size) {
+    font-family: $font-family;
+    font-weight: 400;
+    @if ($size== 'xs') {
+        font-size: 12px;
+        line-height: 18px;
+    } @else if ($size== 's') {
+        font-size: 14px;
+        line-height: 21px;
+    } @else if ($size== 'm') {
+        font-size: 16px;
+        line-height: 24px;
+    } @else if ($size== 'l') {
+        font-size: 18px;
+        line-height: 26px;
     }
-    letter-spacing: 0;
-    line-height: 18px;
 }
 
-@mixin font-body-xs-medium {
-    @include font-body-xs;
-    font-weight: 500;
-}
-
-@mixin font-body-s {
-    font: {
-        family: $font-family-body;
-        size: 14px;
-        stretch: normal;
-        style: normal;
-        weight: 400;
+@mixin font-header($size) {
+    font-family: $font-family-header;
+    font-weight: 700;
+    @if ($size== 1) {
+        font-size: 36px;
+        line-height: 48px;
+    } @else if ($size== 2) {
+        font-size: 28px;
+        line-height: 42px;
+    } @else if ($size== 3) {
+        font-size: 24px;
+        line-height: 36px;
+    } @else if ($size== 4) {
+        font-size: 20px;
+        line-height: 28px;
     }
-    letter-spacing: 0;
-    line-height: 21px;
-}
-
-@mixin font-body-s-medium {
-    @include font-body-s;
-    font-weight: 500;
-}
-
-@mixin font-body-m {
-    font: {
-        family: $font-family-body;
-        size: 16px;
-        stretch: normal;
-        style: normal;
-        weight: 400;
-    }
-    letter-spacing: 0;
-    line-height: 24px;
-}
-@mixin font-body-m-medium {
-    @include font-body-m;
-    font-weight: 500;
-}
-
-@mixin font-body-l {
-    font: {
-        family: $font-family-body;
-        size: 18px;
-        stretch: normal;
-        style: normal;
-        weight: 400;
-    }
-    letter-spacing: 0;
-    line-height: 26px;
-}
-
-@mixin font-body-l-medium {
-    @include font-body-l;
-    font-weight: 500;
 }

@@ -1,0 +1,25 @@
+@import '../../assets/styles/index.scss';
+
+.unique-font-heading {
+    color: $color-additional-dark;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: 0;
+    text-decoration: none;
+
+    &.to-header {
+        @each $size in 1, 2, 3, 4 {
+            &.size-#{$size} {
+                @include font-header($size);
+            }
+        }
+    }
+
+    &.to-body {
+        @each $size in 1, 2, 3, 4 {
+            &.size-#{$size} {
+                @include font-body($size);
+            }
+        }
+    }
+}

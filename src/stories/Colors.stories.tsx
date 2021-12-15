@@ -23,7 +23,9 @@ Base.args = {
         'color-grey-500',
         'color-coral-500',
         'color-additional-positive-500',
-        'color-additional-warning-500'
+        'color-additional-warning-500',
+        'color-additional-light',
+        'color-additional-dark'
     ]
 };
 
