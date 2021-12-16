@@ -6,20 +6,11 @@
     font-style: normal;
     letter-spacing: 0;
     text-decoration: none;
+    margin: 0;
 
-    &.to-header {
-        @each $size in 1, 2, 3, 4 {
-            &.size-#{$size} {
-                @include font-header($size);
-            }
-        }
-    }
-
-    &.to-body {
-        @each $size in 1, 2, 3, 4 {
-            &.size-#{$size} {
-                @include font-body($size);
-            }
+    @each $size in 1, 2, 3, 4 {
+        &.size-#{$size} {
+            @include font-heading($size);
         }
     }
 }

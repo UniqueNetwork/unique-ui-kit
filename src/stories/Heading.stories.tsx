@@ -10,43 +10,32 @@ const Template: ComponentStory<typeof Heading> = (args) => (
     <Heading {...args}>Heading</Heading>
 );
 
-export const H1Header = Template.bind({});
+export const DefaultH1 = Template.bind({});
 
-H1Header.args = {};
+DefaultH1.args = {};
 
-H1Header.storyName = 'H1 to header';
+DefaultH1.storyName = 'Default H1';
 
-export const H1Body = Template.bind({});
+export const DefaultH2 = Template.bind({});
 
-H1Body.args = {
-    wrapper: 'body'
+DefaultH2.args = {
+    size: '2'
 };
 
-H1Body.storyName = 'H1 to body';
+DefaultH2.storyName = 'Default H2';
 
-export const H2 = Template.bind({});
+export const DefaultH3 = Template.bind({});
 
-H2.args = {
-    size: '2',
-    wrapper: 'body'
+DefaultH3.args = {
+    size: '3'
 };
 
-H2.storyName = 'H2 to body';
+DefaultH3.storyName = 'Default H3';
 
-export const H3 = Template.bind({});
+export const DefaultH4 = Template.bind({});
 
-H3.args = {
-    size: '3',
-    wrapper: 'body'
+DefaultH4.args = {
+    size: '4'
 };
 
-H3.storyName = 'H3 to body';
-
-export const H4 = Template.bind({});
-
-H4.args = {
-    size: '4',
-    wrapper: 'body'
-};
-
-H4.storyName = 'H4 to body';
+DefaultH4.storyName = 'Default H4';

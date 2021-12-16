@@ -8,14 +8,12 @@ import './Heading.scss';
 
 interface IHeadingProps {
     children: string;
-    wrapper?: 'header' | 'body';
     size?: '1' | '2' | '3' | '4';
     className?: string;
 }
 
 const Heading: FC<IHeadingProps> = ({
     children,
-    wrapper = 'header',
     size = '1',
     className
 }: IHeadingProps) => {
@@ -25,7 +23,6 @@ const Heading: FC<IHeadingProps> = ({
             className={classNames(
                 'unique-font-heading',
                 `size-${size}`,
-                `to-${wrapper}`,
                 className
             )}
         >
