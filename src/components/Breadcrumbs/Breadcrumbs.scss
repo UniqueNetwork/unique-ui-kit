@@ -1,0 +1,25 @@
+@import '../../assets/styles/index.scss';
+
+.unique-breadcrumbs-wrapper {
+    font-family: $font-family;
+    font-size: $font-size;
+    font-weight: $font-weight;
+
+    .breadcrumb-item {
+        margin: 0 10px;
+        color: $color-grey-500;
+        text-transform: capitalize;
+        cursor: pointer;
+        text-decoration: none;
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        &:last-child {
+            color: $color-blue-grey-300;
+            margin: 0 10px;
+            cursor: initial;
+        }
+    }
+}
