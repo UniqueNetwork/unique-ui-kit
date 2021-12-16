@@ -7,14 +7,16 @@ import Icon from '../Icon/Icon';
 import './Breadcrumbs.scss';
 
 export interface BreadcrumbsProps {
-    options: string[];
+    options: { title: string; link: string }[];
 }
 
 const Breadcrumbs: FC<BreadcrumbsProps> = ({ options }: BreadcrumbsProps) => (
     <div className="unique-breadcrumbs-wrapper">
         {options.map((breadcrumb, index) => (
             <>
-                <span className="breadcrumb-item">{breadcrumb}</span>
+                <a className="breadcrumb-item" href={breadcrumb.link}>
+                    {breadcrumb.title}
+                </a>
                 {options.length > index + 1 && (
                     <Icon name="carret-right" size={8} color="#81858E" />
                 )}

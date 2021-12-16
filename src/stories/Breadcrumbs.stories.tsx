@@ -13,7 +13,11 @@ const Template: ComponentStory<typeof Breadcrumbs> = (args) => {
 export const Default = Template.bind({});
 
 Default.args = {
-    options: ['home', 'dipper', 'dipper']
+    options: [
+        { title: 'home', link: 'localhost:6060' },
+        { title: 'depeer', link: 'localhost:6060' },
+        { title: 'depeer', link: 'localhost:6060' }
+    ]
 };
 
 Default.storyName = 'Default';
