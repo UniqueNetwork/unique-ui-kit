@@ -58,7 +58,7 @@ const Pagination: FC<IPaginationProps> = ({
                 <div className={cn('icon-wrapper', { disabled: disabledPrev })} onClick={prevPage}>
                     <Icon
                         name="caret-left"
-                        size={11.5}
+                        size={12}
                         className={cn('icon', { disabled: disabledPrev })}
                     />
                 </div>
@@ -81,7 +81,7 @@ const Pagination: FC<IPaginationProps> = ({
                 <div className={cn('icon-wrapper', { disabled: disabledNext })} onClick={nextPage}>
                     <Icon
                         name="caret-right"
-                        size={11.5}
+                        size={12}
                         className={cn('icon', { disabled: disabledNext })}
                     />
                 </div>
