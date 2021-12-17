@@ -100,7 +100,7 @@ const Select: FC<SelectProps> = ({
                                     disabled
                                 })}
                                 key={option}
-                                onClick={handleOptionSelect.bind(this, option)}
+                                onClick={() => handleOptionSelect(option)}
                             >
                                 {option}
                             </div>
