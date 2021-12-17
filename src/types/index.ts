@@ -23,3 +23,7 @@ export interface IconProps {
     size: number;
     color?: string;
 }
+
+export interface BreadcrumbsProps {
+    options: { title: string; link?: string }[];
+}

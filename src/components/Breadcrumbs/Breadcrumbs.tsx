@@ -3,12 +3,9 @@
  */
 
 import React, { FC, Fragment } from 'react';
+import { BreadcrumbsProps } from '../../types';
 import Icon from '../Icon/Icon';
 import './Breadcrumbs.scss';
-
-export interface BreadcrumbsProps {
-    options: { title: string; link?: string }[];
-}
 
 const Breadcrumbs: FC<BreadcrumbsProps> = ({ options }: BreadcrumbsProps) => (
     <div className="unique-breadcrumbs-wrapper">
