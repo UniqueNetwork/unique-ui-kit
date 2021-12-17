@@ -23,14 +23,17 @@ const Template: ComponentStory<typeof Layout> = (args) => (
 
 export const DefaultMinimal = Template.bind({});
 
-DefaultMinimal.args = {};
+DefaultMinimal.args = {
+    version: '22.18.1560'
+};
 
 DefaultMinimal.storyName = 'Default minimal';
 
 export const DefaultHeading = Template.bind({});
 
 DefaultHeading.args = {
-    heading: 'Layout title'
+    heading: 'Layout title',
+    version: '22.18.1560'
 };
 
 DefaultHeading.storyName = 'Default w/ heading';
@@ -44,7 +47,8 @@ DefaultBreadcrumbs.args = {
             { title: 'Section', link: '#' },
             { title: 'Current', link: '#' }
         ]
-    }
+    },
+    version: '22.18.1560'
 };
 
 DefaultBreadcrumbs.storyName = 'Default w/ breadcrumbs';
@@ -59,7 +63,8 @@ DefaultFull.args = {
             { title: 'Section', link: '#' },
             { title: 'Current', link: '#' }
         ]
-    }
+    },
+    version: '22.18.1560'
 };
 
 DefaultFull.storyName = 'Default complete';

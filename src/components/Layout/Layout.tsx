@@ -12,12 +12,14 @@ interface LayoutProps {
     children: ReactNode;
     heading?: string;
     breadcrumbs?: BreadcrumbsProps;
+    version?: string;
 }
 
 const Layout: FC<LayoutProps> = ({
     children,
     heading,
-    breadcrumbs
+    breadcrumbs,
+    version = '0.0.1'
 }: LayoutProps) => (
     <div className="basic-layout">
         <header>
@@ -34,8 +36,7 @@ const Layout: FC<LayoutProps> = ({
                 <a target="_blank" href={'/'}>
                     Unique Network
                 </a>{' '}
-                — the NFT chain build for Polkadot and Kusama. Version
-                22.18.1560
+                — the NFT chain build for Polkadot and Kusama. Version {version}
             </div>
             <div className="footer__social">
                 <a href="https://t.me/Uniquechain" target="_blank">
