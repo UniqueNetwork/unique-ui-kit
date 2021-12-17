@@ -21,14 +21,14 @@ const Layout: FC<LayoutProps> = ({
     breadcrumbs,
     version = '0.0.1'
 }: LayoutProps) => (
-    <div className="basic-layout">
+    <div className="unique-layout">
         <header>
             <img src={Logo} alt="Logo" className="header__logo" />
         </header>
         <main>
             {heading && <Heading>{heading}</Heading>}
             {breadcrumbs && <Breadcrumbs {...breadcrumbs} />}
-            <div className={'basic-layout__content'}>{children}</div>
+            <div className={'unique-layout__content'}>{children}</div>
         </main>
         <footer>
             <div className="footer__text">

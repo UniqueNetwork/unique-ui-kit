@@ -5,7 +5,7 @@
     padding: 0;
 }
 
-.basic-layout {
+.unique-layout {
     font-family: $font-family;
     font-size: $font-size;
     font-weight: $font-weight;
@@ -21,6 +21,11 @@
         align-items: center;
         padding: 0 48px;
         position: relative;
+
+        &__logo {
+            width: 140px;
+            height: 64px;
+        }
     }
 
     footer {
@@ -41,24 +46,19 @@
         h1 {
             margin-bottom: 32px;
         }
+
+        .unique-breadcrumbs-wrapper {
+            margin-bottom: 32px;
+        }
     }
 
     &__content {
         background: $color-additional-light;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         border-radius: $border-radius;
-        padding: 20px;
+        padding: 32px;
         flex: 1;
     }
-    
-    .unique-breadcrumbs-wrapper {
-        margin-bottom: 32px;
-    }
-}
-
-.header__logo {
-    width: 140px;
-    height: 64px;
 }
 
 .footer {
@@ -87,7 +87,7 @@
 }
 
 @media (max-width: 1440px) {
-    .basic-layout {
+    .unique-layout {
         header {
             padding: 0 24px;
         }
@@ -104,7 +104,7 @@
 }
 
 @media (max-width: 1024px) {
-    .basic-layout {
+    .unique-layout {
         background: $color-additional-light;
 
         header {
@@ -131,15 +131,15 @@
 }
 
 @media (max-width: 620px) {
-    .header__logo {
-        width: 105px;
-        height: 48px;
-    }
-
-    .basic-layout {
+    .unique-layout {
         header {
             padding: 0 16px;
             height: 64px;
+
+            .header__logo {
+                width: 105px;
+                height: 48px;
+            }
         }
 
         footer {
@@ -148,6 +148,19 @@
             flex-direction: column;
             justify-content: center;
             align-items: flex-start;
+
+            .footer {
+                &__text {
+                    margin-bottom: 16px;
+                }
+
+                &__social {
+                    a {
+                        margin-left: 0;
+                        margin-right: 16px;
+                    }
+                }
+            }
         }
 
         main {
@@ -156,19 +169,6 @@
 
             h1 {
                 margin-bottom: 24px;
-            }
-        }
-    }
-
-    .footer {
-        &__text {
-            margin-bottom: 16px;
-        }
-
-        &__social {
-            a {
-                margin-left: 0;
-                margin-right: 16px;
             }
         }
     }

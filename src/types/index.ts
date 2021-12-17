@@ -1,6 +1,9 @@
 import { ChangeEvent } from 'react';
 
-type ComponentType = HTMLInputElement | HTMLSelectElement | HTMLDivElement;
+export type ComponentType =
+    | HTMLInputElement
+    | HTMLSelectElement
+    | HTMLDivElement;
 
 export interface ComponentProps {
     autoFocus?: boolean;
@@ -16,6 +19,7 @@ export interface ComponentProps {
     onBlur?(event: ChangeEvent<ComponentType>): void;
     onChange?(value: string | number | undefined): void;
     onFocus?(event: ChangeEvent<ComponentType>): void;
+    onKeyDown?(value: string | number | undefined): void;
 }
 
 export interface IconProps {

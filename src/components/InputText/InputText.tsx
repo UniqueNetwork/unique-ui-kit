@@ -2,7 +2,7 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import React, { FC } from 'react';
+import React, { ChangeEvent, KeyboardEvent, FC } from 'react';
 import classNames from 'classnames';
 import { Icon } from '..';
 import { ComponentProps, IconProps } from '../../types';
@@ -30,7 +30,7 @@ const InputText: FC<InputTextProps> = ({
     iconLeft,
     iconRight,
     onChange,
-    ...props
+    onKeyDown
 }: InputTextProps) => {
     const icon = iconLeft || iconRight;
     return (
@@ -48,12 +48,19 @@ const InputText: FC<InputTextProps> = ({
                 })}
             >
                 <input
+                    type="text"
                     id={id}
                     disabled={disabled}
                     value={value?.toString()}
                     defaultValue={defaultValue?.toString()}
-                    type="text"
-                    {...props}
+                    {...(onChange && {
+                        onChange: (e: ChangeEvent<HTMLInputElement>) =>
+                            onChange(e.target.value)
+                    })}
+                    {...(onKeyDown && {
+                        onKeyDown: (e: KeyboardEvent<HTMLInputElement>) =>
+                            onKeyDown(e.currentTarget.value)
+                    })}
                 />
                 {icon && <Icon {...icon} />}
             </div>
