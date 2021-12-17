@@ -38,19 +38,22 @@ const Layout: FC<LayoutProps> = ({
                 22.18.1560
             </div>
             <div className="footer__social">
-                <a href="#" target="_blank">
+                <a href="https://t.me/Uniquechain" target="_blank">
                     <Icon name="social-telegram" color="#009CF0" size={32} />
                 </a>
-                <a href="#" target="_blank">
+                <a href="https://twitter.com/Unique_NFTchain" target="_blank">
                     <Icon name="social-twitter" color="#009CF0" size={32} />
                 </a>
-                <a href="#" target="_blank">
+                <a href="https://discord.gg/jHVdZhsakC" target="_blank">
                     <Icon name="social-discord" color="#009CF0" size={32} />
                 </a>
-                <a href="#" target="_blank">
+                <a href="https://github.com/UniqueNetwork" target="_blank">
                     <Icon name="social-github" color="#009CF0" size={32} />
                 </a>
-                <a href="#" target="_blank">
+                <a
+                    href="https://app.subsocial.network/@UniqueNetwork_NFT"
+                    target="_blank"
+                >
                     <Icon name="social-subsocial" color="#009CF0" size={32} />
                 </a>
             </div>

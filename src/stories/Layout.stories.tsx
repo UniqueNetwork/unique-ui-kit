@@ -30,7 +30,7 @@ DefaultMinimal.storyName = 'Default minimal';
 export const DefaultHeading = Template.bind({});
 
 DefaultHeading.args = {
-    heading: 'Content title'
+    heading: 'Layout title'
 };
 
 DefaultHeading.storyName = 'Default w/ heading';
