@@ -3,7 +3,7 @@
  */
 
 import React, { FC } from 'react';
-import { ColorItem } from '..';
+import { ColorItem, Heading } from '..';
 import './ColorPalette.scss';
 
 interface ColorPaletteProps {
@@ -18,7 +18,7 @@ const ColorPalette: FC<ColorPaletteProps> = ({
     title
 }: ColorPaletteProps) => (
     <div className={`unique-color-palette ${palette}`}>
-        {title && <h2>{title}</h2>}
+        {title && <Heading size='2'>{title}</Heading>}
         {colors.map((color) => (
             <ColorItem color={color} key={color} />
         ))}

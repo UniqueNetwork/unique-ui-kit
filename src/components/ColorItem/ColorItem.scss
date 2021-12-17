@@ -10,6 +10,7 @@
             }
             .color-sample {
                 background-color: $value;
+                border: 1px solid darken($value, 3%);
             }
         }
     }
@@ -25,6 +26,7 @@
             }
             .color-sample {
                 background-color: $value;
+                border: 1px solid darken($value, 20%);
             }
         }
     }
@@ -56,6 +58,5 @@
         border-radius: $border-radius;
         height: 40px;
         width: 30%;
-        border: 1px solid #eee;
     }
 }
