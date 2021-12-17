@@ -16,8 +16,8 @@
     }
 }
 
-@mixin font-header($size) {
-    font-family: $font-family-header;
+@mixin font-heading($size) {
+    font-family: $font-family-heading;
     font-weight: 700;
     @if ($size== 1) {
         font-size: 36px;

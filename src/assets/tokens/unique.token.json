@@ -45,7 +45,7 @@
                 "description": "additional-dark color description",
                 "type": "color",
                 "value": "#040b1d"
-              }
+            }
         }
     }
 }
