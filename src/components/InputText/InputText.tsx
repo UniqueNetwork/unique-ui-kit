@@ -30,7 +30,8 @@ const InputText: FC<InputTextProps> = ({
     iconLeft,
     iconRight,
     onChange,
-    onKeyDown
+    onKeyDown,
+    ...rest
 }: InputTextProps) => {
     const icon = iconLeft || iconRight;
     return (
@@ -61,6 +62,7 @@ const InputText: FC<InputTextProps> = ({
                         onKeyDown: (e: KeyboardEvent<HTMLInputElement>) =>
                             onKeyDown(e.currentTarget.value)
                     })}
+                    {...rest}
                 />
                 {icon && <Icon {...icon} />}
             </div>
