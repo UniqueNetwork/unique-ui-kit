@@ -22,7 +22,7 @@
     @if ($size== 1) {
         font-size: 36px;
         line-height: 48px;
-        margin: 32px 0 24px;
+        margin: 0 0 24px;
     } @else if ($size== 2) {
         font-size: 28px;
         line-height: 42px;

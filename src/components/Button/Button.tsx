@@ -11,7 +11,7 @@ import './Button.scss';
 interface ButtonProps {
     title: string;
     disabled?: boolean;
-    size?: 's' | 'm' | 'l';
+    size?: 's' | 'm';
     role?: 'primary' | 'secondary' | 'tertiary' | 'outlined' | 'danger';
     wide?: boolean;
     className?: string;
@@ -24,7 +24,7 @@ const Button: FC<ButtonProps> = ({
     title,
     disabled,
     wide,
-    size = 'l',
+    size = 'm',
     role = 'outlined',
     className,
     iconLeft,

@@ -93,19 +93,18 @@
         background: $color-grey-100;
     }
 
-    &.size-l {
+    &.size-m {
         padding: 8px 24px;
         font-size: 16px;
-    }
-
-    &.size-m {
-        padding: 8px 6px;
-        font-size: 16px;
+        height: 40px;
+        list-style: 40px;
     }
 
     &.size-s {
         padding: 5px 16px;
         font-size: 14px;
+        height: 32px;
+        list-style: 32px;
     }
 
     &.wide {
