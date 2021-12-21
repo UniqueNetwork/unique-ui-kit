@@ -9,6 +9,7 @@ export { default as InputText } from './InputText/InputText';
 export { default as Layout } from './Layout/Layout';
 export { default as RadioGroup } from './RadioGroup/RadioGroup';
 export { default as Select } from './Select/Select';
+export { default as Table } from './Table/Table';
 export { default as Tabs } from './Tabs/Tabs';
 export { default as Text } from './Text/Text';
 export { default as Toggle } from './Toggle/Toggle';
