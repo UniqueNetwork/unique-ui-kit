@@ -55,7 +55,6 @@ let dataArray = [
 
 const Template: ComponentStory<typeof Table> = (args) => {
     const [tableData, setTableData] = useState([ ...args.data ]);
-    console.log('tableData1', tableData);
     const sorting = (column: string) => {
         let sortingTableData = tableData.sort((a, b) => {
             if (a[column] > b[column]) {
@@ -66,11 +65,9 @@ const Template: ComponentStory<typeof Table> = (args) => {
                 return 0;
             }
         });
-        console.log('sortingTableData', sortingTableData);
         setTableData([...sortingTableData]);
     };
     const clicking = (column: string) => {
-        console.log('click on column', column);
     };
     const resultFromAction = {
         Burn: 'Token destroyed',

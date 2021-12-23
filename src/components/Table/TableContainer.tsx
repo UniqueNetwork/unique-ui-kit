@@ -2,7 +2,7 @@
  * @author Anna Mikhailova <amikhailova@usetech.com>
  */
 
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC} from 'react';
 import './TableContainer.scss';
 import {
     DashedDivider,
@@ -36,33 +36,14 @@ interface ITableContainerProps {
     data: Array<{ [key: string]: string }>;
     className?: string;
 }
-const areEqual=(prevProps, nextProps)=> {
-    console.log('prevProps', prevProps.data);
-    console.log('nextProps', nextProps.data);
-    return true
-      }
 
 const TableContainer: FC<ITableContainerProps> = ({
     columns,
     data,
     className
 }: ITableContainerProps) => {
-    // const [tableData, setTableData] = useState([...data])
-
-    // useEffect(()=>{
-    //     console.log('zashel in useEffect');
-    //     setTableData(data)
-    // },[data])
     console.log('data in component', data);
 
-   //const [tableData, setTableData] = useState([...data])
-
-    // useEffect(()=>{
-    //     console.log('zashel in useEffect');
-    //     setTableData([...data]);
-    // }, [])
-
-   // console.log('tableData in component', tableData);
     const tableHead = (
         <TableRow>
             {columns.map((column) => {
@@ -108,10 +89,7 @@ const TableContainer: FC<ITableContainerProps> = ({
     );
     let clonedTableArray = data.map(a => {return {...a}})
     const tableBody = [...clonedTableArray].map((rowData, i) => {
-        console.log('i', i);
-        console.log('rowData', rowData);
         const row = columns.map((column, index) => {
-            console.log('${rowData.fee}-${i}', `${rowData.fee}-${i}`);
             return (
                 <TableCell key={`${i}-${column.key}-${index}`}>
                     {column.render ? column.render(i) : rowData[column.key]}
