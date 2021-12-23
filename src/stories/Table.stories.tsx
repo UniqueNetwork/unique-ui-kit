@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Table, Text } from '../components';
-import TableOuter from '../components/Table/TableOuter';
+import { Text } from '../components';
+import Table from '../components/Table/TableContainer';
 import { useState } from 'react';
 
 export default {
@@ -19,65 +19,58 @@ let dataArray = [
     {
         action: 'Transfer',
         time: '15-09-2021, 13:50:29',
-        fee: '0.0001 QTZ',
+        fee: '0.0004 QTZ',
         author: '14KBS…trcQH',
         result: '14KBS…trcQH'
     },
     {
         action: 'Transfer',
         time: '15-09-2021, 13:50:29',
-        fee: '0.0001 QTZ',
+        fee: '0.0003 QTZ',
         author: '14KBS…trcQH',
         result: '14KBS…trcQH'
     },
     {
         action: 'Transfer',
         time: '15-09-2021, 13:50:29',
-        fee: '0.0001 QTZ',
+        fee: '0.0002 QTZ',
         author: '14KBS…trcQH',
         result: 'Transfer failed'
     },
     {
         action: 'Transfer',
         time: '15-09-2021, 13:50:29',
-        fee: '0.0001 QTZ',
+        fee: '0.0006 QTZ',
         author: '14KBS…trcQH',
         result: '14KBS…trcQH'
     },
     {
         action: 'Mint',
         time: '15-09-2021, 13:50:29',
-        fee: '0.0001 QTZ',
+        fee: '0.0005 QTZ',
         author: '14KBS…trcQH',
         result: 'Token created'
     }
 ];
 
-
-const Template: ComponentStory<typeof TableOuter> = (args) => {
-    const [tableData, setTableData] = useState({...args.data});
+const Template: ComponentStory<typeof Table> = (args) => {
+    const [tableData, setTableData] = useState([ ...args.data ]);
+    console.log('tableData1', tableData);
     const sorting = (column: string) => {
-        let sortingTableData = args.data.sort((a, b) => {
-            console.log('sort by column', column);
-            console.log('a[column]', a[column]);
-            console.log('b[column]', b[column]);
+        let sortingTableData = tableData.sort((a, b) => {
             if (a[column] > b[column]) {
-                console.log('1');
                 return 1;
             } else if (a[column] < b[column]) {
-                console.log('2');
                 return -1;
             } else {
-                console.log('3');
                 return 0;
             }
         });
-        console.log('setTableData');
-        setTableData(sortingTableData);
+        console.log('sortingTableData', sortingTableData);
+        setTableData([...sortingTableData]);
     };
     const clicking = (column: string) => {
         console.log('click on column', column);
-        console.log('dataArray', dataArray);
     };
     const resultFromAction = {
         Burn: 'Token destroyed',
@@ -90,8 +83,8 @@ const Template: ComponentStory<typeof TableOuter> = (args) => {
             dataIndex: 'action',
             key: 'action',
             width: 100,
-            size: 'm',
-            color: 'blue-grey',
+            size: 'm' as 'm',
+            color: 'blue-grey' as 'blue-grey',
             icon: 'arrows-down-up',
             render: (rowNumber: number) => (
                 <Text size="m" color="additional-dark">
@@ -105,8 +98,8 @@ const Template: ComponentStory<typeof TableOuter> = (args) => {
             dataIndex: 'time',
             key: 'time',
             width: 100,
-            size: 'm',
-            color: 'primary',
+            size: 'm' as 'm',
+            color: 'primary' as 'primary',
             icon: 'clock',
             render: (rowNumber: number) => (
                 <Text size="m" color="additional-dark">
@@ -146,7 +139,11 @@ const Template: ComponentStory<typeof TableOuter> = (args) => {
             render: (rowNumber: number) => (
                 <>
                     <Text size="m" color="blue-grey-600">
-                        {resultFromAction[dataArray[rowNumber].action]}
+                        {
+                            resultFromAction[
+                                dataArray[rowNumber].action as 'Burn'
+                            ]
+                        }
                     </Text>
                     &nbsp;
                     <Text size="m" color="primary-500">
@@ -158,12 +155,13 @@ const Template: ComponentStory<typeof TableOuter> = (args) => {
             )
         }
     ];
-    return <TableOuter {...args} columns={columnsArray }></TableOuter>;
+    let clonedTableArray = tableData.map(a => {return {...a}})
+    return <Table data={[...clonedTableArray]} columns={columnsArray}></Table>;
 };
 
-export const DefaultH1 = Template.bind({});
-DefaultH1.args = {
+export const Default = Template.bind({});
+Default.args = {
     data: dataArray
 };
 
-DefaultH1.storyName = 'Default H1';
+Default.storyName = 'Default';

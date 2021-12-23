@@ -11,11 +11,9 @@ interface ITableProps {
     className?: string;
 }
 
-const Table: FC<ITableProps> = ({
+export const Table: FC<ITableProps> = ({
     children = 'hello',
     className
 }: ITableProps) => {
     return <table className={classNames(`table`, className)}>{children}</table>;
 };
-
-export default Table;
