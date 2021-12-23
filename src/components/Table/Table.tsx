@@ -12,16 +12,10 @@ interface ITableProps {
 }
 
 const Table: FC<ITableProps> = ({
-    children='hello',
+    children = 'hello',
     className
 }: ITableProps) => {
-    return (
-        //cellPadding="0" пока ничего не делает
-        //cellSpacing="0" сдвигает 2 черточки в бордере
-        <table className='table'>
-            
-            {children}</table>
-    );
+    return <table className={classNames(`table`, className)}>{children}</table>;
 };
 
 export default Table;

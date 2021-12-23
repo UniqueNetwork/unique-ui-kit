@@ -1,0 +1,15 @@
+@import '../../assets/styles/index.scss';
+
+.unique-table-outer{
+    .column{
+        display: flex;
+    }
+    .icon-wrapper{
+        width: 24px;
+        height:24px;
+        margin-left: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

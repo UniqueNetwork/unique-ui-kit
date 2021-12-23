@@ -3,13 +3,11 @@
 .table-header-cell{
     width: auto;
     background-color: $color-blue-grey-100;
-    //border-color: $color-blue-grey-500;
     text-align: left;
     padding: 8px 16px;
-    @include font-body('m');
+    @include font-body(m);
     font-weight:500;
     color: $color-blue-grey-500;
     border-spacing: 5px;
     border-width:0;
-  //  border-collapse: collapse;
 }
