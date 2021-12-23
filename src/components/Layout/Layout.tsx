@@ -36,7 +36,7 @@ const Layout: FC<LayoutProps> = ({
                 <a target="_blank" href={'/'}>
                     Unique Network
                 </a>{' '}
-                — the NFT chain build for Polkadot and Kusama. Version {version}
+                — the NFT chain to build for Polkadot and Kusama. Version {version}
             </div>
             <div className="footer__social">
                 <a href="https://t.me/Uniquechain" target="_blank">
