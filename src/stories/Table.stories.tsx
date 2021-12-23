@@ -12,7 +12,7 @@ let dataArray = [
     {
         action: 'Burn',
         time: '15-09-2021, 13:50:29',
-        fee: '0.0001 QTZ',
+        fee: '0.0003 QTZ',
         author: '14KBS…trcQH',
         result: 'Token destroyed'
     },
@@ -26,28 +26,28 @@ let dataArray = [
     {
         action: 'Transfer',
         time: '15-09-2021, 13:50:29',
-        fee: '0.0001 QTZ',
+        fee: '0.0004 QTZ',
         author: '14KBS…trcQH',
         result: '14KBS…trcQH'
     },
     {
         action: 'Transfer',
         time: '15-09-2021, 13:50:29',
-        fee: '0.0001 QTZ',
+        fee: '0.0002 QTZ',
         author: '14KBS…trcQH',
         result: 'Transfer failed'
     },
     {
         action: 'Transfer',
         time: '15-09-2021, 13:50:29',
-        fee: '0.0001 QTZ',
+        fee: '0.0006 QTZ',
         author: '14KBS…trcQH',
         result: '14KBS…trcQH'
     },
     {
         action: 'Mint',
         time: '15-09-2021, 13:50:29',
-        fee: '0.0001 QTZ',
+        fee: '0.0005 QTZ',
         author: '14KBS…trcQH',
         result: 'Token created'
     }
@@ -55,7 +55,7 @@ let dataArray = [
 
 
 const Template: ComponentStory<typeof TableOuter> = (args) => {
-    const [tableData, setTableData] = useState({...args.data});
+    const [tableData, setTableData] = useState([...args.data]);
     const sorting = (column: string) => {
         let sortingTableData = args.data.sort((a, b) => {
             console.log('sort by column', column);
@@ -73,7 +73,8 @@ const Template: ComponentStory<typeof TableOuter> = (args) => {
             }
         });
         console.log('setTableData');
-        setTableData(sortingTableData);
+        console.log('dataArray', dataArray);
+        setTableData([...sortingTableData]);
     };
     const clicking = (column: string) => {
         console.log('click on column', column);
@@ -158,7 +159,8 @@ const Template: ComponentStory<typeof TableOuter> = (args) => {
             )
         }
     ];
-    return <TableOuter {...args} columns={columnsArray }></TableOuter>;
+    console.log('tableData', tableData);
+    return <TableOuter data={[...tableData]} columns={columnsArray }></TableOuter>;
 };
 
 export const DefaultH1 = Template.bind({});

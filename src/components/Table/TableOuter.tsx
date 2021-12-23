@@ -75,8 +75,9 @@ const TableOuter: FC<ITableOuterProps> = ({
             })}
         </TableRow>
     );
+    console.log('data', data);
     const tableBody = data.map((rowData, i) => {
-        console.log('data', data);
+        
         const row = columns.map((column) => {
             return (
                 <TableCell key={`${column.key}-${i}`}>
