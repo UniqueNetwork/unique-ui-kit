@@ -1,6 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Table, Text } from '../components';
-import TableOuter from '../components/Table/TableOuter';
 import { useState } from 'react';
 
 export default {
@@ -54,31 +53,22 @@ let dataArray = [
 ];
 
 
-const Template: ComponentStory<typeof TableOuter> = (args) => {
+const Template: ComponentStory<typeof Table> = (args) => {
     const [tableData, setTableData] = useState([...args.data]);
     const sorting = (column: string) => {
         let sortingTableData = args.data.sort((a, b) => {
-            console.log('sort by column', column);
-            console.log('a[column]', a[column]);
-            console.log('b[column]', b[column]);
             if (a[column] > b[column]) {
-                console.log('1');
                 return 1;
             } else if (a[column] < b[column]) {
-                console.log('2');
                 return -1;
             } else {
-                console.log('3');
                 return 0;
             }
         });
-        console.log('setTableData');
-        console.log('dataArray', dataArray);
         setTableData([...sortingTableData]);
     };
     const clicking = (column: string) => {
         console.log('click on column', column);
-        console.log('dataArray', dataArray);
     };
     const resultFromAction = {
         Burn: 'Token destroyed',
@@ -91,8 +81,8 @@ const Template: ComponentStory<typeof TableOuter> = (args) => {
             dataIndex: 'action',
             key: 'action',
             width: 100,
-            size: 'm',
-            color: 'blue-grey',
+            size: 'm' as 'm',
+            color: 'blue-grey' as 'blue-grey',
             icon: 'arrows-down-up',
             render: (rowNumber: number) => (
                 <Text size="m" color="additional-dark">
@@ -106,8 +96,8 @@ const Template: ComponentStory<typeof TableOuter> = (args) => {
             dataIndex: 'time',
             key: 'time',
             width: 100,
-            size: 'm',
-            color: 'primary',
+            size: 'm' as 'm',
+            color: 'primary' as 'primary',
             icon: 'clock',
             render: (rowNumber: number) => (
                 <Text size="m" color="additional-dark">
@@ -147,7 +137,7 @@ const Template: ComponentStory<typeof TableOuter> = (args) => {
             render: (rowNumber: number) => (
                 <>
                     <Text size="m" color="blue-grey-600">
-                        {resultFromAction[dataArray[rowNumber].action]}
+                        {resultFromAction[dataArray[rowNumber].action as 'Burn']}
                     </Text>
                     &nbsp;
                     <Text size="m" color="primary-500">
@@ -159,13 +149,12 @@ const Template: ComponentStory<typeof TableOuter> = (args) => {
             )
         }
     ];
-    console.log('tableData', tableData);
-    return <TableOuter data={[...tableData]} columns={columnsArray }></TableOuter>;
+    return <Table data={[...tableData]} columns={columnsArray }></Table>;
 };
 
-export const DefaultH1 = Template.bind({});
-DefaultH1.args = {
+export const Default = Template.bind({});
+Default.args = {
     data: dataArray
 };
 
-DefaultH1.storyName = 'Default H1';
+Default.storyName = 'Default';
