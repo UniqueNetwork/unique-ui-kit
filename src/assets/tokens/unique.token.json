@@ -4,7 +4,7 @@
             "primary": {
                 "description": "primary color description",
                 "type": "color",
-                "value": "#1db0ff"
+                "value": "#009cf0"
             },
             "secondary": {
                 "description": "secondary color description",

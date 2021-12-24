@@ -1,0 +1,57 @@
+@import '../../assets/styles/index.scss';
+
+.unique-pagination-wrapper {
+    font-family: $font-family;
+    font-size: $font-size;
+    font-weight: $font-weight;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+
+    .pages-wrapper {
+        display: flex;
+        align-items: center;
+
+        .page-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-width: 20px;
+            padding: 4px 6px;
+            height: 24px;
+            cursor: pointer;
+            color: $color-secondary-500;
+
+            svg.icon {
+                fill: $color-secondary-500;
+            }
+
+            &:hover {
+                color: $color-primary-500;
+                svg {
+                    fill: $color-primary-500;
+                }
+            }
+
+            &.active {
+                background-color: $color-primary-500;
+                color: $color-additional-light;
+                border-radius: $border-radius;
+            }
+
+            &.disabled {
+                cursor: default;
+                svg {
+                    fill: $color-blue-grey-300;
+                }
+            }
+        }
+
+        .page-ellipsis {
+            width: 32px;
+            text-align: center;
+            color: $color-blue-grey-300;
+        }
+    }
+}
