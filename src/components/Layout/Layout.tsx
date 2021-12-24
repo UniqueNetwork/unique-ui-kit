@@ -25,7 +25,11 @@ const Layout: FC<LayoutProps> = ({
 }: LayoutProps) => (
     <div className="unique-layout">
         <header>
-            {header || <img src={Logo} alt="Logo" className="header__logo" />}
+            {header || (
+                <a href="/">
+                    <img src={Logo} alt="Logo" className="header__logo" />
+                </a>
+            )}
         </header>
         <main>
             {heading && <Heading>{heading}</Heading>}
