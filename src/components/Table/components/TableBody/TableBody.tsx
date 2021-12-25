@@ -8,10 +8,12 @@ interface ITableBodyProps {
 }
 
 export const TableBody: FC<ITableBodyProps> = ({
-    children='hello',
+    children,
     className
 }: ITableBodyProps) => {
     return (
-        <tbody className='table-body'>{children}</tbody>
+        <tbody className={classNames(`table-body`, className)}>
+            {children}
+        </tbody>
     );
 };

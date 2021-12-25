@@ -1,6 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Table, Text } from '../components';
 import { useState } from 'react';
+import { TSize, TColor } from '../components/Table/TableContainer';
 
 export default {
     title: 'Components/Table',
@@ -52,7 +53,6 @@ let dataArray = [
     }
 ];
 
-
 const Template: ComponentStory<typeof Table> = (args) => {
     const [tableData, setTableData] = useState([...args.data]);
     const sorting = (column: string) => {
@@ -81,49 +81,49 @@ const Template: ComponentStory<typeof Table> = (args) => {
             dataIndex: 'action',
             key: 'action',
             width: 100,
-            size: 'm' as 'm',
-            color: 'blue-grey' as 'blue-grey',
+            headingTextSize: 'm' as TSize,
+            color: 'blue-grey' as TColor,
             icon: 'arrows-down-up',
             render: (rowNumber: number) => (
                 <Text size="m" color="additional-dark">
                     {dataArray[rowNumber].action}
                 </Text>
             ),
-            columnClickHandle: sorting
+            columnHeadingClickHandle: sorting
         },
         {
             title: 'Time',
             dataIndex: 'time',
             key: 'time',
-            width: 100,
-            size: 'm' as 'm',
-            color: 'primary' as 'primary',
+            width: 200,
+            headingTextSize: 'm' as TSize,
+            color: 'primary' as TColor,
             icon: 'clock',
             render: (rowNumber: number) => (
                 <Text size="m" color="additional-dark">
                     {dataArray[rowNumber].time}
                 </Text>
             ),
-            columnClickHandle: clicking
+            columnHeadingClickHandle: clicking
         },
         {
             title: 'Fee',
             dataIndex: 'fee',
             key: 'fee',
-            width: 200,
+            width: 150,
             icon: 'arrows-down-up',
             render: (rowNumber: number) => (
                 <Text size="m" color="additional-dark">
                     {dataArray[rowNumber].fee}
                 </Text>
             ),
-            columnClickHandle: sorting
+            columnHeadingClickHandle: sorting
         },
         {
             title: 'Author',
             dataIndex: 'author',
             key: 'author',
-            width: 200,
+            width: 150,
             render: (rowNumber: number) => (
                 <Text size="m" color="primary-500">
                     {dataArray[rowNumber].author}
@@ -137,7 +137,11 @@ const Template: ComponentStory<typeof Table> = (args) => {
             render: (rowNumber: number) => (
                 <>
                     <Text size="m" color="blue-grey-600">
-                        {resultFromAction[dataArray[rowNumber].action as 'Burn']}
+                        {
+                            resultFromAction[
+                                dataArray[rowNumber].action as 'Burn'
+                            ]
+                        }
                     </Text>
                     &nbsp;
                     <Text size="m" color="primary-500">
@@ -149,12 +153,15 @@ const Template: ComponentStory<typeof Table> = (args) => {
             )
         }
     ];
-    return <Table data={[...tableData]} columns={columnsArray }></Table>;
+    return (
+        <Table {...args} data={[...tableData]} columns={columnsArray}></Table>
+    );
 };
 
 export const Default = Template.bind({});
 Default.args = {
-    data: dataArray
+    data: dataArray,
+    title: 'Table title'
 };
 
 Default.storyName = 'Default';

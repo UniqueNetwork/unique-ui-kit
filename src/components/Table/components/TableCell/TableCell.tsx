@@ -8,10 +8,8 @@ interface ITableCellProps {
 }
 
 export const TableCell: FC<ITableCellProps> = ({
-    children='hello',
+    children,
     className
 }: ITableCellProps) => {
-    return (
-        <td className='table-cell'>{children}</td>
-    );
+    return <td className={classNames(`table-cell`, className)}>{children}</td>;
 };

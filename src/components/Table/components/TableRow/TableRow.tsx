@@ -8,12 +8,8 @@ interface ITableRowProps {
 }
 
 export const TableRow: FC<ITableRowProps> = ({
-    children = 'hello',
+    children,
     className
 }: ITableRowProps) => {
-    return (
-            <tr className="table-row">
-                {children}
-            </tr>
-    );
+    return <tr className={classNames(`table-row`, className)}>{children}</tr>;
 };

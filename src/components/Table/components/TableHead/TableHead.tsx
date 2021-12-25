@@ -1,6 +1,5 @@
 import { FC, ReactNode } from 'react';
 import classNames from 'classnames';
-import './TableHead.scss';
 
 interface ITableHeadProps {
     children: ReactNode;
@@ -8,10 +7,10 @@ interface ITableHeadProps {
 }
 
 export const TableHead: FC<ITableHeadProps> = ({
-    children='hello',
+    children,
     className
 }: ITableHeadProps) => {
     return (
-        <thead>{children}</thead>
+        <thead className={classNames(className)}>{children}</thead>
     );
 };
