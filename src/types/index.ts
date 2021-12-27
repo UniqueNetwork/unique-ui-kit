@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, KeyboardEvent } from 'react';
 
 export type ComponentType =
     | HTMLInputElement
@@ -19,7 +19,7 @@ export interface ComponentProps {
     onBlur?(event: ChangeEvent<ComponentType>): void;
     onChange?(value: string | number | undefined): void;
     onFocus?(event: ChangeEvent<ComponentType>): void;
-    onKeyDown?(value: string | number | undefined): void;
+    onKeyDown?(event: KeyboardEvent<ComponentType>): void;
 }
 
 export interface IconProps {
