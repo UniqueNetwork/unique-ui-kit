@@ -4,8 +4,8 @@
 
 import React, { ChangeEvent, KeyboardEvent, FC } from 'react';
 import classNames from 'classnames';
-import { Icon } from '..';
-import { ComponentProps, IconProps } from '../../types';
+import { Icon } from '../../';
+import { ComponentProps, IconProps } from '../../../types';
 import './InputText.scss';
 
 interface InputTextProps extends ComponentProps {
@@ -33,6 +33,7 @@ const InputText: FC<InputTextProps> = ({
     ...rest
 }: InputTextProps) => {
     const icon = iconLeft || iconRight;
+    console.log('value', value);
     return (
         <div className={classNames('unique-input-text', className, { error })}>
             {label && <label htmlFor={id}>{label}</label>}
