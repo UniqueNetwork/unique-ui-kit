@@ -33,7 +33,6 @@ const InputText: FC<InputTextProps> = ({
     ...rest
 }: InputTextProps) => {
     const icon = iconLeft || iconRight;
-    console.log('value', value);
     return (
         <div className={classNames('unique-input-text', className, { error })}>
             {label && <label htmlFor={id}>{label}</label>}
