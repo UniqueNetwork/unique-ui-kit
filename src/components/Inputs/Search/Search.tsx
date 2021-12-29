@@ -17,7 +17,8 @@ interface SearchProps {
     placeholder?: string;
     onChange: (value: string) => void;
     onSearch: (value: string) => void;
-    withButton: boolean;
+    onKeyDown?:(event: KeyboardEvent<HTMLInputElement>) => void;
+    withButton?: boolean;
 }
 
 const Search: FC<SearchProps> = ({
@@ -29,13 +30,17 @@ const Search: FC<SearchProps> = ({
     withButton,
     onChange,
     onSearch,
+    onKeyDown,
     ...rest
 }: SearchProps) => {
-    const onKeyDown: KeyboardEventHandler<HTMLInputElement> = (
+    const onKeyDownInner: KeyboardEventHandler<HTMLInputElement> = (
         event: KeyboardEvent<HTMLInputElement>
     ) => {
         if (event.code === 'Enter') {
             onSearch(value);
+        }
+        if(onKeyDown){
+            onKeyDown(event);
         }
     };
 
@@ -66,7 +71,7 @@ const Search: FC<SearchProps> = ({
                         onChange: (e: ChangeEvent<HTMLInputElement>) =>
                             onChange(e.target.value)
                     })}
-                    onKeyDown={onKeyDown}
+                    onKeyDown={onKeyDownInner}
                     {...rest}
                 />
                 {value && (
