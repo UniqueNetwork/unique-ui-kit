@@ -3,24 +3,35 @@
  */
 
 import { FC } from 'react';
-import { useGetAvatar } from './useGetAvatar';
 import './Avatar.scss';
+import classNames from 'classnames';
 
 interface IComponentProps {
-    path: string;
+    src: string;
     className: string;
+    size: number;
+    type: 'circle' | 'square';
 }
 
 const Avatar: FC<IComponentProps> = ({
-    path,
-    className
+    src,
+    className,
+    size,
+    type = 'square'
 }: IComponentProps) => {
-    const avatar = useGetAvatar(path);
-
     return (
-        <span
-            className={className}
-            dangerouslySetInnerHTML={{ __html: avatar }}
+        <img
+            className={classNames(
+                'unique-avatar',
+                {
+                    circle: type === 'circle',
+                    square: type === 'square'
+                },
+                className
+            )}
+            alt="avatar"
+            src={src}
+            width={size}
         />
     );
 };
