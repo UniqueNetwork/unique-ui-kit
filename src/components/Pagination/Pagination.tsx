@@ -33,24 +33,36 @@ const Pagination: FC<IPaginationProps> = ({
     perPage = 10,
     withIcons
 }: IPaginationProps) => {
+    const isMobile = visible === 2;
     const [currentIndex, setCurrentIndex] = useState<number>(current);
     const [perPageCount, setPerPageCount] = useState<number>(perPage);
     const totalCount = Math.ceil(size / perPageCount);
-    const isLeftOffset = currentIndex > (visible - 1) / 2;
-    const isRightOffset = currentIndex < totalCount - (visible - 1) / 2 - 1;
-    const actualCount = Math.min(
-        isLeftOffset && isRightOffset ? visible - 2 : visible,
-        totalCount
-    );
-    const actualDelta = (actualCount - 1) / 2;
-    const initialIndex =
-        actualCount == totalCount
-            ? 0
-            : currentIndex < actualDelta
-            ? 0
-            : currentIndex + actualDelta >= totalCount
-            ? totalCount - actualCount
-            : currentIndex - actualDelta;
+    const isOffsetable = totalCount > 3;
+    const hasLeftOffset =
+        isOffsetable && currentIndex > (isMobile ? 1 : (visible - 1) / 2);
+    const hasRightOffset =
+        isOffsetable &&
+        currentIndex < totalCount - (isMobile ? 1 : (visible - 1) / 2) - 1;
+    const actualCount = isOffsetable
+        ? Math.min(
+              hasLeftOffset && hasRightOffset
+                  ? isMobile
+                      ? 1
+                      : visible - 2
+                  : visible,
+              totalCount
+          )
+        : totalCount;
+    const actualDelta = isMobile ? 2 : (actualCount - 1) / 2;
+    const initialIndex = !isOffsetable
+        ? 0
+        : currentIndex < actualDelta
+        ? 0
+        : currentIndex + actualDelta >= totalCount
+        ? totalCount - actualCount
+        : isMobile
+        ? currentIndex
+        : currentIndex - actualDelta;
 
     return (
         <div className="unique-pagination-wrapper">
@@ -68,7 +80,7 @@ const Pagination: FC<IPaginationProps> = ({
                             <Icon name="carret-left" size={12} />
                         </PageItem>
                     )}
-                    {isLeftOffset && (
+                    {hasLeftOffset && (
                         <>
                             <PageItem
                                 page={1}
@@ -91,7 +103,7 @@ const Pagination: FC<IPaginationProps> = ({
                             />
                         );
                     })}
-                    {isRightOffset && (
+                    {hasRightOffset && (
                         <>
                             <div className="page-ellipsis">...</div>
                             <PageItem
