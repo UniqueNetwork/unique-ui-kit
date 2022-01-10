@@ -6,19 +6,19 @@ import { FC } from 'react';
 import './Avatar.scss';
 import classNames from 'classnames';
 
-interface IComponentProps {
+export interface IAvatarProps {
     src: string;
-    className: string;
     size: number;
-    type: 'circle' | 'square';
+    type?: 'circle' | 'square';
+    className?: string;
 }
 
-const Avatar: FC<IComponentProps> = ({
+const Avatar: FC<IAvatarProps> = ({
     src,
     className,
     size,
     type = 'square'
-}: IComponentProps) => {
+}: IAvatarProps) => {
     return (
         <img
             className={classNames(
