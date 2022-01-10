@@ -5,11 +5,16 @@
 import React, { FC, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { Icon } from '..';
-import { ComponentProps } from '../../types';
+import { ComponentProps, IconProps } from '../../types';
 import './Select.scss';
 
 interface SelectProps extends ComponentProps {
-    options: (string | number)[];
+    options: {
+        id: string | number;
+        title: string | number;
+        iconLeft?: IconProps;
+        iconRight?: IconProps;
+    }[];
     additionalText?: string | number;
     error?: boolean;
     label?: string;
@@ -35,11 +40,17 @@ const Select: FC<SelectProps> = ({
     onBlur
 }) => {
     useEffect(() => {
-        if (defaultValue && options.indexOf(defaultValue) !== -1) {
-            onChange!(defaultValue);
+        if (
+            defaultValue &&
+            options.findIndex((option) => option.title === defaultValue)
+        ) {
+            onChange(defaultValue);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    const selected = options.find((option) => option.id === value);
+    const icon = selected?.iconLeft || selected?.iconRight;
 
     const [dropped, setDropped] = useState<boolean>(!!autoFocus);
 
@@ -83,28 +94,50 @@ const Select: FC<SelectProps> = ({
                 tabIndex={tabIndex}
                 id={id}
             >
-                <div className="select-value" onMouseDown={handleMouseDown}>
-                    {value ||
-                        (placeholder && (
+                <div
+                    className={classNames('select-value', {
+                        'with-icon': icon,
+                        'to-left': selected?.iconLeft,
+                        'to-right': selected?.iconRight
+                    })}
+                    onMouseDown={handleMouseDown}
+                >
+                    {selected?.id ? (
+                        <>
+                            {selected.title}
+                            {icon && <Icon {...icon} />}
+                        </>
+                    ) : (
+                        placeholder && (
                             <span className="select-placeholder">
                                 {placeholder}
                             </span>
-                        ))}
+                        )
+                    )}
                 </div>
                 {dropped && options && (
                     <div className="select-dropdown">
-                        {options.map((option) => (
-                            <div
-                                className={classNames('dropdown-option', {
-                                    selected: value === option,
-                                    disabled
-                                })}
-                                key={option}
-                                onClick={() => handleOptionSelect(option)}
-                            >
-                                {option}
-                            </div>
-                        ))}
+                        {options.map((option) => {
+                            const icon = option.iconLeft || option.iconRight;
+                            return (
+                                <div
+                                    className={classNames('dropdown-option', {
+                                        selected: option.id === selected?.id,
+                                        'with-icon': icon,
+                                        'to-left': option.iconLeft,
+                                        'to-right': option.iconRight,
+                                        disabled
+                                    })}
+                                    key={option.id}
+                                    onClick={() =>
+                                        handleOptionSelect(option.id)
+                                    }
+                                >
+                                    {option.title}
+                                    {icon && <Icon {...icon} />}
+                                </div>
+                            );
+                        })}
                     </div>
                 )}
                 <Icon name="triangle" size={8} />
