@@ -13,26 +13,31 @@ jobs:
     steps:
       - name: Extract version
         shell: bash
-        run: echo "##[set-output name=version;]$(echo ${GITHUB_REF#refs/heads/(release|hotfix)/v})"
-        id: version
+        run: echo "##[set-output name=tag;]$(echo ${GITHUB_REF#*/v*})"
+        id: tag
       - uses: actions/checkout@v2
       - name: Setup node
         uses: actions/setup-node@v2
         with:
           node-version: '16'
-          cache: 'npm'
-      - run: npm install
-      - run: npm version ${{ steps.version.outputs.version }}-rc
-      - run: npm version prerelease
-      - run: cat package.json
+#          cache: 'npm'
+      - run: git init&& git config user.name "Unique" && git config user.email "uikit@unique.network"
+      - run: npm version ${{ steps.tag.outputs.tag }}-rc
+      - name: Set prerelease version
+        shell: bash
+        run: echo "##[set-output name=version;]$(echo $(npm version prerelease))"
+        id: version
+      - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_PUBLISH_TOKEN }}" >> .npmrc
+      - run: cat .npmrc
+      #- run: npm publish
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_USERNAME: GitHub
           SLACK_ICON: https://github.com/github.png?size=48
-          SLACK_MESSAGE:
-          SLACK_FOOTER: ""
+          SLACK_MESSAGE: Just published Release Candidate with *${{ steps.version.outputs.version }}*
+          SLACK_FOOTER: "___"
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_UI_KIT_UPDATES }}
 
 
