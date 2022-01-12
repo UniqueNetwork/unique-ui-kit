@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Extract version
         shell: bash
-        run: echo "##[set-output name=version;]$(echo ${GITHUB_REF#*/v*})"
+        run: echo "##[set-output name=tag;]$(echo ${GITHUB_REF#*/v*})"
         id: version
       - uses: actions/checkout@v2
       - name: Setup node
@@ -21,9 +21,12 @@ jobs:
         with:
           node-version: '16'
           cache: 'npm'
-      - run: npm install
-      - run: npm version ${{ steps.version.outputs.version }}-rc
-      - run: npm version prerelease
+      - run: npm version ${{ steps.version.outputs.tag }}-rc
+      - name: Set prerelease version
+        shell: bash
+        run: echo "##[set-output name=version;]$(echo ${npm version prerelease})"
+        id: version
+#      - run: npm install
       - run: cat package.json
 
       - name: Slack Notification
@@ -31,7 +34,7 @@ jobs:
         env:
           SLACK_USERNAME: GitHub
           SLACK_ICON: https://github.com/github.png?size=48
-          SLACK_MESSAGE: "hello im slack message"
+          SLACK_MESSAGE: "hello im slack message with ${{ steps.version.outputs.version }}"
           SLACK_FOOTER: ""
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_UI_KIT_UPDATES }}
 
