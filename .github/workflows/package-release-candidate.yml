@@ -25,7 +25,7 @@ jobs:
       - run: npm version ${{ steps.tag.outputs.tag }}-rc
       - name: Set prerelease version
         shell: bash
-        run: echo "##[set-output name=version;]$(echo npm version prerelease)"
+        run: echo "##[set-output name=version;]$(echo $(npm version prerelease))"
         id: version
 #      - run: npm install
       - run: cat package.json
