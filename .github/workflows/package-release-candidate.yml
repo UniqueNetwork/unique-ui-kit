@@ -22,7 +22,7 @@ jobs:
           node-version: '16'
           cache: 'npm'
       - run: npm install
-      - run: npm set version ${{ steps.version.outputs.version }}
+      - run: npm version ${{ steps.version.outputs.version }}
       - run: cat package.json
 
       - name: Slack Notification
