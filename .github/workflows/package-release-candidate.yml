@@ -23,11 +23,10 @@ jobs:
 #          cache: 'npm'
       - run: git init&& git config user.name "Unique" && git config user.email "uikit@unique.network"
       - run: npm version ${{ steps.tag.outputs.tag }}-rc
-      - run: npm version prerelease
-#      - name: Set prerelease version
-#        shell: bash
-#        run: echo "##[set-output name=version;]$(echo ${npm version prerelease})"
-#        id: version
+      - name: Set prerelease version
+        shell: bash
+        run: echo "##[set-output name=version;]$(echo npm version prerelease)"
+        id: version
 #      - run: npm install
       - run: cat package.json
       - run: echo ${{ steps.version.outputs.version }}
