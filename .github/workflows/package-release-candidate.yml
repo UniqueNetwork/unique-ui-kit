@@ -27,7 +27,7 @@ jobs:
         shell: bash
         run: echo "##[set-output name=version;]$(echo $(npm version prerelease))"
         id: version
-      - run: echo //registry.npmjs.org/:_authToken=${secrets.NPM_PUBLISH_TOKEN} >> .npmrc
+      - run: echo "//registry.npmjs.org/:_authToken=${secrets.NPM_PUBLISH_TOKEN}" >> .npmrc
       - run: cat .npmrc
       #- run: npm publish
 
