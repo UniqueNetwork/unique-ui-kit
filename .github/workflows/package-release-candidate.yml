@@ -14,14 +14,14 @@ jobs:
       - name: Extract version
         shell: bash
         run: echo "##[set-output name=tag;]$(echo ${GITHUB_REF#*/v*})"
-        id: version
+        id: tag
       - uses: actions/checkout@v2
       - name: Setup node
         uses: actions/setup-node@v2
         with:
           node-version: '16'
           cache: 'npm'
-      - run: npm version ${{ steps.version.outputs.tag }}-rc
+      - run: npm version ${{ steps.tag.outputs.tag }}-rc
       - name: Set prerelease version
         shell: bash
         run: echo "##[set-output name=version;]$(echo ${npm version prerelease})"
