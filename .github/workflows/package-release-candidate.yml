@@ -27,7 +27,9 @@ jobs:
         shell: bash
         run: echo "##[set-output name=version;]$(echo $(npm version prerelease))"
         id: version
-#      - run: npm install
+      - run: echo //registry.npmjs.org/:_authToken=${NPM_PUBLISH_TOKEN} >> .npmrc
+      - run: cat .npmrc
+      #- run: npm publish
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
