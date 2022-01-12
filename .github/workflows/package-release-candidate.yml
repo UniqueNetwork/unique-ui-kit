@@ -35,8 +35,8 @@ jobs:
         env:
           SLACK_USERNAME: GitHub
           SLACK_ICON: https://github.com/github.png?size=48
-          SLACK_MESSAGE: "hello im slack message with ${{ steps.version.outputs.version }}"
-          SLACK_FOOTER: ""
+          SLACK_MESSAGE: hello im slack message with ${{ steps.version.outputs.version }}
+          SLACK_FOOTER: "im footer"
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_UI_KIT_UPDATES }}
 
 
