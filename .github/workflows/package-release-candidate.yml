@@ -5,13 +5,16 @@ on:
     branches:
       - release/**
       - hotfix/**
-      - develop #todo remove
 
 jobs:
   build-and-publish:
     name: Build and publish package
     runs-on: ubuntu-latest
     steps:
+      - name: Extract version
+        shell: bash
+        run: echo "##[set-output name=version;]$(echo ${GITHUB_REF#refs/heads/(release|hotfix)/v})"
+        id: version
       - uses: actions/checkout@v2
       - name: Setup node
         uses: actions/setup-node@v2
@@ -19,14 +22,15 @@ jobs:
           node-version: '16'
           cache: 'npm'
       - run: npm install
-      - run: echo 'im here'
+      - run: npm set version ${{ steps.version.outputs.version }}
+      - run: cat package.json
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_USERNAME: GitHub
           SLACK_ICON: https://github.com/github.png?size=48
-          SLACK_MESSAGE: test notify
+          SLACK_MESSAGE:
           SLACK_FOOTER: ""
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_UI_KIT_UPDATES }}
 
