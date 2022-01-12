@@ -20,7 +20,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16'
-          cache: 'npm'
+#          cache: 'npm'
       - run: git init&& git config user.name "Unique" && git config user.email "uikit@unique.network"
       - run: npm version ${{ steps.tag.outputs.tag }}-rc
       - name: Set prerelease version
