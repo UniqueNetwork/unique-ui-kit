@@ -29,6 +29,7 @@ jobs:
         id: version
 #      - run: npm install
       - run: cat package.json
+      - run: echo ${{ steps.version.outputs.version }}
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
