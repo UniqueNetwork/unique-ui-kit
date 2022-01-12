@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Extract version
         shell: bash
-        run: echo "##[set-output name=version;]$(echo ${GITHUB_REF#refs/heads/(release|hotfix)/v})"
+        run: echo "##[set-output name=version;]$(echo ${GITHUB_REF#*/v*})"
         id: version
       - uses: actions/checkout@v2
       - name: Setup node
