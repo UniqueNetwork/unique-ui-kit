@@ -1,6 +1,6 @@
 {
   "name": "unique-ui-kit",
-  "version": "1.5.0-rc1",
+  "version": "1.5.0-rc1.0",
   "private": true,
   "scripts": {
     "start": "webpack serve --mode development",
