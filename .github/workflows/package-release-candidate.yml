@@ -28,16 +28,14 @@ jobs:
         run: echo "##[set-output name=version;]$(echo $(npm version prerelease))"
         id: version
 #      - run: npm install
-      - run: cat package.json
-      - run: echo ${{ steps.version.outputs.version }}
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_USERNAME: GitHub
           SLACK_ICON: https://github.com/github.png?size=48
-          SLACK_MESSAGE: hello im slack message with ${{ steps.version.outputs.version }}
-          SLACK_FOOTER: "im footer"
+          SLACK_MESSAGE: Just published Release Candidate with ver *${{ steps.version.outputs.version#v* }}*
+          SLACK_FOOTER: "___"
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_UI_KIT_UPDATES }}
 
 
