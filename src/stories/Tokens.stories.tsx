@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { CodeWrapper } from '../components';
+import { CodeWrapper } from '../internals';
 import token from '../assets/tokens/unique.token.json';
 
 export default {

@@ -1,0 +1,38 @@
+{
+    "name": "@unique-nft/ui-kit",
+    "version": "0.0.1-rc12",
+    "homepage": "https://unique.network",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/UniqueNetwork/unique-ui-kit.git"
+    },
+    "scripts": {
+        "rollup": "rollup -c"
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "@rollup/plugin-commonjs": "^21.0.1",
+        "@rollup/plugin-image": "^2.1.1",
+        "@rollup/plugin-node-resolve": "^13.0.6",
+        "@rollup/plugin-typescript": "^8.3.0",
+        "@types/react": "^17.0.37",
+        "classnames": "^2.3.1",
+        "rollup": "^2.61.1",
+        "rollup-plugin-dts": "^4.0.1",
+        "rollup-plugin-peer-deps-external": "^2.2.4",
+        "rollup-plugin-postcss": "^4.0.2",
+        "rollup-plugin-terser": "^7.0.2",
+        "rollup-plugin-typescript2": "^0.31.1",
+        "sass": "^1.45.0",
+        "typescript": "^4.5.3"
+    },
+    "peerDependencies": {
+        "react": "^17.0.2"
+    },
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.js",
+    "files": [
+        "dist"
+    ],
+    "types": "dist/index.d.ts"
+}

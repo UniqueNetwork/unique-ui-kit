@@ -4,7 +4,7 @@
 
 import React, { FC } from 'react';
 import JSONPretty from 'react-json-pretty';
-import { Heading } from '..';
+import { Heading } from '../../components';
 import './CodeWrapper.scss';
 
 interface CodeWrapperProps {
