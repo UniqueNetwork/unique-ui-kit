@@ -1,0 +1,33 @@
+name: Release Candidate
+
+on:
+  push:
+    branches:
+      - release/**
+      - hotfix/**
+      - develop #todo remove
+
+jobs:
+  build-and-publish:
+    name: Build and publish package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'npm'
+      - run: npm install
+      - run: echo 'im here'
+
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_USERNAME: GitHub
+          SLACK_ICON: https://github.com/github.png?size=48
+          SLACK_MESSAGE: ${{ secrets.UNIQUE_NETWORK_URL }} test notify
+          SLACK_FOOTER: ""
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+
+
