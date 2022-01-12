@@ -26,6 +26,7 @@ export interface IconProps {
     name: string;
     size: number;
     color?: string;
+    names?: Array<string>
 }
 
 export interface BreadcrumbsProps {
