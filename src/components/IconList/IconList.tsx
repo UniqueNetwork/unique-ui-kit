@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Icon, Heading } from '..';
-import './IconPallete.scss';
+import './IconList.scss';
 
 interface IconProps {
     names?: string[];
@@ -21,7 +21,7 @@ const IconPalette: FC<IconProps> = ({
         {title && <Heading size="2">{title}</Heading>}
         {names &&
             names.map((name, index) => (
-                <div key={index}>
+                <div key={index} className="icon-list">
                     <strong>{name}</strong>
                     <Icon name={name} size={size} />
                 </div>
