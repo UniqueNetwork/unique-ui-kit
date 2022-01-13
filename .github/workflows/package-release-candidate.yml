@@ -21,15 +21,17 @@ jobs:
         with:
           node-version: '16'
 #          cache: 'npm'
-      - run: git init&& git config user.name "Unique" && git config user.email "uikit@unique.network"
-      - run: npm version ${{ steps.tag.outputs.tag }}-rc
-      - name: Set prerelease version
+      - name: Initialize git user
+        run: git init&& git config user.name "Unique" && git config user.email "uikit@unique.network"
+      - name: NPM pack and publish
+        working-directory: ./package
         shell: bash
-        run: echo "##[set-output name=version;]$(echo $(npm version prerelease))"
-        id: version
-      - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_PUBLISH_TOKEN }}" >> .npmrc
-      - run: cat .npmrc
-      #- run: npm publish
+        run: |
+          npm version ${{ steps.tag.outputs.tag }}-rc
+          echo "##[set-output name=version;]$(echo $(npm version prerelease))"
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_PUBLISH_TOKEN }}" >> .npmrc
+          npm run rollup
+          npm publish
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
