@@ -7,7 +7,7 @@
     "build": "webpack --mode production",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "package": "npm --prefix ./rollup run rollup",
+    "package": "npm --prefix ./package run rollup",
     "pack": "cd ./rollup && npm pack",
     "publish": "cd ./rollup && npm publish"
   },
