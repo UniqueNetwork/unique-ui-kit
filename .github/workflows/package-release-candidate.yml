@@ -26,7 +26,7 @@ jobs:
         run: |
           TAG=${GITHUB_REF#*/v*}
           echo $TAG
-          npm --version
+          npm view @unique-nft/ui-kit versions --json
           LATEST_VER=$(npm view @unique-nft/ui-kit versions --json | grep ${TAG}-rc | tail -1 2>&1)
           echo $LATEST_VER
           LATEST_RC=${${LATEST_VER#*-rc.*}%\"*}
