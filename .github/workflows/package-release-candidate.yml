@@ -25,11 +25,10 @@ jobs:
         id: version
         run: |
           TAG=${GITHUB_REF#*/v*}
+          echo $TAG
           LATEST_VER=$(npm view @unique-nft/ui-kit versions --json | sed -n "/$TAG-rc/p" | tail -1)
-          echo $LATEST_VER
           SUFF=${LATEST_VER#*-rc.*}
           LATEST_RC=${SUFF%\"*}
-          echo $LATEST_RC
           RC=$((LATEST_RC + 1))
           echo $RC
           echo "##[set-output name=version;]${TAG}-rc${RC}"
@@ -37,7 +36,7 @@ jobs:
         working-directory: ./package
         shell: bash
         run: |
-          echo "publish ${steps.version.outputs.version}"
+          echo "publish ${{steps.version.outputs.version}}"
 #          npm install
 #          npm run build
 #          npm version ${{ steps.version.outputs.version }}
