@@ -38,10 +38,6 @@ const InputText: FC<InputTextProps> = ({
 }: InputTextProps) => {
     const icon = iconLeft || iconRight;
 
-    function test() {
-        onClearBtn && onClearBtn();
-    }
-
     return (
         <div className={classNames('unique-input-text', className, { error })}>
             {label && <label htmlFor={id}>{label}</label>}
@@ -72,7 +68,7 @@ const InputText: FC<InputTextProps> = ({
                     {...rest}
                 />
                 {clearBtn && (
-                    <div className="icon-remove" onClick={test}>
+                    <div className="icon-remove" onClick={onClearBtn}>
                         <Icon name="x-circle" size={16} />
                     </div>
                 )}

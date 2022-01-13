@@ -93,7 +93,7 @@ ClearBtn.args = {
     iconLeft: { name: 'magnify', size: 18, color: '#7d90a1' },
     clearBtn: true,
     onClearBtn: () => {
-        console.log('reset btn');
+        console.log('Callback reset btn');
     }
 };
 
