@@ -7,7 +7,7 @@
         "url": "https://github.com/UniqueNetwork/unique-ui-kit.git"
     },
     "scripts": {
-        "rollup": "rollup -c"
+        "build": "rollup -c"
     },
     "license": "MIT",
     "devDependencies": {
