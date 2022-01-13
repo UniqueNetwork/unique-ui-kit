@@ -14,8 +14,11 @@ jobs:
       - name: Extract version
         shell: bash
         run: |
-          VER=${GITHUB_REF#*/v*}
-          echo "##[set-output name=version;]${TAG}-rc${{github.run_number}}"
+          TAG=${GITHUB_REF#*/v*}
+          LATEST_VER=$(npm view @unique-nft/ui-kit versions --json | grep ${TAG}-rc | tail -1)
+          LATEST_RC=${${LATEST_VER#*-rc.*}%\"*}
+          RC=$((LATEST_RC + 1))
+          echo "##[set-output name=version;]${TAG}-rc${RC}"
         id: version
       - uses: actions/checkout@v2
       - name: Setup node
