@@ -28,6 +28,7 @@ jobs:
       - name: NPM Build and Publish
         working-directory: ./package
         shell: bash
+        id: version
         run: |
           npm install
           npm run build
