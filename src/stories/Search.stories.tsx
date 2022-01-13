@@ -9,6 +9,7 @@ export default {
 
 const Template: ComponentStory<typeof Search> = (args) => {
     const [value, setValue] = useState(args.value);
+
     const onChange = (val: string) => {
         setValue(val);
     };
@@ -28,29 +29,34 @@ const Template: ComponentStory<typeof Search> = (args) => {
                 value={value}
                 onChange={(val: string) => onChange(val)}
                 onSearch={(val: string) => onSearch(val)}
-                onKeyDown={(event: KeyboardEvent<HTMLInputElement>) => onKeyDown(event)}
+                onKeyDown={(event: KeyboardEvent<HTMLInputElement>) =>
+                    onKeyDown(event)
+                }
             />
         </div>
     );
 };
 
 export const Default = Template.bind({});
-
+Default.storyName = 'Default';
 Default.args = {
-    value: '',
-    placeholder: 'Placeholder',
-    iconLeft: { name: 'magnify', size: 18, color: '#C4C6CA' }
+    value: 'value',
+    placeholder: 'Placeholder'
 };
 
-Default.storyName = 'Default';
-
 export const WithButton = Template.bind({});
-
+WithButton.storyName = 'WithButton';
 WithButton.args = {
     value: '',
     placeholder: 'Extrinsic / collection / token / account',
-    iconLeft: { name: 'magnify', size: 18, color: '#C4C6CA' },
     withButton: true
 };
 
-WithButton.storyName = 'WithButton';
+export const noIconClose = Template.bind({});
+noIconClose.storyName = 'NoIconClose';
+noIconClose.args = {
+    value: '',
+    placeholder: 'placeholder',
+    withButton: true,
+    clearBtn: false
+};

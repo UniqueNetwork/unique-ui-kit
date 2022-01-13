@@ -83,8 +83,15 @@
                 color: $color-grey-400;
             }
         }
+        &.to-clear-btn {
 
+            flex-direction: row;
+            .icon-remove {
+                cursor: pointer;
+            }
+        }
         &.with-icon {
+            flex-direction: row;
             svg {
                 position: relative;
                 margin: 0 10px;
@@ -96,7 +103,7 @@
                 }
             }
             &.to-left {
-                flex-direction: row-reverse;
+                //flex-direction: row-reverse;
                 input {
                     padding: 11px 12px 11px 0px;
                 }

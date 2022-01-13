@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { InputText } from '../components';
 
@@ -7,9 +7,9 @@ export default {
     component: InputText
 } as ComponentMeta<typeof InputText>;
 
-const Template: ComponentStory<typeof InputText> = (args) => (
-    <InputText {...args} />
-);
+const Template: ComponentStory<typeof InputText> = (args) => {
+    return <InputText {...args} />;
+};
 
 export const Default = Template.bind({});
 
@@ -85,3 +85,16 @@ Disabled.args = {
 };
 
 Disabled.storyName = 'Minimal disabled';
+
+export const ClearBtn = Template.bind({});
+
+ClearBtn.args = {
+    placeholder: 'Placeholder',
+    iconLeft: { name: 'magnify', size: 18, color: '#7d90a1' },
+    clearBtn: true,
+    onClearBtn: () => {
+        console.log('reset btn');
+    }
+};
+
+ClearBtn.storyName = 'Clear button';

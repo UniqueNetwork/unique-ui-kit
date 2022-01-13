@@ -4,7 +4,7 @@
 
 import { ChangeEvent, FC, KeyboardEventHandler, KeyboardEvent } from 'react';
 import classNames from 'classnames';
-import { Button, Icon } from '../..';
+import { Button, Icon, InputText } from '../..';
 import { IconProps } from '../../../types';
 import './Search.scss';
 
@@ -17,8 +17,9 @@ interface SearchProps {
     placeholder?: string;
     onChange: (value: string) => void;
     onSearch: (value: string) => void;
-    onKeyDown?:(event: KeyboardEvent<HTMLInputElement>) => void;
+    onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
     withButton?: boolean;
+    clearBtn?: boolean;
 }
 
 const Search: FC<SearchProps> = ({
@@ -31,6 +32,7 @@ const Search: FC<SearchProps> = ({
     onChange,
     onSearch,
     onKeyDown,
+    clearBtn = true,
     ...rest
 }: SearchProps) => {
     const onKeyDownInner: KeyboardEventHandler<HTMLInputElement> = (
@@ -39,7 +41,7 @@ const Search: FC<SearchProps> = ({
         if (event.code === 'Enter') {
             onSearch(value);
         }
-        if(onKeyDown){
+        if (onKeyDown) {
             onKeyDown(event);
         }
     };
@@ -52,37 +54,17 @@ const Search: FC<SearchProps> = ({
 
     return (
         <div className={classNames('unique-search', className)}>
-            <div
-                className={classNames('input-wrapper', {
-                    disabled
-                })}
-            >
-                {iconLeft && (
-                    <div className="icon-wrapper icon-left">
-                        <Icon {...iconLeft} />
-                    </div>
-                )}
-                <input
-                    type="search"
-                    id={id}
-                    disabled={disabled}
-                    value={value}
-                    {...(onChange && {
-                        onChange: (e: ChangeEvent<HTMLInputElement>) =>
-                            onChange(e.target.value)
-                    })}
-                    onKeyDown={onKeyDownInner}
-                    {...rest}
-                />
-                {value && (
-                    <div
-                        className="icon-wrapper icon-remove"
-                        onClick={() => onChange('')}
-                    >
-                        <Icon name="x-circle" size={20} />
-                    </div>
-                )}
-            </div>
+            <InputText
+                value={value}
+                disabled={disabled}
+                clearBtn={value.length > 0 && clearBtn && true}
+                iconLeft={{ name: 'magnify', size: 18, color: '#7d90a1' }}
+                onChange={onChange}
+                onClearBtn={() => onChange('')}
+                onKeyDown={onKeyDownInner}
+                {...rest}
+            />
+
             {withButton && (
                 <Button
                     className="button-margin"

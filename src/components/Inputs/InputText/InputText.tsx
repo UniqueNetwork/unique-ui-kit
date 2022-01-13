@@ -15,6 +15,8 @@ interface InputTextProps extends ComponentProps {
     statusText?: string;
     iconLeft?: IconProps;
     iconRight?: IconProps;
+    clearBtn?: boolean;
+    onClearBtn?: () => void | undefined;
 }
 
 const InputText: FC<InputTextProps> = ({
@@ -30,9 +32,16 @@ const InputText: FC<InputTextProps> = ({
     iconLeft,
     iconRight,
     onChange,
+    clearBtn,
+    onClearBtn,
     ...rest
 }: InputTextProps) => {
     const icon = iconLeft || iconRight;
+
+    function test() {
+        onClearBtn && onClearBtn();
+    }
+
     return (
         <div className={classNames('unique-input-text', className, { error })}>
             {label && <label htmlFor={id}>{label}</label>}
@@ -44,9 +53,11 @@ const InputText: FC<InputTextProps> = ({
                     'with-icon': icon,
                     'to-left': iconLeft,
                     'to-right': iconRight,
+                    'to-clear-btn': clearBtn,
                     disabled
                 })}
             >
+                {iconLeft && <Icon {...iconLeft} />}
                 <input
                     type="text"
                     id={id}
@@ -54,12 +65,18 @@ const InputText: FC<InputTextProps> = ({
                     value={value?.toString()}
                     defaultValue={defaultValue?.toString()}
                     {...(onChange && {
-                        onChange: (e: ChangeEvent<HTMLInputElement>) =>
-                            onChange(e.target.value)
+                        onChange: (e: ChangeEvent<HTMLInputElement>) => {
+                            onChange(e.target.value);
+                        }
                     })}
                     {...rest}
                 />
-                {icon && <Icon {...icon} />}
+                {clearBtn && (
+                    <div className="icon-remove" onClick={test}>
+                        <Icon name="x-circle" size={16} />
+                    </div>
+                )}
+                {iconRight && <Icon {...iconRight} />}
             </div>
             {statusText && <div className="status-text">{statusText}</div>}
         </div>
