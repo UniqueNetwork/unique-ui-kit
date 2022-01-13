@@ -15,7 +15,7 @@ jobs:
         shell: bash
         run: |
           TAG=${GITHUB_REF#*/v*}
-          LATEST_VER=$(npm view @unique-nft/ui-kit versions --json | grep ${TAG}-rc | tail -1)
+          LATEST_VER=$(npm view @unique-nft/ui-kit versions --json | grep ${TAG}-rc | tail -1 2>&1)
           LATEST_RC=${${LATEST_VER#*-rc.*}%\"*}
           RC=$((LATEST_RC + 1))
           echo "##[set-output name=version;]${TAG}-rc${RC}"
