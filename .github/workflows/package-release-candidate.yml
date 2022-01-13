@@ -27,7 +27,7 @@ jobs:
         working-directory: ./package
         shell: bash
         run: |
-          npm install
+          npm install && npm install -g npm-install-peers && npm-install-peers
           npm run build
           npm version ${{ steps.tag.outputs.tag }}-rc
           echo "##[set-output name=version;]$(echo $(npm version prerelease))"
