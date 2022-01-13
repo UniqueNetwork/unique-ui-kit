@@ -24,7 +24,7 @@ jobs:
       - name: Initialize git user
         run: git init&& git config user.name "Unique" && git config user.email "uikit@unique.network"
       - name: Install project dependencies
-        run: npm install --prod
+        run: npm install
       - name: NPM Build and Publish
         working-directory: ./package
         shell: bash
