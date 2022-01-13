@@ -32,8 +32,8 @@ jobs:
         run: |
           npm install
           npm run build
-          npm version ${{ steps.tag.outputs.tag }}-rc
-          echo "##[set-output name=version;]$(echo $(npm version prerelease))"
+          npm version ${{ steps.tag.outputs.tag }}-rc.${{github.run_number}}
+          echo "##[set-output name=version;]${{ steps.tag.outputs.tag }}-rc.${{github.run_number}}"
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_PUBLISH_TOKEN }}" >> .npmrc
           npm publish
 
