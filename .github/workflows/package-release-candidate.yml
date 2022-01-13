@@ -16,32 +16,29 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16'
-#      - name: Initialize git user
-#        run: git init&& git config user.name "Unique" && git config user.email "uikit@unique.network"
-#      - name: Install project dependencies
-#        run: npm install
+      - name: Initialize git user
+        run: git init&& git config user.name "Unique" && git config user.email "uikit@unique.network"
+      - name: Install project dependencies
+        run: npm install
       - name: Extract version
         shell: bash
         id: version
         run: |
           TAG=${GITHUB_REF#*/v*}
-          echo $TAG
           LATEST_VER=$(npm view @unique-nft/ui-kit versions --json | sed -n "/$TAG-rc/p" | tail -1)
           SUFF=${LATEST_VER#*-rc.*}
           LATEST_RC=${SUFF%\"*}
           RC=$((LATEST_RC + 1))
-          echo $RC
           echo "##[set-output name=version;]${TAG}-rc${RC}"
       - name: NPM Build and Publish
         working-directory: ./package
         shell: bash
         run: |
-          echo "publish ${{steps.version.outputs.version}}"
-#          npm install
-#          npm run build
-#          npm version ${{ steps.version.outputs.version }}
-#          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_PUBLISH_TOKEN }}" >> .npmrc
-#          npm publish
+          npm install
+          npm run build
+          npm version ${{ steps.version.outputs.version }}
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_PUBLISH_TOKEN }}" >> .npmrc
+          npm publish
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
