@@ -23,11 +23,13 @@ jobs:
 #          cache: 'npm'
       - name: Initialize git user
         run: git init&& git config user.name "Unique" && git config user.email "uikit@unique.network"
+      - name: Install project dependencies
+        run: npm install --prod
       - name: NPM Build and Publish
         working-directory: ./package
         shell: bash
         run: |
-          npm install && npm install -g npm-install-peers && npm-install-peers
+          npm install
           npm run build
           npm version ${{ steps.tag.outputs.tag }}-rc
           echo "##[set-output name=version;]$(echo $(npm version prerelease))"

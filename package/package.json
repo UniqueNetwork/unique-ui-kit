@@ -35,5 +35,8 @@
     "files": [
         "dist"
     ],
-    "types": "dist/index.d.ts"
+    "types": "dist/index.d.ts",
+    "dependencies": {
+        "react": "^17.0.2"
+    }
 }
