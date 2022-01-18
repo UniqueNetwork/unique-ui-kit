@@ -1,41 +1,108 @@
-@import "../../assets/styles/index.scss";
+@import '../../assets/styles/index.scss';
 
 .unique-collections-card {
     display: flex;
-    padding: 24px;
     border-radius: 4px;
+    box-sizing: border-box;
+    max-width: 1215px;
+
+    @media (max-width: 500px) {
+        flex-direction: column;
+    }
 
     &.with-border {
         border: 1px solid $color-grey-200;
     }
 
-    .heading {
-        margin-bottom: 8px;
+    &.with-padding {
+        padding: 24px;
     }
 
-    .description{
-        margin-bottom:16px;
+    .avatar {
+        margin-right: 16px;
     }
 
-    .row {
-        display: flex;
-    }
-
-    .column {
+    .content {
         display: flex;
         flex-direction: column;
-    }
+        width: 100%;
 
-    .cell{
-        margin-right:16px;
-    }
+        .main {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            @media (max-width: 1000px) {
+                flex-direction: column;
+            }
 
-    .main-content {
-        max-width: 640px;
-        margin-left: 16px;
-    }
+            .text {
+                max-width: 640px;
+                margin-bottom: 16px;
+            }
 
-    .second {
-        margin-bottom: 4px;
+            .heading {
+                margin-bottom: 8px;
+            }
+
+            .buttons-container {
+                display: flex;
+                flex-wrap: wrap;
+                margin-bottom: 15px;
+                margin-left: auto;
+
+                @media (max-width: 1000px) {
+                    margin-left: unset;
+                }
+
+                .unique-button {
+                    margin-right: 8px;
+                    margin-bottom: 8px;
+                    white-space: nowrap;
+                    width: 140px;
+                }
+            }
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 4px;
+            max-width: 640px;
+
+            &-block {
+                &:nth-child(2n) {
+                    margin-right: 16px;
+                }
+            }
+        }
+
+        .links-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 16px 0;
+
+            .unique-button {
+                margin-right: 8px;
+                margin-bottom: 8px;
+                white-space: nowrap;
+            }
+        }
+
+        .tokens-container {
+            display: flex;
+            flex-direction: column;
+
+            &-preview {
+                display: flex;
+                flex-wrap: wrap;
+                margin-top: 8px;
+                
+                &-image {
+                    margin-right: 9px;
+                    margin-bottom: 9px;
+                    border-radius: 4px;
+                }
+            }
+        }
     }
 }
