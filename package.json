@@ -1,13 +1,13 @@
 {
   "name": "unique-ui-kit",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "rollup": "npm --prefix ./rollup run rollup",
+    "package": "npm --prefix ./package run rollup",
     "pack": "cd ./rollup && npm pack",
     "publish": "cd ./rollup && npm publish"
   },
