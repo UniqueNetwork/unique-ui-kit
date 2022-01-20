@@ -1,6 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ColorPalette } from '../components';
+import { ColorPalette } from '../internals';
 
 export default {
     title: 'Design Tokens/Colors',

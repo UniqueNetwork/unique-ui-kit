@@ -23,7 +23,36 @@ const Template: ComponentStory<typeof Select> = (args) => {
     );
 };
 
-const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5'];
+const options = [
+    { id: 'id1', title: 'Option 1' },
+    { id: 'id2', title: 'Option 2' },
+    { id: 'id3', title: 'Option 3' },
+    { id: 'id4', title: 'Option 4' },
+    { id: 'id5', title: 'Option 5' }
+];
+
+const optionsIcons = [
+    {
+        id: 'id1',
+        title: 'Title',
+        iconLeft: { name: 'arrow-down', size: 12, color: '#81858E' }
+    },
+    {
+        id: 'id2',
+        title: 'Title',
+        iconLeft: { name: 'arrow-up', size: 12, color: '#81858E' }
+    },
+    {
+        id: 'id3',
+        title: 'Author',
+        iconRight: { name: 'arrow-down', size: 12, color: '#81858E' }
+    },
+    {
+        id: 'id4',
+        title: 'Author',
+        iconRight: { name: 'arrow-up', size: 12, color: '#81858E' }
+    }
+];
 
 export const Default = Template.bind({});
 
@@ -84,7 +113,7 @@ export const Value = Template.bind({});
 
 Value.args = {
     placeholder: 'Placeholder',
-    defaultValue: 'Option 2',
+    defaultValue: 'id2',
     options
 };
 
@@ -100,3 +129,12 @@ Disabled.args = {
 };
 
 Disabled.storyName = 'Minimal disabled';
+
+export const MinimalIcons = Template.bind({});
+
+MinimalIcons.args = {
+    placeholder: 'Placeholder',
+    options: optionsIcons
+};
+
+MinimalIcons.storyName = 'Minimal w/ icons';

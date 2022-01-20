@@ -54,6 +54,8 @@
         }
 
         .select-value {
+            display: flex;
+            align-items: center;
             border: 1px solid $color-grey-300;
             border-radius: $border-radius;
             cursor: pointer;
@@ -62,6 +64,22 @@
             padding: 11px 16px;
             position: relative;
             width: calc(100% - 34px);
+
+            &.with-icon {
+                &.to-right {
+                    flex-direction: row;
+                    svg {
+                        margin-left: 10px;
+                    }
+                }
+                &.to-left {
+                    flex-direction: row-reverse;
+                    justify-content: flex-end;
+                    svg {
+                        margin-right: 10px;
+                    }
+                }
+            }
 
             .select-placeholder {
                 color: $color-grey-400;
@@ -84,12 +102,30 @@
             z-index: 1;
 
             .dropdown-option {
+                display: flex;
+                align-items: center;
                 cursor: pointer;
                 height: 32px;
                 line-height: 32px;
                 padding: 0 8px;
                 position: relative;
                 width: calc(100% - 16px);
+
+                &.with-icon {
+                    &.to-right {
+                        flex-direction: row;
+                        svg {
+                            margin-left: 10px;
+                        }
+                    }
+                    &.to-left {
+                        flex-direction: row-reverse;
+                        justify-content: flex-end;
+                        svg {
+                            margin-right: 10px;
+                        }
+                    }
+                }
 
                 &:not(:last-child) {
                     margin-bottom: 3px;
@@ -99,11 +135,15 @@
                 &.selected {
                     background-color: $color-primary-100;
                     color: $color-primary-500;
+
+                    svg {
+                        fill: $color-primary-500;
+                    }
                 }
             }
         }
 
-        svg {
+        > svg {
             position: absolute;
             top: 0;
             right: 0;
@@ -113,7 +153,7 @@
             z-index: -1;
         }
 
-        &.dropped svg {
+        &.dropped > svg {
             transform: rotate(180deg);
         }
 

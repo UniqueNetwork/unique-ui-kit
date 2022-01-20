@@ -16,8 +16,8 @@ export interface ComponentProps {
     placeholder?: string;
     tabIndex?: number;
     value?: string | number | undefined;
+    onChange(value: string | number | undefined): void;
     onBlur?(event: ChangeEvent<ComponentType>): void;
-    onChange?(value: string | number | undefined): void;
     onFocus?(event: ChangeEvent<ComponentType>): void;
     onKeyDown?(event: KeyboardEvent<ComponentType>): void;
 }

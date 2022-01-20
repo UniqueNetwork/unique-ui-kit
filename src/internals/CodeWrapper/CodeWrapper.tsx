@@ -4,6 +4,7 @@
 
 import React, { FC } from 'react';
 import JSONPretty from 'react-json-pretty';
+import { Heading } from '../../components';
 import './CodeWrapper.scss';
 
 interface CodeWrapperProps {
@@ -18,7 +19,7 @@ const CodeWrapper: FC<CodeWrapperProps> = ({
     title
 }: CodeWrapperProps) => (
     <div className={`unique-code-wrapper ${theme}`}>
-        {title && <h2>{title}</h2>}
+        {title && <Heading size="2">{title}</Heading>}
         <JSONPretty data={code}></JSONPretty>
     </div>
 );

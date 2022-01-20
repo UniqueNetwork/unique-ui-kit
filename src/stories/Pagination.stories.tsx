@@ -13,10 +13,20 @@ const TemplatePages: ComponentStory<typeof Pagination> = (args) => {
 export const Default = TemplatePages.bind({});
 
 Default.args = {
-    withIcons: true
+    withIcons: true,
 };
 
 Default.storyName = 'Default';
+
+export const DefaultMobile = TemplatePages.bind({});
+
+DefaultMobile.args = {
+    visible: 2,
+    size: 45,
+    withIcons: true
+};
+
+DefaultMobile.storyName = 'Default mobile';
 
 export const DefaultSize = TemplatePages.bind({});
 
