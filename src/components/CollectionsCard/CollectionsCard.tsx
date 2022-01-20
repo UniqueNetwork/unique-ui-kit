@@ -5,7 +5,6 @@
 import classNames from 'classnames';
 import { FC } from 'react';
 import { Avatar, Button, Heading, Icon, Text } from '..';
-import imageNft from '../../assets/images/nft.png';
 import noncollections from '../../assets/svg/404collections.svg';
 import './CollectionsCard.scss';
 
@@ -21,8 +20,12 @@ interface ICollectionsCardProps {
     withPadding?: boolean;
     owner?: string;
     controls?: boolean;
-    links?: boolean;
+    links?: {
+        text: string;
+        link?: string;
+    }[];
     tokens?: string[];
+    badge?: 'coin' | 'crown' | 'gear' | 'nft' | null;
 }
 
 const CollectionsCard: FC<ICollectionsCardProps> = ({
@@ -36,9 +39,10 @@ const CollectionsCard: FC<ICollectionsCardProps> = ({
     withBorder = true,
     withPadding = true,
     owner,
-    controls = true,
-    links = true,
-    tokens
+    controls,
+    links,
+    tokens,
+    badge
 }: ICollectionsCardProps) => {
     return (
         <div
@@ -50,6 +54,11 @@ const CollectionsCard: FC<ICollectionsCardProps> = ({
             <div className="avatar">
                 {avatar ? avatar : <Avatar src={noncollections} size={64} />}
             </div>
+            {badge && (
+                <div className="badge">
+                    {<Icon name={`badge-${badge}`} size={24} />}
+                </div>
+            )}
             <div className="content">
                 <div className="main">
                     <div className="text">
@@ -108,7 +117,7 @@ const CollectionsCard: FC<ICollectionsCardProps> = ({
                     <Text className="meta-block" size="s" color="grey-500">
                         Items:&nbsp;
                     </Text>
-                    <Text className="meta-block" size="s" color="primary-500">
+                    <Text className="meta-block" size="s">
                         {`${items.toLocaleString()}`}
                     </Text>
                 </div>
@@ -117,31 +126,26 @@ const CollectionsCard: FC<ICollectionsCardProps> = ({
                         <Text className="meta-block" size="s" color="grey-500">
                             Owner:&nbsp;
                         </Text>
-                        <Text
-                            className="meta-block"
-                            size="s"
-                            color="primary-500"
-                        >
+                        <Text className="meta-block" size="s">
                             {owner}
                         </Text>
                     </div>
                 )}
                 {links && (
                     <div className="links-container">
-                        <Button
-                            size="s"
-                            title={'Go to Block Explorer'}
-                            onClick={() => {
-                                console.log('Create token btn click');
-                            }}
-                        />
-                        <Button
-                            size="s"
-                            title={'Go to Wallet'}
-                            onClick={() => {
-                                console.log('Create token btn click');
-                            }}
-                        />
+                        {links.map((link, index) => {
+                            return (
+                                <Button
+                                    size="s"
+                                    key={`${link.text}-${index}`}
+                                    disabled={!link.link}
+                                    title={link.text}
+                                    onClick={() => {
+                                        console.log(`redirect to ${link.link}`);
+                                    }}
+                                />
+                            );
+                        })}
                     </div>
                 )}
                 {tokens && (
@@ -150,9 +154,10 @@ const CollectionsCard: FC<ICollectionsCardProps> = ({
                             Token’s preview
                         </Text>
                         <div className="tokens-container-preview">
-                            {tokens.map((token) => {
+                            {tokens.map((token, index) => {
                                 return (
                                     <img
+                                        key={index}
                                         src={token}
                                         width={48}
                                         className="tokens-container-preview-image"
