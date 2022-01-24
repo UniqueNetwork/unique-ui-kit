@@ -1,10 +1,10 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import avatar from '../assets/images/avatar.jpg';
 import imageNft from '../assets/images/nft.png';
-import { Avatar, CollectionsCard } from '../components';
+import { Avatar, Button, CollectionsCard } from '../components';
 
 export default {
-    title: 'Components/CollectionsCard',
+    title: 'Widgets/CollectionsCard',
     component: CollectionsCard
 } as ComponentMeta<typeof CollectionsCard>;
 
@@ -52,7 +52,29 @@ WithControls.args = {
     symbol: 'Duck',
     items: 10000,
     owner: '14KBS…trcQH',
-    controls: true
+    controls: [
+        <Button
+            role="primary"
+            size="s"
+            title={'Create token'}
+            onClick={() => {
+                console.log('Create token btn click');
+            }}
+        />,
+        <Button
+            role="danger"
+            size="s"
+            title={'Burn'}
+            iconLeft={{
+                name: 'burn',
+                size: 15,
+                color: '#FF6335'
+            }}
+            onClick={() => {
+                console.log('Burn btn click');
+            }}
+        />
+    ]
 };
 
 export const WithLinks = Template.bind({});
@@ -112,22 +134,26 @@ Tokens.args = {
     items: 10000,
     owner: '14KBS…trcQH',
     tokens: [
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft
+        {
+            src: imageNft,
+            title: ''
+        },
+        {
+            src: imageNft,
+            title: ''
+        },
+        {
+            src: imageNft,
+            title: ''
+        },
+        {
+            src: imageNft,
+            title: ''
+        },
+        {
+            src: imageNft,
+            title: ''
+        }
     ]
 };
 
@@ -155,24 +181,50 @@ All.args = {
     items: 10000,
     owner: '14KBS…trcQH',
     tokens: [
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft,
-        imageNft
+        {
+            src: imageNft,
+            title: ''
+        },
+        {
+            src: imageNft,
+            title: ''
+        },
+        {
+            src: imageNft,
+            title: ''
+        },
+        {
+            src: imageNft,
+            title: ''
+        },
+        {
+            src: imageNft,
+            title: ''
+        }
     ],
-    controls: true,
+    controls: [
+        <Button
+            role="primary"
+            size="s"
+            title={'Create token'}
+            onClick={() => {
+                console.log('Create token btn click');
+            }}
+        />,
+        <Button
+            role="danger"
+            size="s"
+            title={'Burn'}
+            iconLeft={{
+                name: 'burn',
+                size: 15,
+                color: '#FF6335'
+            }}
+            onClick={() => {
+                console.log('Burn btn click');
+            }}
+        />
+    ],
     links: [
         {
             text: 'Go to Block Explorer',

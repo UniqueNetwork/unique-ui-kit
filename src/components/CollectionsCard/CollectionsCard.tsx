@@ -9,23 +9,23 @@ import noncollections from '../../assets/svg/404collections.svg';
 import './CollectionsCard.scss';
 
 interface ICollectionsCardProps {
-    avatar: React.ReactElement;
     title: string;
     id: number;
     symbol: string;
     items: number;
+    avatar?: React.ReactElement;
     className?: string;
     description?: string;
     withBorder?: boolean;
     withPadding?: boolean;
     owner?: string;
-    controls?: boolean;
+    controls?: React.ReactElement[];
     links?: {
         text: string;
         link?: string;
     }[];
-    tokens?: string[];
-    badge?: 'coin' | 'crown' | 'gear' | 'nft' | null;
+    tokens?: { src: string; title: string }[];
+    badge?: 'coin' | 'crown' | 'gear' | 'nft';
 }
 
 const CollectionsCard: FC<ICollectionsCardProps> = ({
@@ -77,27 +77,9 @@ const CollectionsCard: FC<ICollectionsCardProps> = ({
                     </div>
                     {controls && (
                         <div className="buttons-container">
-                            <Button
-                                role="primary"
-                                size="s"
-                                title={'Create token'}
-                                onClick={() => {
-                                    console.log('Create token btn click');
-                                }}
-                            />
-                            <Button
-                                role="danger"
-                                size="s"
-                                title={'Burn'}
-                                iconLeft={{
-                                    name: 'burn',
-                                    size: 15,
-                                    color: '#FF6335'
-                                }}
-                                onClick={() => {
-                                    console.log('Burn btn click');
-                                }}
-                            />
+                            {controls.map((control, index) => {
+                                return <div key={index}>{control}</div>;
+                            })}
                         </div>
                     )}
                 </div>
@@ -158,7 +140,7 @@ const CollectionsCard: FC<ICollectionsCardProps> = ({
                                 return (
                                     <img
                                         key={index}
-                                        src={token}
+                                        src={token.src}
                                         width={48}
                                         className="tokens-container-preview-image"
                                     />
