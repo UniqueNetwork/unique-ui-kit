@@ -11,7 +11,7 @@ const Template: ComponentStory<typeof Link> = (args) => <Link {...args} />;
 export const Primary = Template.bind({});
 
 Primary.args = {
-    text: 'Primary link'
+    title: 'Primary link'
 };
 
 Primary.storyName = 'Primary';
@@ -19,7 +19,7 @@ Primary.storyName = 'Primary';
 export const Secondary = Template.bind({});
 
 Secondary.args = {
-    text: 'Secondary link',
+    title: 'Secondary link',
     role: 'secondary'
 };
 
@@ -28,7 +28,7 @@ Secondary.storyName = 'Secondary';
 export const Danger = Template.bind({});
 
 Danger.args = {
-    text: 'Danger link',
+    title: 'Danger link',
     role: 'danger'
 };
 

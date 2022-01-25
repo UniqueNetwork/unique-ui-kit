@@ -38,24 +38,24 @@ Default.args = {
     ],
     data: [
         {
-            ext: { href: '#', text: '9666737-0' },
+            ext: { title: '9666737-0' },
             age: '11 secs ago',
-            from: { href: '#', text: '14KBS...trcQH' },
-            to: { href: '#', text: '14KBS...trcQH' },
+            from: { title: '14KBS...trcQH' },
+            to: { title: '14KBS...trcQH' },
             amount: '1 QTZ'
         },
         {
-            ext: { href: '#', text: '9666737-0' },
+            ext: { title: '9666737-0' },
             age: '16 secs ago',
-            from: { href: '#', text: '14KBS...trcQH' },
-            to: { href: '#', text: '14KBS...trcQH' },
+            from: { title: '14KBS...trcQH' },
+            to: { title: '14KBS...trcQH' },
             amount: '1 QTZ'
         },
         {
-            ext: { href: '#', text: '9666737-0' },
+            ext: { title: '9666737-0' },
             age: '21 secs ago',
-            from: { href: '#', text: '14KBS...trcQH' },
-            to: { href: '#', text: '14KBS...trcQH' },
+            from: { title: '14KBS...trcQH' },
+            to: { title: '14KBS...trcQH' },
             amount: '1 QTZ'
         }
     ]
