@@ -13,7 +13,7 @@
     border-style: solid;
 
     &.primary {
-        background: green;
+        background: $color-primary-500;
         border-color: $color-primary-500;
         color: $color-additional-light;
         &:hover {

@@ -1,0 +1,38 @@
+@import '../../assets/styles/index.scss';
+
+.unique-table {
+    font-family: $font-family;
+    font-size: $font-size;
+    font-weight: $font-weight;
+    display: flex;
+    flex-direction: column;
+    font-style: normal;
+    font-weight: 500;
+
+    &-header {
+        display: flex;
+        align-items: center;
+        height: 40px;
+        background-color: $color-blue-grey-100;
+        color: $color-blue-grey-600;
+
+        div {
+            padding: 0 16px;
+        }
+    }
+
+    &-data {
+        &-row {
+            display: flex;
+            align-items: center;
+            height: 40px;
+            flex-direction: row;
+            border-bottom: 1px dotted $color-grey-300;
+            color: $color-grey-600;
+
+            div {
+                padding: 0 16px;
+            }
+        }
+    }
+}
