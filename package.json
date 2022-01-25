@@ -9,7 +9,8 @@
     "build-storybook": "build-storybook",
     "package": "npm --prefix ./package run rollup",
     "pack": "cd ./rollup && npm pack",
-    "publish": "cd ./rollup && npm publish"
+    "publish": "cd ./rollup && npm publish",
+    "chromatic": "npx chromatic --project-token=1a000f23396c"
   },
   "keywords": [],
   "author": "",
