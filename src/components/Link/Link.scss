@@ -21,4 +21,9 @@
     &.danger {
         color: $color-coral-500;
     }
+
+    &.disabled {
+        color: $color-blue-grey-300;
+        cursor: not-allowed;
+    }
 }

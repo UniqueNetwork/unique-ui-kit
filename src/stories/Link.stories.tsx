@@ -33,3 +33,12 @@ Danger.args = {
 };
 
 Danger.storyName = 'Danger';
+
+export const Disabled = Template.bind({});
+
+Disabled.args = {
+    title: 'Disabled link',
+    role: 'disabled'
+};
+
+Disabled.storyName = 'Disabled';
