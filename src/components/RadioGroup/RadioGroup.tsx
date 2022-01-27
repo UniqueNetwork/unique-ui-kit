@@ -2,8 +2,8 @@
  * @author Roman Beganov <rbeganov@usetech.com>
  */
 
-import React, { FC, useState } from 'react';
 import classNames from 'classnames';
+import React, { FC, useState } from 'react';
 import './RadioGroup.scss';
 
 export interface RadioGroupProps {
@@ -44,6 +44,7 @@ const RadioGroup: FC<RadioGroupProps> = ({
                 >
                     <input
                         type="radio"
+                        id={radio.value.toString()}
                         className="radio"
                         checked={radio.value === value}
                         onChange={onChange}
@@ -53,7 +54,9 @@ const RadioGroup: FC<RadioGroupProps> = ({
                             checked: radio.value === value
                         })}
                     />
-                    <label>{radio.value}</label>
+                    <label htmlFor={radio.value.toString()}>
+                        {radio.value}
+                    </label>
                 </div>
             ))}
         </div>

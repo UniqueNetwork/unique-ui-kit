@@ -1,6 +1,7 @@
+import { expect } from '@storybook/jest';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { userEvent, within } from '@storybook/testing-library';
 import { RadioGroup } from '../components';
-
 export default {
     title: 'Components/RadioGroup',
     component: RadioGroup
@@ -18,6 +19,10 @@ Default.args = {
 
 Default.storyName = 'Default';
 
+Default.play = async ({ args, canvasElement }) => {
+    testRadioClick(args, canvasElement);
+};
+
 export const DefaultSize = Template.bind({});
 
 DefaultSize.args = {
@@ -26,6 +31,10 @@ DefaultSize.args = {
 };
 
 DefaultSize.storyName = 'Default w/ size';
+
+DefaultSize.play = async ({ args, canvasElement }) => {
+    testRadioClick(args, canvasElement);
+};
 
 export const DefaultDisabled = Template.bind({});
 
@@ -38,6 +47,10 @@ DefaultDisabled.args = {
 };
 
 DefaultDisabled.storyName = 'Default w/ disabled';
+
+DefaultDisabled.play = async ({ args, canvasElement }) => {
+    testRadioClick(args, canvasElement);
+};
 
 export const DefaultValue = Template.bind({});
 
@@ -59,3 +72,23 @@ DefaultAlign.args = {
 };
 
 DefaultAlign.storyName = 'Default w/ align';
+
+DefaultAlign.play = async ({ args, canvasElement }) => {
+    testRadioClick(args, canvasElement);
+};
+
+const testRadioClick = (args, canvasElement) => {
+    const canvas = within(canvasElement);
+
+    args.options.forEach((option) => {
+        canvas
+            .findByLabelText(option.value)
+            .then((finderOption) => {
+                userEvent.click(finderOption);
+                //  lcick 
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    });
+};
