@@ -3,13 +3,12 @@
 .unique-table {
     font-family: $font-family;
     font-size: $font-size;
-    font-weight: $font-weight;
     display: flex;
     flex-direction: column;
     font-style: normal;
-    font-weight: 500;
 
     &-header {
+        font-weight: 500;
         display: flex;
         align-items: center;
         height: 40px;
@@ -27,11 +26,22 @@
             align-items: center;
             height: 40px;
             flex-direction: row;
-            border-bottom: 1px dotted $color-grey-300;
-            color: $color-grey-600;
+            background-image: linear-gradient(
+                to right,
+                $color-grey-300 50%,
+                rgba(255, 255, 255, 0) 0%
+            );
+            background-position: bottom;
+            background-size: 4px 1px;
+            background-repeat: repeat-x;
+            color: $color-blue-grey-600;
 
             div {
                 padding: 0 16px;
+
+                a {
+                    font-weight: inherit;
+                }
             }
         }
     }
