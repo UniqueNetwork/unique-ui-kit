@@ -13,7 +13,7 @@ export interface IAvatarProps {
 
 const Avatar: FC<IAvatarProps> = ({
     src,
-    size,
+    size = 38,
     type = 'square'
 }: IAvatarProps) => (
     <img className={`unique-avatar ${type}`} src={src} width={size} />

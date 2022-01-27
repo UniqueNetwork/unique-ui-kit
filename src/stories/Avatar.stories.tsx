@@ -9,15 +9,13 @@ export default {
 
 const Template: ComponentStory<typeof Avatar> = (args) => <Avatar {...args} />;
 
-export const Square = Template.bind({});
+export const Default = Template.bind({});
 
-Square.args = {
-    src: avatar,
-    size: 38,
-    type: 'square'
+Default.args = {
+    src: avatar
 };
 
-Square.storyName = 'Square 38px';
+Default.storyName = 'Default';
 
 export const Circle = Template.bind({});
 
