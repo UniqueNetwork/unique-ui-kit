@@ -1,9 +1,8 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import React from 'react';
+import { render, screen } from '@testing-library/react';
 import Breadcrumbs from './Breadcrumbs';
 
-it('render default', () => {
+it('text check', () => {
     const options = [
         { title: 'test 1' },
         { title: 'test 2' },
@@ -15,7 +14,7 @@ it('render default', () => {
     });
 });
 
-it('render with links', () => {
+it('link check', () => {
     const options = [
         { title: 'test 1', link: '/localhost' },
         { title: 'test 2' },
@@ -31,7 +30,7 @@ it('render with links', () => {
     });
 });
 
-it('render icon check', () => {
+it('icon check', () => {
     const options = [
         { title: 'test 1' },
         { title: 'test 2' },
@@ -41,7 +40,7 @@ it('render icon check', () => {
     expect(container.querySelector('#root > div > svg')).toBeDefined();
 });
 
-it('render lenght check', () => {
+it('lenght check', () => {
     const options = [
         { title: 'test 1' },
         { title: 'test 2' },
