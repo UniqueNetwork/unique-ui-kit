@@ -8,23 +8,23 @@ import './Tabs.scss';
 
 interface TabsProps {
     activeIndex: number;
+    children?: JSX.Element[];
     labels?: string[];
-    contents?: JSX.Element[];
     disabledIndexes?: number[];
-    onClick?(index: number): void;
+    onClick?(activeIndex: number): void;
 }
 
 const Tabs: FC<TabsProps> = ({
-    labels,
-    contents,
-    disabledIndexes,
     activeIndex,
+    labels,
+    children,
+    disabledIndexes,
     onClick
 }: TabsProps) => (
     <div
         className={classNames({
-            'unique-tabs-items': labels,
-            'unique-tabs-contents': contents
+            'unique-tabs-labels': labels,
+            'unique-tabs-contents': children
         })}
     >
         {labels
@@ -32,11 +32,13 @@ const Tabs: FC<TabsProps> = ({
                   const disabled = disabledIndexes?.includes(index);
                   return (
                       <div
-                          key={index}
+                          key={`tab-label-${index}`}
                           {...(!disabled && {
-                              onClick: () => onClick?.(index)
+                              onClick: () => {
+                                  onClick?.(index);
+                              }
                           })}
-                          className={classNames('tab-item', {
+                          className={classNames('tab-label', {
                               active: activeIndex === index,
                               disabled
                           })}
@@ -45,7 +47,7 @@ const Tabs: FC<TabsProps> = ({
                       </div>
                   );
               })
-            : contents?.[activeIndex]}
+            : children?.[activeIndex]}
     </div>
 );
 

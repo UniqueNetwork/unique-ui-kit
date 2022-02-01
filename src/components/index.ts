@@ -7,6 +7,7 @@ export { default as Icon } from './Icon/Icon';
 export { default as InputText } from './InputText/InputText';
 export { default as Layout } from './Layout/Layout';
 export { default as Link } from './Link/Link';
+export { default as Modal } from './Modal/Modal';
 export { default as Pagination } from './Pagination/Pagination';
 export { default as RadioGroup } from './RadioGroup/RadioGroup';
 export { default as Select } from './Select/Select';
