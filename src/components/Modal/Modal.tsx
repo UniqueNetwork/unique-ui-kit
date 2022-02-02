@@ -14,8 +14,8 @@ const Modal: FC<ModalProps> = ({
     isVisible,
     isClosable,
     onClose
-}: ModalProps) => {
-    return isVisible ? (
+}: ModalProps) =>
+    isVisible ? (
         <div
             className="unique-modal-wrapper"
             onClick={(event) =>
@@ -32,6 +32,5 @@ const Modal: FC<ModalProps> = ({
             </div>
         </div>
     ) : null;
-};
 
 export default Modal;
