@@ -158,23 +158,23 @@ Disabled.args = {
 
 Disabled.storyName = 'Minimal disabled';
 
-export const MinimaLibraryIcons = Template.bind({});
+export const MinimalLibraryIcons = Template.bind({});
 
-MinimaLibraryIcons.args = {
+MinimalLibraryIcons.args = {
     placeholder: 'Placeholder',
     options: optionsLibraryIcons
 };
 
-MinimaLibraryIcons.storyName = 'Minimal w/ library icons';
+MinimalLibraryIcons.storyName = 'Minimal w/ library icons';
 
-export const MinimaLibraryChains = Template.bind({});
+export const MinimalLibraryChains = Template.bind({});
 
-MinimaLibraryChains.args = {
+MinimalLibraryChains.args = {
     placeholder: 'Placeholder',
     options: optionsLibraryChains
 };
 
-MinimaLibraryChains.storyName = 'Minimal w/ library chains';
+MinimalLibraryChains.storyName = 'Minimal w/ library chains';
 
 export const MinimalStaticChains = Template.bind({});
 
