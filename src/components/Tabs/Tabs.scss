@@ -16,16 +16,16 @@
         position: relative;
         width: 198px;
         height: 38px;
-        border: 1px solid $color-primary-500;
+        border: 1px solid $color-primary-400;
         line-height: 24px;
-        color: $color-primary-500;
+        color: $color-primary-400;
         cursor: pointer;
         border-left: none;
 
         &:first-of-type {
             border-top-left-radius: $border-radius;
             border-bottom-left-radius: $border-radius;
-            border-left: 1px solid $color-primary-500;
+            border-left: 1px solid $color-primary-400;
         }
 
         &:last-of-type {
@@ -42,8 +42,8 @@
 
         &.active {
             color: $color-additional-light;
-            background-color: $color-primary-500;
-            border-color: $color-primary-500;
+            background-color: $color-primary-400;
+            border-color: $color-primary-400;
         }
     }
 }
