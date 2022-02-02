@@ -6,15 +6,23 @@ import React, { FC } from 'react';
 import { IconProps } from '../../types';
 import Icons from '../../assets/svg/icons.svg';
 
-const Icon: FC<IconProps> = ({ name, size, color = '#7f90a1' }: IconProps) => (
-    <svg
-        className={`icon icon-${name}`}
-        fill={color}
-        width={size}
-        height={size}
-    >
-        <use xlinkHref={`${Icons}#icon-${name}`} />
-    </svg>
-);
+const Icon: FC<IconProps> = ({
+    name,
+    file,
+    size,
+    color = '#7f90a1'
+}: IconProps) =>
+    file ? (
+        <img width={size} height={size} src={file} />
+    ) : (
+        <svg
+            className={`icon icon-${name}`}
+            fill={color}
+            width={size}
+            height={size}
+        >
+            <use xlinkHref={`${Icons}#icon-${name}`} />
+        </svg>
+    );
 
 export default Icon;

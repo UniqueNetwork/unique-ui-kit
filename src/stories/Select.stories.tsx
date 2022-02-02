@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Select } from '../components';
+import opal from '../assets/static/opal.svg';
+import quartz from '../assets/static/quartz.svg';
 
 export default {
     title: 'Components/Select',
@@ -31,7 +33,7 @@ const options = [
     { id: 'id5', title: 'Option 5' }
 ];
 
-const optionsIcons = [
+const optionsLibraryIcons = [
     {
         id: 'id1',
         title: 'Title',
@@ -51,6 +53,32 @@ const optionsIcons = [
         id: 'id4',
         title: 'Author',
         iconRight: { name: 'arrow-up', size: 12, color: '#81858E' }
+    }
+];
+
+const optionsLibraryChains = [
+    {
+        id: 'id1',
+        title: 'QTZ',
+        iconRight: { name: 'chain-quartz', size: 16 }
+    },
+    {
+        id: 'id2',
+        title: 'OPL',
+        iconRight: { name: 'chain-opal', size: 16 }
+    }
+];
+
+const optionsStaticChains = [
+    {
+        id: 'id1',
+        title: 'QTZ',
+        iconRight: { file: quartz, size: 16 }
+    },
+    {
+        id: 'id2',
+        title: 'OPL',
+        iconRight: { file: opal, size: 16 }
     }
 ];
 
@@ -130,11 +158,29 @@ Disabled.args = {
 
 Disabled.storyName = 'Minimal disabled';
 
-export const MinimalIcons = Template.bind({});
+export const MinimaLibraryIcons = Template.bind({});
 
-MinimalIcons.args = {
+MinimaLibraryIcons.args = {
     placeholder: 'Placeholder',
-    options: optionsIcons
+    options: optionsLibraryIcons
 };
 
-MinimalIcons.storyName = 'Minimal w/ icons';
+MinimaLibraryIcons.storyName = 'Minimal w/ library icons';
+
+export const MinimaLibraryChains = Template.bind({});
+
+MinimaLibraryChains.args = {
+    placeholder: 'Placeholder',
+    options: optionsLibraryChains
+};
+
+MinimaLibraryChains.storyName = 'Minimal w/ library chains';
+
+export const MinimalStaticChains = Template.bind({});
+
+MinimalStaticChains.args = {
+    placeholder: 'Placeholder',
+    options: optionsStaticChains
+};
+
+MinimalStaticChains.storyName = 'Minimal w/ static chains';

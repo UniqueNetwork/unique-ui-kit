@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Icon } from '../components';
+import quartz from '../assets/static/quartz.svg';
 
 export default {
     title: 'Components/Icon',
@@ -37,3 +38,12 @@ Size.args = {
 };
 
 Size.storyName = 'Default w/ size';
+
+export const File = Template.bind({});
+
+File.args = {
+    file: quartz,
+    size: 30
+};
+
+File.storyName = 'Default w/ static file';

@@ -23,8 +23,9 @@ export interface ComponentProps {
 }
 
 export interface IconProps {
-    name: string;
     size: number;
+    name?: string;
+    file?: string;
     color?: string;
 }
 
