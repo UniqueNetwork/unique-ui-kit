@@ -20,18 +20,21 @@ it('size check', () => {
     const { container } = render(
         <Checkbox
             label="test label"
-            checked={false}
-            size={'s'}
+            checked={true}
+            size={'m'}
             onChange={() => {
                 console.log('change checkbox');
             }}
         />
     );
-    expect(
-        container
-            .querySelector('.unique-checkbox-wrapper')
-            ?.classList.contains('checkbox-size-s')
-    ).toBeTruthy();
+
+    const checkbox = container.querySelector('.unique-checkbox-wrapper');
+    const icon = container.querySelector('.icon');
+
+    if (checkbox) {
+        expect(checkbox.classList.contains('checkbox-size-m')).toBeTruthy();
+        expect(icon?.getAttribute('height')).toEqual('18');
+    }
 });
 
 it('onChange check', () => {
@@ -49,7 +52,7 @@ it('onChange check', () => {
 });
 
 it('disabled check', () => {
-    const { container } = render(
+    render(
         <Checkbox
             label="test label"
             disabled
@@ -61,4 +64,19 @@ it('disabled check', () => {
         />
     );
     expect(screen.getByRole('checkbox')).toHaveProperty('disabled');
+});
+
+it('prop checked check', () => {
+    const { container } = render(
+        <Checkbox
+            label="test label"
+            disabled
+            checked={true}
+            size={'s'}
+            onChange={() => {
+                console.log('change checkbox');
+            }}
+        />
+    );
+    expect(container.querySelector('.checked')).toBeTruthy();
 });
