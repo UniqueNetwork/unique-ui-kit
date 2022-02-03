@@ -7,7 +7,6 @@ it('label check', () => {
         <Checkbox
             label="test label"
             checked={false}
-            size={'s'}
             onChange={() => {
                 console.log('change checkbox');
             }}
