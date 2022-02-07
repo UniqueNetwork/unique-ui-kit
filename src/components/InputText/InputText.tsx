@@ -15,6 +15,8 @@ interface InputTextProps extends ComponentProps {
     statusText?: string;
     iconLeft?: IconProps;
     iconRight?: IconProps;
+    value?: string;
+    defaultValue?: string;
 }
 
 const InputText: FC<InputTextProps> = ({
@@ -51,8 +53,8 @@ const InputText: FC<InputTextProps> = ({
                     type="text"
                     id={id}
                     disabled={disabled}
-                    value={value?.toString()}
-                    defaultValue={defaultValue?.toString()}
+                    value={value || ''}
+                    defaultValue={defaultValue || ''}
                     {...(onChange && {
                         onChange: (e: ChangeEvent<HTMLInputElement>) =>
                             onChange(e.target.value)
