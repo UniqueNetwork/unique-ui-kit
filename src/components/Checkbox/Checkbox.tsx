@@ -10,7 +10,7 @@ import { Icon } from '..';
 interface CheckboxProps {
     checked: boolean;
     label: string;
-    size: 's' | 'm';
+    size?: 's' | 'm';
     disabled?: boolean;
     onChange: (value: boolean) => void;
 }

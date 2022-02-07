@@ -2,8 +2,8 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import React, { ChangeEvent, KeyboardEvent, FC } from 'react';
 import classNames from 'classnames';
+import React, { ChangeEvent, FC } from 'react';
 import { Icon } from '..';
 import { ComponentProps, IconProps } from '../../types';
 import './InputText.scss';
