@@ -1,5 +1,4 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { userEvent, within } from '@storybook/testing-library';
 import React from 'react';
 import { InputText } from '../components';
 
@@ -21,14 +20,6 @@ Default.args = {
 };
 
 Default.storyName = 'Default';
-
-Default.play = async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-
-    await userEvent.type(canvas.getByTestId('idd'), 'a-random-password', {
-        delay: 100
-    });
-};
 
 export const Status = Template.bind({});
 
