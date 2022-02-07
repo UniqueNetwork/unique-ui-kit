@@ -50,7 +50,6 @@ const InputText: FC<InputTextProps> = ({
                 <input
                     type="text"
                     id={id}
-                    data-testid=""
                     disabled={disabled}
                     value={value?.toString()}
                     defaultValue={defaultValue?.toString()}
