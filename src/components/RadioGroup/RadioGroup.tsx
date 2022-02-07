@@ -44,7 +44,6 @@ const RadioGroup: FC<RadioGroupProps> = ({
                 >
                     <input
                         type="radio"
-                        id={radio.value.toString()}
                         className="radio"
                         checked={radio.value === value}
                         onChange={onChange}
@@ -54,7 +53,7 @@ const RadioGroup: FC<RadioGroupProps> = ({
                             checked: radio.value === value
                         })}
                     />
-                    <label htmlFor={radio.value.toString()}>
+                    <label>
                         {radio.value}
                     </label>
                 </div>
