@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEvent } from 'react';
+import { ChangeEvent, KeyboardEvent, ReactNode } from 'react';
 
 export type ComponentType =
     | HTMLInputElement
@@ -23,11 +23,24 @@ export interface ComponentProps {
 }
 
 export interface IconProps {
-    name: string;
     size: number;
+    name?: string;
+    file?: string;
     color?: string;
 }
 
 export interface BreadcrumbsProps {
     options: { title: string; link?: string }[];
+}
+
+export interface TableColumnProps {
+    title: string;
+    width: string;
+    field: string;
+    render?(data: any): ReactNode;
+}
+
+export interface TableProps {
+    columns: TableColumnProps[];
+    data: any[];
 }

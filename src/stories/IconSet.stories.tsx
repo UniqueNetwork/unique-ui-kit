@@ -25,6 +25,7 @@ const icons = [
     'pencil',
     'carret-right',
     'carret-left',
+    'close',
     'social-discord',
     'social-github',
     'social-subsocial',

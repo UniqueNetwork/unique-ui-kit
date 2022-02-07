@@ -68,15 +68,17 @@
             &.with-icon {
                 &.to-right {
                     flex-direction: row;
-                    svg {
-                        margin-left: 10px;
+                    svg,
+                    img {
+                        margin-left: 5px;
                     }
                 }
                 &.to-left {
                     flex-direction: row-reverse;
                     justify-content: flex-end;
-                    svg {
-                        margin-right: 10px;
+                    svg,
+                    img {
+                        margin-right: 5px;
                     }
                 }
             }
@@ -114,15 +116,17 @@
                 &.with-icon {
                     &.to-right {
                         flex-direction: row;
-                        svg {
-                            margin-left: 10px;
+                        svg,
+                        img {
+                            margin-left: 5px;
                         }
                     }
                     &.to-left {
                         flex-direction: row-reverse;
                         justify-content: flex-end;
-                        svg {
-                            margin-right: 10px;
+                        svg,
+                        img {
+                            margin-right: 5px;
                         }
                     }
                 }

@@ -1,0 +1,12 @@
+@import '../../assets/styles/index.scss';
+
+.unique-avatar {
+    &.circle {
+        border-radius: 50%;
+        outline: 1px solid $color-grey-200;
+    }
+
+    &.square {
+        border-radius: $border-radius;
+    }
+}
