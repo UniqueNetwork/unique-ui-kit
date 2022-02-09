@@ -2,8 +2,8 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
+import React, { ChangeEvent, FC } from 'react';
 import classNames from 'classnames';
-import React, { ChangeEvent, FC, KeyboardEvent } from 'react';
 import { Icon } from '..';
 import { ComponentProps, IconProps } from '../../types';
 import './InputText.scss';
@@ -27,11 +27,12 @@ const InputText: FC<InputTextProps> = ({
     className,
     error,
     disabled,
-    value,
+    value = '',
     defaultValue,
     iconLeft,
     iconRight,
     onChange,
+    testid,
     ...rest
 }: InputTextProps) => {
     const icon = iconLeft || iconRight;
@@ -52,9 +53,9 @@ const InputText: FC<InputTextProps> = ({
                 <input
                     type="text"
                     id={id}
+                    data-testid={testid}
                     disabled={disabled}
-                    value={value || ''}
-                    defaultValue={defaultValue || ''}
+                    value={value}
                     {...(onChange && {
                         onChange: (e: ChangeEvent<HTMLInputElement>) =>
                             onChange(e.target.value)
