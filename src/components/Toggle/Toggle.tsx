@@ -9,7 +9,7 @@ import './Toggle.scss';
 interface ToggleProps {
     on: boolean;
     label: string;
-    size: 's' | 'm';
+    size?: 's' | 'm';
     disabled?: boolean;
     onChange: (value: boolean) => void;
 }
