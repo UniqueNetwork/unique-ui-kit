@@ -24,7 +24,7 @@ const RadioGroup: FC<RadioGroupProps> = ({
     align = 'vertical'
 }: RadioGroupProps) => {
     const [value, setValue] = useState(
-        (options.filter((option) => option.selected)[0] || options[0])?.value
+        (options.filter((option) => option.selected)[0] || options[0]).value
     );
     return (
         <div className={`unique-radio-group-wrapper ${align}`}>
@@ -53,9 +53,7 @@ const RadioGroup: FC<RadioGroupProps> = ({
                             checked: radio.value === value
                         })}
                     />
-                    <label>
-                        {radio.value}
-                    </label>
+                    <label>{radio.value}</label>
                 </div>
             ))}
         </div>
