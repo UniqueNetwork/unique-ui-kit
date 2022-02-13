@@ -4,14 +4,12 @@ import Toggle from './Toggle';
 const mockOnChange = jest.fn();
 
 it('checks size prop', () => {
-    render(
-        <Toggle size={'m'} on={false} label={'label'} onChange={mockOnChange} />
-    );
+    render(<Toggle size="m" label="label" onChange={mockOnChange} />);
 });
 
 it('checks onChange method', () => {
     const { getByText } = render(
-        <Toggle on={false} label={'label'} onChange={mockOnChange} />
+        <Toggle label="label" on={true} onChange={mockOnChange} />
     );
     const toggle = getByText(/label/i);
     fireEvent.click(toggle);

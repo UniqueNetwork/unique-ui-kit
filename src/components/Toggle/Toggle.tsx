@@ -7,15 +7,15 @@ import classNames from 'classnames';
 import './Toggle.scss';
 
 interface ToggleProps {
-    on: boolean;
     label: string;
+    on?: boolean;
     size?: 's' | 'm';
     disabled?: boolean;
     onChange: (value: boolean) => void;
 }
 
 const Toggle: FC<ToggleProps> = ({
-    on,
+    on = false,
     label,
     size = 's',
     disabled,

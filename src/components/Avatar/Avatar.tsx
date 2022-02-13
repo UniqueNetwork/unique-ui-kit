@@ -7,7 +7,7 @@ import './Avatar.scss';
 
 export interface IAvatarProps {
     src: string;
-    size: number;
+    size?: number;
     type?: 'circle' | 'square';
 }
 
