@@ -16,7 +16,12 @@ const Avatar: FC<IAvatarProps> = ({
     size = 38,
     type = 'square'
 }: IAvatarProps) => (
-    <img className={`unique-avatar ${type}`} src={src} width={size} />
+    <img
+        className={`unique-avatar ${type}`}
+        src={src}
+        width={size}
+        height={size}
+    />
 );
 
 export default Avatar;
