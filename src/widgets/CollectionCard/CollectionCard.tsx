@@ -3,13 +3,13 @@
  */
 
 import React, { FC } from 'react';
+import nocollection from '../../assets/static/nocollection.svg';
 import { Avatar, Button, Heading, Icon, Text } from '../../components';
 import { ButtonProps, IconProps } from '../../types';
 import './CollectionCard.scss';
-import nocollection from '../../assets/static/nocollection.svg';
 
 interface ICollectionCardProps {
-    avatar: string;
+    avatar?: string;
     title: string;
     meta: {
         id: string;
@@ -37,7 +37,7 @@ interface ICollectionCardProps {
 }
 
 const CollectionCard: FC<ICollectionCardProps> = ({
-    avatar,
+    avatar = nocollection,
     title,
     meta,
     badge,
@@ -52,7 +52,7 @@ const CollectionCard: FC<ICollectionCardProps> = ({
                 {<Icon name={`badge-${badge}`} size={24} />}
             </div>
         )}
-        <Avatar src={avatar || nocollection} size={64} type="circle" />
+        <Avatar src={avatar} size={64} type="circle" />
         <div className="collection-content">
             <Heading size="4" className="collection-title">
                 {title}
