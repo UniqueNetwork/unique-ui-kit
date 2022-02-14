@@ -1,5 +1,4 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import React from 'react';
 import Pagination from './Pagination';
 
 it('size 3 prop check', () => {
