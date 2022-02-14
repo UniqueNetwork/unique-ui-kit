@@ -8,8 +8,8 @@ import { Icon } from '..';
 import './Pagination.scss';
 
 interface IPaginationProps {
-    size: number;
-    current: number;
+    size?: number;
+    current?: number;
     visible?: number;
     perPage?: number;
     withIcons?: boolean;
