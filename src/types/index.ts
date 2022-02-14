@@ -45,3 +45,15 @@ export interface TableProps {
     columns: TableColumnProps[];
     data: any[];
 }
+
+export interface ButtonProps {
+    title: string;
+    disabled?: boolean;
+    size?: 's' | 'm';
+    role?: 'primary' | 'secondary' | 'tertiary' | 'outlined' | 'danger';
+    wide?: boolean;
+    className?: string;
+    iconLeft?: IconProps;
+    iconRight?: IconProps;
+    onClick: () => void;
+}

@@ -1,5 +1,4 @@
-import { fireEvent, getByText, render, screen } from '@testing-library/react';
-import React from 'react';
+import { getByText, render, screen } from '@testing-library/react';
 import Heading from './Heading';
 
 it('label check', () => {

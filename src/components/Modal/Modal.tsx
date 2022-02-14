@@ -1,3 +1,7 @@
+/**
+ * @author Pavel Kalachev <pkalachev@usetech.com>
+ */
+
 import React, { FC, ReactNode } from 'react';
 import { Icon } from '..';
 import './Modal.scss';

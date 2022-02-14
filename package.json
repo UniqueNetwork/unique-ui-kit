@@ -10,8 +10,7 @@
         "package": "npm --prefix ./package run rollup",
         "pack": "cd ./rollup && npm pack",
         "publish": "cd ./rollup && npm publish",
-        "test": "jest --coverage",
-        "jestClear": "jest --clearCache"
+        "test": "jest --coverage"
     },
     "keywords": [],
     "author": "",

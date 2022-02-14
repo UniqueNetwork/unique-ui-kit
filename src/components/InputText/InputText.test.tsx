@@ -1,5 +1,4 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import React from 'react';
 import InputText from './InputText';
 
 const mockFunction = jest.fn();
@@ -49,9 +48,16 @@ it('value check', () => {
 });
 
 it('onChange check', () => {
+<<<<<<< HEAD
     const mockOnChange = jest.fn();
     render(<InputText label="test label" onChange={mockOnChange} />);
     const input = screen.getByRole('textbox') as HTMLInputElement;
     fireEvent.change(input, { target: { value: 'test value' } });
     expect(mockOnChange.mock.calls[0][0]).toEqual('test value');
+=======
+    render(<InputText label="test label" onChange={mockFunction} />);
+    const input = screen.getByRole('textbox') as HTMLInputElement;
+    fireEvent.change(input, { target: { value: 'test value' } });
+    expect(mockFunction.mock.calls[0][0]).toEqual('test value');
+>>>>>>> 1f7e37dcb1fd47ea5ee9c3f8d4f9be7016e7e9fa
 });

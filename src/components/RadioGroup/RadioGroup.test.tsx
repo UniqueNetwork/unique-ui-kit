@@ -1,5 +1,4 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import React from 'react';
 import RadioGroup from './RadioGroup';
 
 const options = [{ value: '1' }, { value: '2' }, { value: '3' }];
@@ -31,7 +30,6 @@ it('align prop check', () => {
 it('click check', () => {
     render(<RadioGroup options={options} onChange={mockFunction} size="m" />);
     const radios = screen.getAllByRole('radio') as HTMLInputElement[];
-
     expect(radios[1].checked).toBeFalsy();
     fireEvent.click(radios[1]);
     expect(radios[1].checked).toBeTruthy();

@@ -28,7 +28,6 @@ const InputText: FC<InputTextProps> = ({
     error,
     disabled,
     value = '',
-    defaultValue,
     iconLeft,
     iconRight,
     onChange,
