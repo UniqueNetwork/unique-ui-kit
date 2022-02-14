@@ -114,7 +114,7 @@ it('click option check', async () => {
     );
     const selectValue = container.querySelector('.select-value');
     fireEvent.mouseDown(selectValue!);
-    await screen.findByText('test title 3').then((lolo) => {
-        fireEvent.click(lolo);
+    await screen.findByText('test title 3').then((option) => {
+        fireEvent.click(option);
     });
 });
