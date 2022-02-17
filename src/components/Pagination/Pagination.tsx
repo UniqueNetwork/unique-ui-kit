@@ -9,7 +9,7 @@ import './Pagination.scss';
 
 interface IPaginationProps {
     size: number;
-    current: number;
+    current?: number;
     visible?: number;
     perPage?: number;
     withIcons?: boolean;
@@ -27,7 +27,7 @@ const PageItem: FC<IPageItemProps> = ({ children, page, ...rest }) => (
 );
 
 const Pagination: FC<IPaginationProps> = ({
-    size = 100,
+    size,
     current = 0,
     visible = 5,
     perPage = 10,

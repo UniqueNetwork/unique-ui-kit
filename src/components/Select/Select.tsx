@@ -122,7 +122,9 @@ const Select: FC<SelectProps> = ({
                             return (
                                 <div
                                     className={classNames('dropdown-option', {
-                                        selected: option.id === selected?.id,
+                                        selected:
+                                            selected &&
+                                            option.id === selected.id,
                                         'with-icon': icon,
                                         'to-left': option.iconLeft,
                                         'to-right': option.iconRight,
