@@ -36,21 +36,21 @@ const data = [
         ext: { title: '9666737-0' },
         age: '11 secs',
         from: { title: '14KBS...trcQH' },
-        to: { title: '14KBS...trcQH' },
+        to: { title: 'YqEew...11IJK' },
         amount: '2 QTZ'
     },
     {
-        ext: { title: '9666737-0' },
+        ext: { title: '9666828-1' },
         age: '16 secs',
-        from: { title: '14KBS...trcQH' },
-        to: { title: '14KBS...trcQH' },
+        from: { title: '23AFx...oPPwR' },
+        to: { title: '77NNm...lLk2L' },
         amount: '1 QTZ'
     },
     {
-        ext: { title: '9666737-0' },
+        ext: { title: '9666919-2' },
         age: '5 secs',
-        from: { title: '14KBS...trcQH' },
-        to: { title: '14KBS...trcQH' },
+        from: { title: 'D3ws3...xpSm8' },
+        to: { title: '21adF...99Ikkl' },
         amount: '3 QTZ'
     }
 ];

@@ -39,13 +39,15 @@ const Table: FC<TableProps> = ({ columns, data, onSort }: TableProps) => {
                     }) => {
                         const hasIcon = iconLeft || iconRight;
                         const isQueryField = field === sortQuery.field;
+                        const isInitialMode = sortQuery.mode === 0;
                         return (
                             <div
                                 className={classNames('table-header-cell', {
                                     'with-icon': hasIcon || isSortable,
                                     'to-left': iconLeft,
                                     'to-right': iconRight || isSortable,
-                                    sortable: isSortable
+                                    sortable: isSortable,
+                                    active: isQueryField && !isInitialMode
                                 })}
                                 key={field}
                                 style={{ width: `calc(${width} - 32px)` }}

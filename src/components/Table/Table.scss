@@ -29,6 +29,10 @@
                     fill: $color-primary-500;
                 }
             }
+
+            &.active svg {
+                fill: $color-primary-500;
+            }
         }
     }
 
