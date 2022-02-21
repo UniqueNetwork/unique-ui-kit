@@ -14,7 +14,8 @@ export const Default = TemplatePages.bind({});
 
 Default.args = {
     size: 100,
-    withIcons: true
+    withIcons: true,
+    onPageChange: (index: number) => console.log(`Changed to page ${index + 1}`)
 };
 
 Default.storyName = 'Default';

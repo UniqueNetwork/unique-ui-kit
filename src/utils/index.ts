@@ -1,4 +1,7 @@
+import { useEffect, useRef } from 'react';
 import { SortQuery, TableRow } from '../types';
+
+/** Functional methods */
 
 export const sortData = (
     data: TableRow[],
@@ -17,4 +20,14 @@ export const sortData = (
         : query.mode === 1
         ? sorted.reverse()
         : sorted;
+};
+
+/** Hooks */
+
+export const usePrevious = <T>(value: T): T => {
+    const ref: any = useRef<T>();
+    useEffect(() => {
+        ref.current = value;
+    }, [value]);
+    return ref.current;
 };
