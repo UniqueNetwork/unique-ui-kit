@@ -2,12 +2,12 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import React, { FC, useMemo, useState } from 'react';
 import classNames from 'classnames';
+import React, { FC, useMemo, useState } from 'react';
 import { Icon } from '..';
-import { sortData } from '../../utils';
-import { SortQuery, TableProps, TableRow } from '../../types';
 import { SORT_MODES } from '../../constants';
+import { SortQuery, TableProps, TableRow } from '../../types';
+import { sortData } from '../../utils';
 import './Table.scss';
 
 const Table: FC<TableProps> = ({ columns, data, onSort }: TableProps) => {
@@ -53,25 +53,25 @@ const Table: FC<TableProps> = ({ columns, data, onSort }: TableProps) => {
                                 style={{ width: `calc(${width} - 32px)` }}
                             >
                                 {title}
-                                {isSortable && (
+                                {isSortable && onSort && (
                                     <div
                                         className="table-header-sorter"
                                         onClick={() => {
                                             const columnQuery = {
                                                 field,
                                                 mode: isQueryField
-                                                    ? (sortQuery?.mode + 1) % 3
+                                                    ? (sortQuery.mode + 1) % 3
                                                     : 1
                                             };
                                             setSortQuery(columnQuery);
-                                            onSort?.(columnQuery);
+                                            onSort(columnQuery);
                                         }}
                                     >
                                         <Icon
                                             name={`sorting-${
                                                 SORT_MODES[
                                                     isQueryField
-                                                        ? sortQuery?.mode
+                                                        ? sortQuery.mode
                                                         : 0
                                                 ]
                                             }`}
