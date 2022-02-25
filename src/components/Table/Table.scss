@@ -15,8 +15,24 @@
         background-color: $color-blue-grey-100;
         color: $color-blue-grey-600;
 
-        div {
+        .table-header-cell {
+            display: flex;
+            align-items: center;
+            gap: 7px;
             padding: 0 16px;
+
+            &.sortable .table-header-sorter {
+                cursor: pointer;
+                height: 14px;
+
+                &:hover svg {
+                    fill: $color-primary-500;
+                }
+            }
+
+            &.active svg {
+                fill: $color-primary-500;
+            }
         }
     }
 

@@ -38,12 +38,26 @@ export interface TableColumnProps {
     title: string;
     width: string;
     field: string;
+    iconLeft?: IconProps;
+    iconRight?: IconProps;
+    isSortable?: boolean;
     render?(data: any): ReactNode;
+    compareFunc?: (a: any, b: any) => number;
+}
+
+export interface SortQuery {
+    field: string;
+    mode: number;
 }
 
 export interface TableProps {
     columns: TableColumnProps[];
-    data: any[];
+    data: TableRow[];
+    onSort?(sorting: SortQuery): void;
+}
+
+export interface TableRow {
+    [key: string]: string | {};
 }
 
 export interface ButtonProps {

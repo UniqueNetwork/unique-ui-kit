@@ -1,64 +1,121 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Link, Table } from '../components';
+import { SortQuery } from '../types';
+import { SORT_MODES } from '../constants';
+
+const columns = [
+    {
+        title: 'Extrinsic',
+        width: '20%',
+        field: 'ext',
+        render: (data: any) => <Link {...data} />
+    },
+    {
+        title: 'Age',
+        width: '20%',
+        field: 'age'
+    },
+    {
+        title: 'From',
+        width: '20%',
+        field: 'from',
+        render: (data: any) => <Link {...data} />
+    },
+    {
+        title: 'To',
+        width: '20%',
+        field: 'to',
+        render: (data: any) => <Link {...data} />
+    },
+    { title: 'Amount', width: '20%', field: 'amount' }
+];
+
+const data = [
+    {
+        ext: { title: '9666737-0' },
+        age: '11 secs',
+        from: { title: '14KBS...trcQH' },
+        to: { title: 'YqEew...11IJK' },
+        amount: '2 QTZ'
+    },
+    {
+        ext: { title: '9666828-1' },
+        age: '16 secs',
+        from: { title: '23AFx...oPPwR' },
+        to: { title: '77NNm...lLk2L' },
+        amount: '1 QTZ'
+    },
+    {
+        ext: { title: '9666919-2' },
+        age: '5 secs',
+        from: { title: 'D3ws3...xpSm8' },
+        to: { title: '21adF...99Ikkl' },
+        amount: '3 QTZ'
+    }
+];
 
 export default {
     title: 'Components/Table',
     component: Table
 } as ComponentMeta<typeof Table>;
 
-const Template: ComponentStory<typeof Table> = (args) => {
-    return <Table {...args} />;
+const Template: ComponentStory<typeof Table> = ({ data, columns }) => {
+    const onSort = (sortQuery: SortQuery) => {
+        console.log(`sorting by ${sortQuery.field} is ${SORT_MODES[sortQuery.mode]}`);
+    };
+    return <Table data={data} columns={columns} onSort={onSort} />;
 };
 
 export const Default = Template.bind({});
 
 Default.args = {
-    columns: [
-        {
-            title: 'Extrinsic',
-            width: '20%',
-            field: 'ext',
-            render: (data: any) => <Link {...data} />
-        },
-        { title: 'Age', width: '20%', field: 'age' },
-        {
-            title: 'From',
-            width: '20%',
-            field: 'from',
-            render: (data: any) => <Link {...data} />
-        },
-        {
-            title: 'To',
-            width: '20%',
-            field: 'to',
-            render: (data: any) => <Link {...data} />
-        },
-        { title: 'Amount', width: '20%', field: 'amount' }
-    ],
-    data: [
-        {
-            ext: { title: '9666737-0' },
-            age: '11 secs ago',
-            from: { title: '14KBS...trcQH' },
-            to: { title: '14KBS...trcQH' },
-            amount: '1 QTZ'
-        },
-        {
-            ext: { title: '9666737-0' },
-            age: '16 secs ago',
-            from: { title: '14KBS...trcQH' },
-            to: { title: '14KBS...trcQH' },
-            amount: '1 QTZ'
-        },
-        {
-            ext: { title: '9666737-0' },
-            age: '21 secs ago',
-            from: { title: '14KBS...trcQH' },
-            to: { title: '14KBS...trcQH' },
-            amount: '1 QTZ'
-        }
-    ]
+    columns,
+    data
 };
 
 Default.storyName = 'Default';
+
+export const DefaultIcons = Template.bind({});
+
+DefaultIcons.args = {
+    columns: [
+        columns[0],
+        {
+            ...columns[1],
+            iconRight: { name: 'clock', size: 16 }
+        },
+        columns[2],
+        columns[3],
+        columns[4]
+    ],
+    data
+};
+
+DefaultIcons.storyName = 'Default w/ icons';
+
+export const DefaultSorting = Template.bind({});
+
+DefaultSorting.args = {
+    columns: [
+        columns[0],
+        {
+            ...columns[1],
+            isSortable: true,
+            compareFunc: (a: any, b: any) => {
+                a = Number(a.split(' ')[0]);
+                b = Number(b.split(' ')[0]);
+                return a > b ? 1 : a < b ? -1 : 0;
+            }
+        },
+        columns[2],
+        columns[3],
+        {
+            ...columns[4],
+            isSortable: true
+        }
+    ],
+    data
+};
+
+DefaultSorting.storyName = 'Default w/ sorting';
