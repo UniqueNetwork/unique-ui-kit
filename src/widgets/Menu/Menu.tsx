@@ -15,8 +15,9 @@ type tokenProps = {
     icon?: IconProps;
 };
 type rateProps = {
+    id: string | number;
     abbreviation: string;
-    rate: string;
+    rate: number;
 };
 
 interface MenuProps extends ComponentProps {
@@ -60,7 +61,21 @@ const Menu = ({
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+    useEffect(() => {
+        if (
+            defaultValue &&
+            rates.findIndex((option) => option.abbreviation === defaultValue)
+        ) {
+            onChange(defaultValue);
+        } else {
+            console.log('op', rates[0]);
+            onChange(rates[0].id);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     const selected = tokens.find((option) => option.id === value) || tokens[0];
+    const selectedRate =
+        rates.find((option) => option.id === value) || rates[0];
     const icon = selected?.icon;
 
     const [droppedToken, setDroppedToken] = useState<boolean>(!!autoFocus);
@@ -68,6 +83,11 @@ const Menu = ({
 
     const handleMouseDown = () => {
         !disabled && setDroppedToken(!droppedToken);
+        !disabled && setDroppedRate(false);
+    };
+    const handleMouseDownRate = () => {
+        !disabled && setDroppedRate(!droppedRate);
+        !disabled && setDroppedToken(false);
     };
 
     const handleClickOutside = () => {
@@ -88,12 +108,14 @@ const Menu = ({
         setDroppedToken(false);
         setDroppedRate(false);
         onChange!(value);
+        onChangeToken(value);
     };
     return (
         <div className={classNames('unique-menu', className, { error })}>
             <div
                 className={classNames('menu-wrapper menu-token', {
                     droppedToken,
+                    droppedRate,
                     disabled
                 })}
                 onMouseLeave={handleMouseLeave}
@@ -103,18 +125,83 @@ const Menu = ({
                 tabIndex={tabIndex}
                 id={id}
             >
-                <div className="selected selected-rate">
+                <div
+                    className="selected selected-rate"
+                    onMouseDown={handleMouseDownRate}
+                >
                     <div className="selected-rate-wrapper">
                         <div>
-                            {rates[0].rate} <span>{rates[0].abbreviation}</span>
-                        </div>
-                        <div>
-                            {rates[1].rate} <span>{rates[1].abbreviation}</span>
+                            <span className="rate-style">
+                                {selectedRate.rate}
+                            </span>
+                            <span className="separate-rate" />
+                            <span className="abbreviation-style">
+                                {selectedRate.abbreviation}
+                            </span>
                         </div>
                     </div>
                     <Icon name="triangle" size={8} />
                 </div>
-                <span className="seporate" />
+                {droppedRate && rates && (
+                    <div className="menu-dropdown-rate">
+                        {rates.map((optionRate) => {
+                            return (
+                                <div
+                                    className={classNames('dropdown-option', {
+                                        selectedRate:
+                                            selectedRate &&
+                                            optionRate.id === selectedRate.id,
+                                        'with-rate': optionRate.abbreviation,
+                                        disabled
+                                    })}
+                                    key={optionRate.id}
+                                    onClick={() =>
+                                        handleOptionSelect(optionRate.id)
+                                    }
+                                >
+                                    <span className="rate-style">
+                                        {optionRate.rate}
+                                    </span>
+                                    <span className="separate-rate" />
+                                    <span className="abbreviation-style">
+                                        {optionRate.abbreviation}
+                                    </span>
+                                </div>
+                            );
+                        })}
+                        <div className="withdraw-wrapper">
+                            <span className="bottom-text">
+                                (market deposit)
+                            </span>
+                            <div className="wrap-withdraw">
+                                <button className="withdraw-btn">
+                                    Withdraw
+                                </button>
+
+                                <Icon
+                                    name="withdraw"
+                                    size={24}
+                                    color={'#009CF0'}
+                                />
+                            </div>
+
+                            <div className="text-wrap">
+                                <div>
+                                    Learn more in
+                                    <a href="https://market.dev.uniquenetwork.dev/#/faq">
+                                        <span className="faq-txt">FAQ</span>
+                                    </a>
+                                </div>
+                                <Icon
+                                    name="triangle"
+                                    size={9}
+                                    color={'#000000CC'}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                )}
+                <span className="separate" />
                 <div
                     className="selected selected-token"
                     onMouseDown={handleMouseDown}

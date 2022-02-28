@@ -21,6 +21,7 @@ const Template: ComponentStory<typeof Menu> = (args) => {
             onChangeToken={(value: any) => {
                 console.log('onChange', value);
                 setToken(value);
+                setRate(value);
             }}
         />
     );
@@ -44,13 +45,8 @@ Default.args = {
         }
     ],
     rates: [
-        {
-            abbreviation: 'QTZ',
-            rate: '9898988989.0089'
-        },
-        {
-            abbreviation: 'KSM',
-            rate: '34348.8553'
-        }
+        { id: 'id3', abbreviation: 'QTZ', rate: '9898988989.0089' },
+        { id: 'id4', abbreviation: 'KSM', rate: '34348.8553' },
+        { id: 'id5', abbreviation: 'KSM', rate: '9898988989.0089' }
     ]
 };
