@@ -22,3 +22,27 @@ const Template: ComponentStory<typeof Upload> = (args) => {
 export const Default = Template.bind({});
 
 Default.args = {};
+
+export const DefaultWithPreload = Template.bind({});
+
+DefaultWithPreload.args = {
+    upload: nft7
+};
+
+DefaultWithPreload.storyName = 'Default w/o preload';
+
+export const SquareView = Template.bind({});
+
+SquareView.args = {
+    type: 'square'
+};
+
+SquareView.storyName = 'Square';
+
+export const Disabled = Template.bind({});
+
+Disabled.args = {
+    disabled: true
+};
+
+Disabled.storyName = 'Default w/o disabled';

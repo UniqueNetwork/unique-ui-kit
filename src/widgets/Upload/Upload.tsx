@@ -13,7 +13,7 @@ interface UploadProps {
     disabled?: boolean;
     type?: 'circle' | 'square';
     accept?: string;
-    upload?: Blob;
+    upload?: string;
 }
 
 const Upload: FC<UploadProps> = ({
@@ -25,39 +25,44 @@ const Upload: FC<UploadProps> = ({
     upload
 }: UploadProps) => {
     const inputFile = useRef<HTMLInputElement>(null);
-
-    const [selectedFile, setSelectedFile] = useState<Blob>();
-    const [preview, setPreview] = useState<string>();
+    const [selectedFile, setSelectedFile] = useState<Blob>(undefined);
 
     useEffect(() => {
-        if (upload) {
-            const objectUrl = URL.createObjectURL(selectedFile);
-            setPreview(objectUrl);
+        if (!upload) {
+            return;
         }
-    }, []);
+        const getBlob = async () => {
+            const blob = await fetch(upload).then((response) =>
+                response.blob()
+            );
+            setSelectedFile(blob);
+        };
+
+        getBlob();
+    }, [upload]);
 
     useEffect(() => {
         if (!selectedFile) {
-            setPreview(undefined);
             return;
         }
 
         const objectUrl = URL.createObjectURL(selectedFile);
         onChange(objectUrl, selectedFile);
-        setPreview(objectUrl);
 
         return () => URL.revokeObjectURL(objectUrl);
     }, [selectedFile]);
 
     return (
         <div className="unique-upload">
-            {selectedFile || upload ? (
+            {selectedFile ? (
                 <div className={classNames('preview', type)}>
-                    <img className="image" src={preview} />
+                    <img
+                        className="image"
+                        src={URL.createObjectURL(selectedFile)}
+                    />
                     <span
                         onClick={() => {
                             setSelectedFile(undefined);
-                            setPreview('');
                         }}
                     >
                         <Icon name="close-circle" size={13} />
