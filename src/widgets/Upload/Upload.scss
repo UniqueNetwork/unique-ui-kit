@@ -1,7 +1,7 @@
 @import '../../assets/styles/index.scss';
 
 .unique-upload {
-    .hidden-input {
+    input[type='file'] {
         display: none;
     }
     .upload,
@@ -41,6 +41,7 @@
             background-color: $color-primary-100;
         }
         &.disabled {
+            cursor: not-allowed;
             border-color: $color-blue-grey-300;
             svg {
                 fill: $color-blue-grey-300;

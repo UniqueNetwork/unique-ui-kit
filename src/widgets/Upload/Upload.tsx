@@ -9,7 +9,7 @@ import './Upload.scss';
 
 interface UploadProps {
     onChange: (url: string, file: Blob) => void;
-    id?: string;
+    className?: string;
     disabled?: boolean;
     type?: 'circle' | 'square';
     accept?: string;
@@ -18,7 +18,7 @@ interface UploadProps {
 
 const Upload: FC<UploadProps> = ({
     onChange,
-    id,
+    className,
     type = 'circle',
     accept = 'image/*',
     disabled = false,
@@ -53,7 +53,7 @@ const Upload: FC<UploadProps> = ({
     }, [selectedFile]);
 
     return (
-        <div className="unique-upload">
+        <div className={classNames("unique-upload", className)}>
             {selectedFile ? (
                 <div className={classNames('preview', type)}>
                     <img
@@ -72,9 +72,7 @@ const Upload: FC<UploadProps> = ({
                 <div
                     className={classNames('upload', type, { disabled })}
                     onClick={() => {
-                        if (inputFile!.current) {
-                            inputFile.current.click();
-                        }
+                        inputFile.current.click();
                     }}
                 >
                     <Icon name="file-arrow-up" size={38} />
@@ -83,8 +81,6 @@ const Upload: FC<UploadProps> = ({
             <input
                 ref={inputFile}
                 type="file"
-                className="hidden-input"
-                id={id}
                 disabled={disabled}
                 accept={accept}
                 onChange={(e) => {
