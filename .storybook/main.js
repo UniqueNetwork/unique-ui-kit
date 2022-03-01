@@ -1,4 +1,5 @@
 const path = require('path');
+const jsonImporter = require('node-sass-json-importer');
 
 module.exports = {
     stories: [
@@ -25,7 +26,8 @@ module.exports = {
                         implementation: require('node-sass'),
                         sassOptions: {
                             precision: 8,
-                            outputStyle: 'expanded'
+                            outputStyle: 'expanded',
+                            importer: jsonImporter()
                         }
                     }
                 }

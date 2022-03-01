@@ -2,9 +2,10 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { Icon } from '..';
+import { usePrevious } from '../../utils';
 import './Pagination.scss';
 
 interface IPaginationProps {
@@ -13,6 +14,7 @@ interface IPaginationProps {
     visible?: number;
     perPage?: number;
     withIcons?: boolean;
+    onPageChange: (index: number) => void;
 }
 
 interface IPageItemProps {
@@ -31,11 +33,13 @@ const Pagination: FC<IPaginationProps> = ({
     current = 0,
     visible = 5,
     perPage = 10,
-    withIcons
+    withIcons,
+    onPageChange
 }: IPaginationProps) => {
     const isMobile = visible === 2;
     const [currentIndex, setCurrentIndex] = useState<number>(current);
     const [perPageCount, setPerPageCount] = useState<number>(perPage);
+    const prevIndex: number = usePrevious<number>(currentIndex);
     const totalCount = Math.ceil(size / perPageCount);
     const isOffsetable = totalCount > 3;
     const hasLeftOffset =
@@ -63,6 +67,10 @@ const Pagination: FC<IPaginationProps> = ({
         : isMobile
         ? currentIndex
         : currentIndex - actualDelta;
+
+    useEffect(() => {
+        prevIndex !== undefined && onPageChange(currentIndex);
+    }, [prevIndex]);
 
     return (
         <div className="unique-pagination-wrapper">
