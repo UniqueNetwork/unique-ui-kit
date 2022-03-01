@@ -1,13 +1,13 @@
 // base colors
-$color-primary-500: #009cf0;
-$color-secondary-500: #040b1d;
-$color-blue-grey-500: #7f90a1;
-$color-grey-500: #81858e;
-$color-coral-500: #ff6335;
-$color-additional-positive-500: #2dbf15;
-$color-additional-warning-500: #f9a400;
-$color-additional-light: #ffffff;
-$color-additional-dark: #040b1d;
+$color-primary-500: color('unique', 'primary');
+$color-secondary-500: color('unique', 'secondary');
+$color-blue-grey-500: color('unique', 'blue-grey');
+$color-grey-500: color('unique', 'basic-grey');
+$color-coral-500: color('unique', 'basic-coral');
+$color-additional-positive-500: color('unique', 'additional-positive');
+$color-additional-warning-500: color('unique', 'additional-warning');
+$color-additional-light: color('unique', 'additional-light');
+$color-additional-dark: color('unique', 'additional-dark');
 
 // color palette
 $color-primary-100: lighten($color-primary-500, 51%);

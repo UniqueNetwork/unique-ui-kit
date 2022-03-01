@@ -37,3 +37,7 @@
         margin: 0 0 8px;
     }
 }
+
+@function color($group, $variant) {
+    @return map-get(map-get(map-get($color, $group), $variant), 'value');
+}
