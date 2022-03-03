@@ -1,18 +1,7 @@
-const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const jsonImporter = require('node-sass-json-importer');
 
 module.exports = {
     entry: './src/index.tsx',
-    output: {
-        filename: 'unique-ui.min.js',
-        path: path.resolve(__dirname, 'dist'),
-        library: {
-            name: 'Unique',
-            type: 'umd'
-        }
-    },
     resolve: {
         extensions: ['.ts', '.tsx', '.js']
     },
@@ -33,27 +22,35 @@ module.exports = {
                 loader: 'babel-loader'
             },
             {
-                test: /\.css?$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader']
-            },
-            {
-                test: /\.s[ac]ss$/i,
-                use: ['style-loader', 'css-loader', 'sass-loader']
-            },
-            {
                 test: /\.scss$|\.sass$/,
                 use: [
                     {
-                        loader: require.resolve('sass-loader'),
+                        loader: 'style-loader',
                         options: {
-                            implementation: require('node-sass'),
-                            sassOptions: {
-                                precision: 8,
-                                outputStyle: 'expanded',
-                                importer: jsonImporter()
+                            insert: (element) => {
+                                const parent = document.querySelector('head');
+                                var last =
+                                    window._lastElementInsertedByStyleLoader;
+                                if (!last) {
+                                    parent.insertBefore(
+                                        element,
+                                        parent.firstChild
+                                    );
+                                } else if (last.nextSibling) {
+                                    parent.insertBefore(
+                                        element,
+                                        last.nextSibling
+                                    );
+                                } else {
+                                    parent.appendChild(element);
+                                }
+                                window._lastElementInsertedByStyleLoader =
+                                    element;
                             }
                         }
-                    }
+                    },
+                    'css-loader',
+                    'sass-loader'
                 ]
             },
             {
@@ -72,8 +69,8 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: './public/index.html',
-            favicon: './public/favicon.png'
-        }),
-        new MiniCssExtractPlugin()
+            favicon: './public/favicon.png',
+            minify: true
+        })
     ]
 };

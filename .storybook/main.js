@@ -1,5 +1,4 @@
 const path = require('path');
-const jsonImporter = require('node-sass-json-importer');
 
 module.exports = {
     stories: [
@@ -17,23 +16,6 @@ module.exports = {
             use: ['style-loader', 'css-loader', 'sass-loader'],
             include: path.resolve(__dirname, '../')
         });
-        config.module.rules.push({
-            test: /\.scss$|\.sass$/,
-            use: [
-                {
-                    loader: require.resolve('sass-loader'),
-                    options: {
-                        implementation: require('node-sass'),
-                        sassOptions: {
-                            precision: 8,
-                            outputStyle: 'expanded',
-                            importer: jsonImporter()
-                        }
-                    }
-                }
-            ]
-        });
-
         return config;
     }
 };
