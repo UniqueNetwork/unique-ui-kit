@@ -1,4 +1,4 @@
-@import '../../assets/styles/index.scss';
+@import '../../assets/styles/variables.scss';
 
 * {
     margin: 0;
@@ -6,15 +6,15 @@
 }
 
 .unique-layout {
-    font-family: $font-family;
-    font-size: $font-size;
-    font-weight: $font-weight;
+    font-family: var(--prop-font-family);
+    font-size: var(--prop-font-size);
+    font-weight: var(--prop-font-weight);
     display: flex;
     flex-direction: column;
-    background: $color-blue-grey-100;
+    background: var(--color-blue-grey-100);
 
     header {
-        background: $color-additional-light;
+        background: var(--color-additional-light);
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
         height: 80px;
         display: flex;
@@ -29,7 +29,7 @@
     }
 
     footer {
-        background: $color-additional-light;
+        background: var(--color-additional-light);
         display: flex;
         align-items: center;
         height: 64px;
@@ -49,9 +49,9 @@
     }
 
     &__content {
-        background: $color-additional-light;
+        background: var(--color-additional-light);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        border-radius: $border-radius;
+        border-radius: var(--prop-border-radius);
         padding: 32px;
         flex: 1;
     }
@@ -59,13 +59,13 @@
 
 .footer {
     &__text {
-        color: $color-blue-grey-400;
-        font-size: $font-size;
+        color: var(--color-blue-grey-400);
+        font-size: var(--prop-font-size);
         line-height: 1.4;
         max-width: 520px;
 
         a {
-            color: $color-primary-600;
+            color: var(--color-primary-600);
             text-decoration: none;
         }
     }
@@ -101,7 +101,7 @@
 
 @media (max-width: 1024px) {
     .unique-layout {
-        background: $color-additional-light;
+        background: var(--color-additional-light);
 
         header {
             padding: 0 24px;
@@ -109,7 +109,7 @@
 
         footer {
             padding: 0 24px;
-            border-top: 1px solid $color-grey-300;
+            border-top: 1px solid var(--color-grey-300);
         }
 
         main {
@@ -118,7 +118,7 @@
         }
 
         &__content {
-            background: $color-additional-light;
+            background: var(--color-additional-light);
             box-shadow: none;
             border-radius: 0;
             padding: 0;

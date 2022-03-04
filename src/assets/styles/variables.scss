@@ -40,9 +40,11 @@
     --color-additional-positive-100: #{$color-additional-positive-100};
     --color-additional-warning-500: #{$color-additional-warning-500};
     --color-additional-warning-100: #{$color-additional-warning-100};
-    --font-family: #{$font-family};
-    --font-family-heading: #{$font-family-heading};
-    --font-size: #{$font-size};
-    --font-weight: #{$font-weight};
-    --border-radius: #{$border-radius};
+    --color-additional-light: #{$color-additional-light};
+    --color-additional-dark: #{$color-additional-dark};
+    --prop-font-family: #{$prop-font-family};
+    --prop-font-family-heading: #{$prop-font-family-heading};
+    --prop-font-size: #{$prop-font-size};
+    --prop-font-weight: #{$prop-font-weight};
+    --prop-border-radius: #{$prop-border-radius};
 }

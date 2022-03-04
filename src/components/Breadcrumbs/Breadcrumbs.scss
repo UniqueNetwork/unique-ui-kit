@@ -1,13 +1,13 @@
 @import '../../assets/styles/index.scss';
 
 .unique-breadcrumbs-wrapper {
-    font-family: $font-family;
-    font-size: $font-size;
-    font-weight: $font-weight;
+    font-family: var(--prop-font-family);
+    font-size: var(--prop-font-size);
+    font-weight: var(--prop-font-weight);
 
     .breadcrumb-item {
         margin: 0 10px;
-        color: $color-grey-500;
+        color: var(--color-grey-500);
         text-transform: capitalize;
         cursor: pointer;
         text-decoration: none;
@@ -17,7 +17,7 @@
         }
 
         &:last-child {
-            color: $color-blue-grey-300;
+            color: var(--color-blue-grey-300);
             margin: 0 0 0 10px;
             cursor: initial;
         }

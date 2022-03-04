@@ -49,7 +49,7 @@ Default.args = {
                 iconLeft: {
                     name: 'burn',
                     size: 15,
-                    color: '#FF6335'
+                    color: 'var(--color-coral-500)'
                 }
             },
             onClick: () => console.log('Burn')
@@ -96,7 +96,7 @@ DefaultNoPreview.args = {
                 iconLeft: {
                     name: 'burn',
                     size: 15,
-                    color: '#FF6335'
+                    color: 'var(--color-coral-500)'
                 }
             },
             onClick: () => console.log('Burn')
@@ -144,7 +144,7 @@ DefaultNoDescription.args = {
                 iconLeft: {
                     name: 'burn',
                     size: 15,
-                    color: '#FF6335'
+                    color: 'var(--color-coral-500)'
                 }
             },
             onClick: () => console.log('Burn')
@@ -190,7 +190,7 @@ DefaultMinimal.args = {
                 iconLeft: {
                     name: 'burn',
                     size: 15,
-                    color: '#FF6335'
+                    color: 'var(--color-coral-500)'
                 }
             },
             onClick: () => console.log('Burn')

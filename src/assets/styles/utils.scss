@@ -1,5 +1,5 @@
 @mixin font-body($size) {
-    font-family: $font-family;
+    font-family: var(--prop-font-family);
     font-weight: 400;
     @if ($size== 'xs') {
         font-size: 12px;
@@ -17,7 +17,7 @@
 }
 
 @mixin font-heading($size) {
-    font-family: $font-family-heading;
+    font-family: var(--prop-font-family-heading);
     font-weight: 700;
     @if ($size== 1) {
         font-size: 36px;
