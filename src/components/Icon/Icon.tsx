@@ -10,7 +10,7 @@ const Icon: FC<IconProps> = ({
     name,
     file,
     size,
-    color = '#7f90a1'
+    color = 'var(--color-blue-grey-300)'
 }: IconProps) =>
     file ? (
         <img width={size} height={size} src={file} />

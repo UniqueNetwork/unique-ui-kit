@@ -1,86 +1,86 @@
 @import '../../assets/styles/index.scss';
 
 .unique-button {
-    font-family: $font-family;
-    font-size: $font-size;
-    font-weight: $font-weight;
+    font-family: var(--prop-font-family);
+    font-size: var(--prop-font-size);
+    font-weight: var(--prop-font-weight);
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: $border-radius;
+    border-radius: var(--prop-border-radius);
     cursor: pointer;
     border-width: 1px;
     border-style: solid;
 
     &.primary {
-        background: $color-primary-500;
-        border-color: $color-primary-500;
-        color: $color-additional-light;
+        background: var(--color-primary-500);
+        border-color: var(--color-primary-500);
+        color: var(--color-additional-light);
         &:hover {
-            background: $color-primary-400;
-            border-color: $color-primary-400;
+            background: var(--color-primary-400);
+            border-color: var(--color-primary-400);
         }
         &:active {
-            background: $color-primary-600;
-            border-color: $color-primary-600;
+            background: var(--color-primary-600);
+            border-color: var(--color-primary-600);
         }
     }
 
     &.secondary {
-        background: $color-secondary-500;
-        border-color: $color-secondary-500;
-        color: $color-additional-light;
+        background: var(--color-secondary-500);
+        border-color: var(--color-secondary-500);
+        color: var(--color-additional-light);
         &:hover {
-            background: $color-secondary-400;
-            border-color: $color-secondary-400;
+            background: var(--color-secondary-400);
+            border-color: var(--color-secondary-400);
         }
         &:active {
-            background: $color-secondary-600;
-            border-color: $color-secondary-600;
+            background: var(--color-secondary-600);
+            border-color: var(--color-secondary-600);
         }
     }
 
     &.outlined {
-        background: $color-additional-light;
-        border-color: $color-primary-500;
-        color: $color-primary-500;
+        background: var(--color-additional-light);
+        border-color: var(--color-primary-500);
+        color: var(--color-primary-500);
         &:hover {
-            background: $color-primary-100;
-            color: $color-primary-400;
-            border-color: $color-primary-400;
+            background: var(--color-primary-100);
+            color: var(--color-primary-400);
+            border-color: var(--color-primary-400);
         }
         &:active {
-            color: $color-primary-600;
-            border-color: $color-primary-600;
+            color: var(--color-primary-600);
+            border-color: var(--color-primary-600);
         }
     }
 
     &.tertiary {
-        background: $color-additional-light;
-        border-color: $color-grey-500;
-        color: $color-grey-500;
+        background: var(--color-additional-light);
+        border-color: var(--color-grey-500);
+        color: var(--color-grey-500);
         &:hover {
-            background: $color-blue-grey-100;
-            border-color: $color-grey-400;
+            background: var(--color-blue-grey-100);
+            border-color: var(--color-grey-400);
         }
         &:active {
-            color: $color-grey-600;
-            border-color: $color-grey-600;
+            color: var(--color-grey-600);
+            border-color: var(--color-grey-600);
         }
     }
 
     &.danger {
-        color: $color-coral-500;
-        border-color: $color-coral-500;
-        background: $color-additional-light;
+        color: var(--color-coral-500);
+        border-color: var(--color-coral-500);
+        background: var(--color-additional-light);
         &:hover {
-            background: $color-coral-100;
-            border-color: $color-coral-400;
+            background: var(--color-coral-100);
+            border-color: var(--color-coral-400);
         }
         &:active {
-            background: $color-additional-light;
-            border-color: $color-coral-600;
-            color: $color-coral-600;
+            background: var(--color-additional-light);
+            border-color: var(--color-coral-600);
+            color: var(--color-coral-600);
         }
     }
 
@@ -88,9 +88,9 @@
     &.disabled:hover,
     &.disabled:active {
         cursor: default;
-        color: $color-blue-grey-300;
-        border-color: $color-blue-grey-300;
-        background: $color-grey-100;
+        color: var(--color-blue-grey-300);
+        border-color: var(--color-blue-grey-300);
+        background: var(--color-grey-100);
     }
 
     &.size-m {

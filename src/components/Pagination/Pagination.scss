@@ -1,9 +1,9 @@
 @import '../../assets/styles/index.scss';
 
 .unique-pagination-wrapper {
-    font-family: $font-family;
-    font-size: $font-size;
-    font-weight: $font-weight;
+    font-family: var(--prop-font-family);
+    font-size: var(--prop-font-size);
+    font-weight: var(--prop-font-weight);
     position: relative;
     display: flex;
     flex-direction: row;
@@ -21,29 +21,29 @@
             padding: 4px 6px;
             height: 24px;
             cursor: pointer;
-            color: $color-secondary-500;
+            color: var(--color-secondary-500);
 
             svg.icon {
-                fill: $color-secondary-500;
+                fill: var(--color-secondary-500);
             }
 
             &:hover {
-                color: $color-primary-500;
+                color: var(--color-primary-500);
                 svg {
-                    fill: $color-primary-500;
+                    fill: var(--color-primary-500);
                 }
             }
 
             &.active {
-                background-color: $color-primary-500;
-                color: $color-additional-light;
-                border-radius: $border-radius;
+                background-color: var(--color-primary-500);
+                color: var(--color-additional-light);
+                border-radius: var(--prop-border-radius);
             }
 
             &.disabled {
                 cursor: default;
                 svg {
-                    fill: $color-blue-grey-300;
+                    fill: var(--color-blue-grey-300);
                 }
             }
         }
@@ -51,7 +51,7 @@
         .page-ellipsis {
             width: 32px;
             text-align: center;
-            color: $color-blue-grey-300;
+            color: var(--color-blue-grey-300);
         }
     }
 }

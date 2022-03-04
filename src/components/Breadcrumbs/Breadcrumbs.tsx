@@ -17,7 +17,11 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ options }: BreadcrumbsProps) => (
                         <Icon
                             name="carret-right"
                             size={8}
-                            color={last ? '#ABB6C1' : '#81858E'}
+                            color={
+                                last
+                                    ? 'var(--color-blue-grey-300)'
+                                    : 'var(--color-grey-500)'
+                            }
                         />
                     )}
                     {last ? (

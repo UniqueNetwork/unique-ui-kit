@@ -23,7 +23,7 @@ export const Color = Template.bind({});
 
 Color.args = {
     name: 'arrow-right',
-    color: '#009cf0',
+    color: 'var(--color-primary-500)',
     size: 20
 };
 
@@ -33,7 +33,7 @@ export const Size = Template.bind({});
 
 Size.args = {
     name: 'arrow-right',
-    color: '#009cf0',
+    color: 'var(--color-primary-500)',
     size: 30
 };
 
