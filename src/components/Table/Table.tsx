@@ -2,7 +2,7 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import React, { FC, useMemo, useState } from 'react';
+import React, { FC, useState } from 'react';
 import classNames from 'classnames';
 import { Icon } from '..';
 import { sortData } from '../../utils';
@@ -15,15 +15,10 @@ const Table: FC<TableProps> = ({ columns, data, onSort }: TableProps) => {
         field: '',
         mode: 0
     });
-    const sortedData: TableRow[] = useMemo(
-        () =>
-            sortData(
-                data,
-                sortQuery,
-                columns.find((column) => column.field === sortQuery.field)
-                    ?.compareFunc
-            ),
-        [sortQuery]
+    const sortedData: TableRow[] = sortData(
+        data,
+        sortQuery,
+        columns.find((column) => column.field === sortQuery.field)?.compareFunc
     );
     return (
         <div className="unique-table">
