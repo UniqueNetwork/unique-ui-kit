@@ -24,7 +24,11 @@ it('icon check', () => {
         <Button
             onClick={() => {}}
             title="button text"
-            iconLeft={{ name: 'arrow-left', size: 12, color: '#fff' }}
+            iconLeft={{
+                name: 'arrow-left',
+                size: 12,
+                color: 'var(--color-grey-500)'
+            }}
         />
     );
     expect(container.querySelector('#root > div > button > svg')).toBeDefined();

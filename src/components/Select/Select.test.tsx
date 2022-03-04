@@ -7,12 +7,20 @@ const options = [
     {
         id: 1,
         title: 'test title 1',
-        iconRight: { name: 'arrow-up', size: 12, color: '#81858E' }
+        iconRight: {
+            name: 'arrow-up',
+            size: 12,
+            color: 'var(--color-blue-grey-300)'
+        }
     },
     {
         id: 2,
         title: 'test title 2',
-        iconLeft: { name: 'arrow-up', size: 12, color: '#81858E' }
+        iconLeft: {
+            name: 'arrow-up',
+            size: 12,
+            color: 'var(--color-blue-grey-300)'
+        }
     },
     { id: 3, title: 'test title 3' },
     { id: 4, title: 'test title 4' },

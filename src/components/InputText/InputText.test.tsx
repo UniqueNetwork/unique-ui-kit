@@ -21,8 +21,16 @@ it('additionalText check', () => {
 it('icon check', () => {
     const { container } = render(
         <InputText
-            iconLeft={{ name: 'magnify', size: 18, color: '#7d90a1' }}
-            iconRight={{ name: 'magnify', size: 18, color: '#7d90a1' }}
+            iconLeft={{
+                name: 'magnify',
+                size: 18,
+                color: 'var(--color-blue-grey-300)'
+            }}
+            iconRight={{
+                name: 'magnify',
+                size: 18,
+                color: 'var(--color-blue-grey-300)'
+            }}
             onChange={mockFunction}
         />
     );
