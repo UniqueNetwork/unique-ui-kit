@@ -3,10 +3,10 @@
 .unique-avatar {
     &.circle {
         border-radius: 50%;
-        outline: 1px solid $color-grey-200;
+        outline: 1px solid var(--color-grey-200);
     }
 
     &.square {
-        border-radius: $border-radius;
+        border-radius: var(--prop-border-radius);
     }
 }

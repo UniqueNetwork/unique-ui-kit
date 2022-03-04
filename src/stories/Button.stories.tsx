@@ -22,7 +22,11 @@ export const PrimaryIconRight = Template.bind({});
 PrimaryIconRight.args = {
     title: 'Button',
     role: 'primary',
-    iconRight: { name: 'arrow-right', size: 12, color: '#fff' }
+    iconRight: {
+        name: 'arrow-right',
+        size: 12,
+        color: 'var(--color-additional-light)'
+    }
 };
 
 PrimaryIconRight.storyName = 'Primary w/ icon to right';
@@ -43,7 +47,7 @@ SecondaryIconLeft.args = {
     title: 'Button',
     role: 'secondary',
     size: 's',
-    iconLeft: { name: 'arrow-left', size: 12, color: '#fff' }
+    iconLeft: { name: 'arrow-left', size: 12 }
 };
 
 SecondaryIconLeft.storyName = 'Secondary w/ icon to left';
@@ -64,7 +68,7 @@ TertiaryWide.args = {
     title: 'Button',
     role: 'tertiary',
     wide: true,
-    iconLeft: { name: 'magnify', size: 16, color: '#81858e' }
+    iconLeft: { name: 'magnify', size: 16, color: 'var(--color-grey-500)' }
 };
 
 TertiaryWide.storyName = 'Tertiary wide w/ icon to left';

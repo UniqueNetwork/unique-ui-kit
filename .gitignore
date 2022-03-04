@@ -2,8 +2,8 @@
 
 # dependencies
 /node_modules
-/rollup/node_modules
-/rollup/dist
+/package/node_modules
+/package/dist
 /.pnp
 .pnp.js
 

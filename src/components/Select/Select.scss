@@ -1,14 +1,14 @@
 @import '../../assets/styles/index.scss';
 
 .unique-select {
-    font-family: $font-family;
-    font-size: $font-size;
-    font-weight: $font-weight;
+    font-family: var(--prop-font-family);
+    font-size: var(--prop-font-size);
+    font-weight: var(--prop-font-weight);
     position: relative;
     width: 250px;
 
     label {
-        color: $color-secondary-500;
+        color: var(--color-secondary-500);
         display: block;
         font-size: 16px;
         font-weight: 600;
@@ -23,7 +23,7 @@
     }
 
     .additional-text {
-        color: $color-grey-500;
+        color: var(--color-grey-500);
         font-size: 14px;
         height: 22px;
         line-height: 22px;
@@ -35,7 +35,7 @@
     }
 
     .status-text {
-        color: $color-grey-500;
+        color: var(--color-grey-500);
         font-size: 14px;
         line-height: 22px;
         margin-top: 8px;
@@ -49,15 +49,15 @@
 
         &.dropped {
             .select-value {
-                border: 1px solid $color-grey-400;
+                border: 1px solid var(--color-grey-400);
             }
         }
 
         .select-value {
             display: flex;
             align-items: center;
-            border: 1px solid $color-grey-300;
-            border-radius: $border-radius;
+            border: 1px solid var(--color-grey-300);
+            border-radius: var(--prop-border-radius);
             cursor: pointer;
             outline: none;
             height: 16px;
@@ -84,18 +84,18 @@
             }
 
             .select-placeholder {
-                color: $color-grey-400;
+                color: var(--color-grey-400);
             }
 
             &:focus {
-                border: 1px solid $color-grey-400;
+                border: 1px solid var(--color-grey-400);
             }
         }
 
         .select-dropdown {
-            background-color: $color-additional-light;
-            border: 1px solid $color-grey-300;
-            border-radius: $border-radius;
+            background-color: var(--color-additional-light);
+            border: 1px solid var(--color-grey-300);
+            border-radius: var(--prop-border-radius);
             padding: 8px;
             position: absolute;
             left: 0;
@@ -137,11 +137,11 @@
 
                 &:hover,
                 &.selected {
-                    background-color: $color-primary-100;
-                    color: $color-primary-500;
+                    background-color: var(--color-primary-100);
+                    color: var(--color-primary-500);
 
                     svg {
-                        fill: $color-primary-500;
+                        fill: var(--color-primary-500);
                     }
                 }
             }
@@ -153,7 +153,7 @@
             right: 0;
             margin: 17px;
             cursor: pointer;
-            fill: $color-blue-grey-500;
+            fill: var(--color-blue-grey-500);
             z-index: -1;
         }
 
@@ -162,17 +162,17 @@
         }
 
         &.disabled {
-            background-color: $color-grey-100;
-            color: $color-blue-grey-400;
+            background-color: var(--color-grey-100);
+            color: var(--color-blue-grey-400);
             .select-value {
                 cursor: default;
                 .select-placeholder {
-                    color: $color-grey-400;
+                    color: var(--color-grey-400);
                 }
             }
             svg {
                 cursor: initial;
-                fill: $color-blue-grey-400;
+                fill: var(--color-blue-grey-400);
                 z-index: 0;
             }
         }
@@ -181,11 +181,11 @@
     &.error {
         .select-wrapper {
             .select-value {
-                border: 1px solid $color-coral-500;
+                border: 1px solid var(--color-coral-500);
             }
         }
         .status-text {
-            color: $color-coral-500;
+            color: var(--color-coral-500);
         }
     }
 }

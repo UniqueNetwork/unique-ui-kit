@@ -63,7 +63,7 @@ export const IconRight = Template.bind({});
 
 IconRight.args = {
     placeholder: 'Placeholder',
-    iconRight: { name: 'pencil', size: 18, color: '#7d90a1' }
+    iconRight: { name: 'pencil', size: 18, color: 'var(--color-blue-grey-500)' }
 };
 
 IconRight.storyName = 'Minimal w/ icon to right';
@@ -72,7 +72,7 @@ export const IconLeft = Template.bind({});
 
 IconLeft.args = {
     placeholder: 'Placeholder',
-    iconLeft: { name: 'magnify', size: 18, color: '#7d90a1' }
+    iconLeft: { name: 'magnify', size: 18, color: 'var(--color-blue-grey-500)' }
 };
 
 IconLeft.storyName = 'Minimal w/ icon to left';
