@@ -58,3 +58,13 @@ DefaultCurrent.args = {
 };
 
 DefaultCurrent.storyName = 'Default w/ current';
+
+export const DefaultPerPage = TemplatePages.bind({});
+
+DefaultPerPage.args = {
+    size: 120,
+    perPage: 20,
+    withIcons: true
+};
+
+DefaultPerPage.storyName = 'Default w/ perPage';
