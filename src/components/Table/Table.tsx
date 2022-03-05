@@ -15,11 +15,14 @@ const Table: FC<TableProps> = ({ columns, data, onSort }: TableProps) => {
         field: '',
         mode: 0
     });
-    const sortedData: TableRow[] = sortData(
-        data,
-        sortQuery,
-        columns.find((column) => column.field === sortQuery.field)?.compareFunc
-    );
+    const sortedData: TableRow[] = onSort
+        ? data
+        : sortData(
+              data,
+              sortQuery,
+              columns.find((column) => column.field === sortQuery.field)
+                  ?.compareFunc
+          );
     return (
         <div className="unique-table">
             <div className="unique-table-header">
