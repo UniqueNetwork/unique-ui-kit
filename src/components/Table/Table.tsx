@@ -58,7 +58,7 @@ const Table: FC<TableProps> = ({ columns, data, onSort }: TableProps) => {
                                             const columnQuery = {
                                                 field,
                                                 mode: isQueryField
-                                                    ? (sortQuery?.mode + 1) % 3
+                                                    ? (sortQuery.mode + 1) % 3
                                                     : 1
                                             };
                                             setSortQuery(columnQuery);
@@ -69,7 +69,7 @@ const Table: FC<TableProps> = ({ columns, data, onSort }: TableProps) => {
                                             name={`sorting-${
                                                 SORT_MODES[
                                                     isQueryField
-                                                        ? sortQuery?.mode
+                                                        ? sortQuery.mode
                                                         : 0
                                                 ]
                                             }`}
