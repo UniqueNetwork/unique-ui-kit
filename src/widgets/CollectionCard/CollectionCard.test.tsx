@@ -63,7 +63,7 @@ it('set data props check', () => {
                         iconLeft: {
                             name: 'burn',
                             size: 15,
-                            color: '#FF6335'
+                            color: 'var(--color-blue-grey-300)'
                         }
                     },
                     onClick: () => console.log('Burn')

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { CodeWrapper } from '../internals';
-import token from '../assets/tokens/unique.token.json';
+import token from '../../public/style.token.json';
 
 export default {
     title: 'Design Tokens/Tokens',

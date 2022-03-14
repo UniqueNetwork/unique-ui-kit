@@ -60,9 +60,15 @@ export default {
     component: Table
 } as ComponentMeta<typeof Table>;
 
-const Template: ComponentStory<typeof Table> = ({ data, columns }) => {
+const Template: ComponentStory<typeof Table> = ({ data, columns }) => (
+    <Table data={data} columns={columns} />
+);
+
+const TemplateBE: ComponentStory<typeof Table> = ({ data, columns }) => {
     const onSort = (sortQuery: SortQuery) => {
-        console.log(`sorting by ${sortQuery.field} is ${SORT_MODES[sortQuery.mode]}`);
+        console.log(
+            `sorting by ${sortQuery.field} is ${SORT_MODES[sortQuery.mode]}`
+        );
     };
     return <Table data={data} columns={columns} onSort={onSort} />;
 };
@@ -94,9 +100,9 @@ DefaultIcons.args = {
 
 DefaultIcons.storyName = 'Default w/ icons';
 
-export const DefaultSorting = Template.bind({});
+export const DefaultSortingFE = Template.bind({});
 
-DefaultSorting.args = {
+DefaultSortingFE.args = {
     columns: [
         columns[0],
         {
@@ -118,4 +124,25 @@ DefaultSorting.args = {
     data
 };
 
-DefaultSorting.storyName = 'Default w/ sorting';
+DefaultSortingFE.storyName = 'Default w/ client sorting';
+
+export const DefaultSortingBE = TemplateBE.bind({});
+
+DefaultSortingBE.args = {
+    columns: [
+        columns[0],
+        {
+            ...columns[1],
+            isSortable: true
+        },
+        columns[2],
+        columns[3],
+        {
+            ...columns[4],
+            isSortable: true
+        }
+    ],
+    data
+};
+
+DefaultSortingBE.storyName = 'Default w/ server sorting';

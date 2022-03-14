@@ -8,16 +8,16 @@ export type ComponentType =
 export interface ComponentProps {
     autoFocus?: boolean;
     className?: string;
-    defaultValue?: string | number;
+    defaultValue?: string;
     disabled?: boolean;
     id?: string;
     maxLength?: number;
     name?: string;
     placeholder?: string;
     tabIndex?: number;
-    value?: string | number | undefined;
+    value?: string | undefined;
     testid?: string;
-    onChange(value: string | number | undefined): void;
+    onChange(value: string | undefined): void;
     onBlur?(event: ChangeEvent<ComponentType>): void;
     onFocus?(event: ChangeEvent<ComponentType>): void;
     onKeyDown?(event: KeyboardEvent<ComponentType>): void;

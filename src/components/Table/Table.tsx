@@ -2,7 +2,7 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import React, { FC, useMemo, useState } from 'react';
+import React, { FC, useState } from 'react';
 import classNames from 'classnames';
 import { Icon } from '..';
 import { sortData } from '../../utils';
@@ -15,16 +15,14 @@ const Table: FC<TableProps> = ({ columns, data, onSort }: TableProps) => {
         field: '',
         mode: 0
     });
-    const sortedData: TableRow[] = useMemo(
-        () =>
-            sortData(
-                data,
-                sortQuery,
-                columns.find((column) => column.field === sortQuery.field)
-                    ?.compareFunc
-            ),
-        [sortQuery]
-    );
+    const sortedData: TableRow[] = onSort
+        ? data
+        : sortData(
+              data,
+              sortQuery,
+              columns.find((column) => column.field === sortQuery.field)
+                  ?.compareFunc
+          );
     return (
         <div className="unique-table">
             <div className="unique-table-header">
@@ -60,7 +58,7 @@ const Table: FC<TableProps> = ({ columns, data, onSort }: TableProps) => {
                                             const columnQuery = {
                                                 field,
                                                 mode: isQueryField
-                                                    ? (sortQuery?.mode + 1) % 3
+                                                    ? (sortQuery.mode + 1) % 3
                                                     : 1
                                             };
                                             setSortQuery(columnQuery);
@@ -71,7 +69,7 @@ const Table: FC<TableProps> = ({ columns, data, onSort }: TableProps) => {
                                             name={`sorting-${
                                                 SORT_MODES[
                                                     isQueryField
-                                                        ? sortQuery?.mode
+                                                        ? sortQuery.mode
                                                         : 0
                                                 ]
                                             }`}
