@@ -14,15 +14,13 @@
         text-align: center;
         border-radius: 2px;
         position: absolute;
-        font-size: $font-size;
-        font-family: $font-family;
+        font-family: var(--prop-font-family);
+        font-size: var(--prop-font-size);
+        font-weight: var(--prop-font-weight);
         line-height: 22px;
         z-index: 1;
         left: 0%;
-
-        @media (max-width: 900px) {
-            max-width: 288px;
-        }
+        max-width: 288px;
 
         &::after {
             content: '';

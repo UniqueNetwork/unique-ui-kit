@@ -8,7 +8,7 @@ export default {
 } as ComponentMeta<typeof Tooltip>;
 
 const Template: ComponentStory<typeof Tooltip> = (args) => (
-    <Tooltip {...args}>Hover me</Tooltip>
+    <Tooltip {...args}>( i )</Tooltip>
 );
 
 export const Default = Template.bind({});
