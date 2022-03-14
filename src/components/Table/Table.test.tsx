@@ -109,6 +109,6 @@ it('with sort prop check', () => {
     const btnSort = container.querySelector(
         '.table-header-sorter'
     ) as HTMLDivElement;
-    fireEvent.click(btnSort!);
-    fireEvent.click(btnSort!);
+    fireEvent.click(btnSort);
+    fireEvent.click(btnSort);
 });
