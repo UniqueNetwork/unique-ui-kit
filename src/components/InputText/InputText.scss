@@ -103,4 +103,16 @@
             }
         }
     }
+
+    &.size-middle {
+        input {
+            padding: 11px 12px;
+        }
+    }
+
+    &.size-small {
+        input {
+            padding: 7px 12px;
+        }
+    }
 }

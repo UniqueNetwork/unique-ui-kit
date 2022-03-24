@@ -5,10 +5,10 @@
 import React, { ChangeEvent, FC } from 'react';
 import classNames from 'classnames';
 import { Icon } from '..';
-import { ComponentProps, IconProps } from '../../types';
+import { ComponentProps, DimentionType, IconProps } from '../../types';
 import './InputText.scss';
 
-interface InputTextProps extends ComponentProps {
+export interface InputTextProps extends ComponentProps {
     additionalText?: string;
     error?: boolean;
     label?: string;
@@ -17,6 +17,8 @@ interface InputTextProps extends ComponentProps {
     iconRight?: IconProps;
     value?: string;
     defaultValue?: string;
+    role?: 'number' | 'decimal';
+    size?: DimentionType;
 }
 
 const InputText: FC<InputTextProps> = ({
@@ -32,11 +34,20 @@ const InputText: FC<InputTextProps> = ({
     iconRight,
     onChange,
     testid,
+    role,
+    size = 'middle',
     ...rest
 }: InputTextProps) => {
     const icon = iconLeft || iconRight;
     return (
-        <div className={classNames('unique-input-text', className, { error })}>
+        <div
+            className={classNames(
+                'unique-input-text',
+                `size-${size}`,
+                className,
+                { error }
+            )}
+        >
             {label && <label htmlFor={id}>{label}</label>}
             {additionalText && (
                 <div className="additional-text">{additionalText}</div>
@@ -57,7 +68,12 @@ const InputText: FC<InputTextProps> = ({
                     value={value}
                     {...(onChange && {
                         onChange: (e: ChangeEvent<HTMLInputElement>) =>
-                            onChange(e.target.value)
+                            onChange(
+                                e.target.value.replace(
+                                    role === 'number' ? /[^0-9.]/g : /[]/,
+                                    ''
+                                )
+                            )
                     })}
                     {...rest}
                 />
