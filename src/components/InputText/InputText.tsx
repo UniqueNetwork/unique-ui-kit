@@ -2,7 +2,7 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import React, { ChangeEvent, KeyboardEvent, FC } from 'react';
+import React, { ChangeEvent, FC } from 'react';
 import classNames from 'classnames';
 import { Icon } from '..';
 import { ComponentProps, IconProps } from '../../types';
@@ -15,6 +15,8 @@ interface InputTextProps extends ComponentProps {
     statusText?: string;
     iconLeft?: IconProps;
     iconRight?: IconProps;
+    value?: string;
+    defaultValue?: string;
 }
 
 const InputText: FC<InputTextProps> = ({
@@ -25,11 +27,11 @@ const InputText: FC<InputTextProps> = ({
     className,
     error,
     disabled,
-    value,
-    defaultValue,
+    value = '',
     iconLeft,
     iconRight,
     onChange,
+    testid,
     ...rest
 }: InputTextProps) => {
     const icon = iconLeft || iconRight;
@@ -50,9 +52,9 @@ const InputText: FC<InputTextProps> = ({
                 <input
                     type="text"
                     id={id}
+                    data-testid={testid}
                     disabled={disabled}
-                    value={value?.toString()}
-                    defaultValue={defaultValue?.toString()}
+                    value={value}
                     {...(onChange && {
                         onChange: (e: ChangeEvent<HTMLInputElement>) =>
                             onChange(e.target.value)

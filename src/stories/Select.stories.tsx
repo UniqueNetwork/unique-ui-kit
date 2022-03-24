@@ -37,22 +37,34 @@ const optionsLibraryIcons = [
     {
         id: 'id1',
         title: 'Title',
-        iconLeft: { name: 'arrow-down', size: 12, color: '#81858E' }
+        iconLeft: {
+            name: 'arrow-down',
+            size: 12,
+            color: 'var(--color-grey-500)'
+        }
     },
     {
         id: 'id2',
         title: 'Title',
-        iconLeft: { name: 'arrow-up', size: 12, color: '#81858E' }
+        iconLeft: { name: 'arrow-up', size: 12, color: 'var(--color-grey-500)' }
     },
     {
         id: 'id3',
         title: 'Author',
-        iconRight: { name: 'arrow-down', size: 12, color: '#81858E' }
+        iconRight: {
+            name: 'arrow-down',
+            size: 12,
+            color: 'var(--color-grey-500)'
+        }
     },
     {
         id: 'id4',
         title: 'Author',
-        iconRight: { name: 'arrow-up', size: 12, color: '#81858E' }
+        iconRight: {
+            name: 'arrow-up',
+            size: 12,
+            color: 'var(--color-grey-500)'
+        }
     }
 ];
 

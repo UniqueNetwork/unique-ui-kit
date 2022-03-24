@@ -4,21 +4,9 @@
 
 import React, { FC } from 'react';
 import classNames from 'classnames';
-import { IconProps } from '../../types';
+import { ButtonProps } from '../../types';
 import { Icon } from '..';
 import './Button.scss';
-
-interface ButtonProps {
-    title: string;
-    disabled?: boolean;
-    size?: 's' | 'm';
-    role?: 'primary' | 'secondary' | 'tertiary' | 'outlined' | 'danger';
-    wide?: boolean;
-    className?: string;
-    iconLeft?: IconProps;
-    iconRight?: IconProps;
-    onClick: () => void;
-}
 
 const Button: FC<ButtonProps> = ({
     title,

@@ -13,7 +13,9 @@ const TemplatePages: ComponentStory<typeof Pagination> = (args) => {
 export const Default = TemplatePages.bind({});
 
 Default.args = {
+    size: 100,
     withIcons: true,
+    onPageChange: (index: number) => console.log(`Changed to page ${index + 1}`)
 };
 
 Default.storyName = 'Default';
@@ -40,6 +42,7 @@ DefaultSize.storyName = 'Default w/ size';
 export const DefaultVisible = TemplatePages.bind({});
 
 DefaultVisible.args = {
+    size: 100,
     visible: 3,
     withIcons: true
 };
@@ -49,8 +52,19 @@ DefaultVisible.storyName = 'Default w/ visible';
 export const DefaultCurrent = TemplatePages.bind({});
 
 DefaultCurrent.args = {
+    size: 100,
     current: 4,
     withIcons: true
 };
 
 DefaultCurrent.storyName = 'Default w/ current';
+
+export const DefaultPerPage = TemplatePages.bind({});
+
+DefaultPerPage.args = {
+    size: 120,
+    perPage: 20,
+    withIcons: true
+};
+
+DefaultPerPage.storyName = 'Default w/ perPage';

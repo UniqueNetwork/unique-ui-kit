@@ -1,7 +1,8 @@
 @import '../../assets/styles/index.scss';
+@import '../../assets/styles/utils.scss';
 
 .unique-font-heading {
-    color: $color-additional-dark;
+    color: var(--color-additional-dark);
     font-stretch: normal;
     font-style: normal;
     letter-spacing: 0;

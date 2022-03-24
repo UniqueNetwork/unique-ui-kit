@@ -1,8 +1,8 @@
 @import '../../assets/styles/index.scss';
 
 .unique-table {
-    font-family: $font-family;
-    font-size: $font-size;
+    font-family: var(--prop-font-family);
+    font-size: var(--prop-font-size);
     display: flex;
     flex-direction: column;
     font-style: normal;
@@ -12,11 +12,27 @@
         display: flex;
         align-items: center;
         height: 40px;
-        background-color: $color-blue-grey-100;
-        color: $color-blue-grey-600;
+        background-color: var(--color-blue-grey-100);
+        color: var(--color-blue-grey-600);
 
-        div {
+        .table-header-cell {
+            display: flex;
+            align-items: center;
+            gap: 7px;
             padding: 0 16px;
+
+            &.sortable .table-header-sorter {
+                cursor: pointer;
+                height: 14px;
+
+                &:hover svg {
+                    fill: var(--color-primary-500);
+                }
+            }
+
+            &.active svg {
+                fill: var(--color-primary-500);
+            }
         }
     }
 
@@ -28,13 +44,13 @@
             flex-direction: row;
             background-image: linear-gradient(
                 to right,
-                $color-grey-300 50%,
+                var(--color-grey-300) 50%,
                 rgba(255, 255, 255, 0) 0%
             );
             background-position: bottom;
             background-size: 4px 1px;
             background-repeat: repeat-x;
-            color: $color-blue-grey-600;
+            color: var(--color-blue-grey-600);
 
             div {
                 padding: 0 16px;

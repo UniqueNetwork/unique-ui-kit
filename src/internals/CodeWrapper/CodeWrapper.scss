@@ -1,9 +1,9 @@
 @import '../../assets/styles/index.scss';
 
 .unique-code-wrapper {
-    font-family: $font-family;
-    font-size: $font-size;
-    font-weight: $font-weight;
+    font-family: var(--prop-font-family);
+    font-size: var(--prop-font-size);
+    font-weight: var(--prop-font-weight);
 
     pre.__json-pretty__ {
         padding: 20px;
@@ -26,7 +26,7 @@
 
     &.light {
         pre.__json-pretty__ {
-            background-color: $color-blue-grey-100;
+            background-color: var(--color-blue-grey-100);
             color: #818588;
 
             .__json-key__ {

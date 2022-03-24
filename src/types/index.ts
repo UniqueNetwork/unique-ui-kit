@@ -8,15 +8,16 @@ export type ComponentType =
 export interface ComponentProps {
     autoFocus?: boolean;
     className?: string;
-    defaultValue?: string | number;
+    defaultValue?: string;
     disabled?: boolean;
     id?: string;
     maxLength?: number;
     name?: string;
     placeholder?: string;
     tabIndex?: number;
-    value?: string | number | undefined;
-    onChange(value: string | number | undefined): void;
+    value?: string | undefined;
+    testid?: string;
+    onChange(value: string | undefined): void;
     onBlur?(event: ChangeEvent<ComponentType>): void;
     onFocus?(event: ChangeEvent<ComponentType>): void;
     onKeyDown?(event: KeyboardEvent<ComponentType>): void;
@@ -37,10 +38,36 @@ export interface TableColumnProps {
     title: string;
     width: string;
     field: string;
+    iconLeft?: IconProps;
+    iconRight?: IconProps;
+    isSortable?: boolean;
     render?(data: any): ReactNode;
+    compareFunc?: (a: any, b: any) => number;
+}
+
+export interface SortQuery {
+    field: string;
+    mode: number;
 }
 
 export interface TableProps {
     columns: TableColumnProps[];
-    data: any[];
+    data: TableRow[];
+    onSort?(sorting: SortQuery): void;
+}
+
+export interface TableRow {
+    [key: string]: string | {};
+}
+
+export interface ButtonProps {
+    title: string;
+    disabled?: boolean;
+    size?: 's' | 'm';
+    role?: 'primary' | 'secondary' | 'tertiary' | 'outlined' | 'danger';
+    wide?: boolean;
+    className?: string;
+    iconLeft?: IconProps;
+    iconRight?: IconProps;
+    onClick: () => void;
 }
