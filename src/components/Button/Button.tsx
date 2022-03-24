@@ -12,7 +12,7 @@ const Button: FC<ButtonProps> = ({
     title,
     disabled,
     wide,
-    size = 'm',
+    size = 'middle',
     role = 'outlined',
     className,
     iconLeft,

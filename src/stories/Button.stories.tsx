@@ -15,7 +15,7 @@ Primary.args = {
     role: 'primary'
 };
 
-Primary.storyName = 'Primary /w size M';
+Primary.storyName = 'Primary /w size Middle';
 
 export const PrimaryIconRight = Template.bind({});
 
@@ -36,17 +36,17 @@ export const Secondary = Template.bind({});
 Secondary.args = {
     title: 'Button',
     role: 'secondary',
-    size: 's'
+    size: 'small'
 };
 
-Secondary.storyName = 'Secondary w/ size S';
+Secondary.storyName = 'Secondary w/ size Small';
 
 export const SecondaryIconLeft = Template.bind({});
 
 SecondaryIconLeft.args = {
     title: 'Button',
     role: 'secondary',
-    size: 's',
+    size: 'small',
     iconLeft: { name: 'arrow-left', size: 12 }
 };
 
@@ -57,10 +57,10 @@ export const Tertiary = Template.bind({});
 Tertiary.args = {
     title: 'Button',
     role: 'tertiary',
-    size: 'm'
+    size: 'middle'
 };
 
-Tertiary.storyName = 'Tertiary w/ size M';
+Tertiary.storyName = 'Tertiary w/ size Middle';
 
 export const TertiaryWide = Template.bind({});
 
@@ -79,7 +79,7 @@ Outlined.args = {
     title: 'Button'
 };
 
-Outlined.storyName = 'Outlined w/ size M';
+Outlined.storyName = 'Outlined w/ size Middle';
 
 export const OutlinedDisabled = Template.bind({});
 
@@ -95,18 +95,18 @@ export const Danger = Template.bind({});
 Danger.args = {
     title: 'Button',
     role: 'danger',
-    size: 's'
+    size: 'small'
 };
 
-Danger.storyName = 'Danger w/ size S';
+Danger.storyName = 'Danger w/ size Small';
 
 export const DangerWide = Template.bind({});
 
 DangerWide.args = {
     title: 'Button',
     role: 'danger',
-    size: 's',
+    size: 'small',
     wide: true
 };
 
-DangerWide.storyName = 'Danger wide w/ size S';
+DangerWide.storyName = 'Danger wide w/ size Small';
