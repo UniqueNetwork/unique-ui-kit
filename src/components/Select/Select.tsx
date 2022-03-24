@@ -114,6 +114,7 @@ const Select: FC<SelectProps> = ({
                             </span>
                         )
                     )}
+                    <Icon name="triangle" size={8} />
                 </div>
                 {dropped && options && (
                     <div className="select-dropdown">
@@ -140,7 +141,6 @@ const Select: FC<SelectProps> = ({
                         })}
                     </div>
                 )}
-                <Icon name="triangle" size={8} />
             </div>
             {statusText && <div className="status-text">{statusText}</div>}
         </div>
