@@ -188,4 +188,28 @@
             color: var(--color-coral-500);
         }
     }
+
+    &.size-middle {
+        .select-value {
+            padding: 11px 16px;
+        }
+        .select-dropdown {
+            top: 46px;
+        }
+        svg {
+            margin: 17px;
+        }
+    }
+
+    &.size-small {
+        .select-value {
+            padding: 7px 16px;
+        }
+        .select-dropdown {
+            top: 38px;
+        }
+        svg {
+            margin: 12px;
+        }
+    }
 }

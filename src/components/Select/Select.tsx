@@ -2,23 +2,22 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, Key, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { Icon } from '..';
-import { ComponentProps, IconProps } from '../../types';
+import { ComponentProps, DimentionType, SelectOptionProps } from '../../types';
 import './Select.scss';
 
 interface SelectProps extends ComponentProps {
-    options: {
-        id: string | number;
-        title: string | number;
-        iconLeft?: IconProps;
-        iconRight?: IconProps;
-    }[];
+    options: SelectOptionProps[];
+    optionKey?: string;
+    optionValue?: string;
     additionalText?: string | number;
     error?: boolean;
     label?: string;
     statusText?: string;
+    size?: DimentionType;
+    onChange(option: SelectOptionProps): void;
 }
 
 const Select: FC<SelectProps> = ({
@@ -35,21 +34,28 @@ const Select: FC<SelectProps> = ({
     placeholder,
     disabled,
     tabIndex = -1,
+    size = 'middle',
+    optionKey = 'id',
+    optionValue = 'title',
     onChange,
     onFocus,
     onBlur
 }) => {
     useEffect(() => {
-        if (
+        const defaultOption =
             defaultValue &&
-            options.findIndex((option) => option.title === defaultValue)
-        ) {
-            onChange(defaultValue);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+            options.find(
+                (option) =>
+                    option[optionValue as keyof SelectOptionProps] ===
+                    defaultValue
+            );
+        defaultOption && onChange(defaultOption);
     }, []);
 
-    const selected = options.find((option) => option.id === value);
+    const selected = options.find(
+        (option) => option[optionKey as keyof SelectOptionProps] === value
+    );
+
     const icon = selected?.iconLeft || selected?.iconRight;
 
     const [dropped, setDropped] = useState<boolean>(!!autoFocus);
@@ -71,13 +77,17 @@ const Select: FC<SelectProps> = ({
         document.removeEventListener('mousedown', handleClickOutside);
     };
 
-    const handleOptionSelect = (value: string | number | undefined) => {
+    const handleOptionSelect = (option: SelectOptionProps) => {
         setDropped(false);
-        onChange!(value);
+        onChange?.(option);
     };
 
     return (
-        <div className={classNames('unique-select', className, { error })}>
+        <div
+            className={classNames('unique-select', `size-${size}`, className, {
+                error
+            })}
+        >
             {label && <label htmlFor={id}>{label}</label>}
             {additionalText && (
                 <div className="additional-text">{additionalText}</div>
@@ -102,9 +112,9 @@ const Select: FC<SelectProps> = ({
                     })}
                     onMouseDown={handleMouseDown}
                 >
-                    {selected?.id ? (
+                    {selected?.[optionKey as keyof SelectOptionProps] ? (
                         <>
-                            {selected.title}
+                            {selected?.[optionValue as keyof SelectOptionProps]}
                             {icon && <Icon {...icon} />}
                         </>
                     ) : (
@@ -123,19 +133,29 @@ const Select: FC<SelectProps> = ({
                                 <div
                                     className={classNames('dropdown-option', {
                                         selected:
-                                            selected &&
-                                            option.id === selected.id,
+                                            option[
+                                                optionKey as keyof SelectOptionProps
+                                            ] ===
+                                            selected?.[
+                                                optionKey as keyof SelectOptionProps
+                                            ],
                                         'with-icon': icon,
                                         'to-left': option.iconLeft,
                                         'to-right': option.iconRight,
                                         disabled
                                     })}
-                                    key={option.id}
-                                    onClick={() =>
-                                        handleOptionSelect(option.id)
+                                    key={
+                                        option[
+                                            optionKey as keyof SelectOptionProps
+                                        ] as Key
                                     }
+                                    onClick={() => handleOptionSelect(option)}
                                 >
-                                    {option.title}
+                                    {
+                                        option[
+                                            optionValue as keyof SelectOptionProps
+                                        ]
+                                    }
                                     {icon && <Icon {...icon} />}
                                 </div>
                             );
