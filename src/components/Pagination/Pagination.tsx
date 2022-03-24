@@ -4,7 +4,7 @@
 
 import React, { FC, useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { Icon } from '..';
+import { Icon, InputText, Select } from '..';
 import { usePrevious } from '../../utils';
 import './Pagination.scss';
 
@@ -13,8 +13,13 @@ interface IPaginationProps {
     current?: number;
     visible?: number;
     perPage?: number;
+    pageSizes?: number[];
     withIcons?: boolean;
+    withPageSelector?: boolean;
+    withPerPageSelector?: boolean;
     onPageChange: (index: number) => void;
+    onGoToPage?: (index: number) => void;
+    onPageSizeChange?: (size: number) => void;
 }
 
 interface IPageItemProps {
@@ -32,13 +37,18 @@ const Pagination: FC<IPaginationProps> = ({
     size,
     current = 0,
     visible = 5,
-    perPage = 10,
+    pageSizes = [10, 20, 50, 100],
     withIcons,
-    onPageChange
+    withPageSelector,
+    withPerPageSelector,
+    onPageChange,
+    onGoToPage,
+    onPageSizeChange
 }: IPaginationProps) => {
     const isMobile = visible === 2;
     const [currentIndex, setCurrentIndex] = useState<number>(current);
-    const [perPageCount, setPerPageCount] = useState<number>(perPage);
+    const [perPageCount, setPerPageCount] = useState<number>(pageSizes[0]);
+    const [currentSelector, setCurrentSelector] = useState<string>('');
     const prevIndex: number = usePrevious<number>(currentIndex);
     const totalCount = Math.ceil(size / perPageCount);
     const isOffsetable = totalCount > 3 && visible < totalCount;
@@ -70,15 +80,37 @@ const Pagination: FC<IPaginationProps> = ({
 
     useEffect(() => {
         prevIndex !== undefined && onPageChange(currentIndex);
-    }, [prevIndex]);
+    }, [currentIndex]);
 
     return (
         <div className="unique-pagination-wrapper">
+            {withPerPageSelector && (
+                <div className="per-page-selector-wrapper">
+                    {size} Items
+                    <Select
+                        options={pageSizes.map((option) => ({
+                            id: option.toString(),
+                            title: option.toString()
+                        }))}
+                        size="small"
+                        value={perPageCount.toString()}
+                        onChange={(option) => {
+                            setPerPageCount(Number(option.title));
+                            setCurrentIndex(0);
+                            setCurrentSelector('');
+                            onPageSizeChange?.(Number(option.title));
+                        }}
+                    />
+                </div>
+            )}
             <div className="pages-wrapper">
                 {withIcons && (
                     <PageItem
                         {...(currentIndex !== 0 && {
-                            onClick: () => setCurrentIndex(currentIndex - 1)
+                            onClick: () => {
+                                currentSelector && setCurrentSelector('');
+                                setCurrentIndex(currentIndex - 1);
+                            }
                         })}
                         className={classNames('page-item', {
                             disabled: currentIndex === 0
@@ -91,7 +123,10 @@ const Pagination: FC<IPaginationProps> = ({
                     <>
                         <PageItem
                             page={1}
-                            onClick={() => setCurrentIndex(0)}
+                            onClick={() => {
+                                currentSelector && setCurrentSelector('');
+                                setCurrentIndex(0);
+                            }}
                             className="page-item"
                         />
                         <div className="page-ellipsis">...</div>
@@ -102,7 +137,10 @@ const Pagination: FC<IPaginationProps> = ({
                     return (
                         <PageItem
                             page={offsetIndex + 1}
-                            onClick={() => setCurrentIndex(offsetIndex)}
+                            onClick={() => {
+                                currentSelector && setCurrentSelector('');
+                                setCurrentIndex(offsetIndex);
+                            }}
                             key={offsetIndex}
                             className={classNames('page-item', {
                                 active: offsetIndex === currentIndex
@@ -115,7 +153,10 @@ const Pagination: FC<IPaginationProps> = ({
                         <div className="page-ellipsis">...</div>
                         <PageItem
                             page={totalCount}
-                            onClick={() => setCurrentIndex(totalCount - 1)}
+                            onClick={() => {
+                                setCurrentIndex(totalCount - 1);
+                                currentSelector && setCurrentSelector('');
+                            }}
                             className="page-item"
                         />
                     </>
@@ -123,7 +164,10 @@ const Pagination: FC<IPaginationProps> = ({
                 {withIcons && (
                     <PageItem
                         {...(currentIndex !== totalCount - 1 && {
-                            onClick: () => setCurrentIndex(currentIndex + 1)
+                            onClick: () => {
+                                currentSelector && setCurrentSelector('');
+                                setCurrentIndex(currentIndex + 1);
+                            }
                         })}
                         className={classNames('page-item', {
                             disabled: currentIndex === totalCount - 1
@@ -133,6 +177,33 @@ const Pagination: FC<IPaginationProps> = ({
                     </PageItem>
                 )}
             </div>
+            {withPageSelector && (
+                <div className="page-selector-wrapper">
+                    Go to:
+                    <InputText
+                        maxLength={5}
+                        value={currentSelector}
+                        role="number"
+                        size="small"
+                        onChange={(index) => setCurrentSelector(`${index}`)}
+                        onKeyDown={(e) => {
+                            if (
+                                e.code === 'Enter' &&
+                                Number(currentSelector) > 0
+                            ) {
+                                const page =
+                                    Number(currentSelector) === 0
+                                        ? 1
+                                        : Number(currentSelector) > totalCount
+                                        ? totalCount
+                                        : Number(currentSelector);
+                                setCurrentIndex(page - 1);
+                                onGoToPage?.(page);
+                            }
+                        }}
+                    />
+                </div>
+            )}
         </div>
     );
 };
