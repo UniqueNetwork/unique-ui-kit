@@ -46,8 +46,7 @@ const Select: FC<SelectProps> = ({
             defaultValue &&
             options.find(
                 (option) =>
-                    option[optionValue as keyof SelectOptionProps] ===
-                    defaultValue
+                    (option as SelectOptionProps)[optionValue] === defaultValue
             );
         defaultOption && onChange(defaultOption);
     }, []);
@@ -146,8 +145,8 @@ const Select: FC<SelectProps> = ({
                                         disabled
                                     })}
                                     key={
-                                        option[
-                                            optionKey as keyof SelectOptionProps
+                                        (option as SelectOptionProps)[
+                                            optionKey
                                         ] as Key
                                     }
                                     onClick={() => handleOptionSelect(option)}
