@@ -104,6 +104,7 @@ const Select: FC<SelectProps> = ({
                 tabIndex={tabIndex}
                 id={id}
             >
+                <Icon name="triangle" size={8} />
                 <div
                     className={classNames('select-value', {
                         'with-icon': icon,
@@ -162,7 +163,6 @@ const Select: FC<SelectProps> = ({
                         })}
                     </div>
                 )}
-                <Icon name="triangle" size={8} />
             </div>
             {statusText && <div className="status-text">{statusText}</div>}
         </div>

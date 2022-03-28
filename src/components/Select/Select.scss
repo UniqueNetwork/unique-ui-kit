@@ -147,17 +147,16 @@
             }
         }
 
-        > svg {
+        .icon-triangle {
             position: absolute;
             top: 0;
             right: 0;
             margin: 17px;
             cursor: pointer;
             fill: var(--color-blue-grey-500);
-            z-index: -1;
         }
 
-        &.dropped > svg {
+        &.dropped .icon-triangle {
             transform: rotate(180deg);
         }
 
