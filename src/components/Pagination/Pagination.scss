@@ -7,6 +7,7 @@
     position: relative;
     display: flex;
     flex-direction: row;
+    align-items: center;
 
     .pages-wrapper {
         display: flex;
@@ -52,6 +53,28 @@
             width: 32px;
             text-align: center;
             color: var(--color-blue-grey-300);
+        }
+    }
+
+    .page-selector-wrapper {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-left: 40px;
+
+        .unique-input-text {
+            width: 70px;
+        }
+    }
+
+    .per-page-selector-wrapper {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-right: 40px;
+
+        .unique-select {
+            width: 70px;
         }
     }
 }

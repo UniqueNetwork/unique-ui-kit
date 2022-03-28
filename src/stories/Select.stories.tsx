@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Select } from '../components';
 import opal from '../assets/static/opal.svg';
 import quartz from '../assets/static/quartz.svg';
+import { SelectOptionProps } from '../types';
 
 export default {
     title: 'Components/Select',
@@ -10,22 +11,22 @@ export default {
 } as ComponentMeta<typeof Select>;
 
 const Template: ComponentStory<typeof Select> = (args) => {
-    const [value, setValue] = useState(undefined);
+    const [value, setValue] = useState();
     return (
         <Select
             {...args}
             value={value}
             onFocus={() => console.log('onFocus')}
             onBlur={() => console.log('onBlur')}
-            onChange={(value: any) => {
-                console.log('onChange', value);
-                setValue(value);
+            onChange={(option: SelectOptionProps) => {
+                console.log('onChange', option);
+                setValue(option[args.optionKey || 'id']);
             }}
         />
     );
 };
 
-const options = [
+const optionsDefault = [
     { id: 'id1', title: 'Option 1' },
     { id: 'id2', title: 'Option 2' },
     { id: 'id3', title: 'Option 3' },
@@ -33,9 +34,26 @@ const options = [
     { id: 'id5', title: 'Option 5' }
 ];
 
+const optionsKeyValue = [
+    { identity: 'id1', message: 'Option 1' },
+    { identity: 'id2', message: 'Option 2' },
+    { identity: 'id3', message: 'Option 3' },
+    { identity: 'id4', message: 'Option 4' },
+    { identity: 'id5', message: 'Option 5' }
+];
+
+const optionsValue = [
+    { message: 'Option 1' },
+    { message: 'Option 2' },
+    { message: 'Option 3' },
+    { message: 'Option 4' },
+    { message: 'Option 5' }
+];
+
 const optionsLibraryIcons = [
     {
-        id: 'id1',
+        id: 'identity',
+        text: 'message',
         title: 'Title',
         iconLeft: {
             name: 'arrow-down',
@@ -100,7 +118,7 @@ Default.args = {
     label: 'Label',
     additionalText: 'Additional text',
     placeholder: 'Placeholder',
-    options
+    options: optionsDefault
 };
 
 Default.storyName = 'Default';
@@ -111,7 +129,9 @@ Status.args = {
     label: 'Label',
     additionalText: 'Additional text',
     placeholder: 'Placeholder',
-    options,
+    options: optionsKeyValue,
+    optionKey: 'identity',
+    optionValue: 'message',
     statusText: 'Status text'
 };
 
@@ -123,7 +143,9 @@ Error.args = {
     label: 'Label',
     additionalText: 'Additional text',
     placeholder: 'Placeholder',
-    options,
+    options: optionsValue,
+    optionKey: 'message',
+    optionValue: 'message',
     statusText: 'Error message',
     error: true
 };
@@ -134,7 +156,7 @@ export const Minimal = Template.bind({});
 
 Minimal.args = {
     placeholder: 'Placeholder',
-    options
+    options: optionsDefault
 };
 
 Minimal.storyName = 'Minimal';
@@ -144,7 +166,7 @@ export const Label = Template.bind({});
 Label.args = {
     label: 'Label',
     placeholder: 'Placeholder',
-    options
+    options: optionsDefault
 };
 
 Label.storyName = 'Minimal w/ label';
@@ -153,18 +175,28 @@ export const Value = Template.bind({});
 
 Value.args = {
     placeholder: 'Placeholder',
-    defaultValue: 'id2',
-    options
+    defaultValue: 'Option 4',
+    options: optionsDefault
 };
 
 Value.storyName = 'Minimal w/ value';
+
+export const MinimalSize = Template.bind({});
+
+MinimalSize.args = {
+    placeholder: 'Placeholder',
+    size: 'small',
+    options: optionsDefault
+};
+
+MinimalSize.storyName = 'Minimal w/ size Small';
 
 export const Disabled = Template.bind({});
 
 Disabled.args = {
     placeholder: 'Placeholder',
     defaultValue: 'Option 4',
-    options,
+    options: optionsDefault,
     disabled: true
 };
 

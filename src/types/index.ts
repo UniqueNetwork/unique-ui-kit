@@ -1,5 +1,7 @@
 import { ChangeEvent, KeyboardEvent, ReactNode } from 'react';
 
+export type DimentionType = 'small' | 'middle' | 'large';
+
 export type ComponentType =
     | HTMLInputElement
     | HTMLSelectElement
@@ -8,16 +10,16 @@ export type ComponentType =
 export interface ComponentProps {
     autoFocus?: boolean;
     className?: string;
-    defaultValue?: string | number;
+    defaultValue?: string;
     disabled?: boolean;
     id?: string;
     maxLength?: number;
     name?: string;
     placeholder?: string;
     tabIndex?: number;
-    value?: string | number | undefined;
+    value?: string | undefined;
     testid?: string;
-    onChange(value: string | number | undefined): void;
+    onChange(value: SelectOptionProps | string | undefined): void;
     onBlur?(event: ChangeEvent<ComponentType>): void;
     onFocus?(event: ChangeEvent<ComponentType>): void;
     onKeyDown?(event: KeyboardEvent<ComponentType>): void;
@@ -63,11 +65,18 @@ export interface TableRow {
 export interface ButtonProps {
     title: string;
     disabled?: boolean;
-    size?: 's' | 'm';
+    size?: DimentionType;
     role?: 'primary' | 'secondary' | 'tertiary' | 'outlined' | 'danger';
     wide?: boolean;
     className?: string;
     iconLeft?: IconProps;
     iconRight?: IconProps;
     onClick: () => void;
+}
+
+export interface SelectOptionProps {
+    id: string;
+    title: string;
+    iconLeft?: IconProps;
+    iconRight?: IconProps;
 }

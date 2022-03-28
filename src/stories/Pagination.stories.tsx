@@ -15,7 +15,7 @@ export const Default = TemplatePages.bind({});
 Default.args = {
     size: 100,
     withIcons: true,
-    onPageChange: (index: number) => console.log(`Changed to page ${index + 1}`)
+    onPageChange: (index: number) => console.log('onPageChange', index + 1)
 };
 
 Default.storyName = 'Default';
@@ -29,6 +29,45 @@ DefaultMobile.args = {
 };
 
 DefaultMobile.storyName = 'Default mobile';
+
+export const DefaultPage = TemplatePages.bind({});
+
+DefaultPage.args = {
+    size: 100,
+    withPageSelector: true,
+    withIcons: true
+};
+
+DefaultPage.storyName = 'Default w/ pageSelector';
+
+export const DefaultPerPageSelector = TemplatePages.bind({});
+
+DefaultPerPageSelector.args = {
+    size: 100,
+    withPerPageSelector: true,
+    withIcons: true
+};
+
+DefaultPerPageSelector.storyName = 'Default w/ perPageSelector';
+
+export const Complete = TemplatePages.bind({});
+
+Complete.args = {
+    size: 100,
+    withPageSelector: true,
+    withPerPageSelector: true,
+    pageSizes: [30, 50, 90],
+    withIcons: true,
+    onPageChange: (index: number) => console.log('onPageChange', index + 1),
+    onPageSizeChange: (size: number) => {
+        console.log('onPageSizeChange', size);
+    },
+    onGoToPage: (page: number) => {
+        console.log('onGoToPage', page);
+    }
+};
+
+Complete.storyName = 'Complete w/ pageSizes';
 
 export const DefaultSize = TemplatePages.bind({});
 

@@ -59,6 +59,15 @@ Label.args = {
 
 Label.storyName = 'Minimal w/ label';
 
+export const Small = Template.bind({});
+
+Small.args = {
+    placeholder: 'Placeholder',
+    size: 'small'
+};
+
+Small.storyName = 'Minimal w/ size Small';
+
 export const IconRight = Template.bind({});
 
 IconRight.args = {
