@@ -68,7 +68,7 @@
             &.with-icon {
                 &.to-right {
                     flex-direction: row;
-                    svg,
+                    .icon-triangle,
                     img {
                         margin-left: 5px;
                     }
@@ -76,7 +76,7 @@
                 &.to-left {
                     flex-direction: row-reverse;
                     justify-content: flex-end;
-                    svg,
+                    .icon-triangle,
                     img {
                         margin-right: 5px;
                     }
@@ -116,7 +116,7 @@
                 &.with-icon {
                     &.to-right {
                         flex-direction: row;
-                        svg,
+                        .icon-triangle,
                         img {
                             margin-left: 5px;
                         }
@@ -124,7 +124,7 @@
                     &.to-left {
                         flex-direction: row-reverse;
                         justify-content: flex-end;
-                        svg,
+                        .icon-triangle,
                         img {
                             margin-right: 5px;
                         }
@@ -140,7 +140,7 @@
                     background-color: var(--color-primary-100);
                     color: var(--color-primary-500);
 
-                    svg {
+                    .icon-triangle {
                         fill: var(--color-primary-500);
                     }
                 }
@@ -169,7 +169,7 @@
                     color: var(--color-grey-400);
                 }
             }
-            svg {
+            .icon-triangle {
                 cursor: initial;
                 fill: var(--color-blue-grey-400);
                 z-index: 0;
@@ -195,7 +195,7 @@
         .select-dropdown {
             top: 46px;
         }
-        svg {
+        .icon-triangle {
             margin: 17px;
         }
     }
@@ -207,7 +207,7 @@
         .select-dropdown {
             top: 38px;
         }
-        svg {
+        .icon-triangle {
             margin: 12px;
         }
     }
