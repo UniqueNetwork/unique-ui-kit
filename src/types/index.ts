@@ -5,7 +5,8 @@ export type DimentionType = 'small' | 'middle' | 'large';
 export type ComponentType =
     | HTMLInputElement
     | HTMLSelectElement
-    | HTMLDivElement;
+    | HTMLDivElement
+    | HTMLTextAreaElement;
 
 export interface ComponentProps {
     autoFocus?: boolean;
@@ -67,11 +68,12 @@ export interface ButtonProps {
     disabled?: boolean;
     size?: DimentionType;
     role?: 'primary' | 'secondary' | 'tertiary' | 'outlined' | 'danger';
+    type?: 'submit' | 'button';
     wide?: boolean;
     className?: string;
     iconLeft?: IconProps;
     iconRight?: IconProps;
-    onClick: () => void;
+    onClick?: () => void;
 }
 
 export interface SelectOptionProps {

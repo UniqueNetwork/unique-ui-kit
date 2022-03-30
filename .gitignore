@@ -6,6 +6,7 @@
 /package/dist
 /.pnp
 .pnp.js
+.idea
 
 # testing
 /coverage

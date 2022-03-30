@@ -5,21 +5,43 @@
 import React, { ChangeEvent, FC } from 'react';
 import classNames from 'classnames';
 import { Icon } from '..';
-import { ComponentProps, DimentionType, IconProps } from '../../types';
+import {
+    ComponentProps,
+    ComponentType,
+    DimentionType,
+    IconProps
+} from '../../types';
 import './InputText.scss';
 
-export interface InputTextProps extends ComponentProps {
+interface InputTextPropsBase {
     additionalText?: string;
     error?: boolean;
     label?: string;
     statusText?: string;
     iconLeft?: IconProps;
     iconRight?: IconProps;
-    value?: string;
-    defaultValue?: string;
     role?: 'number' | 'decimal';
     size?: DimentionType;
 }
+
+interface TextareaPropsBase {
+    // number of rows to display in textarea
+    rows?: number;
+}
+
+export type InputTextProps = InputTextPropsBase &
+    ComponentProps &
+    TextareaPropsBase;
+
+const TextComponentBase = ({
+    rows,
+    ...props
+}: Omit<ComponentProps, 'onChange'> & TextareaPropsBase) =>
+    rows ? (
+        <textarea rows={rows} {...props} />
+    ) : (
+        <input type={'text'} {...props} />
+    );
 
 const InputText: FC<InputTextProps> = ({
     id,
@@ -60,14 +82,17 @@ const InputText: FC<InputTextProps> = ({
                     disabled
                 })}
             >
-                <input
-                    type="text"
+                <TextComponentBase
                     id={id}
                     data-testid={testid}
                     disabled={disabled}
                     value={value}
                     {...(onChange && {
-                        onChange: (e: ChangeEvent<HTMLInputElement>) =>
+                        onChange: (
+                            e: ChangeEvent<
+                                HTMLTextAreaElement | HTMLInputElement
+                            >
+                        ) =>
                             onChange(
                                 e.target.value.replace(
                                     role === 'number' ? /[^0-9.]/g : /[]/,

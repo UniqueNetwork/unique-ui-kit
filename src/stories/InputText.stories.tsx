@@ -94,3 +94,22 @@ Disabled.args = {
 };
 
 Disabled.storyName = 'Minimal disabled';
+
+export const Rows = Template.bind({});
+
+Rows.args = {
+    value: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    rows: 10
+};
+
+Rows.storyName = 'Rows';
+
+export const RowsAndIcon = Template.bind({});
+
+RowsAndIcon.args = {
+    value: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    rows: 10,
+    iconLeft: { name: 'magnify', size: 18, color: 'var(--color-blue-grey-500)' }
+};
+
+RowsAndIcon.storyName = 'Rows and Icon';
