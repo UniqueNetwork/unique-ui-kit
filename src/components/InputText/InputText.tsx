@@ -95,7 +95,7 @@ const InputText: FC<InputTextProps> = ({
                         ) =>
                             onChange(
                                 e.target.value.replace(
-                                    role === 'number' ? /[^0-9.]/g : /[]/,
+                                    role === 'number' ? /\D/g : /[]/,
                                     ''
                                 )
                             )
