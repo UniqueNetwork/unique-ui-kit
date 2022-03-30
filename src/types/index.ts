@@ -75,8 +75,7 @@ export interface ButtonProps {
 }
 
 export interface SelectOptionProps {
-    id: string;
-    title: string;
+    [x: string | number | symbol]: unknown;
     iconLeft?: IconProps;
     iconRight?: IconProps;
 }
