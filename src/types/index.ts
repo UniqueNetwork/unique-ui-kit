@@ -81,3 +81,15 @@ export interface SelectOptionProps {
     iconLeft?: IconProps;
     iconRight?: IconProps;
 }
+
+export interface InputPropsBase {
+    additionalText?: string;
+    error?: boolean;
+    label?: string;
+    statusText?: string;
+    iconLeft?: IconProps;
+    iconRight?: IconProps;
+    role?: 'number' | 'decimal';
+    size?: DimentionType;
+    onChange?(value: string): void;
+}

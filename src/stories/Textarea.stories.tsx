@@ -1,13 +1,13 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { InputText } from '../components';
+import { Textarea } from '../components';
 
 export default {
-    title: 'Components/InputText',
-    component: InputText
-} as ComponentMeta<typeof InputText>;
+    title: 'Components/Textarea',
+    component: Textarea
+} as ComponentMeta<typeof Textarea>;
 
-const Template: ComponentStory<typeof InputText> = (args) => (
-    <InputText {...args} />
+const Template: ComponentStory<typeof Textarea> = (args) => (
+    <Textarea {...args} />
 );
 
 export const Default = Template.bind({});
@@ -93,3 +93,12 @@ Disabled.args = {
 };
 
 Disabled.storyName = 'Minimal disabled';
+
+export const Rows = Template.bind({});
+
+Rows.args = {
+    value: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    rows: 10
+};
+
+Rows.storyName = 'Rows';

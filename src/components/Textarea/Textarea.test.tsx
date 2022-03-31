@@ -1,17 +1,17 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import InputText from './InputText';
+import Textarea from './Textarea';
 
 const mockFunction = jest.fn();
 
-describe('InputText Component', () => {
+describe('Textarea Component', () => {
     it('label check', () => {
-        render(<InputText label="test label" onChange={mockFunction} />);
+        render(<Textarea label="test label" onChange={mockFunction} />);
         expect(screen.queryByText('test label')).toBeTruthy();
     });
 
     it('additionalText check', () => {
         render(
-            <InputText
+            <Textarea
                 additionalText="test additionalText"
                 onChange={mockFunction}
             />
@@ -21,7 +21,7 @@ describe('InputText Component', () => {
 
     it('icon check', () => {
         const { container } = render(
-            <InputText
+            <Textarea
                 iconLeft={{
                     name: 'magnify',
                     size: 18,
@@ -39,13 +39,13 @@ describe('InputText Component', () => {
     });
 
     it('status check', () => {
-        render(<InputText statusText="status test" onChange={mockFunction} />);
+        render(<Textarea statusText="status test" onChange={mockFunction} />);
         expect(screen.queryByText('status test')).toBeTruthy();
     });
 
     it('value check', () => {
         render(
-            <InputText
+            <Textarea
                 label="test label"
                 value="test value"
                 onChange={mockFunction}
@@ -57,9 +57,18 @@ describe('InputText Component', () => {
     });
 
     it('onChange check', () => {
-        render(<InputText label="test label" onChange={mockFunction} />);
+        render(<Textarea label="test label" onChange={mockFunction} />);
         const input = screen.getByRole('textbox') as HTMLInputElement;
         fireEvent.change(input, { target: { value: 'test value' } });
         expect(mockFunction.mock.calls[0][0]).toEqual('test value');
+    });
+
+    it('rows check', () => {
+        render(
+            <Textarea label="test label" rows={3} onChange={mockFunction} />
+        );
+        const textarea = screen.getByRole('textbox') as HTMLTextAreaElement;
+        expect(textarea.type).not.toBe('text');
+        expect(textarea.rows).toBe(3);
     });
 });

@@ -51,7 +51,7 @@ it('set data props check', () => {
                     title: 'Create token',
                     appearance: {
                         role: 'primary',
-                        size: 's'
+                        size: 'small'
                     },
                     onClick: () => console.log('Create token')
                 },
@@ -59,7 +59,7 @@ it('set data props check', () => {
                     title: 'Burn',
                     appearance: {
                         role: 'danger',
-                        size: 's',
+                        size: 'small',
                         iconLeft: {
                             name: 'burn',
                             size: 15,

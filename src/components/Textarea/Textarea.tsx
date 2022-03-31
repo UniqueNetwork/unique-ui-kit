@@ -1,14 +1,20 @@
 /**
- * @author Pavel Kalachev <pkalachev@usetech.com>
+ * @author Sergey Kozlov <skozlov@usetech.com>
  */
 import classNames from 'classnames';
 import { Icon } from '..';
-import { ComponentProps, InputPropsBase } from '../../types';
-import './InputText.scss';
+import { ComponentProps, SelectOptionProps, InputPropsBase } from '../../types';
+import './Textarea.scss';
 
-export type InputTextProps = InputPropsBase & Omit<ComponentProps, 'onChange'>;
+interface TextareaPropsBase extends InputPropsBase {
+    // number of rows to display in textarea
+    rows?: number;
+}
 
-const InputText = ({
+export type TextareaProps = TextareaPropsBase &
+    Omit<ComponentProps, 'onChange'>;
+
+const Textarea = ({
     id,
     label,
     additionalText,
@@ -23,13 +29,14 @@ const InputText = ({
     testid,
     role,
     size = 'middle',
+    rows = 3,
     ...rest
-}: InputTextProps) => {
+}: TextareaProps) => {
     const icon = iconLeft || iconRight;
     return (
         <div
             className={classNames(
-                'unique-input-text',
+                'unique-textarea-text',
                 `size-${size}`,
                 className,
                 { error }
@@ -40,19 +47,19 @@ const InputText = ({
                 <div className="additional-text">{additionalText}</div>
             )}
             <div
-                className={classNames('input-wrapper', {
+                className={classNames('textarea-wrapper', {
                     'with-icon': icon,
                     'to-left': iconLeft,
                     'to-right': iconRight,
                     disabled
                 })}
             >
-                <input
-                    type={'text'}
+                <textarea
                     id={id}
                     data-testid={testid}
                     disabled={disabled}
                     value={value}
+                    rows={rows}
                     {...(onChange && {
                         onChange: (e) =>
                             onChange(
@@ -71,4 +78,4 @@ const InputText = ({
     );
 };
 
-export default InputText;
+export default Textarea;
