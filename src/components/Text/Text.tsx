@@ -2,19 +2,19 @@
  * @author Anna Mikhailova <amikhailova@usetech.com>
  */
 
-import React, { FC } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import './Text.scss';
 
 interface ITextProps {
-    children: string;
+    children: string | number;
     size?: 'xs' | 's' | 'm' | 'l';
     weight?: 'regular' | 'medium';
     color?: string;
     className?: string;
 }
 
-const Text: FC<ITextProps> = ({
+const Text = ({
     children,
     size = 'm',
     weight = 'regular',
