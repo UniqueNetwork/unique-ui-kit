@@ -9,4 +9,4 @@ ReactDOM.render(
     document.getElementById('root')
 );
 
-console.log('Test');
+console.log('Test 2');
