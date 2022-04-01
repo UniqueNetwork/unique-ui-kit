@@ -16,10 +16,9 @@ jobs:
           cache-name: cache-node-modules
         with:
           path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            npm-${{ hashFiles('package-lock.json') }}
-            npm-
+            ${{ runner.os }}-node-
 
       - name: Install Dependencies
         run: npm ci
