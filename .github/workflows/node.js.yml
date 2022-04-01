@@ -2,7 +2,7 @@ name: Tests ui-kit
 
 on:
   pull_request:
-    types: [opened, reopened]
+    types: [opened, reopened, edited]
 
 jobs:
   build:
