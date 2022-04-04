@@ -17,7 +17,8 @@ const Button: FC<ButtonProps> = ({
     className,
     iconLeft,
     iconRight,
-    onClick
+    onClick,
+    type = 'button'
 }: ButtonProps) => {
     const icon = iconLeft || iconRight;
     return (
@@ -36,6 +37,7 @@ const Button: FC<ButtonProps> = ({
                 }
             )}
             onClick={onClick}
+            type={type}
         >
             {title}
             {icon && <Icon {...icon} />}
