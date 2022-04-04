@@ -86,7 +86,7 @@ it('defaultValue prop check', () => {
     render(
         <Select
             options={options}
-            defaultValue={options[0].id}
+            defaultValue={options[0].id.toString()}
             placeholder="placeholder text test"
             onChange={mockFunction}
         />
@@ -99,7 +99,7 @@ it('mouse event check', async () => {
         <Select
             options={options}
             label="test label"
-            value={options[0].id}
+            value={options[0].id.toString()}
             onChange={mockFunction}
         />
     );
@@ -116,7 +116,7 @@ it('click option check', async () => {
         <Select
             options={options}
             label="test label"
-            value={options[0].id}
+            value={options[0].id.toString()}
             onChange={mockFunction}
         />
     );

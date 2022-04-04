@@ -12,10 +12,10 @@ it('role check', () => {
 
 it('size check', () => {
     const { container } = render(
-        <Button onClick={() => {}} title="button text" size="s" />
+        <Button onClick={() => {}} title="button text" size="small" />
     );
     expect(
-        getByText(container, 'button text').classList.contains('size-s')
+        getByText(container, 'button text').classList.contains('size-small')
     ).toBeTruthy();
 });
 

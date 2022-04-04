@@ -10,7 +10,8 @@
         "package": "npm --prefix ./package run build",
         "pack": "cd ./package && npm pack",
         "publish": "cd ./package && npm publish",
-        "test": "jest --coverage"
+        "test": "jest",
+        "test:coverage": "jest --coverage"
     },
     "keywords": [],
     "author": "",

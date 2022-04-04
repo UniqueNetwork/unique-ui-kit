@@ -8,7 +8,7 @@ import { Icon } from '../../components';
 import './Upload.scss';
 
 interface UploadProps {
-    onChange: (url: string, file: Blob) => void;
+    onChange?: (url: string, file: Blob) => void;
     className?: string;
     disabled?: boolean;
     type?: 'circle' | 'square';
@@ -25,7 +25,9 @@ const Upload: FC<UploadProps> = ({
     upload
 }: UploadProps) => {
     const inputFile = useRef<HTMLInputElement>(null);
-    const [selectedFile, setSelectedFile] = useState<Blob>(undefined);
+    const [selectedFile, setSelectedFile] = useState<Blob | undefined>(
+        undefined
+    );
 
     useEffect(() => {
         if (!upload) {
@@ -47,13 +49,13 @@ const Upload: FC<UploadProps> = ({
         }
 
         const objectUrl = URL.createObjectURL(selectedFile);
-        onChange(objectUrl, selectedFile);
+        onChange?.(objectUrl, selectedFile);
 
         return () => URL.revokeObjectURL(objectUrl);
     }, [selectedFile]);
 
     return (
-        <div className={classNames("unique-upload", className)}>
+        <div className={classNames('unique-upload', className)}>
             {selectedFile ? (
                 <div className={classNames('preview', type)}>
                     <img
@@ -72,7 +74,7 @@ const Upload: FC<UploadProps> = ({
                 <div
                     className={classNames('upload', type, { disabled })}
                     onClick={() => {
-                        inputFile.current.click();
+                        inputFile.current?.click();
                     }}
                 >
                     <Icon name="file-arrow-up" size={38} />
