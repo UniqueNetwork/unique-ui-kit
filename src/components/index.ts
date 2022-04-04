@@ -15,4 +15,5 @@ export { default as Table } from './Table/Table';
 export { default as Tabs } from './Tabs/Tabs';
 export { default as Text } from './Text/Text';
 export { default as Toggle } from './Toggle/Toggle';
+export { default as Stepper } from './Stepper/Stepper';
 export { default as Textarea } from './Textarea/Textarea';

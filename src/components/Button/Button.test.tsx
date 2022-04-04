@@ -11,14 +11,14 @@ describe('Button component', () => {
         ).toBeTruthy();
     });
 
-    it('size check', () => {
-        const { container } = render(
-            <Button onClick={() => {}} title="button text" size="small" />
-        );
-        expect(
-            getByText(container, 'button text').classList.contains('size-small')
-        ).toBeTruthy();
-    });
+it('size check', () => {
+    const { container } = render(
+        <Button onClick={() => {}} title="button text" size="small" />
+    );
+    expect(
+        getByText(container, 'button text').classList.contains('size-small')
+    ).toBeTruthy();
+});
 
     it('icon check', () => {
         const { container } = render(

@@ -102,7 +102,7 @@ const CollectionCard: FC<ICollectionCardProps> = ({
                 <div className="collection-links">
                     {links.map((link, index) => (
                         <Button
-                            size="s"
+                            size="small"
                             key={index}
                             title={link.title}
                             onClick={link.onClick}
