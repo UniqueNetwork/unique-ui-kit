@@ -2,8 +2,7 @@
  * @author Sergey Kozlov <skozlov@usetech.com>
  */
 import classNames from 'classnames';
-import { Icon } from '..';
-import { ComponentProps, SelectOptionProps, InputPropsBase } from '../../types';
+import { ComponentProps, InputPropsBase } from '../../types';
 import './Textarea.scss';
 
 interface TextareaPropsBase extends InputPropsBase {
@@ -23,16 +22,12 @@ const Textarea = ({
     error,
     disabled,
     value = '',
-    iconLeft,
-    iconRight,
     onChange,
     testid,
-    role,
     size = 'middle',
     rows = 3,
     ...rest
 }: TextareaProps) => {
-    const icon = iconLeft || iconRight;
     return (
         <div
             className={classNames(
@@ -48,10 +43,7 @@ const Textarea = ({
             )}
             <div
                 className={classNames('textarea-wrapper', {
-                    'with-icon': icon,
-                    'to-left': iconLeft,
-                    'to-right': iconRight,
-                    disabled
+                    disabled,
                 })}
             >
                 <textarea
@@ -61,17 +53,10 @@ const Textarea = ({
                     value={value}
                     rows={rows}
                     {...(onChange && {
-                        onChange: (e) =>
-                            onChange(
-                                e.target.value.replace(
-                                    role === 'number' ? /\D/g : /[]/,
-                                    ''
-                                )
-                            )
+                        onChange: (e) => onChange(e.target.value),
                     })}
                     {...rest}
                 />
-                {icon && <Icon {...icon} />}
             </div>
             {statusText && <div className="status-text">{statusText}</div>}
         </div>

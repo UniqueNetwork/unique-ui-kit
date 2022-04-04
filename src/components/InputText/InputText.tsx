@@ -3,10 +3,15 @@
  */
 import classNames from 'classnames';
 import { Icon } from '..';
-import { ComponentProps, InputPropsBase } from '../../types';
+import { ComponentProps, IconProps, InputPropsBase } from '../../types';
 import './InputText.scss';
 
-export type InputTextProps = InputPropsBase & Omit<ComponentProps, 'onChange'>;
+export type InputTextProps = InputPropsBase &
+    Omit<ComponentProps, 'onChange'> & {
+        iconLeft?: IconProps;
+        iconRight?: IconProps;
+        role?: 'number' | 'decimal';
+    };
 
 const InputText = ({
     id,
@@ -44,7 +49,7 @@ const InputText = ({
                     'with-icon': icon,
                     'to-left': iconLeft,
                     'to-right': iconRight,
-                    disabled
+                    disabled,
                 })}
             >
                 <input
@@ -60,7 +65,7 @@ const InputText = ({
                                     role === 'number' ? /\D/g : /[]/,
                                     ''
                                 )
-                            )
+                            ),
                     })}
                     {...rest}
                 />

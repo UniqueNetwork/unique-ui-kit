@@ -87,25 +87,6 @@
                 color: var(--color-grey-400);
             }
         }
-
-        &.with-icon {
-            svg {
-                position: relative;
-                margin: 0 10px;
-            }
-            &.to-right {
-                flex-direction: row;
-                textarea {
-                    padding: 11px 0px 11px 12px;
-                }
-            }
-            &.to-left {
-                flex-direction: row-reverse;
-                textarea {
-                    padding: 11px 12px 11px 0px;
-                }
-            }
-        }
     }
 
     &.size-middle {

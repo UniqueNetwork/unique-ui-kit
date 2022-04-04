@@ -19,25 +19,6 @@ describe('Textarea Component', () => {
         expect(screen.queryByText('test additionalText')).toBeTruthy();
     });
 
-    it('icon check', () => {
-        const { container } = render(
-            <Textarea
-                iconLeft={{
-                    name: 'magnify',
-                    size: 18,
-                    color: 'var(--color-blue-grey-300)'
-                }}
-                iconRight={{
-                    name: 'magnify',
-                    size: 18,
-                    color: 'var(--color-blue-grey-300)'
-                }}
-                onChange={mockFunction}
-            />
-        );
-        expect(container.getElementsByClassName('icon-magnify')).toBeDefined();
-    });
-
     it('status check', () => {
         render(<Textarea statusText="status test" onChange={mockFunction} />);
         expect(screen.queryByText('status test')).toBeTruthy();

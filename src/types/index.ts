@@ -87,9 +87,6 @@ export interface InputPropsBase {
     error?: boolean;
     label?: string;
     statusText?: string;
-    iconLeft?: IconProps;
-    iconRight?: IconProps;
-    role?: 'number' | 'decimal';
     size?: DimentionType;
     onChange?(value: string): void;
 }
