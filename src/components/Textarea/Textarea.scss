@@ -85,6 +85,7 @@
             background: none;
             &::placeholder {
                 color: var(--color-grey-400);
+                font-family: var(--prop-font-family);
             }
         }
     }
