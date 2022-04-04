@@ -37,7 +37,7 @@ Default.args = {
             title: 'Create token',
             appearance: {
                 role: 'primary',
-                size: 's'
+                size: 'small'
             },
             onClick: () => console.log('Create token')
         },
@@ -45,7 +45,7 @@ Default.args = {
             title: 'Burn',
             appearance: {
                 role: 'danger',
-                size: 's',
+                size: 'small',
                 iconLeft: {
                     name: 'burn',
                     size: 15,
@@ -84,7 +84,7 @@ DefaultNoPreview.args = {
             title: 'Create token',
             appearance: {
                 role: 'primary',
-                size: 's'
+                size: 'small'
             },
             onClick: () => console.log('Create token')
         },
@@ -92,7 +92,7 @@ DefaultNoPreview.args = {
             title: 'Burn',
             appearance: {
                 role: 'danger',
-                size: 's',
+                size: 'small',
                 iconLeft: {
                     name: 'burn',
                     size: 15,
@@ -132,7 +132,7 @@ DefaultNoDescription.args = {
             title: 'Create token',
             appearance: {
                 role: 'primary',
-                size: 's'
+                size: 'small'
             },
             onClick: () => console.log('Create token')
         },
@@ -140,7 +140,7 @@ DefaultNoDescription.args = {
             title: 'Burn',
             appearance: {
                 role: 'danger',
-                size: 's',
+                size: 'small',
                 iconLeft: {
                     name: 'burn',
                     size: 15,
@@ -178,7 +178,7 @@ DefaultMinimal.args = {
             title: 'Create token',
             appearance: {
                 role: 'primary',
-                size: 's'
+                size: 'small'
             },
             onClick: () => console.log('Create token')
         },
@@ -186,7 +186,7 @@ DefaultMinimal.args = {
             title: 'Burn',
             appearance: {
                 role: 'danger',
-                size: 's',
+                size: 'small',
                 iconLeft: {
                     name: 'burn',
                     size: 15,

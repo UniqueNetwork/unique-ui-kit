@@ -1,0 +1,67 @@
+@import '../../assets/styles/index.scss';
+
+.unique-upload {
+    input[type='file'] {
+        display: none;
+    }
+    .upload,
+    .preview {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--color-additional-light);
+        border: 1px dashed var(--color-primary-500);
+        cursor: pointer;
+        &.circle .image,
+        &.square .image {
+            object-fit: contain;
+        }
+        &.circle {
+            width: 118px;
+            height: 118px;
+            border-radius: 100px;
+            .image {
+                border-radius: 100px;
+                height: 102px;
+                width: 102px;
+            }
+        }
+        &.square {
+            width: 176px;
+            height: 176px;
+            border-radius: var(--prop-border-radius);
+            .image {
+                border-radius: var(--prop-border-radius);
+                height: 160px;
+                width: 160px;
+            }
+        }
+        &:hover {
+            background-color: var(--color-primary-100);
+        }
+        &.disabled {
+            cursor: not-allowed;
+            border-color: var(--color-blue-grey-300);
+            svg {
+                fill: var(--color-blue-grey-300);
+            }
+            &:hover {
+                background-color: unset;
+            }
+        }
+    }
+    .upload {
+        .icon {
+            fill: var(--color-primary-500);
+        }
+    }
+    .preview {
+        .icon {
+            position: absolute;
+            top: 0;
+            right: -21px;
+            fill: var(--color-blue-grey-400);
+        }
+    }
+}

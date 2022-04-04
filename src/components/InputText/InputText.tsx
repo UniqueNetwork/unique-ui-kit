@@ -1,27 +1,19 @@
 /**
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
-
-import React, { ChangeEvent, FC } from 'react';
 import classNames from 'classnames';
 import { Icon } from '..';
-import { ComponentProps, DimentionType, IconProps } from '../../types';
+import { ComponentProps, IconProps, InputPropsBase } from '../../types';
 import './InputText.scss';
 
-export interface InputTextProps extends ComponentProps {
-    additionalText?: string;
-    error?: boolean;
-    label?: string;
-    statusText?: string;
-    iconLeft?: IconProps;
-    iconRight?: IconProps;
-    value?: string;
-    defaultValue?: string;
-    role?: 'number' | 'decimal';
-    size?: DimentionType;
-}
+export type InputTextProps = InputPropsBase &
+    Omit<ComponentProps, 'onChange'> & {
+        iconLeft?: IconProps;
+        iconRight?: IconProps;
+        role?: 'number' | 'decimal';
+    };
 
-const InputText: FC<InputTextProps> = ({
+const InputText = ({
     id,
     label,
     additionalText,
@@ -57,23 +49,23 @@ const InputText: FC<InputTextProps> = ({
                     'with-icon': icon,
                     'to-left': iconLeft,
                     'to-right': iconRight,
-                    disabled
+                    disabled,
                 })}
             >
                 <input
-                    type="text"
+                    type={'text'}
                     id={id}
                     data-testid={testid}
                     disabled={disabled}
                     value={value}
                     {...(onChange && {
-                        onChange: (e: ChangeEvent<HTMLInputElement>) =>
+                        onChange: (e) =>
                             onChange(
                                 e.target.value.replace(
-                                    role === 'number' ? /[^0-9.]/g : /[]/,
+                                    role === 'number' ? /\D/g : /[]/,
                                     ''
                                 )
-                            )
+                            ),
                     })}
                     {...rest}
                 />
