@@ -1,4 +1,4 @@
-.stepper-main {
+.unique-stepper {
     position: relative;
 
     .steps {
@@ -82,7 +82,7 @@
 }
 
 @media (max-width: 1023px) {
-    .stepper-main {
+    .unique-stepper {
         .step-description-wrapper {
             display: none;
         }

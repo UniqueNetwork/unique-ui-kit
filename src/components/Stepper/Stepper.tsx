@@ -3,18 +3,18 @@
  */
 
 import React, { Fragment } from 'react';
+import { StepperItem } from './StepperItem';
 
 import './Stepper.scss';
-import { StepperItem } from './StepperItem';
 
 export type TBaseStepperProps = {
     activeStep: number;
     steps: string[];
 };
 
-function Stepper({ activeStep, steps }: TBaseStepperProps) {
+const Stepper = ({ activeStep, steps }: TBaseStepperProps) => {
     return (
-        <div className="stepper-main">
+        <div className="unique-stepper">
             <div className="steps">
                 {steps.map((description, index) => {
                     const step = index + 1;
@@ -31,6 +31,6 @@ function Stepper({ activeStep, steps }: TBaseStepperProps) {
             </div>
         </div>
     );
-}
+};
 
 export default Stepper;
