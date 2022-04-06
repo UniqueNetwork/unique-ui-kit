@@ -1,10 +1,10 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import nft7 from '../assets/static/nft-7.png';
-import { Upload } from '../widgets';
+import { Upload } from '../components';
 
 export default {
-    title: 'Widgets/Upload',
-    component: Upload
+    title: 'Components/Upload',
+    component: Upload,
 } as ComponentMeta<typeof Upload>;
 
 const Template: ComponentStory<typeof Upload> = (args) => {
@@ -26,7 +26,7 @@ Default.args = {};
 export const DefaultWithPreload = Template.bind({});
 
 DefaultWithPreload.args = {
-    upload: nft7
+    upload: nft7,
 };
 
 DefaultWithPreload.storyName = 'Default w/o preload';
@@ -34,7 +34,7 @@ DefaultWithPreload.storyName = 'Default w/o preload';
 export const SquareView = Template.bind({});
 
 SquareView.args = {
-    type: 'square'
+    type: 'square',
 };
 
 SquareView.storyName = 'Square';
@@ -42,7 +42,7 @@ SquareView.storyName = 'Square';
 export const Disabled = Template.bind({});
 
 Disabled.args = {
-    disabled: true
+    disabled: true,
 };
 
 Disabled.storyName = 'Default w/o disabled';
