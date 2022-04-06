@@ -3,8 +3,9 @@
  */
 
 import classNames from 'classnames';
-import React, { FC, useEffect, useRef, useState } from 'react';
-import { Icon } from '../../components';
+import { FC, useEffect, useRef, useState } from 'react';
+import { Icon } from '../';
+
 import './Upload.scss';
 
 interface UploadProps {
@@ -22,12 +23,11 @@ const Upload: FC<UploadProps> = ({
     type = 'circle',
     accept = 'image/*',
     disabled = false,
-    upload
+    upload,
 }: UploadProps) => {
     const inputFile = useRef<HTMLInputElement>(null);
-    const [selectedFile, setSelectedFile] = useState<Blob | undefined>(
-        undefined
-    );
+    const [selectedFile, setSelectedFile] =
+        useState<Blob | undefined>(undefined);
 
     useEffect(() => {
         if (!upload) {
