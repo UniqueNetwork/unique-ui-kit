@@ -5,7 +5,7 @@
 import React, { FC, useState } from 'react';
 import classNames from 'classnames';
 import { Icon } from '..';
-import { sortData } from '../../utils';
+import { getDeepValue, sortData } from '../../utils';
 import { SortQuery, TableProps, TableRow } from '../../types';
 import { SORT_MODES } from '../../constants';
 import './Table.scss';
@@ -13,7 +13,7 @@ import './Table.scss';
 const Table: FC<TableProps> = ({ columns, data, onSort }: TableProps) => {
     const [sortQuery, setSortQuery] = useState<SortQuery>({
         field: '',
-        mode: 0
+        mode: 0,
     });
     const sortedData: TableRow[] = onSort
         ? data
@@ -33,7 +33,7 @@ const Table: FC<TableProps> = ({ columns, data, onSort }: TableProps) => {
                         field,
                         iconLeft,
                         iconRight,
-                        isSortable
+                        isSortable,
                     }) => {
                         const hasIcon = iconLeft || iconRight;
                         const isQueryField = field === sortQuery.field;
@@ -45,7 +45,7 @@ const Table: FC<TableProps> = ({ columns, data, onSort }: TableProps) => {
                                     'to-left': iconLeft,
                                     'to-right': iconRight || isSortable,
                                     sortable: isSortable,
-                                    active: isQueryField && !isInitialMode
+                                    active: isQueryField && !isInitialMode,
                                 })}
                                 key={field}
                                 style={{ width: `calc(${width} - 32px)` }}
@@ -59,7 +59,7 @@ const Table: FC<TableProps> = ({ columns, data, onSort }: TableProps) => {
                                                 field,
                                                 mode: isQueryField
                                                     ? (sortQuery.mode + 1) % 3
-                                                    : 1
+                                                    : 1,
                                             };
                                             setSortQuery(columnQuery);
                                             onSort?.(columnQuery);
@@ -90,12 +90,12 @@ const Table: FC<TableProps> = ({ columns, data, onSort }: TableProps) => {
                             <div
                                 key={column.field}
                                 style={{
-                                    width: `calc(${column.width} - 32px)`
+                                    width: `calc(${column.width} - 32px)`,
                                 }}
                             >
-                                {column.render
-                                    ? column.render(row[column.field])
-                                    : row[column.field]}
+                                {column.render?.(
+                                    getDeepValue(row, column.field)
+                                ) || getDeepValue(row, column.field)}
                             </div>
                         ))}
                     </div>
