@@ -40,6 +40,10 @@ export interface BreadcrumbsProps {
 export interface TableColumnProps {
     title: string;
     width: string;
+    /*
+     * Key in object up to required value.
+     * Can be compound (key.subkey.value).
+     */
     field: string;
     iconLeft?: IconProps;
     iconRight?: IconProps;
