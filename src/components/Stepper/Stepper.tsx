@@ -10,7 +10,7 @@ import './Stepper.scss';
 export type TBaseStepperProps = {
     activeStep: number;
     steps: string[];
-    onClickStep?(activeStep: number): void;
+    onClickStep?(step: number): void;
 };
 
 const Stepper = ({ activeStep, steps, onClickStep }: TBaseStepperProps) => {
