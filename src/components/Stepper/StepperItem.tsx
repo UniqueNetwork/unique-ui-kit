@@ -1,7 +1,9 @@
 import Text from '../Text/Text';
 import { Fragment } from 'react';
+import { TBaseStepperProps } from './Stepper';
+import classNames from 'classnames';
 
-type StepperItemProps = {
+type StepperItemProps = Pick<TBaseStepperProps, 'onClickStep'> & {
     description: string;
     isActive: boolean;
     step: number;
@@ -13,10 +15,15 @@ export const StepperItem = ({
     isActive,
     step,
     isItem,
+    onClickStep,
 }: StepperItemProps) => {
+    const handleClickStep = () => {
+        onClickStep?.(step);
+    };
+
     const stepperItem = (
-        <div className={`step-item ${isActive ? 'active' : 'inactive'}`}>
-            <div className={'step-content'}>
+        <div className={classNames('step-item', { active: isActive })}>
+            <div className={'step-content'} onClick={handleClickStep}>
                 <Text
                     color={'color-additional-light'}
                     weight="medium"

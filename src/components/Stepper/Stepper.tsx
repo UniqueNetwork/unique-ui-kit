@@ -10,9 +10,10 @@ import './Stepper.scss';
 export type TBaseStepperProps = {
     activeStep: number;
     steps: string[];
+    onClickStep?(step: number): void;
 };
 
-const Stepper = ({ activeStep, steps }: TBaseStepperProps) => {
+const Stepper = ({ activeStep, steps, onClickStep }: TBaseStepperProps) => {
     return (
         <div className="unique-stepper">
             <div className="steps">
@@ -25,6 +26,7 @@ const Stepper = ({ activeStep, steps }: TBaseStepperProps) => {
                             description={description}
                             isActive={activeStep === step}
                             isItem={steps.length === 2 && index === 0}
+                            onClickStep={onClickStep}
                         />
                     );
                 })}
