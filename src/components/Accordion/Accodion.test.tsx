@@ -10,7 +10,7 @@ describe('Accordion component', () => {
         );
         expect(getByText(/title/gi)).toBeInTheDocument();
         expect(container.querySelector('.unique-accordion')).not.toHaveClass(
-            'visible'
+            'expanded'
         );
     });
 
@@ -25,7 +25,7 @@ describe('Accordion component', () => {
 
         expect(getByText(/title/gi)).toBeInTheDocument();
         expect(container.querySelector('.unique-accordion')).toHaveClass(
-            'visible'
+            'expanded'
         );
     });
 
@@ -39,13 +39,13 @@ describe('Accordion component', () => {
         expect(getByText(/title/gi)).toBeInTheDocument();
         expect(
             container.querySelector('.unique-accordion') as HTMLElement
-        ).toHaveClass('visible');
+        ).toHaveClass('expanded');
 
         await event.click(
             container.querySelector('.unique-accordion-title') as HTMLElement
         );
         expect(container.querySelector('.unique-accordion')).not.toHaveClass(
-            'visible'
+            'expanded'
         );
     });
 
