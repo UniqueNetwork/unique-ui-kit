@@ -25,6 +25,7 @@ const icons = [
     'pencil',
     'carret-right',
     'carret-left',
+    'carret-down',
     'close',
     'burn',
     'sorting-initial',

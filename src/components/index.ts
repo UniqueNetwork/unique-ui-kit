@@ -18,3 +18,4 @@ export { default as Toggle } from './Toggle/Toggle';
 export { default as Stepper } from './Stepper/Stepper';
 export { default as Textarea } from './Textarea/Textarea';
 export { default as Upload } from './Upload/Upload';
+export { default as Accordion } from './Accordion/Accordion';
