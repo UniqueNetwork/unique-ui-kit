@@ -27,13 +27,7 @@ const Accordion = ({
 
     return (
         <div
-            className={classNames(
-                'unique-accordion',
-                {
-                    visible: expanded,
-                },
-                className
-            )}
+            className={classNames('unique-accordion', { expanded }, className)}
         >
             <div
                 className={'unique-accordion-title'}
