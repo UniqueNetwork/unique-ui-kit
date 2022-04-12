@@ -1,7 +1,6 @@
 @import '../../assets/styles/index.scss';
 
 .unique-input-text {
-    font-family: var(--prop-font-family);
     font-size: var(--prop-font-size);
     font-weight: var(--prop-font-weight);
     position: relative;
@@ -79,9 +78,9 @@
             width: calc(100% - 24px);
             border: none;
             background: none;
+            font-family: var(--prop-font-family);
             &::placeholder {
                 color: var(--color-grey-400);
-                font-family: var(--prop-font-family);
             }
         }
 
