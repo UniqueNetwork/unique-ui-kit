@@ -60,10 +60,6 @@
         display: flex;
         align-items: center;
 
-        textarea {
-            resize: none;
-        }
-
         &:focus-within {
             border: 1px solid var(--color-grey-400);
         }
@@ -83,9 +79,10 @@
             width: calc(100% - 24px);
             border: none;
             background: none;
+            font-family: var(--prop-font-family);
+            resize: none;
             &::placeholder {
                 color: var(--color-grey-400);
-                font-family: var(--prop-font-family);
             }
         }
     }
