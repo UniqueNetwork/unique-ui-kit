@@ -4,7 +4,7 @@ import { Checkbox } from '../components';
 
 export default {
     title: 'Components/Checkbox',
-    component: Checkbox
+    component: Checkbox,
 } as ComponentMeta<typeof Checkbox>;
 
 const Template: ComponentStory<typeof Checkbox> = (args) => {
@@ -16,7 +16,7 @@ export const Default = Template.bind({});
 
 Default.args = {
     label: 'Label',
-    size: 's'
+    size: 's',
 };
 
 Default.storyName = 'Default';
@@ -25,7 +25,7 @@ export const Checked = Template.bind({});
 
 Checked.args = {
     label: 'Label',
-    checked: true
+    checked: true,
 };
 
 Checked.storyName = 'Default w/ checked';
@@ -35,7 +35,33 @@ export const Disable = Template.bind({});
 Disable.args = {
     label: 'Label',
     checked: true,
-    disabled: true
+    disabled: true,
 };
 
 Disable.storyName = 'Default w/ disable';
+
+export const IconLeft = Template.bind({});
+
+IconLeft.args = {
+    label: 'Icon checkbox',
+    checked: true,
+    iconLeft: {
+        name: 'question',
+        size: 15,
+    },
+};
+
+IconLeft.storyName = 'Icon Left';
+
+export const IconRight = Template.bind({});
+
+IconRight.args = {
+    label: 'Icon checkbox',
+    checked: true,
+    iconRight: {
+        name: 'question',
+        size: 15,
+    },
+};
+
+IconRight.storyName = 'Icon Right';
