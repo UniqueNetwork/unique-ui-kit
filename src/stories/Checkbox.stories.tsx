@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Checkbox } from '../components';
+import nftImg from '../assets/static/nft-1.png';
 
 export default {
     title: 'Components/Checkbox',
@@ -40,28 +41,52 @@ Disable.args = {
 
 Disable.storyName = 'Default w/ disable';
 
-export const IconLeft = Template.bind({});
+export const IconStatic: ComponentStory<typeof Checkbox> = (args) => (
+    <div style={{ width: '120px' }}>
+        <Checkbox {...args} />
+    </div>
+);
 
-IconLeft.args = {
+IconStatic.args = {
     label: 'Icon checkbox',
     checked: true,
     iconLeft: {
-        name: 'question',
-        size: 15,
+        size: 22,
+        file: nftImg,
     },
 };
 
-IconLeft.storyName = 'Default w/ icon left';
+IconStatic.storyName = 'Default w/ icon static';
 
-export const IconRight = Template.bind({});
+export const IconSvg = Template.bind({});
 
-IconRight.args = {
+IconSvg.args = {
     label: 'Icon checkbox',
     checked: true,
     iconRight: {
-        name: 'question',
         size: 15,
+        name: 'badge-nft',
     },
 };
 
-IconRight.storyName = 'Default w/ icon right';
+IconSvg.storyName = 'Default w/ icon svg';
+
+export const SizeSmall = Template.bind({});
+
+SizeSmall.args = {
+    label: 'Checkbox small',
+    checked: true,
+    size: 's',
+};
+
+SizeSmall.storyName = 'Default w/ size small';
+
+export const SizeMiddle = Template.bind({});
+
+SizeMiddle.args = {
+    label: 'Checkbox middle',
+    checked: true,
+    size: 'm',
+};
+
+SizeMiddle.storyName = 'Default w/ size middle';
