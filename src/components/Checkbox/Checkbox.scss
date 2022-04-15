@@ -7,7 +7,7 @@
     position: relative;
     display: flex;
     cursor: pointer;
-    align-items: center;
+    align-items: flex-start;
 
     input {
         display: none;
@@ -32,11 +32,16 @@
     }
 
     label {
-        display: block;
+        display: flex;
         font-size: var(--prop-font-size);
         font-weight: var(--prop-font-weight);
         color: var(--color-secondary-500);
         cursor: pointer;
+        line-height: 22px;
+
+        span {
+            margin-top: 1px;
+        }
     }
 
     &.disabled {
@@ -73,6 +78,26 @@
                 font-size: 16px;
                 margin-left: 30px;
             }
+        }
+    }
+
+    .checkbox-label {
+        svg {
+            width: 22px;
+            height: 22px;
+        }
+    }
+
+    .icon-left {
+        svg {
+            margin-right: 2px;
+        }
+    }
+
+    .icon-right {
+        flex-direction: row-reverse;
+        svg {
+            margin-left: 2px;
         }
     }
 }
