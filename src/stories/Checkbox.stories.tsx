@@ -51,7 +51,7 @@ IconLeft.args = {
     },
 };
 
-IconLeft.storyName = 'Icon Left';
+IconLeft.storyName = 'Default w/ icon left';
 
 export const IconRight = Template.bind({});
 
@@ -64,4 +64,4 @@ IconRight.args = {
     },
 };
 
-IconRight.storyName = 'Icon Right';
+IconRight.storyName = 'Default w/ icon right';
