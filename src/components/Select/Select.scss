@@ -117,7 +117,8 @@
                     &.to-right {
                         flex-direction: row;
                         .icon-triangle,
-                        img {
+                        img,
+                        svg {
                             margin-left: 5px;
                         }
                     }
@@ -125,7 +126,8 @@
                         flex-direction: row-reverse;
                         justify-content: flex-end;
                         .icon-triangle,
-                        img {
+                        img,
+                        svg {
                             margin-right: 5px;
                         }
                     }
