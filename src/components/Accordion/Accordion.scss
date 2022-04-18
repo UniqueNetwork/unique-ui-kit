@@ -1,0 +1,32 @@
+.unique-accordion {
+    font-family: var(--prop-font-family);
+
+    .unique-accordion-content {
+        display: none;
+    }
+
+    .unique-accordion-icon {
+        display: inline-block;
+        margin-left: 10px;
+        line-height: 10px;
+    }
+
+    &.expanded {
+        .unique-accordion-icon {
+            transform: rotate(90deg);
+        }
+        .unique-accordion-content {
+            display: block;
+            padding: 10px 0;
+        }
+    }
+
+    .unique-accordion-title {
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        color: var(--color-secondary-400);
+        font-weight: 500;
+        font-size: 16px;
+    }
+}

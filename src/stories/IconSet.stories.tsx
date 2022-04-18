@@ -4,7 +4,7 @@ import { IconSet } from '../internals';
 
 export default {
     title: 'Design Tokens/Icons',
-    component: IconSet
+    component: IconSet,
 } as ComponentMeta<typeof IconSet>;
 
 const TemplatePallete: ComponentStory<typeof IconSet> = (args) => (
@@ -25,6 +25,7 @@ const icons = [
     'pencil',
     'carret-right',
     'carret-left',
+    'carret-down',
     'close',
     'burn',
     'sorting-initial',
@@ -41,11 +42,15 @@ const icons = [
     'social-github',
     'social-subsocial',
     'social-telegram',
-    'social-twitter'
+    'social-twitter',
+    'question',
+    'plus',
+    'minus',
+    'copy',
 ];
 
 Icon.args = {
-    icons
+    icons,
 };
 
 Icon.storyName = 'Base icons';

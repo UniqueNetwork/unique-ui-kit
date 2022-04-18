@@ -79,9 +79,9 @@
             width: calc(100% - 24px);
             border: none;
             background: none;
+            font-family: var(--prop-font-family);
             &::placeholder {
                 color: var(--color-grey-400);
-                font-family: var(--prop-font-family);
             }
         }
 

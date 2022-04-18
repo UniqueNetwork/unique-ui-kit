@@ -31,3 +31,21 @@ export const usePrevious = <T>(value: T): T => {
     }, [value]);
     return ref.current;
 };
+
+/*
+ * Gets the value at `path` of `object`.
+ * Alternative to lodash.get
+ *
+ * const object = { 'a': [{ 'b': { 'c': 3 } }] };
+ * get(object, 'a[0].b.c') => 3
+ * */
+export const getDeepValue = <T extends Record<string, any>>(
+    object: T,
+    path: string
+) =>
+    path
+        .split(/[\.\[\]\'\"]/)
+        .filter((p) => p)
+        .reduce((o, p) => {
+            return o ? o[p] : undefined;
+        }, object);
