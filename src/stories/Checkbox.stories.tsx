@@ -44,7 +44,7 @@ Disable.storyName = 'Default w/ disable';
 export const IconStatic: ComponentStory<typeof Checkbox> = (args) => {
     const [checked, setChecked] = useState(args.checked);
     return (
-        <div style={{ width: '150px' }}>
+        <div style={{ width: '300px' }}>
             <Checkbox {...args} checked={checked} onChange={setChecked} />
         </div>
     );
