@@ -41,14 +41,17 @@ Disable.args = {
 
 Disable.storyName = 'Default w/ disable';
 
-export const IconStatic: ComponentStory<typeof Checkbox> = (args) => (
-    <div style={{ width: '120px' }}>
-        <Checkbox {...args} />
-    </div>
-);
+export const IconStatic: ComponentStory<typeof Checkbox> = (args) => {
+    const [checked, setChecked] = useState(args.checked);
+    return (
+        <div style={{ width: '150px' }}>
+            <Checkbox {...args} checked={checked} onChange={setChecked} />
+        </div>
+    );
+};
 
 IconStatic.args = {
-    label: 'Icon checkbox',
+    label: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
     checked: true,
     iconLeft: {
         size: 22,
