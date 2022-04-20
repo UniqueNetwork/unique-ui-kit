@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Scrollbar } from '../components';
+import { Scrollbar, Text } from '../components';
 
 export default {
     title: 'Components/Scrollbar',
@@ -17,7 +17,7 @@ export const Default = Template.bind({});
 Default.args = {
     children: (
         <div style={{ padding: '10px' }}>
-            <p>
+            <Text>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
                 animi earum esse eveniet inventore iure maiores minima modi
                 natus rem, soluta tempora vel. Aspernatur atque, commodi
@@ -35,7 +35,7 @@ Default.args = {
                 impedit in ipsam natus nisi nulla omnis optio placeat
                 praesentium provident, quia quidem quisquam quos repellat sequi
                 sit soluta tempora tenetur totam unde veniam veritatis vero
-            </p>
+            </Text>
         </div>
     ),
 };
