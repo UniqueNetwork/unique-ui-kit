@@ -16,7 +16,7 @@ export const Default = Template.bind({});
 
 Default.args = {
     children: (
-        <div>
+        <div style={{ padding: '10px' }}>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
                 animi earum esse eveniet inventore iure maiores minima modi
