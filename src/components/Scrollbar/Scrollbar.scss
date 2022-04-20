@@ -1,0 +1,27 @@
+.unique-scrollbar {
+    .track-vertical,
+    .track-horizontal {
+        z-index: 100;
+        bottom: 0;
+        right: 0;
+    }
+
+    .track-vertical {
+        top: 0;
+    }
+
+    .track-horizontal {
+        left: 0;
+    }
+
+    .track-vertical,
+    .track-horizontal {
+        background-color: transparent;
+    }
+
+    .thumb-vertical,
+    .thumb-horizontal {
+        background-color: var(--color-grey-200);
+        border-radius: 8px;
+    }
+}

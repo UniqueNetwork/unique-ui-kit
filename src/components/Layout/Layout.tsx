@@ -2,7 +2,7 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import React, { FC, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { Breadcrumbs, Heading, Icon } from '../../components';
 import { BreadcrumbsProps } from '../../types';
 import Logo from '../../assets/svg/logo_explorer.svg';
@@ -16,12 +16,12 @@ interface LayoutProps {
     footer?: ReactNode;
 }
 
-const Layout: FC<LayoutProps> = ({
+const Layout = ({
     children,
     heading,
     breadcrumbs,
     header,
-    footer
+    footer,
 }: LayoutProps) => (
     <div className="unique-layout">
         <header>
@@ -34,6 +34,7 @@ const Layout: FC<LayoutProps> = ({
         <main>
             {heading && <Heading>{heading}</Heading>}
             {breadcrumbs && <Breadcrumbs {...breadcrumbs} />}
+
             <div className={'unique-layout__content'}>{children}</div>
         </main>
         <footer>
