@@ -1,0 +1,23 @@
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { TokenCard } from '../widgets';
+import collection from '../assets/static/nft-8.png';
+
+export default {
+    title: 'Widgets/TokenCard',
+    component: TokenCard,
+} as ComponentMeta<typeof TokenCard>;
+
+const Template: ComponentStory<typeof TokenCard> = (args) => (
+    <TokenCard {...args} />
+);
+
+export const Default = Template.bind({});
+
+Default.args = {
+    image: collection,
+    title: 'Chel #5498',
+    link: {
+        href: '#',
+        title: 'Chelobrick [id 3245]',
+    },
+};
