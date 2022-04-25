@@ -25,3 +25,9 @@
     font-size: var(--prop-font-size);
     font-weight: var(--prop-font-weight);
 }
+
+@media (max-width: 480px) {
+    .unique-tooltip {
+        max-width: 280px;
+    }
+}
