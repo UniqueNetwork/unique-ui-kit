@@ -1,2 +1,2 @@
 export { default as CollectionCard } from './CollectionCard/CollectionCard';
-export { default as TokenCard } from './TokenCard/TokenCard';
+export { default as TokenLink } from './TokenLink/TokenLink';

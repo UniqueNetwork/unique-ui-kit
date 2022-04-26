@@ -1,14 +1,14 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { TokenCard } from '../widgets';
+import { TokenLink } from '../widgets';
 import collection from '../assets/static/nft-8.png';
 
 export default {
-    title: 'Widgets/TokenCard',
-    component: TokenCard,
-} as ComponentMeta<typeof TokenCard>;
+    title: 'Widgets/TokenLink',
+    component: TokenLink,
+} as ComponentMeta<typeof TokenLink>;
 
-const Template: ComponentStory<typeof TokenCard> = (args) => (
-    <TokenCard {...args} />
+const Template: ComponentStory<typeof TokenLink> = (args) => (
+    <TokenLink {...args} />
 );
 
 export const Default = Template.bind({});
