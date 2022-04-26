@@ -1,0 +1,33 @@
+.unique-tooltip {
+    position: absolute;
+    padding: 8px 15px;
+    max-width: 400px;
+    box-sizing: border-box;
+    white-space: pre-line;
+    background-color: var(--color-secondary-500);
+    border-radius: 2px;
+    z-index: 50;
+    line-height: 22px;
+    color: var(--color-additional-light);
+
+    .arrow {
+        position: absolute;
+        background-color: var(--color-secondary-500);
+        width: 8px;
+        height: 8px;
+        transform: rotate(45deg);
+    }
+}
+
+.unique-tooltip-content,
+.unique-tooltip {
+    font-family: var(--prop-font-family);
+    font-size: var(--prop-font-size);
+    font-weight: var(--prop-font-weight);
+}
+
+@media (max-width: 480px) {
+    .unique-tooltip {
+        max-width: 280px;
+    }
+}
