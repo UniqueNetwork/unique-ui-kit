@@ -4,13 +4,14 @@
     font-family: var(--prop-font-family);
     font-size: var(--prop-font-size);
     font-weight: var(--prop-font-weight);
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     border-radius: var(--prop-border-radius);
     cursor: pointer;
     border-width: 1px;
     border-style: solid;
+    text-decoration: none;
 
     &.primary {
         background: var(--color-primary-500);
@@ -82,6 +83,12 @@
             border-color: var(--color-coral-600);
             color: var(--color-coral-600);
         }
+    }
+
+    &.ghost {
+        border: none;
+        background: none;
+        color: var(--color-blue-grey-500);
     }
 
     &.disabled,

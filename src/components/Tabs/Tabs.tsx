@@ -11,6 +11,7 @@ interface TabsProps {
     children?: JSX.Element[];
     labels?: string[];
     disabledIndexes?: number[];
+    type?: 'default' | 'slim';
     onClick?(activeIndex: number): void;
 }
 
@@ -19,12 +20,13 @@ const Tabs: FC<TabsProps> = ({
     labels,
     children,
     disabledIndexes,
-    onClick
+    type = 'default',
+    onClick,
 }: TabsProps) => (
     <div
-        className={classNames({
+        className={classNames(type, {
             'unique-tabs-labels': labels,
-            'unique-tabs-contents': children
+            'unique-tabs-contents': children,
         })}
     >
         {labels
@@ -36,11 +38,11 @@ const Tabs: FC<TabsProps> = ({
                           {...(!disabled && {
                               onClick: () => {
                                   onClick?.(index);
-                              }
+                              },
                           })}
                           className={classNames('tab-label', {
                               active: activeIndex === index,
-                              disabled
+                              disabled,
                           })}
                       >
                           {label}

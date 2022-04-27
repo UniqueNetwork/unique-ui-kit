@@ -17,12 +17,14 @@ const Button: FC<ButtonProps> = ({
     className,
     iconLeft,
     iconRight,
+    type = 'button',
+    link,
     onClick,
-    type = 'button'
 }: ButtonProps) => {
     const icon = iconLeft || iconRight;
+    const Button = link ? 'a' : 'button';
     return (
-        <button
+        <Button
             className={classNames(
                 'unique-button',
                 role,
@@ -33,7 +35,7 @@ const Button: FC<ButtonProps> = ({
                     wide,
                     'with-icon': icon,
                     'to-left': iconLeft,
-                    'to-right': iconRight
+                    'to-right': iconRight,
                 }
             )}
             onClick={onClick}
@@ -41,7 +43,7 @@ const Button: FC<ButtonProps> = ({
         >
             {title}
             {icon && <Icon {...icon} />}
-        </button>
+        </Button>
     );
 };
 

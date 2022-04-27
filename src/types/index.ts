@@ -71,12 +71,19 @@ export interface ButtonProps {
     title: string;
     disabled?: boolean;
     size?: DimentionType;
-    role?: 'primary' | 'secondary' | 'tertiary' | 'outlined' | 'danger';
+    role?:
+        | 'primary'
+        | 'secondary'
+        | 'tertiary'
+        | 'outlined'
+        | 'danger'
+        | 'ghost';
     type?: 'submit' | 'button';
     wide?: boolean;
     className?: string;
     iconLeft?: IconProps;
     iconRight?: IconProps;
+    link?: string;
     onClick?: () => void;
 }
 
