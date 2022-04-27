@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.0.14
+
+Changes:
+
+- Button component role ghost
+- Button component link prop
+
 ## 0.0.13 Apr 26, 2022
 
 Changes:

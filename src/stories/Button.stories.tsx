@@ -110,3 +110,15 @@ DangerWide.args = {
 };
 
 DangerWide.storyName = 'Danger wide w/ size Small';
+
+export const GhostSmall = Template.bind({});
+
+GhostSmall.args = {
+    title: 'back',
+    role: 'ghost',
+    size: 'small',
+    link: '#',
+    iconLeft: { name: 'arrow-left', size: 12, color: 'var(--color-grey-500)' }
+};
+
+GhostSmall.storyName = 'Ghost link w/ size Small';
