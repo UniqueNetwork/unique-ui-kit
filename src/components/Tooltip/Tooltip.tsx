@@ -1,3 +1,7 @@
+/**
+ * @author Sergey Kozlov <skozlov@usetech.com>
+ */
+
 import {
     cloneElement,
     ReactElement,

@@ -6,6 +6,7 @@ Changes:
 
 - Button component role ghost
 - Button component link prop
+- Tab component type slim
 
 ## 0.0.13 Apr 26, 2022
 
