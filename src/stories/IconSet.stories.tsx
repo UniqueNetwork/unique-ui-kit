@@ -47,6 +47,7 @@ const icons = [
     'plus',
     'minus',
     'copy',
+    'circle-close',
 ];
 
 Icon.args = {

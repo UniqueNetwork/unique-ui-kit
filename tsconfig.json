@@ -16,7 +16,8 @@
         "noEmit": true,
         "jsx": "react-jsx",
         "declaration": true,
-        "declarationDir": "types"
+        "declarationDir": "types",
+        "downlevelIteration": true
     },
     "include": ["./src/components", "./src/types"],
     "exclude": [

@@ -1,0 +1,51 @@
+.unique-suggestion {
+    font-family: var(--prop-font-family);
+    font-size: var(--prop-font-size);
+    font-weight: var(--prop-font-weight);
+    position: relative;
+    color: var(--color-additional-dark);
+
+    .dropped {
+        .icon-triangle {
+            transform: rotate(180deg);
+        }
+    }
+
+    .suggest-input {
+        position: relative;
+        display: inline-block;
+
+        .icon-clear {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            z-index: 2;
+
+            svg {
+                display: block;
+            }
+        }
+    }
+
+    .suggestion-values {
+        border: 1px solid var(--color-grey-300);
+        border-radius: 4px;
+        background: var(--color-additional-light);
+        box-sizing: border-box;
+        position: absolute;
+        z-index: 50;
+        top: calc(100% + 5px);
+        max-height: 250px;
+        overflow: auto;
+
+        &.empty {
+            height: auto;
+        }
+    }
+
+    .unique-input-text .input-wrapper.with-icon.to-right input {
+        padding-right: 30px;
+    }
+}
