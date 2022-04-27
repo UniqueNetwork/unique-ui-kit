@@ -106,3 +106,51 @@ Slim.args = {
 };
 
 Slim.storyName = 'Slim w/ intermediate';
+
+const MultipleContent: ComponentStory<typeof Tabs> = ({
+    activeIndex,
+    labels,
+    disabledIndexes,
+    type,
+}) => {
+    const [active, setActive] = useState(activeIndex);
+    return (
+        <>
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'baseline',
+                }}
+            >
+                <Tabs
+                    labels={labels}
+                    activeIndex={active}
+                    onClick={setActive}
+                    disabledIndexes={disabledIndexes}
+                    type={type}
+                />
+                <Tabs activeIndex={active}>
+                    <>Additional content 1</>
+                    <>Additional content 2</>
+                    <>Additional content 3</>
+                </Tabs>
+            </div>
+            <Tabs activeIndex={active}>
+                <>Main content 1</>
+                <>Main content 2</>
+                <>Main content 3</>
+            </Tabs>
+        </>
+    );
+};
+
+export const Multiple = MultipleContent.bind({});
+
+Multiple.args = {
+    activeIndex: 0,
+    type: 'slim',
+    labels: ['Label 1', 'Label 2', 'Label 3'],
+};
+
+Multiple.storyName = 'Slim w/ multiple content';
