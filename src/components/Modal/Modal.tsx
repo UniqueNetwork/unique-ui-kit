@@ -22,9 +22,9 @@ const Modal: FC<ModalProps> = ({
     isVisible ? (
         <div
             className="unique-modal-wrapper"
-            onClick={(event) =>
-                event.target == event.currentTarget && isClosable && onClose!()
-            }
+            onMouseDown={(event) => {
+              event.target == event.currentTarget && isClosable && onClose!()
+            }}
         >
             <div className="unique-modal">
                 {isClosable && (
