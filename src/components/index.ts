@@ -1,3 +1,5 @@
+export * from '../widgets';
+
 export { default as Avatar } from './Avatar/Avatar';
 export { default as Breadcrumbs } from './Breadcrumbs/Breadcrumbs';
 export { default as Button } from './Button/Button';
