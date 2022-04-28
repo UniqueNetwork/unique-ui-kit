@@ -16,13 +16,13 @@ export default [
             {
                 file: packageJson.main,
                 format: 'cjs',
-                sourcemap: true
+                sourcemap: true,
             },
             {
                 file: packageJson.module,
                 format: 'esm',
-                sourcemap: true
-            }
+                sourcemap: true,
+            },
         ],
         plugins: [
             external(),
@@ -33,15 +33,15 @@ export default [
             typescript({
                 tsconfig: '../tsconfig.json',
                 sourceMap: true,
-                inlineSources: true
+                inlineSources: true,
             }),
-            image()
-        ]
+            image(),
+        ],
     },
     {
-        input: ['dist/esm/components/index.d.ts'],
+        input: ['dist/esm/index.d.ts'],
         output: [{ file: 'dist/index.d.ts', format: 'esm' }],
         plugins: [dts()],
-        external: [/\.(css|less|scss)$/]
-    }
+        external: [/\.(css|less|scss)$/],
+    },
 ];
