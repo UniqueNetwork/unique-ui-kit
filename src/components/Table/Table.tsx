@@ -94,7 +94,6 @@ const Table: FC<TableProps> = ({ columns, data, onSort }: TableProps) => {
                                 }}
                             >
                                 {column.render?.(
-                                    getDeepValue(row, column.field),
                                     row
                                 ) || getDeepValue(row, column.field)}
                             </div>

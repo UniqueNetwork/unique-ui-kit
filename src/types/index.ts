@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEvent, ReactNode } from 'react';
+import {ChangeEvent, KeyboardEvent, MouseEventHandler, ReactNode} from 'react';
 
 export type DimentionType = 'small' | 'middle' | 'large';
 
@@ -48,7 +48,7 @@ export interface TableColumnProps {
     iconLeft?: IconProps;
     iconRight?: IconProps;
     isSortable?: boolean;
-    render?(data: any, row: any): ReactNode;
+    render?(data: any): ReactNode;
     compareFunc?: (a: any, b: any) => number;
 }
 
