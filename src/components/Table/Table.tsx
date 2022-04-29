@@ -34,7 +34,7 @@ const Table: FC<TableProps> = ({ columns, data, onSort }: TableProps) => {
                         iconLeft,
                         iconRight,
                         isSortable,
-                    }) => {
+                    }, index) => {
                         const hasIcon = iconLeft || iconRight;
                         const isQueryField = field === sortQuery.field;
                         const isInitialMode = sortQuery.mode === 0;
@@ -47,7 +47,7 @@ const Table: FC<TableProps> = ({ columns, data, onSort }: TableProps) => {
                                     sortable: isSortable,
                                     active: isQueryField && !isInitialMode,
                                 })}
-                                key={field}
+                                key={`${field}-${index}`}
                                 style={{ width: `calc(${width} - 32px)` }}
                             >
                                 {title}
@@ -86,15 +86,16 @@ const Table: FC<TableProps> = ({ columns, data, onSort }: TableProps) => {
             <div className="unique-table-data">
                 {sortedData.map((row, index) => (
                     <div className="unique-table-data-row" key={index}>
-                        {columns.map((column) => (
+                        {columns.map((column, columnIndex) => (
                             <div
-                                key={column.field}
+                                key={`${column.field}-${columnIndex}`}
                                 style={{
                                     width: `calc(${column.width} - 32px)`,
                                 }}
                             >
                                 {column.render?.(
-                                    getDeepValue(row, column.field)
+                                    getDeepValue(row, column.field),
+                                    row
                                 ) || getDeepValue(row, column.field)}
                             </div>
                         ))}
