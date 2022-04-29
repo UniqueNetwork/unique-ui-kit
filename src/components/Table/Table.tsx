@@ -34,7 +34,7 @@ const Table: FC<TableProps> = ({ columns, data, onSort }: TableProps) => {
                         iconLeft,
                         iconRight,
                         isSortable,
-                    }, index) => {
+                    }, columnIndex) => {
                         const hasIcon = iconLeft || iconRight;
                         const isQueryField = field === sortQuery.field;
                         const isInitialMode = sortQuery.mode === 0;
@@ -47,7 +47,7 @@ const Table: FC<TableProps> = ({ columns, data, onSort }: TableProps) => {
                                     sortable: isSortable,
                                     active: isQueryField && !isInitialMode,
                                 })}
-                                key={`${field}-${index}`}
+                                key={`${field}-${columnIndex}`}
                                 style={{ width: `calc(${width} - 32px)` }}
                             >
                                 {title}
@@ -94,6 +94,7 @@ const Table: FC<TableProps> = ({ columns, data, onSort }: TableProps) => {
                                 }}
                             >
                                 {column.render?.(
+                                    getDeepValue(row, column.field),
                                     row
                                 ) || getDeepValue(row, column.field)}
                             </div>

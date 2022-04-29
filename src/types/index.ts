@@ -48,7 +48,7 @@ export interface TableColumnProps {
     iconLeft?: IconProps;
     iconRight?: IconProps;
     isSortable?: boolean;
-    render?(data: any): ReactNode;
+    render?(data: any, row?: any): ReactNode;
     compareFunc?: (a: any, b: any) => number;
 }
 

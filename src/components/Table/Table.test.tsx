@@ -7,7 +7,7 @@ const columns = [
         title: 'Extrinsic',
         width: '20%',
         field: 'ext',
-        render: (data: any) => <Link {...data.ext} />
+        render: (data: any) => <Link {...data} />
     },
     {
         title: 'Age',
@@ -18,13 +18,13 @@ const columns = [
         title: 'From',
         width: '20%',
         field: 'from',
-        render: (data: any) => <Link {...data.from} />
+        render: (data: any) => <Link {...data} />
     },
     {
         title: 'To',
         width: '20%',
         field: 'to',
-        render: (data: any) => <Link {...data.to} />
+        render: (data: any) => <Link {...data} />
     },
     { title: 'Amount', width: '20%', field: 'amount' }
 ];
