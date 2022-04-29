@@ -1,8 +1,9 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { Link, Table } from '../components';
-import { SortQuery } from '../types';
+import { Icon, Link, Table, Text } from '../components';
+import { IconProps, SortQuery } from '../types';
 import { SORT_MODES } from '../constants';
+import avatar from '../assets/static/avatar.jpg';
 
 const columns = [
     {
@@ -166,3 +167,48 @@ DeepValueInTable.args = {
     ],
 };
 DeepValueInTable.storyName = 'Deep value in table';
+
+export const MultipleFieldsRenderTable = Template.bind({});
+
+MultipleFieldsRenderTable.args = {
+    columns: [
+        {
+            title: 'Account',
+            field: 'address',
+            width: '50%',
+            render: (address: string, rowData: { icon: IconProps, title: string }) => {
+                if(!rowData) return null;
+                return <div style={{ display: 'flex', alignItems: 'center', columnGap: '8px' }}>
+                    <Icon {...rowData?.icon} />
+                    <Text>{rowData.title}</Text>
+                    <Text color={'grey-500'}>{address}</Text>
+                </div>
+            }
+        },
+        { title: 'Balance', field: 'balance', width: '50%' },
+    ],
+    data: [
+        {
+            title: 'Default account: ',
+            address: 'ySDF1c...67KJLL',
+            icon: {
+                size: 24,
+                name: 'Account',
+                file: avatar
+            },
+            balance: '123.00 KSM'
+        },
+        {
+            title: 'One more account: ',
+            address: 'ySNM8...ks678',
+            icon: {
+                size: 24,
+                name: 'Account',
+                file: avatar
+            },
+            balance: '456.00 KSM'
+        },
+    ],
+};
+
+MultipleFieldsRenderTable.storyName = 'Render some fields of row in column';
