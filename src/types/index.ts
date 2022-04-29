@@ -1,4 +1,4 @@
-import {ChangeEvent, KeyboardEvent, MouseEventHandler, ReactNode} from 'react';
+import { ChangeEvent, KeyboardEvent, ReactNode } from 'react';
 
 export type DimentionType = 'small' | 'middle' | 'large';
 
