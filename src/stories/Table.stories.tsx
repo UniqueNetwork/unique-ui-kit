@@ -166,7 +166,7 @@ DeepValueInTable.args = {
         },
     ],
 };
-DeepValueInTable.storyName = 'Deep value in table';
+DeepValueInTable.storyName = 'Cell deep value';
 
 export const MultipleFieldsRenderTable = Template.bind({});
 
@@ -211,4 +211,4 @@ MultipleFieldsRenderTable.args = {
     ],
 };
 
-MultipleFieldsRenderTable.storyName = 'Render some fields of row in column';
+MultipleFieldsRenderTable.storyName = 'Cell multiple fields';
