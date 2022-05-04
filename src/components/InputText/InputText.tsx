@@ -5,12 +5,14 @@ import classNames from 'classnames';
 import { Icon } from '..';
 import { ComponentProps, IconProps, InputPropsBase } from '../../types';
 import './InputText.scss';
-import { ForwardedRef, forwardRef } from 'react';
+import { ForwardedRef, forwardRef, ReactNode, isValidElement } from 'react';
+
+type IconType = IconProps | ReactNode;
 
 export type InputTextProps = InputPropsBase &
     Omit<ComponentProps, 'onChange'> & {
-        iconLeft?: IconProps;
-        iconRight?: IconProps;
+        iconLeft?: IconType;
+        iconRight?: IconType;
         role?: 'number' | 'decimal';
     };
 
@@ -34,51 +36,59 @@ const InputText = forwardRef(
             ...rest
         }: InputTextProps,
         ref: ForwardedRef<HTMLInputElement>
-    ) => (
-        <div
-            className={classNames(
-                'unique-input-text',
-                `size-${size}`,
-                className,
-                { error }
-            )}
-        >
-            {label && <label htmlFor={id}>{label}</label>}
-            {additionalText && (
-                <div className="additional-text">{additionalText}</div>
-            )}
+    ) => {
+        const userIcon = (icon: IconType) =>
+            isValidElement(icon)
+                ? icon
+                : icon && <Icon {...(icon as IconProps)} />;
+
+        return (
             <div
-                className={classNames('input-wrapper', {
-                    'with-icon': iconLeft || iconRight,
-                    'to-left': iconLeft,
-                    'to-right': iconRight,
-                    disabled,
-                })}
+                className={classNames(
+                    'unique-input-text',
+                    `size-${size}`,
+                    className,
+                    { error }
+                )}
             >
-                {iconLeft && <Icon {...iconLeft} />}
-                <input
-                    type={'text'}
-                    id={id}
-                    data-testid={testid}
-                    disabled={disabled}
-                    value={value}
-                    ref={ref}
-                    {...(onChange && {
-                        onChange: (e) =>
-                            onChange(
-                                e.target.value.replace(
-                                    role === 'number' ? /\D/g : /[]/,
-                                    ''
-                                )
-                            ),
+                {label && <label htmlFor={id}>{label}</label>}
+                {additionalText && (
+                    <div className="additional-text">{additionalText}</div>
+                )}
+
+                <div
+                    className={classNames('input-wrapper', {
+                        'with-icon': iconLeft || iconRight,
+                        'to-left': iconLeft,
+                        'to-right': iconRight,
+                        disabled,
                     })}
-                    {...rest}
-                />
-                {iconRight && <Icon {...iconRight} />}
+                >
+                    {userIcon(iconLeft)}
+                    <input
+                        type={'text'}
+                        id={id}
+                        data-testid={testid}
+                        disabled={disabled}
+                        value={value}
+                        ref={ref}
+                        {...(onChange && {
+                            onChange: (e) =>
+                                onChange(
+                                    e.target.value.replace(
+                                        role === 'number' ? /\D/g : /[]/,
+                                        ''
+                                    )
+                                ),
+                        })}
+                        {...rest}
+                    />
+                    {userIcon(iconRight)}
+                </div>
+                {statusText && <div className="status-text">{statusText}</div>}
             </div>
-            {statusText && <div className="status-text">{statusText}</div>}
-        </div>
-    )
+        );
+    }
 );
 
 export default InputText;

@@ -36,7 +36,7 @@ describe('Suggest component', () => {
             );
 
         expect(getByRole('textbox')).toHaveValue(values[1].name);
-        expect(getByTestId('circle-close')).toBeInTheDocument();
+        expect(getByTestId('icon-circle-close')).toBeInTheDocument();
         expect(queryByTestId('dropped')).not.toBeInTheDocument();
         expect(queryAllByRole('option').length).toBe(0);
     });
@@ -51,7 +51,7 @@ describe('Suggest component', () => {
         );
 
         expect(getByRole('textbox')).toHaveValue('');
-        expect(queryByTestId('circle-close')).not.toBeInTheDocument();
+        expect(queryByTestId('icon-circle-close')).not.toBeInTheDocument();
         expect(queryByTestId('dropped')).not.toBeInTheDocument();
         expect(queryAllByRole('option').length).toBe(0);
     });
@@ -67,7 +67,7 @@ describe('Suggest component', () => {
                 />
             );
 
-        const clearIcon = getByTestId('circle-close');
+        const clearIcon = getByTestId('icon-circle-close');
 
         await event.click(clearIcon);
 
@@ -103,14 +103,14 @@ describe('Suggest component', () => {
 
         expect(getByTestId('dropped')).toBeInTheDocument();
         expect(getAllByRole('option').length).toBe(values.length);
-        expect(queryByTestId('circle-close')).not.toBeInTheDocument();
+        expect(queryByTestId('icon-circle-close')).not.toBeInTheDocument();
         expect(input).toHaveValue('');
 
         await event.click(input);
 
         expect(queryByTestId('dropped')).not.toBeInTheDocument();
         expect(queryAllByRole('option').length).toBe(0);
-        expect(queryByTestId('circle-close')).not.toBeInTheDocument();
+        expect(queryByTestId('icon-circle-close')).not.toBeInTheDocument();
         expect(input).toHaveValue('');
     });
 
@@ -140,7 +140,7 @@ describe('Suggest component', () => {
         expect(mockOnChange.mock.calls[0][0]).toEqual(values[1]);
         expect(queryByTestId('dropped')).not.toBeInTheDocument();
         expect(queryAllByRole('option').length).toBe(0);
-        expect(getByTestId('circle-close')).toBeInTheDocument();
+        expect(getByTestId('icon-circle-close')).toBeInTheDocument();
         expect(input).toHaveValue(values[1].name);
 
         await event.click(input);
@@ -252,14 +252,14 @@ describe('Suggest component', () => {
 
         expect(queryAllByRole('option').length).toBe(0);
         expect(getByRole('textbox')).toHaveValue('Label');
-        expect(getByTestId('circle-close')).toBeInTheDocument();
+        expect(getByTestId('icon-circle-close')).toBeInTheDocument();
 
         await event.type(input, 'ololo');
         fireEvent.keyDown(input, { keyCode: 27 });
 
         expect(queryAllByRole('option').length).toBe(0);
         expect(getByRole('textbox')).toHaveValue('Label');
-        expect(getByTestId('circle-close')).toBeInTheDocument();
+        expect(getByTestId('icon-circle-close')).toBeInTheDocument();
     });
 
     it('should return empty value when removed all symbol', async () => {
@@ -288,13 +288,13 @@ describe('Suggest component', () => {
 
         expect(queryAllByRole('option').length).toBe(0);
         expect(getByRole('textbox')).toHaveValue('');
-        expect(queryByTestId('circle-close')).not.toBeInTheDocument();
+        expect(queryByTestId('icon-circle-close')).not.toBeInTheDocument();
 
         await event.click(input);
 
         expect(getAllByRole('option').length).toBe(values.length);
         expect(getByRole('textbox')).toHaveValue('');
-        expect(queryByTestId('circle-close')).not.toBeInTheDocument();
+        expect(queryByTestId('icon-circle-close')).not.toBeInTheDocument();
     });
 
     it('should be disabled when input prop have disabled and exist default value', async () => {
@@ -315,7 +315,7 @@ describe('Suggest component', () => {
 
         expect(input).toBeDisabled();
         expect(input).toHaveValue(values[0].name);
-        expect(queryByTestId('circle-close')).not.toBeInTheDocument();
+        expect(queryByTestId('icon-circle-close')).not.toBeInTheDocument();
         expect(queryAllByRole('option').length).toBe(0);
     });
 
@@ -335,7 +335,7 @@ describe('Suggest component', () => {
 
         expect(input).toBeDisabled();
         expect(input).toHaveValue('');
-        expect(queryByTestId('circle-close')).not.toBeInTheDocument();
+        expect(queryByTestId('icon-circle-close')).not.toBeInTheDocument();
         expect(queryAllByRole('option').length).toBe(0);
     });
 

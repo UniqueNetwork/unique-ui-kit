@@ -20,7 +20,7 @@ const Icon: FC<IconProps> = ({
             fill={color}
             width={size}
             height={size}
-            data-testid={name}
+            data-testid={`icon-${name}`}
         >
             <use xlinkHref={`${Icons}#icon-${name}`} />
         </svg>

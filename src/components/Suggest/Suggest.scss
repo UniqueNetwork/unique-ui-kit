@@ -17,15 +17,12 @@
         display: inline-block;
 
         .icon-clear {
-            position: absolute;
-            right: 30px;
-            top: 50%;
-            transform: translateY(-50%);
             cursor: pointer;
             z-index: 2;
 
             svg {
                 display: block;
+                margin: 0;
             }
         }
     }
@@ -41,6 +38,7 @@
         max-height: 250px;
         overflow: auto;
         width: 100%;
+        padding: 8px;
 
         &.empty {
             height: auto;
@@ -48,6 +46,6 @@
     }
 
     .unique-input-text .input-wrapper.with-icon.to-right input {
-        padding-right: 30px;
+        padding-right: 10px;
     }
 }

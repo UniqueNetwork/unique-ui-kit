@@ -27,39 +27,30 @@ import {
 import classNames from 'classnames';
 import { useIsFirstRender } from '../../utils/hooks';
 
-export interface SuggestProps<Value> {
+export interface SuggestProps<SuggestOption> {
     // function will call every time need to update suggestions
-    onSuggestionsFetchRequested?(inputValue: string): Value[];
+    onSuggestionsFetchRequested?(inputValue: string): SuggestOption[];
     // suggestion values
-    suggestions: Value[];
+    suggestions: SuggestOption[];
     // props for InputText component
     inputProps: Required<Pick<InputTextProps, 'onChange' | 'value'>> &
-        Pick<
-            InputTextProps,
-            'disabled' | 'iconLeft' | 'iconRight' | 'placeholder' | 'error'
-        >;
+        Omit<InputTextProps, 'onChange' | 'value'>;
     // get value for suggestion
-    getSuggestionValue<T>(suggestion: Value): string;
+    getSuggestionValue(suggestion: SuggestOption): string;
     // callback for selected value
-    onChange?(suggestion: Value | null): void;
+    onChange?(suggestion: SuggestOption | null): void;
     // set your own components
-    components?: SuggestComponents<Value>;
+    components?: SuggestComponents<SuggestOption>;
     // message when result empty
     noSuggestMessage?: string;
-    defaultValue?: Value;
+    defaultValue?: SuggestOption;
 }
 
-export type SuggestComponents<Value> = {
-    SuggestItem?: ComponentType<SuggestItemProps<Value>>;
+export type SuggestComponents<SuggestOption> = {
+    SuggestItem?: ComponentType<SuggestItemProps<SuggestOption>>;
     SuggestEmpty?: ComponentType<SuggestEmptyProps>;
-    SuggestWrapper?: ComponentType<SuggestWrapperProps<Value>>;
-    SuggestList?: ComponentType<SuggestListProps<Value>>;
-};
-
-const renderIcon = {
-    name: 'triangle',
-    size: 9,
-    color: 'var(--color-blue-grey-500)',
+    SuggestWrapper?: ComponentType<SuggestWrapperProps<SuggestOption>>;
+    SuggestList?: ComponentType<SuggestListProps<SuggestOption>>;
 };
 
 const KEY_CODE = {
@@ -202,7 +193,27 @@ const Suggest = <T,>({
                     onClick={handleToggleOpenSuggest}
                 >
                     <InputText
-                        iconRight={renderIcon}
+                        iconRight={
+                            <>
+                                {activeValue.size > 0 && !inputProps.disabled && (
+                                    <div
+                                        className={'icon-clear'}
+                                        onClick={handleClearValue}
+                                    >
+                                        <Icon
+                                            size={19}
+                                            color="var(--color-blue-grey-400)"
+                                            name="circle-close"
+                                        />
+                                    </div>
+                                )}
+                                <Icon
+                                    name="triangle"
+                                    size={9}
+                                    color="var(--color-blue-grey-500)"
+                                />
+                            </>
+                        }
                         className={classNames({
                             dropped: showSuggestions,
                         })}
@@ -216,18 +227,6 @@ const Suggest = <T,>({
                         value={inputValue}
                         ref={inputRef}
                     />
-                    {activeValue.size > 0 && !inputProps.disabled && (
-                        <div
-                            className={'icon-clear'}
-                            onClick={handleClearValue}
-                        >
-                            <Icon
-                                size={20}
-                                color="var(--color-blue-grey-400)"
-                                name="circle-close"
-                            />
-                        </div>
-                    )}
                 </div>
                 {showSuggestions && (
                     <div
