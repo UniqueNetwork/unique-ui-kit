@@ -38,6 +38,8 @@ const icons = [
     'badge-coin',
     'chain-quartz',
     'chain-opal',
+    'chain-kusama',
+    'chain-unique',
     'social-discord',
     'social-github',
     'social-subsocial',

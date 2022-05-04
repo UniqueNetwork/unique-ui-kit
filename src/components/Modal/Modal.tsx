@@ -2,7 +2,7 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import React, { FC, ReactNode } from 'react';
+import React, { FC, ReactNode, useState } from 'react';
 import { Icon } from '..';
 import './Modal.scss';
 
@@ -17,14 +17,27 @@ const Modal: FC<ModalProps> = ({
     children,
     isVisible,
     isClosable,
-    onClose
-}: ModalProps) =>
-    isVisible ? (
+    onClose,
+}: ModalProps) => {
+    const [clickCoords, setClickCoords] = useState({ pageX: -1, pageY: -1 });
+    return isVisible ? (
         <div
             className="unique-modal-wrapper"
-            onClick={(event) =>
-                event.target == event.currentTarget && isClosable && onClose!()
-            }
+            onMouseDown={(event) => {
+                const { pageX, pageY } = event;
+                setClickCoords({ pageX, pageY });
+            }}
+            onClick={(event) => {
+                const { pageX, pageY } = event;
+                if (
+                    pageX === clickCoords.pageX &&
+                    pageY === clickCoords.pageY &&
+                    event.target == event.currentTarget &&
+                    isClosable
+                ) {
+                    onClose!();
+                }
+            }}
         >
             <div className="unique-modal">
                 {isClosable && (
@@ -36,5 +49,6 @@ const Modal: FC<ModalProps> = ({
             </div>
         </div>
     ) : null;
+};
 
 export default Modal;
