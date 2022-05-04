@@ -5,8 +5,8 @@
 Changes:
 
 - CollectionLink widget add
-- Table component fix
-- Modal component fix
+- Table component row second prop add 
+- Modal component outside mouseup fix
 - New icons
 
 ## 0.0.14 Apr 27, 2022
