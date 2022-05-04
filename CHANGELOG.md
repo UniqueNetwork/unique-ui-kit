@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.0.15 May 4, 2022
+
+Changes:
+
+- CollectionLink widget add
+- Table component fix
+- Modal component fix
+- New icons
+
 ## 0.0.14 Apr 27, 2022
 
 Changes:
