@@ -4,6 +4,7 @@
     font-weight: var(--prop-font-weight);
     position: relative;
     color: var(--color-additional-dark);
+    display: inline-block;
 
     .dropped {
         .icon-triangle {
@@ -39,6 +40,7 @@
         top: calc(100% + 5px);
         max-height: 250px;
         overflow: auto;
+        width: 100%;
 
         &.empty {
             height: auto;

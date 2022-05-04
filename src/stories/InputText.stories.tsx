@@ -3,7 +3,7 @@ import { InputText } from '../components';
 
 export default {
     title: 'Components/InputText',
-    component: InputText
+    component: InputText,
 } as ComponentMeta<typeof InputText>;
 
 const Template: ComponentStory<typeof InputText> = (args) => (
@@ -15,7 +15,7 @@ export const Default = Template.bind({});
 Default.args = {
     label: 'Label',
     additionalText: 'Additional text',
-    placeholder: 'Placeholder'
+    placeholder: 'Placeholder',
 };
 
 Default.storyName = 'Default';
@@ -26,7 +26,7 @@ Status.args = {
     label: 'Label',
     additionalText: 'Additional text',
     placeholder: 'Placeholder',
-    statusText: 'Status text'
+    statusText: 'Status text',
 };
 
 Status.storyName = 'Default w/ status';
@@ -38,7 +38,7 @@ Error.args = {
     additionalText: 'Additional text',
     placeholder: 'Placeholder',
     statusText: 'Error message',
-    error: true
+    error: true,
 };
 
 Error.storyName = 'Default w/ error';
@@ -46,14 +46,14 @@ Error.storyName = 'Default w/ error';
 export const Minimal = Template.bind({});
 
 Minimal.args = {
-    placeholder: 'Placeholder'
+    placeholder: 'Placeholder',
 };
 
 export const Label = Template.bind({});
 
 Label.args = {
     label: 'Label',
-    placeholder: 'Placeholder'
+    placeholder: 'Placeholder',
 };
 
 Label.storyName = 'Minimal w/ label';
@@ -62,7 +62,7 @@ export const Small = Template.bind({});
 
 Small.args = {
     placeholder: 'Placeholder',
-    size: 'small'
+    size: 'small',
 };
 
 Small.storyName = 'Minimal w/ size Small';
@@ -71,7 +71,11 @@ export const IconRight = Template.bind({});
 
 IconRight.args = {
     placeholder: 'Placeholder',
-    iconRight: { name: 'pencil', size: 18, color: 'var(--color-blue-grey-500)' }
+    iconRight: {
+        name: 'pencil',
+        size: 18,
+        color: 'var(--color-blue-grey-500)',
+    },
 };
 
 IconRight.storyName = 'Minimal w/ icon to right';
@@ -80,16 +84,38 @@ export const IconLeft = Template.bind({});
 
 IconLeft.args = {
     placeholder: 'Placeholder',
-    iconLeft: { name: 'magnify', size: 18, color: 'var(--color-blue-grey-500)' }
+    iconLeft: {
+        name: 'magnify',
+        size: 18,
+        color: 'var(--color-blue-grey-500)',
+    },
 };
 
 IconLeft.storyName = 'Minimal w/ icon to left';
+
+export const IconLeftAndRight = Template.bind({});
+
+IconLeftAndRight.args = {
+    placeholder: 'Placeholder',
+    iconLeft: {
+        name: 'magnify',
+        size: 18,
+        color: 'var(--color-blue-grey-500)',
+    },
+    iconRight: {
+        name: 'pencil',
+        size: 18,
+        color: 'var(--color-blue-grey-500)',
+    },
+};
+
+IconLeftAndRight.storyName = 'Minimal w/ icon to left and right';
 
 export const Disabled = Template.bind({});
 
 Disabled.args = {
     value: 'Value',
-    disabled: true
+    disabled: true,
 };
 
 Disabled.storyName = 'Minimal disabled';

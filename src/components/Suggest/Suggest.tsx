@@ -14,17 +14,30 @@ import { Icon, InputText } from '..';
 import { InputTextProps } from '../InputText/InputText';
 
 import './Suggest.scss';
-import { SuggestItem, SuggestItemProps } from './components/SuggestItem';
-import { SuggestEmpty, SuggestEmptyProps } from './components/SuggestEmpty';
+import {
+    SuggestItem,
+    SuggestItemProps,
+    SuggestEmpty,
+    SuggestEmptyProps,
+    SuggestList,
+    SuggestWrapper,
+    SuggestWrapperProps,
+    SuggestListProps,
+} from './components';
 import classNames from 'classnames';
+import { useIsFirstRender } from '../../utils/hooks';
 
 export interface SuggestProps<Value> {
-    // custom logic for search suggestions
+    // function will call every time need to update suggestions
     onSuggestionsFetchRequested?(inputValue: string): Value[];
     // suggestion values
     suggestions: Value[];
     // props for InputText component
-    inputProps: InputTextProps;
+    inputProps: Required<Pick<InputTextProps, 'onChange' | 'value'>> &
+        Pick<
+            InputTextProps,
+            'disabled' | 'iconLeft' | 'iconRight' | 'placeholder' | 'error'
+        >;
     // get value for suggestion
     getSuggestionValue<T>(suggestion: Value): string;
     // callback for selected value
@@ -39,12 +52,18 @@ export interface SuggestProps<Value> {
 export type SuggestComponents<Value> = {
     SuggestItem?: ComponentType<SuggestItemProps<Value>>;
     SuggestEmpty?: ComponentType<SuggestEmptyProps>;
+    SuggestWrapper?: ComponentType<SuggestWrapperProps<Value>>;
+    SuggestList?: ComponentType<SuggestListProps<Value>>;
 };
 
 const renderIcon = {
     name: 'triangle',
     size: 9,
     color: 'var(--color-blue-grey-500)',
+};
+
+const KEY_CODE = {
+    ESC: 27,
 };
 
 const Suggest = <T,>({
@@ -57,45 +76,55 @@ const Suggest = <T,>({
     noSuggestMessage = 'No results',
     defaultValue,
 }: SuggestProps<T>) => {
+    const { value: inputValue = '' } = inputProps;
     const [showSuggestions, setShowSuggestions] = useState(false);
-    const [filteredSuggestions, setFilteredSuggestions] =
-        useState<T[]>(suggestions);
+
     const [activeValue, setActiveValue] = useState<Map<T, boolean>>(
         () => new Map(defaultValue ? [[defaultValue, true]] : undefined)
     );
+    const [isSearchUser, setSearchUser] = useState(false);
+
+    const [filteredSuggestions, setFilteredSuggestions] =
+        useState<T[]>(suggestions);
+
+    const isFirstRender = useIsFirstRender();
 
     const suggestComponents = {
         SuggestItem,
         SuggestEmpty,
+        SuggestWrapper,
+        SuggestList,
         ...components,
     };
 
     const inputRef = useRef<HTMLInputElement | null>(null);
 
-    const { value: inputValue = '' } = inputProps;
-
-    const parentNodeInput = inputRef.current?.parentNode as
-        | HTMLDivElement
-        | undefined;
-
-    const widthParentNodeInput =
-        parentNodeInput?.getBoundingClientRect().width || null;
-
     useEffect(() => {
+        if (!isSearchUser) {
+            setFilteredSuggestions(suggestions);
+            return;
+        }
         const newFilteredSuggestions =
             onSuggestionsFetchRequested?.(inputValue) ||
-            suggestions.filter((suggestion) =>
-                getSuggestionValue(suggestion)
-                    .toLowerCase()
-                    .includes(inputValue.toLowerCase())
-            );
+            (inputValue === ''
+                ? suggestions
+                : suggestions.filter((suggestion) =>
+                      getSuggestionValue(suggestion)
+                          .toLowerCase()
+                          .includes(inputValue.toLowerCase())
+                  ));
         setFilteredSuggestions(newFilteredSuggestions);
-    }, [inputValue]);
+    }, [inputValue, isSearchUser]);
 
-    /**
-     * 1. когда у нас есть выбранное значение и мы меняем его, но не выбираем новое, при закрытии необходимо вернуть старое значение в поле инпута
-     */
     useEffect(() => {
+        if (!showSuggestions) {
+            setSearchUser(false);
+        }
+        if (isFirstRender && activeValue.size > 0) {
+            const [suggestion] = [...activeValue][0];
+            inputProps.onChange?.(getSuggestionValue(suggestion));
+            return;
+        }
         if (!showSuggestions && activeValue.size > 0) {
             const [suggestion] = [...activeValue][0];
             inputProps.onChange?.(getSuggestionValue(suggestion));
@@ -127,6 +156,7 @@ const Suggest = <T,>({
         if (inputProps.disabled) {
             return;
         }
+        inputRef.current?.focus();
         setShowSuggestions((prevState) =>
             inputValue.length === 0 ? !prevState : true
         );
@@ -145,73 +175,103 @@ const Suggest = <T,>({
         document.removeEventListener('mousedown', handleClickOutside);
     };
 
+    const handleKeyDown = (e: any) => {
+        if (e.keyCode === KEY_CODE.ESC) {
+            setShowSuggestions(false);
+        }
+    };
+
     const handleClearValue = (e: SyntheticEvent) => {
         e.stopPropagation();
         inputProps.onChange?.('');
         setActiveValue(new Map());
         onChange?.(null);
+        inputRef.current?.focus();
     };
 
     return (
-        <div
-            className={'unique-suggestion'}
-            onMouseLeave={handleMouseLeave}
-            onMouseEnter={handleMouseEnter}
-        >
-            <div className={'suggest-input'} onClick={handleToggleOpenSuggest}>
-                <InputText
-                    iconRight={renderIcon}
-                    className={classNames({
-                        dropped: showSuggestions,
-                    })}
-                    {...inputProps}
-                    value={inputValue}
-                    ref={inputRef}
-                />
-                {activeValue.size > 0 && !inputProps.disabled && (
-                    <div className={'icon-clear'} onClick={handleClearValue}>
-                        <Icon
-                            size={20}
-                            color="var(--color-blue-grey-400)"
-                            name="circle-close"
-                        />
+        <div className={'unique-suggestion-wrapper'}>
+            <div
+                className={'unique-suggestion'}
+                onMouseLeave={handleMouseLeave}
+                onMouseEnter={handleMouseEnter}
+                onKeyDown={handleKeyDown}
+            >
+                <div
+                    className={'suggest-input'}
+                    onClick={handleToggleOpenSuggest}
+                >
+                    <InputText
+                        iconRight={renderIcon}
+                        className={classNames({
+                            dropped: showSuggestions,
+                        })}
+                        data-testid={showSuggestions ? 'dropped' : undefined}
+                        {...inputProps}
+                        onChange={(value) => {
+                            !showSuggestions && setShowSuggestions(true);
+                            inputProps.onChange?.(value);
+                            setSearchUser(true);
+                        }}
+                        value={inputValue}
+                        ref={inputRef}
+                    />
+                    {activeValue.size > 0 && !inputProps.disabled && (
+                        <div
+                            className={'icon-clear'}
+                            onClick={handleClearValue}
+                        >
+                            <Icon
+                                size={20}
+                                color="var(--color-blue-grey-400)"
+                                name="circle-close"
+                            />
+                        </div>
+                    )}
+                </div>
+                {showSuggestions && (
+                    <div
+                        className={classNames('suggestion-values', {
+                            empty: filteredSuggestions.length === 0,
+                        })}
+                    >
+                        <suggestComponents.SuggestWrapper
+                            suggestions={filteredSuggestions}
+                        >
+                            {(_suggestions) => (
+                                <suggestComponents.SuggestList
+                                    suggestions={_suggestions}
+                                >
+                                    {(_suggestion) => (
+                                        <div
+                                            onClick={() =>
+                                                handleSelectedSuggestion(
+                                                    _suggestion
+                                                )
+                                            }
+                                        >
+                                            <suggestComponents.SuggestItem
+                                                suggestion={_suggestion}
+                                                suggestionValue={getSuggestionValue(
+                                                    _suggestion
+                                                )}
+                                                isActive={activeValue.get(
+                                                    _suggestion
+                                                )}
+                                            />
+                                        </div>
+                                    )}
+                                </suggestComponents.SuggestList>
+                            )}
+                        </suggestComponents.SuggestWrapper>
+                        {filteredSuggestions.length === 0 && (
+                            <suggestComponents.SuggestEmpty
+                                message={noSuggestMessage}
+                            />
+                        )}
                     </div>
                 )}
             </div>
-            {showSuggestions && (
-                <div
-                    className={classNames('suggestion-values', {
-                        empty: filteredSuggestions.length === 0,
-                    })}
-                    style={{
-                        width:
-                            widthParentNodeInput !== null
-                                ? `${widthParentNodeInput}px`
-                                : '',
-                    }}
-                >
-                    {filteredSuggestions.length > 0 &&
-                        filteredSuggestions.map((suggestion, idx) => (
-                            <div
-                                key={idx}
-                                onClick={(e) =>
-                                    handleSelectedSuggestion(suggestion)
-                                }
-                            >
-                                <suggestComponents.SuggestItem
-                                    suggestion={suggestion}
-                                    getSuggestionValue={getSuggestionValue}
-                                    isActive={activeValue.get(suggestion)}
-                                />
-                            </div>
-                        ))}
-                    {filteredSuggestions.length === 0 && (
-                        <suggestComponents.SuggestEmpty
-                            message={noSuggestMessage}
-                        />
-                    )}
-                </div>
-            )}
         </div>
     );
 };

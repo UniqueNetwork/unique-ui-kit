@@ -34,53 +34,51 @@ const InputText = forwardRef(
             ...rest
         }: InputTextProps,
         ref: ForwardedRef<HTMLInputElement>
-    ) => {
-        const icon = iconLeft || iconRight;
-        return (
+    ) => (
+        <div
+            className={classNames(
+                'unique-input-text',
+                `size-${size}`,
+                className,
+                { error }
+            )}
+        >
+            {label && <label htmlFor={id}>{label}</label>}
+            {additionalText && (
+                <div className="additional-text">{additionalText}</div>
+            )}
             <div
-                className={classNames(
-                    'unique-input-text',
-                    `size-${size}`,
-                    className,
-                    { error }
-                )}
+                className={classNames('input-wrapper', {
+                    'with-icon': iconLeft || iconRight,
+                    'to-left': iconLeft,
+                    'to-right': iconRight,
+                    disabled,
+                })}
             >
-                {label && <label htmlFor={id}>{label}</label>}
-                {additionalText && (
-                    <div className="additional-text">{additionalText}</div>
-                )}
-                <div
-                    className={classNames('input-wrapper', {
-                        'with-icon': icon,
-                        'to-left': iconLeft,
-                        'to-right': iconRight,
-                        disabled,
+                {iconLeft && <Icon {...iconLeft} />}
+                <input
+                    type={'text'}
+                    id={id}
+                    data-testid={testid}
+                    disabled={disabled}
+                    value={value}
+                    ref={ref}
+                    {...(onChange && {
+                        onChange: (e) =>
+                            onChange(
+                                e.target.value.replace(
+                                    role === 'number' ? /\D/g : /[]/,
+                                    ''
+                                )
+                            ),
                     })}
-                >
-                    <input
-                        type={'text'}
-                        id={id}
-                        data-testid={testid}
-                        disabled={disabled}
-                        value={value}
-                        ref={ref}
-                        {...(onChange && {
-                            onChange: (e) =>
-                                onChange(
-                                    e.target.value.replace(
-                                        role === 'number' ? /\D/g : /[]/,
-                                        ''
-                                    )
-                                ),
-                        })}
-                        {...rest}
-                    />
-                    {icon && <Icon {...icon} />}
-                </div>
-                {statusText && <div className="status-text">{statusText}</div>}
+                    {...rest}
+                />
+                {iconRight && <Icon {...iconRight} />}
             </div>
-        );
-    }
+            {statusText && <div className="status-text">{statusText}</div>}
+        </div>
+    )
 );
 
 export default InputText;

@@ -1,26 +1,23 @@
-import type { SuggestProps } from '../../Suggest';
-
-import './SuggestItem.scss';
 import classNames from 'classnames';
+import './SuggestItem.scss';
 
-export type SuggestItemProps<T> = Pick<
-    SuggestProps<T>,
-    'getSuggestionValue'
-> & {
+export interface SuggestItemProps<T> {
     suggestion: T;
+    suggestionValue: string;
     isActive?: boolean;
-};
+}
 
 export const SuggestItem = <T,>({
-    suggestion,
-    getSuggestionValue,
+    suggestionValue,
     isActive,
 }: SuggestItemProps<T>) => (
     <div
         className={classNames('suggestion-item', {
             isActive,
         })}
+        role={'option'}
+        data-testid={isActive ? 'active' : undefined}
     >
-        {getSuggestionValue(suggestion)}
+        {suggestionValue}
     </div>
 );

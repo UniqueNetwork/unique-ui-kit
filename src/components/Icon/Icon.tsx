@@ -10,7 +10,7 @@ const Icon: FC<IconProps> = ({
     name,
     file,
     size,
-    color = 'var(--color-blue-grey-300)'
+    color = 'var(--color-blue-grey-300)',
 }: IconProps) =>
     file ? (
         <img width={size} height={size} src={file} />
@@ -20,6 +20,7 @@ const Icon: FC<IconProps> = ({
             fill={color}
             width={size}
             height={size}
+            data-testid={name}
         >
             <use xlinkHref={`${Icons}#icon-${name}`} />
         </svg>

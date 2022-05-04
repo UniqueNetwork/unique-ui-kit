@@ -19,23 +19,24 @@ describe('InputText Component', () => {
         expect(screen.queryByText('test additionalText')).toBeTruthy();
     });
 
-    it('icon check', () => {
-        const { container } = render(
+    it('should be render icons', () => {
+        const { getByTestId } = render(
             <InputText
                 iconLeft={{
                     name: 'magnify',
                     size: 18,
-                    color: 'var(--color-blue-grey-300)'
+                    color: 'var(--color-blue-grey-300)',
                 }}
                 iconRight={{
-                    name: 'magnify',
+                    name: 'close',
                     size: 18,
-                    color: 'var(--color-blue-grey-300)'
+                    color: 'var(--color-blue-grey-300)',
                 }}
                 onChange={mockFunction}
             />
         );
-        expect(container.getElementsByClassName('icon-magnify')).toBeDefined();
+        expect(getByTestId('close')).toBeInTheDocument();
+        expect(getByTestId('magnify')).toBeInTheDocument();
     });
 
     it('status check', () => {
