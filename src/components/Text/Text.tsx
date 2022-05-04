@@ -2,11 +2,12 @@
  * @author Anna Mikhailova <amikhailova@usetech.com>
  */
 
+import { ReactNode } from 'react';
 import classNames from 'classnames';
 import './Text.scss';
 
 interface ITextProps {
-    children: string | number;
+    children: ReactNode;
     size?: 'xs' | 's' | 'm' | 'l';
     weight?: 'regular' | 'medium';
     color?: string;

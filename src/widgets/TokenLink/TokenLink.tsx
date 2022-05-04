@@ -15,12 +15,12 @@ interface ITokenLink {
     };
 }
 
-const TokenCard: FC<ITokenLink> = ({ image, title, link }: ITokenLink) => (
+const TokenLink: FC<ITokenLink> = ({ image, title, link }: ITokenLink) => (
     <div className="unique-token-link">
-        <Avatar src={image} size={268} type="square" />
+        <Avatar src={image} size={326} type="square" />
         <Text size="l">{title}</Text>
         <Link href={link.href} title={link.title} />
     </div>
 );
 
-export default TokenCard;
+export default TokenLink;
