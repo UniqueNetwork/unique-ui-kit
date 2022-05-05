@@ -8,23 +8,24 @@ interface DropdownProps extends ComponentProps {
     optionKey?: string;
     optionValue?: string;
     placement?: 'left' | 'right';
+    children: JSX.Element;
     onChange(option: SelectOptionProps): void;
     optionRender?(option: SelectOptionProps, isSelected: boolean): ReactNode
 }
 
 const Dropdown: FC<DropdownProps> = ({
-         id,
-         value,
-         className,
-         disabled,
-         options,
-         optionKey = 'id',
-         optionValue = 'title',
-         onChange,
-         children,
-         optionRender,
-         placement = 'left',
-     }) => {
+        id,
+        value,
+        className,
+        disabled,
+        options,
+        optionKey = 'id',
+        optionValue = 'title',
+        onChange,
+        children,
+        optionRender,
+        placement = 'left',
+    }) => {
 
     const selected = options.find(
         (option) => option[optionKey as keyof SelectOptionProps] === value
@@ -100,7 +101,7 @@ const Dropdown: FC<DropdownProps> = ({
                                 role="option"
                             >
                                 {
-                                    (optionRender && optionRender(
+                                    (optionRender?.(
                                         option,
                                         isSelected
                                     )) ||

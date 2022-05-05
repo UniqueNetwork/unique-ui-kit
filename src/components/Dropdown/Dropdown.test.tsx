@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { Button, Dropdown } from "../index";
 
 const mockFunction = jest.fn();
@@ -27,7 +27,7 @@ const options = [
     { id: 5, title: 'test title 5' }
 ];
 
-it('it should open dropdown on click by wrapper and close on click outside', async () => {
+it('it should open dropdown on click by wrapper and close on click outside', () => {
     const { queryByRole, getByTestId } = render(
         <Dropdown
             options={options}
@@ -47,8 +47,8 @@ it('it should open dropdown on click by wrapper and close on click outside', asy
     expect(dropdownOptions).not.toBeInTheDocument();
 });
 
-it('it should call onChange on click by option', async () => {
-    const { getByTestId, findByText } = render(
+it('it should call onChange on click by option', () => {
+    const { getByTestId, getByText } = render(
         <Dropdown
             options={options}
             onChange={mockFunction}
@@ -57,10 +57,9 @@ it('it should call onChange on click by option', async () => {
         </Dropdown>
     );
     const dropdownWrapper = getByTestId('dropdown-wrapper');
-    fireEvent.mouseDown(dropdownWrapper!);
-    await findByText('test title 3').then((option) => {
-        fireEvent.click(option);
-        expect(mockFunction.mock.calls.length).toBe(1);
-        expect(mockFunction).toHaveBeenCalledWith(options[2]);
-    });
+    fireEvent.mouseDown(dropdownWrapper);
+    const option = getByText('test title 3')
+    fireEvent.click(option);
+    expect(mockFunction.mock.calls.length).toBe(1);
+    expect(mockFunction).toHaveBeenCalledWith(options[2]);
 });
