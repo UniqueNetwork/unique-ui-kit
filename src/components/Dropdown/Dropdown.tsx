@@ -13,7 +13,7 @@ interface DropdownProps extends ComponentProps {
     optionRender?(option: SelectOptionProps, isSelected: boolean): ReactNode
 }
 
-const Dropdown: FC<DropdownProps> = ({
+const Dropdown = ({
         id,
         value,
         className,
@@ -25,7 +25,7 @@ const Dropdown: FC<DropdownProps> = ({
         children,
         optionRender,
         placement = 'left',
-    }) => {
+    }: DropdownProps) => {
 
     const selected = options.find(
         (option) => option[optionKey as keyof SelectOptionProps] === value
