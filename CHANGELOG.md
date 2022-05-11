@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.0.16 May 11, 2022
+
+Changes:
+
+- Suggest component add
+- Select component with multi add
+- Dropdown component add
+- New icons
+
 ## 0.0.15 May 4, 2022
 
 Changes:
