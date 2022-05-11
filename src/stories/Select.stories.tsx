@@ -7,7 +7,7 @@ import { SelectOptionProps } from '../types';
 
 export default {
     title: 'Components/Select',
-    component: Select
+    component: Select,
 } as ComponentMeta<typeof Select>;
 
 const Template: ComponentStory<typeof Select> = (args) => {
@@ -57,7 +57,7 @@ const optionsLibraryIcons = [
         title: 'Title',
         iconLeft: {
             name: 'arrow-down',
-            size: 12,
+            size: 16,
             color: 'var(--color-grey-500)',
         },
     },
@@ -66,7 +66,7 @@ const optionsLibraryIcons = [
         title: 'Title',
         iconLeft: {
             name: 'arrow-up',
-            size: 12,
+            size: 16,
             color: 'var(--color-grey-500)',
         },
     },
@@ -75,7 +75,7 @@ const optionsLibraryIcons = [
         title: 'Author',
         iconRight: {
             name: 'arrow-down',
-            size: 12,
+            size: 16,
             color: 'var(--color-grey-500)',
         },
     },
@@ -84,7 +84,7 @@ const optionsLibraryIcons = [
         title: 'Author',
         iconRight: {
             name: 'arrow-up',
-            size: 12,
+            size: 16,
             color: 'var(--color-grey-500)',
         },
     },
