@@ -49,3 +49,8 @@ export const getDeepValue = <T extends Record<string, any>>(
         .reduce((o, p) => {
             return o ? o[p] : undefined;
         }, object);
+
+export const sleep = (delay = 0) =>
+    new Promise((resolve) => {
+        setTimeout(resolve, delay);
+    });
