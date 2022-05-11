@@ -2,7 +2,7 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import React, { FC, Key, useEffect, useState } from 'react';
+import React, { FC, Key, useEffect, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import { Icon } from '..';
 import { ComponentProps, DimentionType, SelectOptionProps } from '../../types';
@@ -17,7 +17,9 @@ interface SelectProps extends ComponentProps {
     label?: string;
     statusText?: string;
     size?: DimentionType;
-    onChange(option: SelectOptionProps): void;
+    multi?: boolean;
+    values?: string[] | undefined;
+    onChange(option: SelectOptionProps | SelectOptionProps[]): void;
 }
 
 const Select: FC<SelectProps> = ({
@@ -39,7 +41,9 @@ const Select: FC<SelectProps> = ({
     optionValue = 'title',
     onChange,
     onFocus,
-    onBlur
+    onBlur,
+    multi = false,
+    values,
 }) => {
     useEffect(() => {
         const defaultOption =
@@ -53,6 +57,22 @@ const Select: FC<SelectProps> = ({
 
     const selected = options.find(
         (option) => option[optionKey as keyof SelectOptionProps] === value
+    );
+
+    const selectedMulti: SelectOptionProps[] = useMemo(
+        () =>
+            multi && values
+                ? (values
+                      .map((value) => {
+                          return options.find(
+                              (item) =>
+                                  item[optionKey as keyof SelectOptionProps] ===
+                                  value
+                          );
+                      })
+                      .filter((item) => !!item) as SelectOptionProps[])
+                : [],
+        [multi, options, values]
     );
 
     const icon = selected?.iconLeft || selected?.iconRight;
@@ -78,13 +98,40 @@ const Select: FC<SelectProps> = ({
 
     const handleOptionSelect = (option: SelectOptionProps) => {
         setDropped(false);
-        onChange?.(option);
+        if (multi) onChange?.([...selectedMulti, option]);
+        else onChange?.(option);
+    };
+
+    const handleOptionUnselect = (option: SelectOptionProps) => {
+        !disabled &&
+            multi &&
+            onChange?.(
+                selectedMulti.filter(
+                    (item) =>
+                        option[optionKey as keyof SelectOptionProps] !==
+                        item[optionKey as keyof SelectOptionProps]
+                )
+            );
+    };
+
+    const isSelected = (option: SelectOptionProps) => {
+        if (multi)
+            return selectedMulti.some(
+                (item) =>
+                    option[optionKey as keyof SelectOptionProps] ===
+                    item[optionKey as keyof SelectOptionProps]
+            );
+        else
+            return (
+                option[optionKey as keyof SelectOptionProps] ===
+                selected?.[optionKey as keyof SelectOptionProps]
+            );
     };
 
     return (
         <div
             className={classNames('unique-select', `size-${size}`, className, {
-                error
+                error,
             })}
         >
             {label && <label htmlFor={id}>{label}</label>}
@@ -94,7 +141,7 @@ const Select: FC<SelectProps> = ({
             <div
                 className={classNames('select-wrapper', {
                     dropped,
-                    disabled
+                    disabled,
                 })}
                 onMouseLeave={handleMouseLeave}
                 onMouseEnter={handleMouseEnter}
@@ -108,48 +155,76 @@ const Select: FC<SelectProps> = ({
                     className={classNames('select-value', {
                         'with-icon': icon,
                         'to-left': selected?.iconLeft,
-                        'to-right': selected?.iconRight
+                        'to-right': selected?.iconRight,
+                        multi,
                     })}
                     onMouseDown={handleMouseDown}
                 >
-                    {selected?.[optionKey as keyof SelectOptionProps] ? (
-                        <>
-                            {selected?.[optionValue as keyof SelectOptionProps]}
-                            {icon && <Icon {...icon} />}
-                        </>
-                    ) : (
+                    {multi &&
+                        selectedMulti.length > 0 &&
+                        selectedMulti.map((selectedOption) => (
+                            <div className={'select-tag'}>
+                                {
+                                    selectedOption?.[
+                                        optionValue as keyof SelectOptionProps
+                                    ]
+                                }
+                                <div
+                                    onClick={() =>
+                                        handleOptionUnselect(selectedOption)
+                                    }
+                                >
+                                    <Icon
+                                        size={10}
+                                        name={'close'}
+                                        color={'white'}
+                                    />
+                                </div>
+                            </div>
+                        ))}
+                    {!multi &&
+                        selected?.[optionKey as keyof SelectOptionProps] && (
+                            <>
+                                {
+                                    selected?.[
+                                        optionValue as keyof SelectOptionProps
+                                    ]
+                                }
+                                {icon && <Icon {...icon} />}
+                            </>
+                        )}
+                    {!(multi && selectedMulti.length) &&
+                        !(!multi && selected) &&
                         placeholder && (
                             <span className="select-placeholder">
                                 {placeholder}
                             </span>
-                        )
-                    )}
+                        )}
                 </div>
                 {dropped && options && (
                     <div className="select-dropdown">
                         {options.map((option) => {
                             const icon = option.iconLeft || option.iconRight;
+                            const selected = isSelected(option);
                             return (
                                 <div
                                     className={classNames('dropdown-option', {
-                                        selected:
-                                            option[
-                                                optionKey as keyof SelectOptionProps
-                                            ] ===
-                                            selected?.[
-                                                optionKey as keyof SelectOptionProps
-                                            ],
+                                        selected,
                                         'with-icon': icon,
                                         'to-left': option.iconLeft,
                                         'to-right': option.iconRight,
-                                        disabled
+                                        disabled,
                                     })}
                                     key={
                                         (option as SelectOptionProps)[
                                             optionKey
                                         ] as Key
                                     }
-                                    onClick={() => handleOptionSelect(option)}
+                                    onClick={() =>
+                                        selected && multi
+                                            ? handleOptionUnselect(option)
+                                            : handleOptionSelect(option)
+                                    }
                                 >
                                     {
                                         option[
