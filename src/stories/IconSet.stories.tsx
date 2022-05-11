@@ -50,6 +50,14 @@ const icons = [
     'minus',
     'copy',
     'circle-close',
+    'reload',
+    'logout',
+    'arrow-up-right',
+    'more-horiz',
+    'rounded-rectangle-more',
+    'shared',
+    'box',
+    'magnifier-found',
 ];
 
 Icon.args = {
