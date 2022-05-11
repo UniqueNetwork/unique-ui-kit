@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## 0.0.16 May 11, 2022
+
+Changes:
+
+- Suggest component add
+- Select component with multi add
+- Dropdown component add
+- New icons
+
+## 0.0.15 May 4, 2022
+
+Changes:
+
+- CollectionLink widget add
+- Table component row second prop add 
+- Modal component outside mouseup fix
+- New icons
+
 ## 0.0.14 Apr 27, 2022
 
 Changes:

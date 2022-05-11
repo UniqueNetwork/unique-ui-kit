@@ -43,7 +43,7 @@ const Pagination: FC<IPaginationProps> = ({
     withPerPageSelector,
     onPageChange,
     onGoToPage,
-    onPageSizeChange
+    onPageSizeChange,
 }: IPaginationProps) => {
     const isMobile = visible === 2;
     const [currentIndex, setCurrentIndex] = useState<number>(current);
@@ -90,15 +90,19 @@ const Pagination: FC<IPaginationProps> = ({
                     <Select
                         options={pageSizes.map((option) => ({
                             id: option.toString(),
-                            title: option.toString()
+                            title: option.toString(),
                         }))}
                         size="small"
                         value={perPageCount.toString()}
                         onChange={(option) => {
-                            setPerPageCount(Number(option.title));
+                            const [selectOption] = Array.isArray(option)
+                                ? option
+                                : [option];
+                            const pageCount = Number(selectOption.title);
+                            setPerPageCount(pageCount);
                             setCurrentIndex(0);
                             setCurrentSelector('');
-                            onPageSizeChange?.(Number(option.title));
+                            onPageSizeChange?.(pageCount);
                         }}
                     />
                 </div>
@@ -110,10 +114,10 @@ const Pagination: FC<IPaginationProps> = ({
                             onClick: () => {
                                 currentSelector && setCurrentSelector('');
                                 setCurrentIndex(currentIndex - 1);
-                            }
+                            },
                         })}
                         className={classNames('page-item', {
-                            disabled: currentIndex === 0
+                            disabled: currentIndex === 0,
                         })}
                     >
                         <Icon name="carret-left" size={12} />
@@ -143,7 +147,7 @@ const Pagination: FC<IPaginationProps> = ({
                             }}
                             key={offsetIndex}
                             className={classNames('page-item', {
-                                active: offsetIndex === currentIndex
+                                active: offsetIndex === currentIndex,
                             })}
                         />
                     );
@@ -167,10 +171,10 @@ const Pagination: FC<IPaginationProps> = ({
                             onClick: () => {
                                 currentSelector && setCurrentSelector('');
                                 setCurrentIndex(currentIndex + 1);
-                            }
+                            },
                         })}
                         className={classNames('page-item', {
-                            disabled: currentIndex === totalCount - 1
+                            disabled: currentIndex === totalCount - 1,
                         })}
                     >
                         <Icon name="carret-right" size={12} />

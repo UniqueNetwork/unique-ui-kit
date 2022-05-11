@@ -1,0 +1,88 @@
+.unique-suggestion-wrapper {
+    .status-text {
+        color: var(--color-grey-500);
+        font-size: 14px;
+        line-height: 22px;
+        margin-top: 8px;
+        min-height: 22px;
+        width: 100%;
+    }
+
+    &.error,
+    &.error:focus-within {
+        .input-wrapper {
+            border: 1px solid var(--color-coral-500);
+        }
+        .status-text {
+            color: var(--color-coral-500);
+        }
+    }
+}
+
+.unique-suggestion {
+    font-family: var(--prop-font-family);
+    font-size: var(--prop-font-size);
+    font-weight: var(--prop-font-weight);
+    position: relative;
+    color: var(--color-additional-dark);
+    display: inline-block;
+
+    .dropped {
+        .icon-triangle {
+            transform: rotate(180deg);
+        }
+    }
+
+    .suggest-input {
+        position: relative;
+        display: inline-block;
+
+        input {
+            text-overflow: ellipsis;
+        }
+
+        .with-icon {
+            .icon-triangle {
+                margin: 0;
+            }
+        }
+
+        .icon-clear {
+            cursor: pointer;
+            z-index: 2;
+            margin-right: 10px;
+
+            svg {
+                display: block;
+                margin: 0;
+            }
+        }
+    }
+
+    .suggestion-values {
+        border: 1px solid var(--color-grey-300);
+        border-radius: 4px;
+        background: var(--color-additional-light);
+        box-sizing: border-box;
+        position: absolute;
+        z-index: 50;
+        top: calc(100% + 5px);
+        width: 100%;
+        padding: 8px;
+
+        &.empty {
+            height: auto;
+        }
+    }
+
+    .unique-input-text .input-wrapper.with-icon.to-right input {
+        padding-right: 10px;
+    }
+
+    .icon-right-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-right: 17px;
+    }
+}
