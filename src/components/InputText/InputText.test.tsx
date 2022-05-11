@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import InputText from './InputText';
+import { Icon } from '../';
 
 const mockFunction = jest.fn();
 
@@ -35,8 +36,8 @@ describe('InputText Component', () => {
                 onChange={mockFunction}
             />
         );
-        expect(getByTestId('close')).toBeInTheDocument();
-        expect(getByTestId('magnify')).toBeInTheDocument();
+        expect(getByTestId('icon-close')).toBeInTheDocument();
+        expect(getByTestId('icon-magnify')).toBeInTheDocument();
     });
 
     it('status check', () => {
@@ -62,5 +63,39 @@ describe('InputText Component', () => {
         const input = screen.getByRole('textbox') as HTMLInputElement;
         fireEvent.change(input, { target: { value: 'test value' } });
         expect(mockFunction.mock.calls[0][0]).toEqual('test value');
+    });
+
+    it('should render react node icons right', () => {
+        const { getByTestId } = render(
+            <InputText
+                label="test label"
+                onChange={mockFunction}
+                iconRight={
+                    <>
+                        <Icon size={10} name={'burn'} />
+                        <Icon size={10} name={'close'} />
+                    </>
+                }
+            />
+        );
+        expect(getByTestId('icon-burn')).toBeInTheDocument();
+        expect(getByTestId('icon-close')).toBeInTheDocument();
+    });
+
+    it('should render react node icons left', () => {
+        const { getByTestId } = render(
+            <InputText
+                label="test label"
+                onChange={mockFunction}
+                iconLeft={
+                    <>
+                        <Icon size={10} name={'burn'} />
+                        <Icon size={10} name={'close'} />
+                    </>
+                }
+            />
+        );
+        expect(getByTestId('icon-burn')).toBeInTheDocument();
+        expect(getByTestId('icon-close')).toBeInTheDocument();
     });
 });

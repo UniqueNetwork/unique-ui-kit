@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { InputText } from '../components';
+import { Icon, InputText } from '../components';
 
 export default {
     title: 'Components/InputText',
@@ -119,3 +119,17 @@ Disabled.args = {
 };
 
 Disabled.storyName = 'Minimal disabled';
+
+export const DoubleIcon = Template.bind({});
+
+DoubleIcon.args = {
+    value: 'Value',
+    iconRight: (
+        <>
+            <Icon size={20} name={'pencil'} />
+            <Icon size={20} name={'magnify'} />
+        </>
+    ),
+};
+
+DoubleIcon.storyName = 'Double icon';

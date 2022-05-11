@@ -1,7 +1,8 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Suggest, Text } from '../components';
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import classNames from 'classnames';
+import { sleep } from '../utils';
 
 import nft1 from '../assets/static/nft-1.png';
 
@@ -39,63 +40,59 @@ const values = [
 
 type SuggestValues = typeof values[number];
 
-const Template: ComponentStory<typeof Suggest> = ({ inputProps, ...args }) => {
-    const [value, setValue] = useState('');
-    return (
-        <Suggest
-            inputProps={{ ...inputProps, value, onChange: setValue }}
-            {...args}
-        />
-    );
-};
+const Template: ComponentStory<typeof Suggest> = (args) => (
+    <Suggest
+        {...args}
+        getActiveSuggestOption={(
+            option: SuggestValues,
+            activeOption: SuggestValues
+        ) => option.id === activeOption.id}
+        suggestions={values}
+        getSuggestionValue={(value: SuggestValues) => value.title}
+        onChange={console.log}
+    />
+);
 
 export const Default = Template.bind({});
 
-Default.args = {
-    suggestions: values,
-    getSuggestionValue: (value: SuggestValues) => value.title,
-};
+Default.args = {};
 
 Default.storyName = 'Default';
 
-const CustomLogicTemplate: ComponentStory<typeof Suggest> = ({
-    inputProps,
-    ...args
-}) => {
-    const [value, setValue] = useState('');
-    return (
-        <>
-            <Text>Search for value by id and title</Text>
-            <Suggest
-                inputProps={{ ...inputProps, value, onChange: setValue }}
-                {...args}
-            />
-        </>
-    );
-};
+const CustomLogicTemplate: ComponentStory<typeof Suggest> = (args) => (
+    <>
+        <Text>Search for value by id and title</Text>
+        <Suggest
+            {...args}
+            suggestions={values}
+            getSuggestionValue={(value: SuggestValues) =>
+                `id-${value.id}, ${value.title}`
+            }
+            getActiveSuggestOption={(
+                option: SuggestValues,
+                activeOption: SuggestValues
+            ) => option.id === activeOption.id}
+            onSuggestionsFetchRequested={(val = '') =>
+                values.filter(
+                    (value) =>
+                        `${value.id}`.includes(val.toLowerCase()) ||
+                        value.title.toLowerCase().includes(val.toLowerCase())
+                )
+            }
+        />
+    </>
+);
 
 export const CustomLogic = CustomLogicTemplate.bind({});
 
-CustomLogic.args = {
-    suggestions: values,
-    getSuggestionValue: (value: SuggestValues) =>
-        `id-${value.id}, ${value.title}`,
-    onSuggestionsFetchRequested: (val = '') =>
-        values.filter(
-            (value) =>
-                `${value.id}`.includes(val.toLowerCase()) ||
-                value.title.toLowerCase().includes(val.toLowerCase())
-        ),
-};
+CustomLogic.args = {};
 
 CustomLogic.storyName = 'Custom logic filter items';
 
 export const DefaultValue = Template.bind({});
 
 DefaultValue.args = {
-    suggestions: values,
-    getSuggestionValue: (value: SuggestValues) => value.title,
-    defaultValue: values[1],
+    value: values[1],
 };
 
 DefaultValue.storyName = 'Default Value';
@@ -103,12 +100,8 @@ DefaultValue.storyName = 'Default Value';
 export const Disabled = Template.bind({});
 
 Disabled.args = {
-    suggestions: values,
-    getSuggestionValue: (value: SuggestValues) => value.title,
-    defaultValue: values[0],
+    value: values[0],
     inputProps: {
-        value: '',
-        onChange: () => {},
         disabled: true,
     },
 };
@@ -118,8 +111,6 @@ Disabled.storyName = 'Disabled Value';
 export const CustomNoSuggestMessage = Template.bind({});
 
 CustomNoSuggestMessage.args = {
-    suggestions: values,
-    getSuggestionValue: (value: SuggestValues) => value.title,
     noSuggestMessage: 'Custom message when results not found',
 };
 
@@ -128,8 +119,6 @@ CustomNoSuggestMessage.storyName = 'Custom message when results not found';
 export const CustomItemComponents = Template.bind({});
 
 CustomItemComponents.args = {
-    suggestions: values,
-    getSuggestionValue: (value: SuggestValues) => value.title,
     components: {
         SuggestItem: ({ suggestion, isActive }: any) => (
             <div
@@ -163,8 +152,6 @@ CustomItemComponents.storyName = 'Custom item component';
 export const CustomNoFoundComponents = Template.bind({});
 
 CustomNoFoundComponents.args = {
-    suggestions: values,
-    getSuggestionValue: (value: SuggestValues) => value.title,
     components: {
         SuggestEmpty: ({ message }) => (
             <div style={{ textAlign: 'center', padding: '15px' }}>
@@ -180,8 +167,6 @@ CustomNoFoundComponents.storyName = 'Custom not found results component';
 export const CustomSuggestListComponents = Template.bind({});
 
 CustomSuggestListComponents.args = {
-    suggestions: values,
-    getSuggestionValue: (value: SuggestValues) => value.title,
     components: {
         SuggestWrapper: ({ suggestions, children }: any) => {
             const group1 = suggestions.filter(
@@ -269,3 +254,160 @@ CustomSuggestListComponents.args = {
 };
 
 CustomSuggestListComponents.storyName = 'Custom suggest list component';
+
+export const LoadingComponents = Template.bind({});
+
+LoadingComponents.args = {
+    isLoading: true,
+};
+
+LoadingComponents.storyName = 'Loading indicator';
+
+export const LoadingTextComponents = Template.bind({});
+
+LoadingTextComponents.args = {
+    isLoading: true,
+    loadingText: 'Custom text...',
+};
+
+LoadingTextComponents.storyName = 'Custom loading text';
+
+const ServerLoading: ComponentStory<typeof Suggest> = (args) => {
+    const [isLoading, setLoading] = useState(false);
+    const [suggests, setSuggests] = useState<SuggestValues[]>([]);
+
+    const getPosts = async () => {
+        setLoading(true);
+        await sleep(1500);
+        fetch('https://jsonplaceholder.typicode.com/posts')
+            .then((res) => res.json())
+            .then((res) => setSuggests((prevState) => [...prevState, ...res]))
+            .finally(() => setLoading(false));
+    };
+
+    useEffect(() => {
+        getPosts();
+    }, []);
+
+    return (
+        <>
+            <Suggest
+                {...args}
+                inputProps={{
+                    placeholder: 'Server request',
+                }}
+                suggestions={suggests}
+                getSuggestionValue={(value: SuggestValues) => value.title}
+                getActiveSuggestOption={(
+                    option: SuggestValues,
+                    activeOption: SuggestValues
+                ) => option.id === activeOption.id}
+                isLoading={isLoading}
+            />
+        </>
+    );
+};
+
+export const LoadingSuggestOptionsServer = ServerLoading.bind({});
+
+LoadingSuggestOptionsServer.args = {};
+
+LoadingSuggestOptionsServer.storyName = 'Server loading options';
+
+const InfinityScroll: ComponentStory<typeof Suggest> = (args) => {
+    const [isLoading, setLoading] = useState(false);
+    const [suggests, setSuggests] = useState<SuggestValues[]>([]);
+    const [page, setPage] = useState(1);
+
+    const getPosts = async () => {
+        setLoading(true);
+        await sleep(1500);
+        fetch(`https://jsonplaceholder.typicode.com/posts?_page=${page}`)
+            .then((res) => res.json())
+            .then((res) => {
+                setSuggests((prevState) => [...prevState, ...res]);
+                setPage((prevState) => prevState + 1);
+            })
+            .finally(() => setLoading(false));
+    };
+
+    useEffect(() => {
+        getPosts();
+    }, []);
+
+    return (
+        <>
+            <Suggest
+                {...args}
+                inputProps={{
+                    placeholder: 'Server request',
+                }}
+                suggestions={suggests}
+                getSuggestionValue={(value: SuggestValues) => value.title}
+                getActiveSuggestOption={(
+                    option: SuggestValues,
+                    activeOption: SuggestValues
+                ) => option.id === activeOption.id}
+                isLoading={isLoading}
+                onLoadMore={() => {
+                    if (page === 10) {
+                        return;
+                    }
+                    getPosts();
+                }}
+            />
+        </>
+    );
+};
+
+export const InfinityScrollSuggest = InfinityScroll.bind({});
+
+InfinityScrollSuggest.args = {};
+
+InfinityScrollSuggest.storyName = 'Infinity scroll';
+
+const AsyncSearch: ComponentStory<typeof Suggest> = (args) => {
+    const [isLoading, setLoading] = useState(false);
+    const [suggests, setSuggests] = useState<SuggestValues[]>([]);
+
+    const getPosts = async (title: string) => {
+        setLoading(true);
+        await sleep(1000);
+        fetch(`https://jsonplaceholder.typicode.com/posts?title_like=${title}`)
+            .then((res) => res.json())
+            .then((res) => {
+                setSuggests(res);
+            })
+            .finally(() => setLoading(false));
+    };
+
+    useEffect(() => {
+        getPosts('');
+    }, []);
+
+    return (
+        <>
+            <Suggest
+                inputProps={{
+                    placeholder: 'Server request',
+                }}
+                suggestions={suggests}
+                getSuggestionValue={(value: SuggestValues) => value.title}
+                getActiveSuggestOption={(
+                    option: SuggestValues,
+                    activeOption: SuggestValues
+                ) => option.id === activeOption.id}
+                isLoading={isLoading}
+                onInputChange={(value) => {
+                    getPosts(value);
+                }}
+            />
+        </>
+    );
+};
+
+export const AsyncSearchSuggest = AsyncSearch.bind({});
+
+AsyncSearchSuggest.args = {};
+
+AsyncSearchSuggest.storyName = 'Async search';

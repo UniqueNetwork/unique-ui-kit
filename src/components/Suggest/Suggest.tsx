@@ -4,13 +4,14 @@
 
 import {
     ComponentType,
+    ReactNode,
     SyntheticEvent,
     useEffect,
     useRef,
     useState,
 } from 'react';
 
-import { Icon, InputText } from '..';
+import { Icon, InputText, Scrollbar } from '..';
 import { InputTextProps } from '../InputText/InputText';
 
 import './Suggest.scss';
@@ -23,18 +24,21 @@ import {
     SuggestWrapper,
     SuggestWrapperProps,
     SuggestListProps,
+    SuggestSpinner,
 } from './components';
 import classNames from 'classnames';
-import { useIsFirstRender } from '../../utils/hooks';
+import { useIsFirstRender, useIntersectionObserver } from '../../utils/hooks';
 
 export interface SuggestProps<SuggestOption> {
     // function will call every time need to update suggestions
-    onSuggestionsFetchRequested?(inputValue: string): SuggestOption[];
+    onSuggestionsFetchRequested?(
+        inputValue: string,
+        currentSuggests: SuggestOption[]
+    ): SuggestOption[];
     // suggestion values
     suggestions: SuggestOption[];
     // props for InputText component
-    inputProps: Required<Pick<InputTextProps, 'onChange' | 'value'>> &
-        Omit<InputTextProps, 'onChange' | 'value'>;
+    inputProps?: Omit<InputTextProps, 'onChange' | 'value'>;
     // get value for suggestion
     getSuggestionValue(suggestion: SuggestOption): string;
     // callback for selected value
@@ -43,7 +47,21 @@ export interface SuggestProps<SuggestOption> {
     components?: SuggestComponents<SuggestOption>;
     // message when result empty
     noSuggestMessage?: string;
-    defaultValue?: SuggestOption;
+    // value suggest component
+    value?: SuggestOption;
+    // download status suggest option
+    isLoading?: boolean;
+    // function will call each time to change the input value
+    onInputChange?(value: string): void;
+    // text to display when in a loading state.
+    loadingText?: string | ReactNode;
+    // used to determine if the option represents the given value.
+    getActiveSuggestOption(
+        suggest: SuggestOption,
+        activeValue: SuggestOption
+    ): boolean;
+    // load more suggestion option
+    onLoadMore?: () => void;
 }
 
 export type SuggestComponents<SuggestOption> = {
@@ -58,21 +76,31 @@ const KEY_CODE = {
 };
 
 const Suggest = <T,>({
-    inputProps,
+    inputProps: _inputProps,
     suggestions,
     getSuggestionValue,
     components,
     onChange,
     onSuggestionsFetchRequested,
     noSuggestMessage = 'No results',
-    defaultValue,
+    value,
+    isLoading = false,
+    onInputChange,
+    loadingText = 'Please wait',
+    getActiveSuggestOption,
+    onLoadMore,
 }: SuggestProps<T>) => {
-    const { value: inputValue = '' } = inputProps;
-    const [showSuggestions, setShowSuggestions] = useState(false);
+    const { statusText, ...inputProps } = _inputProps || {};
+    const { intersectionObserverRef, isVisibleIntersectionObserver } =
+        useIntersectionObserver({
+            callback: onLoadMore,
+            isActive: !isLoading,
+        });
 
-    const [activeValue, setActiveValue] = useState<Map<T, boolean>>(
-        () => new Map(defaultValue ? [[defaultValue, true]] : undefined)
-    );
+    const [showSuggestions, setShowSuggestions] = useState(false);
+    const [inputValue, setInputValue] = useState('');
+
+    const [activeValue, setActiveValue] = useState<T | null>(value || null);
     const [isSearchUser, setSearchUser] = useState(false);
 
     const [filteredSuggestions, setFilteredSuggestions] =
@@ -91,12 +119,20 @@ const Suggest = <T,>({
     const inputRef = useRef<HTMLInputElement | null>(null);
 
     useEffect(() => {
+        if (!value) {
+            return;
+        }
+        setActiveValue(value);
+        setInputValue(getSuggestionValue(value));
+    }, [value]);
+
+    useEffect(() => {
         if (!isSearchUser) {
             setFilteredSuggestions(suggestions);
             return;
         }
         const newFilteredSuggestions =
-            onSuggestionsFetchRequested?.(inputValue) ||
+            onSuggestionsFetchRequested?.(inputValue, filteredSuggestions) ||
             (inputValue === ''
                 ? suggestions
                 : suggestions.filter((suggestion) =>
@@ -105,31 +141,29 @@ const Suggest = <T,>({
                           .includes(inputValue.toLowerCase())
                   ));
         setFilteredSuggestions(newFilteredSuggestions);
-    }, [inputValue, isSearchUser]);
+    }, [inputValue, isSearchUser, suggestions]);
+
+    useEffect(() => {
+        !isFirstRender && onInputChange?.(inputValue);
+    }, [inputValue]);
 
     useEffect(() => {
         if (!showSuggestions) {
             setSearchUser(false);
         }
-        if (isFirstRender && activeValue.size > 0) {
-            const [suggestion] = [...activeValue][0];
-            inputProps.onChange?.(getSuggestionValue(suggestion));
+        if (isFirstRender && activeValue) {
+            setInputValue(getSuggestionValue(activeValue));
             return;
         }
-        if (!showSuggestions && activeValue.size > 0) {
-            const [suggestion] = [...activeValue][0];
-            inputProps.onChange?.(getSuggestionValue(suggestion));
+        if (!showSuggestions && activeValue) {
+            setInputValue(getSuggestionValue(activeValue));
         }
         if (
-            (!showSuggestions &&
-                activeValue.size === 0 &&
-                inputValue.length > 0) ||
-            (!showSuggestions &&
-                activeValue.size > 0 &&
-                inputValue.length === 0)
+            (!showSuggestions && !activeValue && inputValue.length > 0) ||
+            (!showSuggestions && activeValue && inputValue.length === 0)
         ) {
-            inputProps.onChange?.('');
-            setActiveValue(new Map());
+            setInputValue('');
+            setActiveValue(null);
         }
     }, [showSuggestions]);
 
@@ -137,14 +171,12 @@ const Suggest = <T,>({
         setFilteredSuggestions(suggestions);
         setShowSuggestions(false);
         onChange?.(suggestion);
-        inputProps.onChange?.(getSuggestionValue(suggestion));
-
-        const newActive = new Map([[suggestion, true]]);
-        setActiveValue(newActive);
+        setInputValue(getSuggestionValue(suggestion));
+        setActiveValue(suggestion);
     };
 
     const handleToggleOpenSuggest = () => {
-        if (inputProps.disabled) {
+        if (inputProps?.disabled) {
             return;
         }
         inputRef.current?.focus();
@@ -174,14 +206,18 @@ const Suggest = <T,>({
 
     const handleClearValue = (e: SyntheticEvent) => {
         e.stopPropagation();
-        inputProps.onChange?.('');
-        setActiveValue(new Map());
+        setInputValue('');
+        setActiveValue(null);
         onChange?.(null);
         inputRef.current?.focus();
     };
 
     return (
-        <div className={'unique-suggestion-wrapper'}>
+        <div
+            className={classNames('unique-suggestion-wrapper', {
+                error: inputProps.error,
+            })}
+        >
             <div
                 className={'unique-suggestion'}
                 onMouseLeave={handleMouseLeave}
@@ -194,8 +230,8 @@ const Suggest = <T,>({
                 >
                     <InputText
                         iconRight={
-                            <>
-                                {activeValue.size > 0 && !inputProps.disabled && (
+                            <div className={'icon-right-wrapper'}>
+                                {activeValue && !inputProps?.disabled && (
                                     <div
                                         className={'icon-clear'}
                                         onClick={handleClearValue}
@@ -209,10 +245,10 @@ const Suggest = <T,>({
                                 )}
                                 <Icon
                                     name="triangle"
-                                    size={9}
+                                    size={8}
                                     color="var(--color-blue-grey-500)"
                                 />
-                            </>
+                            </div>
                         }
                         className={classNames({
                             dropped: showSuggestions,
@@ -221,56 +257,88 @@ const Suggest = <T,>({
                         {...inputProps}
                         onChange={(value) => {
                             !showSuggestions && setShowSuggestions(true);
-                            inputProps.onChange?.(value);
+                            setInputValue(value);
                             setSearchUser(true);
                         }}
                         value={inputValue}
                         ref={inputRef}
                     />
                 </div>
+
                 {showSuggestions && (
                     <div
                         className={classNames('suggestion-values', {
                             empty: filteredSuggestions.length === 0,
                         })}
                     >
-                        <suggestComponents.SuggestWrapper
-                            suggestions={filteredSuggestions}
-                        >
-                            {(_suggestions) => (
-                                <suggestComponents.SuggestList
-                                    suggestions={_suggestions}
+                        {isLoading && !isVisibleIntersectionObserver ? (
+                            // TODO: add spinner component
+                            <SuggestSpinner loadingText={loadingText} />
+                        ) : (
+                            <Scrollbar autoHeightMax={250}>
+                                <suggestComponents.SuggestWrapper
+                                    suggestions={filteredSuggestions}
                                 >
-                                    {(_suggestion) => (
-                                        <div
-                                            onClick={() =>
-                                                handleSelectedSuggestion(
-                                                    _suggestion
-                                                )
-                                            }
-                                        >
-                                            <suggestComponents.SuggestItem
-                                                suggestion={_suggestion}
-                                                suggestionValue={getSuggestionValue(
-                                                    _suggestion
+                                    {(_suggestions) => (
+                                        <>
+                                            <suggestComponents.SuggestList
+                                                suggestions={_suggestions}
+                                            >
+                                                {(_suggestion, isLast) => (
+                                                    <div
+                                                        onClick={() =>
+                                                            handleSelectedSuggestion(
+                                                                _suggestion
+                                                            )
+                                                        }
+                                                        ref={
+                                                            isLast
+                                                                ? intersectionObserverRef
+                                                                : undefined
+                                                        }
+                                                    >
+                                                        <suggestComponents.SuggestItem
+                                                            suggestion={
+                                                                _suggestion
+                                                            }
+                                                            suggestionValue={getSuggestionValue(
+                                                                _suggestion
+                                                            )}
+                                                            isActive={
+                                                                activeValue
+                                                                    ? getActiveSuggestOption(
+                                                                          _suggestion,
+                                                                          activeValue
+                                                                      )
+                                                                    : false
+                                                            }
+                                                        />
+                                                    </div>
                                                 )}
-                                                isActive={activeValue.get(
-                                                    _suggestion
+                                            </suggestComponents.SuggestList>
+
+                                            {isVisibleIntersectionObserver &&
+                                                isLoading && (
+                                                    <SuggestSpinner
+                                                        loadingText={
+                                                            loadingText
+                                                        }
+                                                    />
                                                 )}
-                                            />
-                                        </div>
+                                        </>
                                     )}
-                                </suggestComponents.SuggestList>
-                            )}
-                        </suggestComponents.SuggestWrapper>
-                        {filteredSuggestions.length === 0 && (
-                            <suggestComponents.SuggestEmpty
-                                message={noSuggestMessage}
-                            />
+                                </suggestComponents.SuggestWrapper>
+                                {filteredSuggestions.length === 0 && (
+                                    <suggestComponents.SuggestEmpty
+                                        message={noSuggestMessage}
+                                    />
+                                )}
+                            </Scrollbar>
                         )}
                     </div>
                 )}
             </div>
+            {statusText && <div className="status-text">{statusText}</div>}
         </div>
     );
 };

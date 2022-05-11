@@ -1,3 +1,24 @@
+.unique-suggestion-wrapper {
+    .status-text {
+        color: var(--color-grey-500);
+        font-size: 14px;
+        line-height: 22px;
+        margin-top: 8px;
+        min-height: 22px;
+        width: 100%;
+    }
+
+    &.error,
+    &.error:focus-within {
+        .input-wrapper {
+            border: 1px solid var(--color-coral-500);
+        }
+        .status-text {
+            color: var(--color-coral-500);
+        }
+    }
+}
+
 .unique-suggestion {
     font-family: var(--prop-font-family);
     font-size: var(--prop-font-size);
@@ -16,9 +37,20 @@
         position: relative;
         display: inline-block;
 
+        input {
+            text-overflow: ellipsis;
+        }
+
+        .with-icon {
+            .icon-triangle {
+                margin: 0;
+            }
+        }
+
         .icon-clear {
             cursor: pointer;
             z-index: 2;
+            margin-right: 10px;
 
             svg {
                 display: block;
@@ -35,8 +67,6 @@
         position: absolute;
         z-index: 50;
         top: calc(100% + 5px);
-        max-height: 250px;
-        overflow: auto;
         width: 100%;
         padding: 8px;
 
@@ -47,5 +77,12 @@
 
     .unique-input-text .input-wrapper.with-icon.to-right input {
         padding-right: 10px;
+    }
+
+    .icon-right-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-right: 17px;
     }
 }

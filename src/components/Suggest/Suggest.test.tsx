@@ -1,37 +1,26 @@
-import { render, fireEvent, getAllByText } from '@testing-library/react';
+import {
+    render,
+    fireEvent,
+    getAllByText,
+    waitForElementToBeRemoved,
+} from '@testing-library/react';
 import event from '@testing-library/user-event';
 
-import Suggest, { SuggestProps } from './Suggest';
-import { useState } from 'react';
-
-type InputProps<T> = Partial<SuggestProps<T>['inputProps']>;
-
-const WrapperSuggest = <T,>({
-    inputProps,
-    ...props
-}: Omit<SuggestProps<T>, 'inputProps'> & { inputProps?: InputProps<T> }) => {
-    const [value, setValue] = useState('');
-    return (
-        <Suggest
-            {...props}
-            inputProps={{
-                value,
-                onChange: setValue,
-                ...inputProps,
-            }}
-        />
-    );
-};
+import { useEffect, useState } from 'react';
+import Suggest from './Suggest';
 
 describe('Suggest component', () => {
     it('should be render default value', () => {
         const values = [{ name: 'Test' }, { name: 'Test2' }];
         const { getByRole, queryAllByRole, getByTestId, queryByTestId } =
             render(
-                <WrapperSuggest
+                <Suggest
+                    getActiveSuggestOption={(suggest, activeValue) =>
+                        suggest.name === activeValue.name
+                    }
                     suggestions={values}
                     getSuggestionValue={(suggestion) => suggestion.name}
-                    defaultValue={values[1]}
+                    value={values[1]}
                 />
             );
 
@@ -44,7 +33,10 @@ describe('Suggest component', () => {
     it('should be default state', () => {
         const values = [{ name: 'Test' }, { name: 'Test2' }];
         const { getByRole, queryAllByRole, queryByTestId } = render(
-            <WrapperSuggest
+            <Suggest
+                getActiveSuggestOption={(suggest, activeValue) =>
+                    suggest.name === activeValue.name
+                }
                 suggestions={values}
                 getSuggestionValue={(suggestion) => suggestion.name}
             />
@@ -60,10 +52,13 @@ describe('Suggest component', () => {
         const values = [{ name: 'Test' }, { name: 'Test2' }];
         const { getByRole, queryAllByRole, queryByTestId, getByTestId } =
             render(
-                <WrapperSuggest
+                <Suggest
                     suggestions={values}
                     getSuggestionValue={(suggestion) => suggestion.name}
-                    defaultValue={values[1]}
+                    value={values[1]}
+                    getActiveSuggestOption={(suggest, activeValue) =>
+                        suggest.name === activeValue.name
+                    }
                 />
             );
 
@@ -91,9 +86,12 @@ describe('Suggest component', () => {
             queryByTestId,
             getByTestId,
         } = render(
-            <WrapperSuggest
+            <Suggest
                 suggestions={values}
                 getSuggestionValue={(suggestion) => suggestion.name}
+                getActiveSuggestOption={(suggest, activeValue) =>
+                    suggest.name === activeValue.name
+                }
             />
         );
 
@@ -124,10 +122,13 @@ describe('Suggest component', () => {
             getByTestId,
             queryByTestId,
         } = render(
-            <WrapperSuggest
+            <Suggest
                 suggestions={values}
                 getSuggestionValue={(suggestion) => suggestion.name}
                 onChange={mockOnChange}
+                getActiveSuggestOption={(suggest, activeValue) =>
+                    suggest.name === activeValue.name
+                }
             />
         );
 
@@ -151,10 +152,13 @@ describe('Suggest component', () => {
     it('should not be closed list if clicked input when exist active value', async () => {
         const values = [{ name: 'Test' }, { name: 'Test2' }, { name: 'Label' }];
         const { getByRole, getByTestId, getAllByRole } = render(
-            <WrapperSuggest
+            <Suggest
                 suggestions={values}
                 getSuggestionValue={(suggestion) => suggestion.name}
-                defaultValue={values[0]}
+                value={values[0]}
+                getActiveSuggestOption={(suggest, activeValue) =>
+                    suggest.name === activeValue.name
+                }
             />
         );
 
@@ -173,9 +177,12 @@ describe('Suggest component', () => {
     it('should be start filtered values', async () => {
         const values = [{ name: 'Test' }, { name: 'Test2' }, { name: 'Label' }];
         const { getByRole, getAllByRole } = render(
-            <WrapperSuggest
+            <Suggest
                 suggestions={values}
                 getSuggestionValue={(suggestion) => suggestion.name}
+                getActiveSuggestOption={(suggest, activeValue) =>
+                    suggest.name === activeValue.name
+                }
             />
         );
 
@@ -194,9 +201,12 @@ describe('Suggest component', () => {
     it('should not be found values', async () => {
         const values = [{ name: 'Test' }, { name: 'Test2' }, { name: 'Label' }];
         const { getByRole, getByText, queryAllByRole } = render(
-            <WrapperSuggest
+            <Suggest
                 suggestions={values}
                 getSuggestionValue={(suggestion) => suggestion.name}
+                getActiveSuggestOption={(suggest, activeValue) =>
+                    suggest.name === activeValue.name
+                }
             />
         );
 
@@ -217,10 +227,13 @@ describe('Suggest component', () => {
     it('should be filtered values when exist default value', async () => {
         const values = [{ name: 'Test' }, { name: 'Test2' }, { name: 'Label' }];
         const { getByRole, getAllByRole } = render(
-            <WrapperSuggest
+            <Suggest
                 suggestions={values}
                 getSuggestionValue={(suggestion) => suggestion.name}
-                defaultValue={values[0]}
+                value={values[0]}
+                getActiveSuggestOption={(suggest, activeValue) =>
+                    suggest.name === activeValue.name
+                }
             />
         );
 
@@ -236,9 +249,12 @@ describe('Suggest component', () => {
         const values = [{ name: 'Test' }, { name: 'Test2' }, { name: 'Label' }];
 
         const { getByRole, getByText, queryAllByRole, getByTestId } = render(
-            <WrapperSuggest
+            <Suggest
                 suggestions={values}
                 getSuggestionValue={(suggestion) => suggestion.name}
+                getActiveSuggestOption={(suggest, activeValue) =>
+                    suggest.name === activeValue.name
+                }
             />
         );
 
@@ -272,9 +288,12 @@ describe('Suggest component', () => {
             getAllByRole,
             queryByTestId,
         } = render(
-            <WrapperSuggest
+            <Suggest
                 suggestions={values}
                 getSuggestionValue={(suggestion) => suggestion.name}
+                getActiveSuggestOption={(suggest, activeValue) =>
+                    suggest.name === activeValue.name
+                }
             />
         );
 
@@ -301,11 +320,14 @@ describe('Suggest component', () => {
         const values = [{ name: 'Test' }, { name: 'Test2' }, { name: 'Label' }];
 
         const { getByRole, queryAllByRole, queryByTestId } = render(
-            <WrapperSuggest
+            <Suggest
                 suggestions={values}
                 getSuggestionValue={(suggestion) => suggestion.name}
                 inputProps={{ disabled: true }}
-                defaultValue={values[0]}
+                value={values[0]}
+                getActiveSuggestOption={(suggest, activeValue) =>
+                    suggest.name === activeValue.name
+                }
             />
         );
 
@@ -323,10 +345,13 @@ describe('Suggest component', () => {
         const values = [{ name: 'Test' }, { name: 'Test2' }, { name: 'Label' }];
 
         const { getByRole, queryAllByRole, queryByTestId } = render(
-            <WrapperSuggest
+            <Suggest
                 suggestions={values}
                 getSuggestionValue={(suggestion) => suggestion.name}
                 inputProps={{ disabled: true }}
+                getActiveSuggestOption={(suggest, activeValue) =>
+                    suggest.name === activeValue.name
+                }
             />
         );
 
@@ -343,10 +368,13 @@ describe('Suggest component', () => {
         const values = [{ name: 'Test' }];
         const message = 'Test message';
         const { getByRole, getByText, getAllByRole, queryByText } = render(
-            <WrapperSuggest
+            <Suggest
                 suggestions={values}
                 getSuggestionValue={(suggestion) => suggestion.name}
                 noSuggestMessage={message}
+                getActiveSuggestOption={(suggest, activeValue) =>
+                    suggest.name === activeValue.name
+                }
             />
         );
 
@@ -369,10 +397,13 @@ describe('Suggest component', () => {
         const fake = [{ name: 'Trololo' }];
 
         const { getByRole, getAllByRole, getByText, getAllByText } = render(
-            <WrapperSuggest
+            <Suggest
                 suggestions={values}
                 getSuggestionValue={(suggestion) => suggestion.name}
                 onSuggestionsFetchRequested={() => fake}
+                getActiveSuggestOption={(suggest, activeValue) =>
+                    suggest.name === activeValue.name
+                }
             />
         );
 
@@ -399,9 +430,12 @@ describe('Suggest component', () => {
         const values = [{ name: 'Test' }, { name: 'Test2' }];
 
         const { getByRole, getAllByRole, getByTestId, queryByTestId } = render(
-            <WrapperSuggest
+            <Suggest
                 suggestions={values}
                 getSuggestionValue={(suggestion) => suggestion.name}
+                getActiveSuggestOption={(suggest, activeValue) =>
+                    suggest.name === activeValue.name
+                }
                 components={{
                     SuggestEmpty: () => (
                         <div data-testid={'empty'}>
@@ -430,9 +464,12 @@ describe('Suggest component', () => {
         const values = [{ name: 'Test' }, { name: 'Test2' }];
 
         const { getByRole, queryAllByTestId } = render(
-            <WrapperSuggest
+            <Suggest
                 suggestions={values}
                 getSuggestionValue={(suggestion) => suggestion.name}
+                getActiveSuggestOption={(suggest, activeValue) =>
+                    suggest.name === activeValue.name
+                }
                 components={{
                     SuggestItem: () => (
                         <div data-testid={'item'}>
@@ -454,9 +491,12 @@ describe('Suggest component', () => {
 
         const content = 'Test Suggest Wrapper';
         const { getByRole, queryAllByTestId, getByText } = render(
-            <WrapperSuggest
+            <Suggest
                 suggestions={values}
                 getSuggestionValue={(suggestion) => suggestion.name}
+                getActiveSuggestOption={(suggest, activeValue) =>
+                    suggest.name === activeValue.name
+                }
                 components={{
                     SuggestWrapper: () => <div>{content}</div>,
                 }}
@@ -475,9 +515,12 @@ describe('Suggest component', () => {
 
         const content = 'Test Suggest Wrapper';
         const { getByRole, queryAllByTestId, getByText } = render(
-            <WrapperSuggest
+            <Suggest
                 suggestions={values}
                 getSuggestionValue={(suggestion) => suggestion.name}
+                getActiveSuggestOption={(suggest, activeValue) =>
+                    suggest.name === activeValue.name
+                }
                 components={{
                     SuggestList: () => <div>{content}</div>,
                 }}
@@ -489,5 +532,162 @@ describe('Suggest component', () => {
 
         expect(queryAllByTestId('item').length).toBe(0);
         expect(getByText(content)).toBeInTheDocument();
+    });
+
+    it('should call onInputChange function', async () => {
+        const values = [{ name: 'Test' }, { name: 'Test2' }];
+        const mockInputChange = jest.fn();
+
+        const { getByRole, queryAllByRole, getByTestId } = render(
+            <Suggest
+                suggestions={values}
+                getSuggestionValue={(suggestion) => suggestion.name}
+                getActiveSuggestOption={(suggest, activeValue) =>
+                    suggest.name === activeValue.name
+                }
+                onInputChange={mockInputChange}
+            />
+        );
+
+        expect(mockInputChange).not.toHaveBeenCalled();
+
+        const input = getByRole('textbox');
+        await event.click(input);
+
+        expect(mockInputChange).not.toHaveBeenCalled();
+        await event.type(input, 't');
+        expect(mockInputChange).toHaveBeenCalledTimes(1);
+        expect(mockInputChange).toHaveBeenCalledWith('t');
+
+        await event.type(input, 'e');
+        expect(mockInputChange).toHaveBeenCalledTimes(2);
+        expect(mockInputChange).toHaveBeenCalledWith('te');
+
+        fireEvent.keyDown(input, { keyCode: 27 });
+        expect(mockInputChange).toHaveBeenCalledTimes(3);
+        expect(mockInputChange).toHaveBeenCalledWith('');
+
+        await event.click(input);
+        await event.click(queryAllByRole('option')[0]);
+
+        expect(mockInputChange).toHaveBeenCalledTimes(4);
+        expect(mockInputChange).toHaveBeenCalledWith(values[0].name);
+
+        await event.click(getByTestId('icon-circle-close'));
+        expect(mockInputChange).toHaveBeenCalledTimes(5);
+        expect(mockInputChange).toHaveBeenCalledWith('');
+    });
+
+    it('should show spinner', async () => {
+        const values = [{ name: 'Test' }, { name: 'Test2' }];
+
+        const { getByRole, queryByRole } = render(
+            <Suggest
+                suggestions={values}
+                getSuggestionValue={(suggestion) => suggestion.name}
+                getActiveSuggestOption={(suggest, activeValue) =>
+                    suggest.name === activeValue.name
+                }
+                isLoading={true}
+            />
+        );
+
+        expect(queryByRole('progressbar')).not.toBeInTheDocument();
+
+        const input = getByRole('textbox');
+        await event.click(input);
+
+        expect(queryByRole('progressbar')).toBeInTheDocument();
+    });
+
+    it('should load suggests data', async () => {
+        const values = [{ name: 'Test' }, { name: 'Test2' }];
+
+        const sleep = (delay = 0) =>
+            new Promise((resolve) => {
+                setTimeout(resolve, delay);
+            });
+
+        const SuggestLoadingData = () => {
+            const [isLoading, setLoading] = useState(false);
+            const [suggestions, setSuggestions] = useState<typeof values>([]);
+
+            useEffect(() => {
+                async function load() {
+                    setLoading(true);
+                    await sleep(200);
+                    setLoading(false);
+                    setSuggestions(values);
+                }
+
+                load();
+            }, []);
+
+            return (
+                <Suggest
+                    suggestions={suggestions}
+                    getSuggestionValue={(suggestion) => suggestion.name}
+                    getActiveSuggestOption={(suggest, activeValue) =>
+                        suggest.name === activeValue.name
+                    }
+                    isLoading={isLoading}
+                />
+            );
+        };
+
+        const { getByRole, queryByRole, queryAllByRole } = render(
+            <SuggestLoadingData />
+        );
+
+        const input = getByRole('textbox');
+        await event.click(input);
+
+        expect(queryByRole('progressbar')).toBeInTheDocument();
+
+        await waitForElementToBeRemoved(() => queryByRole('progressbar'));
+
+        expect(queryAllByRole('option').length).toBe(values.length);
+        expect(queryByRole('progressbar')).not.toBeInTheDocument();
+    });
+
+    it('should change loading text', async () => {
+        const values = [{ name: 'Test' }, { name: 'Test2' }];
+
+        const content = 'Test Suggest Wrapper';
+        const { getByRole, getByText } = render(
+            <Suggest
+                suggestions={values}
+                getSuggestionValue={(suggestion) => suggestion.name}
+                isLoading={true}
+                loadingText={<span>Test loading</span>}
+                getActiveSuggestOption={(suggest, activeValue) =>
+                    suggest.name === activeValue.name
+                }
+            />
+        );
+
+        const input = getByRole('textbox');
+        await event.click(input);
+
+        expect(getByText(/Test loading/i)).toBeInTheDocument();
+    });
+
+    it('should render status text', async () => {
+        const values = [{ name: 'Test' }, { name: 'Test2' }];
+
+        const { getByRole, getByText } = render(
+            <Suggest
+                suggestions={values}
+                getSuggestionValue={(suggestion) => suggestion.name}
+                getActiveSuggestOption={(suggest, activeValue) =>
+                    suggest.name === activeValue.name
+                }
+                inputProps={{
+                    statusText: 'Status text',
+                }}
+            />
+        );
+
+        expect(getByText(/Status text/i)).toBeInTheDocument();
     });
 });
