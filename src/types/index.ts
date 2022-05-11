@@ -20,7 +20,9 @@ export interface ComponentProps {
     tabIndex?: number;
     value?: string | undefined;
     testid?: string;
-    onChange(value: SelectOptionProps | string | undefined): void;
+    onChange(
+        value: SelectOptionProps[] | SelectOptionProps | string | undefined
+    ): void;
     onBlur?(event: ChangeEvent<ComponentType>): void;
     onFocus?(event: ChangeEvent<ComponentType>): void;
     onKeyDown?(event: KeyboardEvent<ComponentType>): void;

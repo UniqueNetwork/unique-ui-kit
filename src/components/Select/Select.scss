@@ -87,8 +87,32 @@
                 color: var(--color-grey-400);
             }
 
-            &:focus {
-                border: 1px solid var(--color-grey-400);
+            &:focus, &:hover {
+                border: 1px solid var(--color-grey-500);
+            }
+
+            &.multi {
+                display: flex;
+                flex-direction: row;
+                column-gap: 8px;
+                row-gap: 8px;
+                padding: 8px 16px;
+
+                height: unset;
+                min-height: 24px;
+                flex-wrap: wrap;
+            }
+            .select-tag {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                padding: 0 8px;
+                height: 24px;
+                line-height: 22px;
+                background: var(--color-primary-300);
+                border-radius: var(--prop-border-radius);
+                color: var(--color-additional-light);
+                column-gap: 8px;
             }
         }
 
@@ -99,7 +123,7 @@
             padding: 8px;
             position: absolute;
             left: 0;
-            top: 46px;
+            top: calc(100% + 4px);
             width: calc(100% - 18px);
             z-index: 1;
 
@@ -155,7 +179,7 @@
             right: 0;
             margin: 17px;
             cursor: pointer;
-            fill: var(--color-blue-grey-500);
+            fill: var(--color-blue-grey-400);
         }
 
         &.dropped .icon-triangle {
@@ -176,6 +200,9 @@
                 fill: var(--color-blue-grey-400);
                 z-index: 0;
             }
+            .select-tag {
+                background-color: var(--color-grey-300);
+            }
         }
     }
 
@@ -194,9 +221,6 @@
         .select-value {
             padding: 11px 16px;
         }
-        .select-dropdown {
-            top: 46px;
-        }
         .icon-triangle {
             margin: 17px;
         }
@@ -205,9 +229,9 @@
     &.size-small {
         .select-value {
             padding: 7px 16px;
-        }
-        .select-dropdown {
-            top: 38px;
+            &.multi {
+                padding: 4px 24px 4px 8px;
+            }
         }
         .icon-triangle {
             margin: 12px;
