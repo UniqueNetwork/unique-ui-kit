@@ -7,7 +7,10 @@ import { Icon, Heading } from '../../components';
 import './IconSet.scss';
 
 interface IconSetProps {
-    icons: string[];
+    icons: {
+        name: string;
+        size?: number;
+    }[];
 }
 
 const IconSet: FC<IconSetProps> = ({ icons }: IconSetProps) => (
@@ -16,9 +19,9 @@ const IconSet: FC<IconSetProps> = ({ icons }: IconSetProps) => (
         <div className={`unique-icon-set`}>
             {icons &&
                 icons.map((icon) => (
-                    <div key={icon} className={`icon-item`}>
-                        <Icon name={icon} size={20} />
-                        <div>{icon}</div>
+                    <div key={icon.name} className={`icon-item`}>
+                        <Icon name={icon.name} size={icon.size || 20} />
+                        <div>{icon.name}</div>
                     </div>
                 ))}
         </div>
