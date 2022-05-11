@@ -17,6 +17,7 @@ export type ScrollbarProps = BaseScrollbarProps & {
 
 const Scrollbar = ({ children, className, ...props }: ScrollbarProps) => (
     <Scrollbars
+        autoHeight={true}
         {...props}
         className={classNames('unique-scrollbar', className)}
         renderThumbVertical={(props) => (
