@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import nft7 from '../assets/static/nft-7.png';
-import { Upload } from '../components';
+import { Upload } from '../';
 
 export default {
     title: 'Components/Upload',
@@ -11,9 +11,10 @@ const Template: ComponentStory<typeof Upload> = (args) => {
     return (
         <Upload
             {...args}
-            onChange={(url, blob) => {
+            onChange={(data) => {
+                const { url, file } = data || {};
                 console.log('url', url);
-                console.log('blob', blob);
+                console.log('file', file);
             }}
         />
     );
