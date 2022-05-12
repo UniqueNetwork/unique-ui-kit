@@ -272,7 +272,6 @@ const Suggest = <T,>({
                         })}
                     >
                         {isLoading && !isVisibleIntersectionObserver ? (
-                            // TODO: add spinner component
                             <SuggestSpinner loadingText={loadingText} />
                         ) : (
                             <Scrollbar autoHeightMax={250}>
