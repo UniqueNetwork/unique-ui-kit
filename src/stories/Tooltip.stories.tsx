@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Tooltip, Text } from '../components';
+import { Tooltip } from '../components';
 
 export default {
     title: 'Components/Tooltip',
@@ -13,7 +13,7 @@ const Template: ComponentStory<typeof Tooltip> = ({ children, ...args }) => (
 export const Default = Template.bind({});
 
 Default.args = {
-    content: <span>Show me content</span>,
+    content: <span>Tooltip</span>,
     children: (
         <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -35,19 +35,19 @@ Default.storyName = 'Default';
 export const Offset = Template.bind({});
 
 Offset.args = {
-    content: <span>Show me content</span>,
+    content: <span>Tooltip</span>,
     offset: 50,
     children: <p>Content shifted by 50px</p>,
 };
 
-Offset.storyName = 'Offset';
+Offset.storyName = 'Default w/ offset';
 
 export const Placement = Template.bind({});
 
 Placement.args = {
-    content: <span>Show me content</span>,
+    content: <span>Tooltip</span>,
     children: <p>Content is on the right</p>,
     placement: 'right',
 };
 
-Placement.storyName = 'Placement';
+Placement.storyName = 'Default w/ placement';

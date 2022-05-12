@@ -1,9 +1,9 @@
 import Text from '../Text/Text';
 import { Fragment } from 'react';
-import { TBaseStepperProps } from './Stepper';
+import { StepperProps } from './Stepper';
 import classNames from 'classnames';
 
-type StepperItemProps = Pick<TBaseStepperProps, 'onClickStep'> & {
+type StepperItemProps = Pick<StepperProps, 'onClickStep'> & {
     description: string;
     isActive: boolean;
     step: number;

@@ -261,7 +261,7 @@ MultiSelect.args = {
     multi: true,
 };
 
-MultiSelect.storyName = 'Multi-selection default';
+MultiSelect.storyName = 'Minimal w/ multi';
 
 export const MultiSelectSmall = TemplateMulti.bind({});
 
@@ -272,7 +272,7 @@ MultiSelectSmall.args = {
     size: 'small',
 };
 
-MultiSelectSmall.storyName = 'Multi-selection w/ size Small';
+MultiSelectSmall.storyName = 'Minimal w/ multi and size Small';
 
 export const MultiSelectDisabled = TemplateMulti.bind({});
 
@@ -283,4 +283,4 @@ MultiSelectDisabled.args = {
     disabled: true,
 };
 
-MultiSelectDisabled.storyName = 'Multi-selection disabled';
+MultiSelectDisabled.storyName = 'Minimal w/ multi disabled';

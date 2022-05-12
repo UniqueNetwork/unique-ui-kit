@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
+import Loader from '../../../Loader/Loader';
 
 import './SuggestSpinner.scss';
-import { Loader } from '../../../Loader';
 
 type SuggestSpinnerProps = {
     loadingText: string | ReactNode;

@@ -2,6 +2,8 @@ import { ChangeEvent, KeyboardEvent, ReactNode } from 'react';
 
 export type DimentionType = 'small' | 'middle' | 'large';
 
+export type PlacementType = 'right' | 'left' | 'bottom' | 'top';
+
 export type ComponentType =
     | HTMLInputElement
     | HTMLSelectElement
