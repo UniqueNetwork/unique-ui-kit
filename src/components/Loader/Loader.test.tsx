@@ -18,7 +18,7 @@ describe('Loader component', () => {
     });
 
     it('should not render label', () => {
-        const { getByText, queryByTestId } = render(<Loader label={null} />);
+        const { queryByTestId } = render(<Loader label={null} />);
         expect(queryByTestId('loader-label')).not.toBeInTheDocument();
     });
 });
