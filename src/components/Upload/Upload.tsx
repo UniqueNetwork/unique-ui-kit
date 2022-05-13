@@ -58,10 +58,14 @@ const Upload: FC<UploadProps> = ({
         <div className={classNames('unique-upload', className)}>
             {selectedFile ? (
                 <div className={classNames('preview', type)}>
-                    <img
+                    <div
                         className="image"
-                        src={URL.createObjectURL(selectedFile)}
-                    />
+                        style={{
+                            backgroundImage: `url(${URL.createObjectURL(
+                                selectedFile
+                            )})`,
+                        }}
+                    ></div>
                     <span
                         onClick={() => {
                             setSelectedFile(undefined);

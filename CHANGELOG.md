@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.0.17
+
+Changes:
+
+- Loader component add
+- Upload component callback fix, image size fix
+
 ## 0.0.16 May 11, 2022
 
 Changes:
