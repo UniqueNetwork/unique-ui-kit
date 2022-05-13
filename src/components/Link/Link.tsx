@@ -9,16 +9,17 @@ interface LinkProps {
     title: string;
     href?: string;
     role?: 'primary' | 'secondary' | 'danger';
+    rel?: string;
+    target?: '_blank' | '_parent' | '_self' | '_top';
     onClick?(): void;
 }
 
 const Link: FC<LinkProps> = ({
     title,
-    href,
     role = 'primary',
-    onClick
+    ...rest
 }: LinkProps) => (
-    <a href={href} className={`unique-link ${role}`} onClick={onClick}>
+    <a className={`unique-link ${role}`} {...rest}>
         {title}
     </a>
 );
