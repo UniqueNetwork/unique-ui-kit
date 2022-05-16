@@ -45,6 +45,15 @@ describe('InputText Component', () => {
         expect(screen.queryByText('status test')).toBeTruthy();
     });
 
+    it('size check', () => {
+        const { container } = render(
+            <InputText size="small" onChange={mockFunction} />
+        );
+        expect(
+            container.querySelector('.unique-input-text.size-small')
+        ).toBeInTheDocument();
+    });
+
     it('value check', () => {
         render(
             <InputText

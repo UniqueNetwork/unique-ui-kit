@@ -26,7 +26,7 @@ export const StepperItem = ({
             <div className={'step-content'} onClick={handleClickStep}>
                 <Text
                     color={'color-additional-light'}
-                    weight="medium"
+                    weight="regular"
                     size={'l'}
                     className={'step-number'}
                 >
@@ -34,7 +34,7 @@ export const StepperItem = ({
                 </Text>
                 <div className={'step-description-wrapper'}>
                     <Text
-                        weight="medium"
+                        weight="regular"
                         color={'color-blue-grey-500'}
                         className={'step-description'}
                     >

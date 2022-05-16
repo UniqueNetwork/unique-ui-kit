@@ -44,21 +44,6 @@ describe('Notifications component', () => {
         expect(alert).not.toBeInTheDocument();
     });
 
-    it('should be close by click', () => {
-        const { getByText } = render(
-            <Notifications>
-                <NotificationsExample />
-            </Notifications>
-        );
-
-        act(() => {
-            fireEvent.click(getByText('Push info')!);
-        });
-        const alert = getByText('Info alert')!;
-        fireEvent.click(alert);
-        expect(alert).toHaveClass('closed');
-    });
-
     it('should be close by click if closing disabled', () => {
         const { getByText } = render(
             <Notifications closable={false}>

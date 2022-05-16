@@ -8,7 +8,7 @@ import React, {
 import classNames from 'classnames';
 import './Notifications.scss';
 import { IconProps } from '../../types';
-import { Icon } from '../index';
+import { Icon, Text } from '../index';
 
 export type NotificationSeverity = 'warning' | 'error' | 'info';
 
@@ -124,7 +124,7 @@ const Notifications = ({
                             onClick={() => closable && close(index)}
                         >
                             <Icon {...(icon || getDefaulticon(severity))} />
-                            {content}
+                            <Text color='var(---color-additional-light)' size='m' weight='light'>{content}</Text>
                         </div>
                     )
                 )}

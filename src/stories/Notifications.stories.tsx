@@ -11,7 +11,7 @@ export default {
 
 const getAlertContent = () =>
     Array.from({ length: ((Math.random() / 2) * 10) | 1 })
-        .map(() => 'This is the content of the notification. ')
+        .map(() => 'this is the content of the notification')
         .join();
 
 const Template: ComponentStory<any> = () => {

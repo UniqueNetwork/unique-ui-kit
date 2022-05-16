@@ -11,14 +11,14 @@ describe('Button component', () => {
         ).toBeTruthy();
     });
 
-it('size check', () => {
-    const { container } = render(
-        <Button onClick={() => {}} title="button text" size="small" />
-    );
-    expect(
-        getByText(container, 'button text').classList.contains('size-small')
-    ).toBeTruthy();
-});
+    it('size check', () => {
+        const { container } = render(
+            <Button onClick={() => {}} title="button text" size="small" />
+        );
+        expect(
+            getByText(container, 'button text').classList.contains('size-small')
+        ).toBeTruthy();
+    });
 
     it('icon check', () => {
         const { container } = render(
@@ -28,7 +28,7 @@ it('size check', () => {
                 iconLeft={{
                     name: 'arrow-left',
                     size: 12,
-                    color: 'var(--color-grey-500)'
+                    color: 'var(--color-grey-500)',
                 }}
             />
         );
@@ -54,5 +54,15 @@ it('size check', () => {
     it('type check', () => {
         const { getByRole } = render(<Button title="title" type={'submit'} />);
         expect((getByRole('button') as HTMLButtonElement).type).toBe('submit');
+    });
+
+    it('link check', () => {
+        const { getByText } = render(
+            <Button title="title" link="https://www.test.com/" />
+        );
+        expect(getByText('title').closest('a')).toHaveAttribute(
+            'href',
+            'https://www.test.com/'
+        );
     });
 });

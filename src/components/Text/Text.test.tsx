@@ -14,5 +14,5 @@ it('checks color prop', () => {
 });
 
 it('checks weight prop', () => {
-    render(<Text weight="medium">Test</Text>);
+    render(<Text weight="regular">Test</Text>);
 });

@@ -7,11 +7,6 @@ describe('Loader component', () => {
         expect(getByRole('progressbar')).toBeInTheDocument();
     });
 
-    it('should render default label', () => {
-        const { getByText } = render(<Loader />);
-        expect(getByText(/please wait/i)).toBeInTheDocument();
-    });
-
     it('should render label', () => {
         const { getByText } = render(<Loader label={'Test label'} />);
         expect(getByText(/test label/i)).toBeInTheDocument();

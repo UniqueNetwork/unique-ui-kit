@@ -40,6 +40,7 @@ const Button: FC<ButtonProps> = ({
             )}
             onClick={onClick}
             type={type}
+            href={link}
         >
             {title}
             {icon && <Icon {...icon} />}
