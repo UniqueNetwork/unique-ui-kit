@@ -1,4 +1,4 @@
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, act } from '@testing-library/react';
 import Notifications from './Notifications';
 import { useNotifications } from './hook/useNotifications';
 import { Button } from '../index';
@@ -21,7 +21,9 @@ describe('Notifications component', () => {
                 <NotificationsExample />
             </Notifications>
         );
-        fireEvent.click(getByText('Push info')!);
+        act(() => {
+            fireEvent.click(getByText('Push info')!);
+        });
         expect(getByText('Info alert')).toBeInTheDocument();
     });
 
@@ -31,9 +33,14 @@ describe('Notifications component', () => {
                 <NotificationsExample />
             </Notifications>
         );
-        fireEvent.click(getByText('Push info')!);
+        act(() => {
+            fireEvent.click(getByText('Push info')!);
+        });
         const alert = getByText('Info alert')!;
-        await sleep(600);
+
+        await act(async () => {
+            await sleep(600);
+        });
         expect(alert).not.toBeInTheDocument();
     });
 
@@ -43,7 +50,10 @@ describe('Notifications component', () => {
                 <NotificationsExample />
             </Notifications>
         );
-        fireEvent.click(getByText('Push info')!);
+
+        act(() => {
+            fireEvent.click(getByText('Push info')!);
+        });
         const alert = getByText('Info alert')!;
         fireEvent.click(alert);
         expect(alert).toHaveClass('closed');
@@ -55,7 +65,10 @@ describe('Notifications component', () => {
                 <NotificationsExample />
             </Notifications>
         );
-        fireEvent.click(getByText('Push info')!);
+
+        act(() => {
+            fireEvent.click(getByText('Push info')!);
+        });
         const alert = getByText('Info alert')!;
         fireEvent.click(alert);
         expect(alert).not.toHaveClass('closed');
