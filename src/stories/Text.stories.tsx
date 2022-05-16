@@ -38,7 +38,17 @@ export const BlueGreyS = Template.bind({});
 BlueGreyS.args = {
     size: 's',
     color: 'grey-500',
-    weight: 'medium'
+    weight: 'light'
 };
 
-BlueGreyS.storyName = 'Grey medium S';
+BlueGreyS.storyName = 'Grey light S';
+
+export const GreyBold = Template.bind({});
+
+GreyBold.args = {
+    size: 'm',
+    color: 'blue-grey-500',
+    weight: 'bold'
+};
+
+GreyBold.storyName = 'Bluegrey bold M';

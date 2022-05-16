@@ -13,7 +13,9 @@
             @include font-body($size);
         }
     }
-    &.weight-medium {
-        font-weight: 500;
+    @each $weight in light, regular, bold {
+        &[class*='weight-#{$weight}'] {
+            @include font-weight($weight);
+        }
     }
 }

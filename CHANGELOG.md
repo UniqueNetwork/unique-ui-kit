@@ -7,6 +7,8 @@ Changes:
 - Loader component add
 - Upload component callback fix, image size fix
 - Link component extends native link props
+- Text component weight add
+- New props variable add
 
 ## 0.0.16 May 11, 2022
 

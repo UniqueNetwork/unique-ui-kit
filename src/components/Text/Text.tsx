@@ -9,7 +9,7 @@ import './Text.scss';
 interface ITextProps {
     children: ReactNode;
     size?: 'xs' | 's' | 'm' | 'l';
-    weight?: 'regular' | 'medium';
+    weight?: 'light' | 'regular' | 'bold';
     color?: string;
     className?: string;
 }
