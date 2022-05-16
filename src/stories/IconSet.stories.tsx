@@ -58,6 +58,8 @@ const icons = [
     { name: 'more-horiz' },
     { name: 'rounded-rectangle-more' },
     { name: 'shared' },
+    { name: 'warning' },
+    { name: 'success' },
 ];
 
 Icon.args = {

@@ -24,3 +24,4 @@ export { default as Scrollbar } from './Scrollbar/Scrollbar';
 export { default as Tooltip } from './Tooltip/Tooltip';
 export { default as Dropdown } from './Dropdown/Dropdown';
 export { default as Suggest } from './Suggest/Suggest';
+export { default as Notifications } from './Notifications/Notifications';
