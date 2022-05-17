@@ -1,4 +1,5 @@
-import { ChangeEvent, KeyboardEvent, ReactNode } from 'react';
+import { ChangeEvent, KeyboardEvent } from 'react';
+import { IconProps } from '../components';
 
 export type DimentionType = 'small' | 'middle' | 'large';
 
@@ -30,78 +31,8 @@ export interface ComponentProps {
     onKeyDown?(event: KeyboardEvent<ComponentType>): void;
 }
 
-export interface IconProps {
-    size: number;
-    name?: string;
-    file?: string;
-    color?: string;
-}
-
-export interface BreadcrumbsProps {
-    options: { title: string; link?: string }[];
-}
-
-export interface TableColumnProps {
-    title: string;
-    width: string;
-    /*
-     * Key in object up to required value.
-     * Can be compound (key.subkey.value).
-     */
-    field: string;
-    iconLeft?: IconProps;
-    iconRight?: IconProps;
-    isSortable?: boolean;
-    render?(data: any, row?: any): ReactNode;
-    compareFunc?: (a: any, b: any) => number;
-}
-
-export interface SortQuery {
-    field: string;
-    mode: number;
-}
-
-export interface TableProps {
-    columns: TableColumnProps[];
-    data: TableRow[];
-    onSort?(sorting: SortQuery): void;
-}
-
-export interface TableRow {
-    [key: string]: string | {};
-}
-
-export interface ButtonProps {
-    title: string;
-    disabled?: boolean;
-    size?: DimentionType;
-    role?:
-        | 'primary'
-        | 'secondary'
-        | 'tertiary'
-        | 'outlined'
-        | 'danger'
-        | 'ghost';
-    type?: 'submit' | 'button';
-    wide?: boolean;
-    className?: string;
-    iconLeft?: IconProps;
-    iconRight?: IconProps;
-    link?: string;
-    onClick?: () => void;
-}
-
 export interface SelectOptionProps {
     [x: string | number | symbol]: unknown;
     iconLeft?: IconProps;
     iconRight?: IconProps;
-}
-
-export interface InputPropsBase {
-    additionalText?: string;
-    error?: boolean;
-    label?: string;
-    statusText?: string;
-    size?: DimentionType;
-    onChange?(value: string): void;
 }

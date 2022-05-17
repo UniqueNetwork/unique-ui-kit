@@ -15,7 +15,11 @@ export type ScrollbarProps = BaseScrollbarProps & {
     children: ReactNode;
 };
 
-const Scrollbar = ({ children, className, ...props }: ScrollbarProps) => (
+export const Scrollbar = ({
+    children,
+    className,
+    ...props
+}: ScrollbarProps) => (
     <Scrollbars
         autoHeight={true}
         {...props}
@@ -36,5 +40,3 @@ const Scrollbar = ({ children, className, ...props }: ScrollbarProps) => (
         {children}
     </Scrollbars>
 );
-
-export default Scrollbar;

@@ -3,12 +3,12 @@
  */
 
 import classNames from 'classnames';
-import { FC, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Icon } from '../';
 
 import './Upload.scss';
 
-interface UploadProps {
+export interface UploadProps {
     onChange?: (data: { url: string; file: Blob } | null) => void;
     className?: string;
     disabled?: boolean;
@@ -17,7 +17,7 @@ interface UploadProps {
     upload?: string;
 }
 
-const Upload: FC<UploadProps> = ({
+export const Upload = ({
     onChange,
     className,
     type = 'circle',
@@ -101,5 +101,3 @@ const Upload: FC<UploadProps> = ({
         </div>
     );
 };
-
-export default Upload;

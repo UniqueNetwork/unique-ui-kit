@@ -2,13 +2,19 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import React, { FC } from 'react';
-import { Avatar, Button, Heading, Icon, Text } from '../../components';
-import { ButtonProps, IconProps } from '../../types';
+import {
+    Avatar,
+    Button,
+    ButtonProps,
+    Heading,
+    Icon,
+    IconProps,
+    Text,
+} from '../../components';
 import './CollectionCard.scss';
 import nocollection from '../../assets/static/nocollection.svg';
 
-interface ICollectionCardProps {
+export interface ICollectionCardProps {
     avatar?: string;
     title: string;
     meta: {
@@ -36,7 +42,7 @@ interface ICollectionCardProps {
     description?: string;
 }
 
-const CollectionCard: FC<ICollectionCardProps> = ({
+export const CollectionCard = ({
     avatar = nocollection,
     title,
     meta,
@@ -44,7 +50,7 @@ const CollectionCard: FC<ICollectionCardProps> = ({
     description,
     links,
     actions,
-    tokens
+    tokens,
 }: ICollectionCardProps) => (
     <div className="unique-collection-card">
         {badge && (
@@ -137,5 +143,3 @@ const CollectionCard: FC<ICollectionCardProps> = ({
         )}
     </div>
 );
-
-export default CollectionCard;

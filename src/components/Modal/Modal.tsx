@@ -2,18 +2,18 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import React, { FC, ReactNode, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { Icon } from '..';
 import './Modal.scss';
 
-interface ModalProps {
+export interface ModalProps {
     children: ReactNode;
     isVisible: boolean;
     isClosable?: boolean;
     onClose?(): void;
 }
 
-const Modal: FC<ModalProps> = ({
+export const Modal = ({
     children,
     isVisible,
     isClosable,
@@ -50,5 +50,3 @@ const Modal: FC<ModalProps> = ({
         </div>
     ) : null;
 };
-
-export default Modal;

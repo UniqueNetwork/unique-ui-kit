@@ -2,7 +2,6 @@
  * @author Anna Mikhailova <amikhailova@usetech.com>
  */
 
-import React, { FC } from 'react';
 import './Avatar.scss';
 
 export interface IAvatarProps {
@@ -11,11 +10,7 @@ export interface IAvatarProps {
     type?: 'circle' | 'square';
 }
 
-const Avatar: FC<IAvatarProps> = ({
-    src,
-    size = 38,
-    type = 'square'
-}: IAvatarProps) => (
+export const Avatar = ({ src, size = 38, type = 'square' }: IAvatarProps) => (
     <img
         className={`unique-avatar ${type}`}
         src={src}
@@ -23,5 +18,3 @@ const Avatar: FC<IAvatarProps> = ({
         height={size}
     />
 );
-
-export default Avatar;

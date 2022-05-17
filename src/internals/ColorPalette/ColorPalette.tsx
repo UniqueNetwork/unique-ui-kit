@@ -8,16 +8,16 @@ import { ColorItem } from '..';
 
 import './ColorPalette.scss';
 
-interface ColorPaletteProps {
+export interface ColorPaletteProps {
     palette: string;
     colors: string[];
     title?: string;
 }
 
-const ColorPalette: FC<ColorPaletteProps> = ({
+export const ColorPalette: FC<ColorPaletteProps> = ({
     palette,
     colors,
-    title
+    title,
 }: ColorPaletteProps) => (
     <div className={`unique-color-palette ${palette}`}>
         {title && <Heading size="2">{title}</Heading>}
@@ -26,5 +26,3 @@ const ColorPalette: FC<ColorPaletteProps> = ({
         ))}
     </div>
 );
-
-export default ColorPalette;

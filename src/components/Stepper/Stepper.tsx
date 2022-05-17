@@ -12,7 +12,7 @@ export interface StepperProps {
     onClickStep?(step: number): void;
 }
 
-const Stepper = ({ activeStep, steps, onClickStep }: StepperProps) => {
+export const Stepper = ({ activeStep, steps, onClickStep }: StepperProps) => {
     return (
         <div className="unique-stepper">
             <div className="steps">
@@ -33,5 +33,3 @@ const Stepper = ({ activeStep, steps, onClickStep }: StepperProps) => {
         </div>
     );
 };
-
-export default Stepper;

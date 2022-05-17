@@ -2,13 +2,13 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import React, { FC, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { Icon, InputText, Select } from '..';
 import { usePrevious } from '../../utils';
 import './Pagination.scss';
 
-interface IPaginationProps {
+export interface IPaginationProps {
     size: number;
     current?: number;
     visible?: number;
@@ -22,18 +22,18 @@ interface IPaginationProps {
     onPageSizeChange?: (size: number) => void;
 }
 
-interface IPageItemProps {
+export interface IPageItemProps {
     className: string;
     page?: number;
     children?: JSX.Element;
     onClick?: () => void;
 }
 
-const PageItem: FC<IPageItemProps> = ({ children, page, ...rest }) => (
+const PageItem = ({ children, page, ...rest }: IPageItemProps) => (
     <div {...rest}>{children || page}</div>
 );
 
-const Pagination: FC<IPaginationProps> = ({
+export const Pagination = ({
     size,
     current = 0,
     visible = 5,
@@ -211,5 +211,3 @@ const Pagination: FC<IPaginationProps> = ({
         </div>
     );
 };
-
-export default Pagination;

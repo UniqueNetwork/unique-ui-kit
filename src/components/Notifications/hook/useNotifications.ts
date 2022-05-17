@@ -1,6 +1,6 @@
 import { NotificationsContext } from '../Notifications';
 import { ReactNode, useContext } from 'react';
-import { IconProps } from '../../../types';
+import { IconProps } from '../../Icon';
 
 export const useNotifications = () => {
     const { push, clearAll } = useContext(NotificationsContext);

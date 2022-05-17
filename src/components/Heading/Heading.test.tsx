@@ -1,5 +1,5 @@
 import { getByText, render, screen } from '@testing-library/react';
-import Heading from './Heading';
+import { Heading } from './Heading';
 
 it('label check', () => {
     render(<Heading children="Test heading" />);

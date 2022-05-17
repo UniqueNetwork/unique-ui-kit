@@ -1,4 +1,4 @@
-import Text from '../Text/Text';
+import { Text } from '../Text';
 import { Fragment } from 'react';
 import { StepperProps } from './Stepper';
 import classNames from 'classnames';

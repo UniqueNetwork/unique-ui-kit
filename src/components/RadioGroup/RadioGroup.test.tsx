@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import RadioGroup from './RadioGroup';
+import { RadioGroup } from './RadioGroup';
 
 const options = [{ value: '1' }, { value: '2' }, { value: '3' }];
 const mockFunction = jest.fn();
