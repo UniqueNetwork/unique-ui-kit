@@ -2,23 +2,21 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import React, { FC } from 'react';
+import React, { AnchorHTMLAttributes, FC } from 'react';
 import './Link.scss';
 
-interface LinkProps {
+interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
     title: string;
-    href?: string;
     role?: 'primary' | 'secondary' | 'danger';
     onClick?(): void;
 }
 
 const Link: FC<LinkProps> = ({
     title,
-    href,
     role = 'primary',
-    onClick
+    ...rest
 }: LinkProps) => (
-    <a href={href} className={`unique-link ${role}`} onClick={onClick}>
+    <a className={`unique-link ${role}`} {...rest}>
         {title}
     </a>
 );

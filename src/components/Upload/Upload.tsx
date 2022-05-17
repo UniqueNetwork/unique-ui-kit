@@ -9,7 +9,7 @@ import { Icon } from '../';
 import './Upload.scss';
 
 interface UploadProps {
-    onChange?: (url: string, file: Blob) => void;
+    onChange?: (data: { url: string; file: Blob } | null) => void;
     className?: string;
     disabled?: boolean;
     type?: 'circle' | 'square';
@@ -49,7 +49,7 @@ const Upload: FC<UploadProps> = ({
         }
 
         const objectUrl = URL.createObjectURL(selectedFile);
-        onChange?.(objectUrl, selectedFile);
+        onChange?.({ url: objectUrl, file: selectedFile });
 
         return () => URL.revokeObjectURL(objectUrl);
     }, [selectedFile]);
@@ -58,13 +58,18 @@ const Upload: FC<UploadProps> = ({
         <div className={classNames('unique-upload', className)}>
             {selectedFile ? (
                 <div className={classNames('preview', type)}>
-                    <img
+                    <div
                         className="image"
-                        src={URL.createObjectURL(selectedFile)}
-                    />
+                        style={{
+                            backgroundImage: `url(${URL.createObjectURL(
+                                selectedFile
+                            )})`,
+                        }}
+                    ></div>
                     <span
                         onClick={() => {
                             setSelectedFile(undefined);
+                            onChange?.(null);
                         }}
                     >
                         <Icon name="close-circle" size={13} />

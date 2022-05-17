@@ -16,6 +16,7 @@
         &.circle .image,
         &.square .image {
             object-fit: contain;
+            background-size: cover;
         }
         &.circle {
             width: 118px;

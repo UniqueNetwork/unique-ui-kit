@@ -15,16 +15,7 @@ export const Steps = Template.bind({});
 Steps.args = {
     activeStep: 1,
     steps: ['First Step', 'Second Step', 'Third Step'],
+    onClickStep: (step: string) => console.log(`Active step - ${step}`),
 };
 
-Steps.storyName = 'Steps';
-
-export const ClickStep = Template.bind({});
-
-ClickStep.args = {
-    activeStep: 1,
-    steps: ['First Step', 'Second Step', 'Third Step'],
-    onClickStep: (step) => console.log(`Active step - ${step}`),
-};
-
-ClickStep.storyName = 'Handle click on step';
+Steps.storyName = 'Default';

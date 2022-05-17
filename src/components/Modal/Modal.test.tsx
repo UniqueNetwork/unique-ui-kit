@@ -13,5 +13,6 @@ it('click check', () => {
             Test modal content
         </Modal>
     );
+    fireEvent.mouseDown(container.querySelector('.unique-modal-wrapper')!)
     fireEvent.click(container.querySelector('.unique-modal-wrapper')!);
 });

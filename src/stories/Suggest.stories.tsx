@@ -1,9 +1,8 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Suggest, Text } from '../components';
 import React, { ReactNode, useEffect, useState } from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 import classNames from 'classnames';
+import { Suggest, Text } from '../components';
 import { sleep } from '../utils';
-
 import nft1 from '../assets/static/nft-1.png';
 
 export default {
@@ -59,43 +58,13 @@ Default.args = {};
 
 Default.storyName = 'Default';
 
-const CustomLogicTemplate: ComponentStory<typeof Suggest> = (args) => (
-    <>
-        <Text>Search for value by id and title</Text>
-        <Suggest
-            {...args}
-            suggestions={values}
-            getSuggestionValue={(value: SuggestValues) =>
-                `id-${value.id}, ${value.title}`
-            }
-            getActiveSuggestOption={(
-                option: SuggestValues,
-                activeOption: SuggestValues
-            ) => option.id === activeOption.id}
-            onSuggestionsFetchRequested={(val = '') =>
-                values.filter(
-                    (value) =>
-                        `${value.id}`.includes(val.toLowerCase()) ||
-                        value.title.toLowerCase().includes(val.toLowerCase())
-                )
-            }
-        />
-    </>
-);
-
-export const CustomLogic = CustomLogicTemplate.bind({});
-
-CustomLogic.args = {};
-
-CustomLogic.storyName = 'Custom logic filter items';
-
 export const DefaultValue = Template.bind({});
 
 DefaultValue.args = {
     value: values[1],
 };
 
-DefaultValue.storyName = 'Default Value';
+DefaultValue.storyName = 'Default w/ value';
 
 export const Disabled = Template.bind({});
 
@@ -106,17 +75,44 @@ Disabled.args = {
     },
 };
 
-Disabled.storyName = 'Disabled Value';
+Disabled.storyName = 'Default w/ disabled';
 
-export const CustomNoSuggestMessage = Template.bind({});
+export const LoadingComponents = Template.bind({});
 
-CustomNoSuggestMessage.args = {
-    noSuggestMessage: 'Custom message when results not found',
+LoadingComponents.args = {
+    isLoading: true,
 };
 
-CustomNoSuggestMessage.storyName = 'Custom message when results not found';
+LoadingComponents.storyName = 'Default w/ loader';
 
 export const CustomItemComponents = Template.bind({});
+
+const CustomLogicTemplate: ComponentStory<typeof Suggest> = (args) => (
+    <Suggest
+        {...args}
+        suggestions={values}
+        getSuggestionValue={(value: SuggestValues) =>
+            `id-${value.id}, ${value.title}`
+        }
+        getActiveSuggestOption={(
+            option: SuggestValues,
+            activeOption: SuggestValues
+        ) => option.id === activeOption.id}
+        onSuggestionsFetchRequested={(val = '') =>
+            values.filter(
+                (value) =>
+                    `${value.id}`.includes(val.toLowerCase()) ||
+                    value.title.toLowerCase().includes(val.toLowerCase())
+            )
+        }
+    />
+);
+
+export const CustomLogic = CustomLogicTemplate.bind({});
+
+CustomLogic.args = {};
+
+CustomLogic.storyName = 'Title and value search';
 
 CustomItemComponents.args = {
     components: {
@@ -147,7 +143,15 @@ CustomItemComponents.args = {
     },
 };
 
-CustomItemComponents.storyName = 'Custom item component';
+CustomItemComponents.storyName = 'Custom option component';
+
+export const CustomNoSuggestMessage = Template.bind({});
+
+CustomNoSuggestMessage.args = {
+    noSuggestMessage: 'Custom message when results not found',
+};
+
+CustomNoSuggestMessage.storyName = 'No results message';
 
 export const CustomNoFoundComponents = Template.bind({});
 
@@ -162,7 +166,7 @@ CustomNoFoundComponents.args = {
     },
 };
 
-CustomNoFoundComponents.storyName = 'Custom not found results component';
+CustomNoFoundComponents.storyName = 'No results component';
 
 export const CustomSuggestListComponents = Template.bind({});
 
@@ -253,15 +257,7 @@ CustomSuggestListComponents.args = {
     },
 };
 
-CustomSuggestListComponents.storyName = 'Custom suggest list component';
-
-export const LoadingComponents = Template.bind({});
-
-LoadingComponents.args = {
-    isLoading: true,
-};
-
-LoadingComponents.storyName = 'Loading indicator';
+CustomSuggestListComponents.storyName = 'Suggestions list components';
 
 export const LoadingTextComponents = Template.bind({});
 

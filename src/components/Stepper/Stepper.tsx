@@ -2,18 +2,17 @@
  * @author Sergey Kozlov <skozlov@usetech.com>
  */
 
-import React, { Fragment } from 'react';
+import React from 'react';
 import { StepperItem } from './StepperItem';
-
 import './Stepper.scss';
 
-export type TBaseStepperProps = {
+export interface StepperProps {
     activeStep: number;
     steps: string[];
     onClickStep?(step: number): void;
-};
+}
 
-const Stepper = ({ activeStep, steps, onClickStep }: TBaseStepperProps) => {
+const Stepper = ({ activeStep, steps, onClickStep }: StepperProps) => {
     return (
         <div className="unique-stepper">
             <div className="steps">

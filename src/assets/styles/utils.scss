@@ -16,6 +16,16 @@
     }
 }
 
+@mixin font-weight($weight) {
+    @if ($weight== 'bold') {
+        font-weight: 700;
+    } @else if ($weight== 'regular') {
+        font-weight: 500;
+    } @else if ($weight== 'light') {
+        font-weight: 400;
+    }
+}
+
 @mixin font-heading($size) {
     font-family: var(--prop-font-family-heading);
     font-weight: 700;
