@@ -2,23 +2,20 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import React, { FC } from 'react';
 import { Avatar, Text } from '../../components';
 import './CollectionLink.scss';
 
-interface ICollectionLink {
+export interface ICollectionLinkProps {
     image: string;
     title: string;
-    id: string;
     count: number;
 }
 
-const CollectionLink: FC<ICollectionLink> = ({
+export const CollectionLink = ({
     image,
     title,
-    id,
     count,
-}: ICollectionLink) => (
+}: ICollectionLinkProps) => (
     <a className="unique-collection-link" href="#">
         <Avatar src={image} size={326} type="square" />
         <Text size="l">{title}</Text>
@@ -28,5 +25,3 @@ const CollectionLink: FC<ICollectionLink> = ({
         <Text size="s">{count.toLocaleString()}</Text>
     </a>
 );
-
-export default CollectionLink;

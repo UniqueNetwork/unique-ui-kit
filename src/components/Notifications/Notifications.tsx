@@ -7,14 +7,14 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import './Notifications.scss';
-import { IconProps } from '../../types';
 import { Icon, Text } from '../index';
+import { IconProps } from '../Icon';
 
 export type NotificationSeverity = 'warning' | 'error' | 'info';
 
 export type NotificationPlacement = 'right' | 'left';
 
-interface AlertProps {
+export interface AlertProps {
     key?: string;
     severity: NotificationSeverity;
     content: ReactNode;
@@ -22,13 +22,13 @@ interface AlertProps {
     icon?: IconProps;
 }
 
-interface NotificationsContextValueType {
+export interface NotificationsContextValueType {
     push(props: AlertProps): void;
     close(index: number): void;
     clearAll(): void;
 }
 
-interface NotificationsProps {
+export interface NotificationsProps {
     children: ReactNode;
     placement?: NotificationPlacement;
     closable?: boolean;
@@ -44,7 +44,7 @@ export const NotificationsContext =
         clearAll: noop,
     });
 
-const Notifications = ({
+export const Notifications = ({
     children,
     placement = 'right',
     closable = true,
@@ -124,7 +124,13 @@ const Notifications = ({
                             onClick={() => closable && close(index)}
                         >
                             <Icon {...(icon || getDefaulticon(severity))} />
-                            <Text color='var(---color-additional-light)' size='m' weight='light'>{content}</Text>
+                            <Text
+                                color="var(---color-additional-light)"
+                                size="m"
+                                weight="light"
+                            >
+                                {content}
+                            </Text>
                         </div>
                     )
                 )}
@@ -132,5 +138,3 @@ const Notifications = ({
         </NotificationsContext.Provider>
     );
 };
-
-export default Notifications;

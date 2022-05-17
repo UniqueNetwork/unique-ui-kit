@@ -12,7 +12,7 @@ import {
 } from 'react';
 
 import { Icon, InputText, Scrollbar } from '..';
-import { InputTextProps } from '../InputText/InputText';
+import { InputTextProps } from '../InputText';
 
 import './Suggest.scss';
 import {
@@ -44,7 +44,7 @@ export interface SuggestProps<SuggestOption> {
     // callback for selected value
     onChange?(suggestion: SuggestOption | null): void;
     // set your own components
-    components?: SuggestComponents<SuggestOption>;
+    components?: SuggestComponentsProps<SuggestOption>;
     // message when result empty
     noSuggestMessage?: string;
     // value suggest component
@@ -64,7 +64,7 @@ export interface SuggestProps<SuggestOption> {
     onLoadMore?: () => void;
 }
 
-export type SuggestComponents<SuggestOption> = {
+export type SuggestComponentsProps<SuggestOption> = {
     SuggestItem?: ComponentType<SuggestItemProps<SuggestOption>>;
     SuggestEmpty?: ComponentType<SuggestEmptyProps>;
     SuggestWrapper?: ComponentType<SuggestWrapperProps<SuggestOption>>;
@@ -75,7 +75,7 @@ const KEY_CODE = {
     ESC: 27,
 };
 
-const Suggest = <T,>({
+export const Suggest = <T,>({
     inputProps: _inputProps,
     suggestions,
     getSuggestionValue,
@@ -341,5 +341,3 @@ const Suggest = <T,>({
         </div>
     );
 };
-
-export default Suggest;

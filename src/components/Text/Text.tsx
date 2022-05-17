@@ -6,7 +6,7 @@ import { ReactNode } from 'react';
 import classNames from 'classnames';
 import './Text.scss';
 
-interface ITextProps {
+export interface ITextProps {
     children: ReactNode;
     size?: 'xs' | 's' | 'm' | 'l';
     weight?: 'light' | 'regular' | 'bold';
@@ -14,7 +14,7 @@ interface ITextProps {
     className?: string;
 }
 
-const Text = ({
+export const Text = ({
     children,
     size = 'm',
     weight = 'regular',
@@ -35,5 +35,3 @@ const Text = ({
         </span>
     );
 };
-
-export default Text;

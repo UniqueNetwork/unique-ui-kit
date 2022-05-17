@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react';
-import Modal from './Modal';
+import { Modal } from './Modal';
 
 const mockOnClose = jest.fn();
 
@@ -13,6 +13,6 @@ it('click check', () => {
             Test modal content
         </Modal>
     );
-    fireEvent.mouseDown(container.querySelector('.unique-modal-wrapper')!)
+    fireEvent.mouseDown(container.querySelector('.unique-modal-wrapper')!);
     fireEvent.click(container.querySelector('.unique-modal-wrapper')!);
 });

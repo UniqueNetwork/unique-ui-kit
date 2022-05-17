@@ -1,32 +1,31 @@
-import React, {FC, Key, ReactNode, useEffect, useState} from "react";
-import {ComponentProps, SelectOptionProps} from "../../types";
-import classNames from "classnames";
+import React, { Key, ReactNode, useState } from 'react';
+import { ComponentProps, SelectOptionProps } from '../../types';
+import classNames from 'classnames';
 import './Dropdown.scss';
 
-interface DropdownProps extends ComponentProps {
+export interface DropdownProps extends ComponentProps {
     options: SelectOptionProps[];
     optionKey?: string;
     optionValue?: string;
     placement?: 'left' | 'right';
     children: JSX.Element;
     onChange(option: SelectOptionProps): void;
-    optionRender?(option: SelectOptionProps, isSelected: boolean): ReactNode
+    optionRender?(option: SelectOptionProps, isSelected: boolean): ReactNode;
 }
 
-const Dropdown = ({
-        id,
-        value,
-        className,
-        disabled,
-        options,
-        optionKey = 'id',
-        optionValue = 'title',
-        onChange,
-        children,
-        optionRender,
-        placement = 'left',
-    }: DropdownProps) => {
-
+export const Dropdown = ({
+    id,
+    value,
+    className,
+    disabled,
+    options,
+    optionKey = 'id',
+    optionValue = 'title',
+    onChange,
+    children,
+    optionRender,
+    placement = 'left',
+}: DropdownProps) => {
     const selected = options.find(
         (option) => option[optionKey as keyof SelectOptionProps] === value
     );
@@ -65,7 +64,7 @@ const Dropdown = ({
             <div
                 className={classNames('dropdown-wrapper', {
                     dropped,
-                    disabled
+                    disabled,
                 })}
                 onMouseDown={handleMouseDown}
                 data-testid={`dropdown-wrapper`}
@@ -75,48 +74,37 @@ const Dropdown = ({
             {dropped && options && (
                 <div
                     className={classNames('dropdown-options', {
-                        right: placement === 'right'
+                        right: placement === 'right',
                     })}
                     role="listbox"
                 >
                     {options.map((option) => {
-                        const isSelected = option[
-                                optionKey as keyof SelectOptionProps
-                            ] ===
-                            selected?.[
-                                optionKey as keyof SelectOptionProps
-                            ];
+                        const isSelected =
+                            option[optionKey as keyof SelectOptionProps] ===
+                            selected?.[optionKey as keyof SelectOptionProps];
                         return (
                             <div
                                 className={classNames('dropdown-option', {
                                     selected: isSelected,
-                                    disabled
+                                    disabled,
                                 })}
                                 key={
                                     (option as SelectOptionProps)[
                                         optionKey
-                                        ] as Key
+                                    ] as Key
                                 }
                                 onClick={() => handleOptionSelect(option)}
                                 role="option"
                             >
-                                {
-                                    (optionRender?.(
-                                        option,
-                                        isSelected
-                                    )) ||
-                                    option[
+                                {optionRender?.(option, isSelected) ||
+                                    (option[
                                         optionValue as keyof SelectOptionProps
-                                    ] as string
-                                }
+                                    ] as string)}
                             </div>
                         );
                     })}
                 </div>
             )}
         </div>
-    )
-
+    );
 };
-
-export default Dropdown;

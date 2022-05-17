@@ -2,7 +2,7 @@
  * @author Roman Beganov <rbeganov@usetech.com>
  */
 
-import React, { FC, useState } from 'react';
+import { useState } from 'react';
 import classNames from 'classnames';
 import './RadioGroup.scss';
 
@@ -17,11 +17,11 @@ export interface RadioGroupProps {
     onChange?: () => void;
 }
 
-const RadioGroup: FC<RadioGroupProps> = ({
+export const RadioGroup = ({
     options,
     onChange,
     size = 's',
-    align = 'vertical'
+    align = 'vertical',
 }: RadioGroupProps) => {
     const [value, setValue] = useState(
         (options.filter((option) => option.selected)[0] || options[0]).value
@@ -34,12 +34,12 @@ const RadioGroup: FC<RadioGroupProps> = ({
                         'unique-radio-wrapper',
                         `radio-size-${size}`,
                         {
-                            disabled: radio.disabled
+                            disabled: radio.disabled,
                         }
                     )}
                     key={radio.value}
                     {...(!radio.disabled && {
-                        onClick: () => setValue(radio.value)
+                        onClick: () => setValue(radio.value),
                     })}
                 >
                     <input
@@ -50,7 +50,7 @@ const RadioGroup: FC<RadioGroupProps> = ({
                     />
                     <span
                         className={classNames('inner', {
-                            checked: radio.value === value
+                            checked: radio.value === value,
                         })}
                     />
                     <label>{radio.value}</label>
@@ -59,5 +59,3 @@ const RadioGroup: FC<RadioGroupProps> = ({
         </div>
     );
 };
-
-export default RadioGroup;

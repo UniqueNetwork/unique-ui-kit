@@ -1,6 +1,6 @@
 import { render, getByText } from '@testing-library/react';
 import event from '@testing-library/user-event';
-import Stepper from './Stepper';
+import { Stepper } from './Stepper';
 
 describe('Stepper component', () => {
     it('should correct render text', () => {

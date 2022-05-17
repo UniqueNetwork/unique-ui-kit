@@ -2,13 +2,11 @@
  * @author Roman Beganov <rbeganov@usetech.com>
  */
 
-import React, { FC } from 'react';
 import classNames from 'classnames';
 import './Checkbox.scss';
-import { Icon } from '..';
-import { IconProps } from '../../types';
+import { Icon, IconProps } from '..';
 
-interface CheckboxProps {
+export interface CheckboxProps {
     checked: boolean;
     label: string;
     size?: 's' | 'm';
@@ -18,7 +16,7 @@ interface CheckboxProps {
     iconLeft?: IconProps;
 }
 
-const Checkbox: FC<CheckboxProps> = ({
+export const Checkbox = ({
     checked,
     label,
     disabled,
@@ -69,5 +67,3 @@ const Checkbox: FC<CheckboxProps> = ({
         </div>
     );
 };
-
-export default Checkbox;

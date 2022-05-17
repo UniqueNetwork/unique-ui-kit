@@ -1,4 +1,4 @@
-import Tooltip from './Tooltip';
+import { Tooltip } from './Tooltip';
 import { render, fireEvent, screen, waitFor } from '@testing-library/react';
 
 describe('Tooltip component', () => {

@@ -2,13 +2,33 @@
  * @author Anna Mikhailova <amikhailova@usetech.com>
  */
 
-import React, { FC } from 'react';
 import classNames from 'classnames';
-import { ButtonProps } from '../../types';
-import { Icon } from '..';
+import { DimentionType } from '../../types';
+import { Icon, IconProps } from '..';
+
 import './Button.scss';
 
-const Button: FC<ButtonProps> = ({
+export interface ButtonProps {
+    title: string;
+    disabled?: boolean;
+    size?: DimentionType;
+    role?:
+        | 'primary'
+        | 'secondary'
+        | 'tertiary'
+        | 'outlined'
+        | 'danger'
+        | 'ghost';
+    type?: 'submit' | 'button';
+    wide?: boolean;
+    className?: string;
+    iconLeft?: IconProps;
+    iconRight?: IconProps;
+    link?: string;
+    onClick?: () => void;
+}
+
+export const Button = ({
     title,
     disabled,
     wide,
@@ -47,5 +67,3 @@ const Button: FC<ButtonProps> = ({
         </Button>
     );
 };
-
-export default Button;

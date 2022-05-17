@@ -2,11 +2,10 @@
  * @author Roman Beganov <rbeganov@usetech.com>
  */
 
-import React, { FC } from 'react';
 import classNames from 'classnames';
 import './Toggle.scss';
 
-interface ToggleProps {
+export interface ToggleProps {
     label: string;
     on?: boolean;
     size?: 's' | 'm';
@@ -14,24 +13,22 @@ interface ToggleProps {
     onChange: (value: boolean) => void;
 }
 
-const Toggle: FC<ToggleProps> = ({
+export const Toggle = ({
     on = false,
     label,
     size = 's',
     disabled,
-    onChange
+    onChange,
 }: ToggleProps) => (
     <div
         className={classNames('unique-toggle-wrapper', `toggle-size-${size}`, {
-            disabled
+            disabled,
         })}
         {...(!disabled && {
-            onClick: () => onChange(!on)
+            onClick: () => onChange(!on),
         })}
     >
         <span className={classNames('inner', { on })} />
         <label>{label}</label>
     </div>
 );
-
-export default Toggle;

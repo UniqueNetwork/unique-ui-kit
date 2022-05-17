@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Layout from './Layout';
+import { Layout } from './Layout';
 
 it('children check', () => {
     render(<Layout>test children</Layout>);
@@ -15,7 +15,7 @@ it('breadcrumbs check', () => {
     render(
         <Layout
             breadcrumbs={{
-                options: [{ title: 'test 1' }, { title: 'test 2' }]
+                options: [{ title: 'test 1' }, { title: 'test 2' }],
             }}
         >
             test children

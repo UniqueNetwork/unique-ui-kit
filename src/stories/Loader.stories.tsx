@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Loader from '../components/Loader/Loader';
+import { Loader } from '../components';
 
 export default {
     title: 'Components/Loader',
@@ -41,7 +41,6 @@ DefaultWithPlacement.storyName = 'Default w/ placement';
 
 const FullPage: ComponentStory<typeof Loader> = (args) => (
     <div style={{ fontFamily: 'var(--prop-font-family)' }}>
-      
         <Loader {...args} />
     </div>
 );

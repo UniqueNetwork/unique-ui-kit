@@ -2,13 +2,13 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { Breadcrumbs, Heading, Icon } from '../../components';
-import { BreadcrumbsProps } from '../../types';
 import Logo from '../../assets/svg/logo_explorer.svg';
 import './Layout.scss';
+import { BreadcrumbsProps } from '../Breadcrumbs';
 
-interface LayoutProps {
+export interface LayoutProps {
     children: ReactNode;
     heading?: string;
     breadcrumbs?: BreadcrumbsProps;
@@ -16,7 +16,7 @@ interface LayoutProps {
     footer?: ReactNode;
 }
 
-const Layout = ({
+export const Layout = ({
     children,
     heading,
     breadcrumbs,
@@ -99,5 +99,3 @@ const Layout = ({
         </footer>
     </div>
 );
-
-export default Layout;

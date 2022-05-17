@@ -1,8 +1,8 @@
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { ReactNode, useState } from 'react';
 import classNames from 'classnames';
 
 import './Accordion.scss';
-import { Icon } from '../index';
+import { Icon } from '..';
 
 export interface AccordionProps {
     title: ReactNode;
@@ -12,7 +12,7 @@ export interface AccordionProps {
     expendIcon?: ReactNode;
 }
 
-const Accordion = ({
+export const Accordion = ({
     title,
     children,
     expanded: defaultExpanded = false,
@@ -48,5 +48,3 @@ const Accordion = ({
         </div>
     );
 };
-
-export default Accordion;
