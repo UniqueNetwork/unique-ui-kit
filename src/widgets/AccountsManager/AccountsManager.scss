@@ -1,0 +1,20 @@
+.unique-accounts-manager {
+  border: 1px solid var(--color-blue-grey-200);
+  box-sizing: border-box;
+  border-radius: calc(var(--prop-gap) / 2);
+  display: flex;
+  position: relative;
+  padding: calc(var(--prop-gap) / 2) calc(var(--prop-gap) * 2) calc(var(--prop-gap) / 2) var(--prop-gap);
+  .accounts-manager-selected-account {
+    display: flex;
+    flex-direction: column;
+    margin: calc(var(--gap) / 2) 0;
+    border-right: 1px solid var(--color-blue-grey-200);
+    padding-right: var(--prop-gap);
+  }
+  .accounts-manager-network {
+    display: flex;
+    align-items: center;
+    padding-left: var(--prop-gap);
+  }
+}
