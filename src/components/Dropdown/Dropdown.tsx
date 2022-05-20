@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import './Dropdown.scss';
 import { Icon } from '../index';
 
-interface DropdownProps extends Omit<ComponentProps, 'onChange'> {
+export interface DropdownProps extends Omit<ComponentProps, 'onChange'> {
     options?: SelectOptionProps[];
     optionKey?: string;
     optionValue?: string;
@@ -16,7 +16,7 @@ interface DropdownProps extends Omit<ComponentProps, 'onChange'> {
     dropdownRender?(): ReactNode;
 }
 
-const Dropdown = ({
+export const Dropdown = ({
     id,
     value,
     className,
