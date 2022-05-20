@@ -22,7 +22,7 @@ export interface AccountsManagerProps {
     onCopyAddressClick?(address: string): void;
 }
 
-const AccountsManager: FC<AccountsManagerProps> = (props) => {
+export const AccountsManager: FC<AccountsManagerProps> = (props) => {
     const { selectedAccount, activeNetwork, balance, symbol } = props;
     return (
         <Dropdown

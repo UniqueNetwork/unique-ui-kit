@@ -1,4 +1,4 @@
-export { default as CollectionCard } from './CollectionCard/CollectionCard';
-export { default as TokenLink } from './TokenLink/TokenLink';
-export { default as CollectionLink } from './CollectionLink/CollectionLink';
-export { default as AccountsManager } from './AccountsManager/AccountsManager';
+export { CollectionCard } from './CollectionCard/CollectionCard';
+export { TokenLink } from './TokenLink/TokenLink';
+export { CollectionLink } from './CollectionLink/CollectionLink';
+export { AccountsManager } from './AccountsManager/AccountsManager';
