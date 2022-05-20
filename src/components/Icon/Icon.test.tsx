@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import quartz from '../assets/static/quartz.svg';
-import Icon from './Icon';
+import { Icon } from './Icon';
 
 it('name check', () => {
     const { container } = render(<Icon name="test" size={16} />);

@@ -1,7 +1,6 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import { Icon, Link, Table, Text } from '../components';
-import { IconProps, SortQuery } from '../types';
+import { Icon, IconProps, Link, SortQuery, Table, Text } from '../components';
 import { SORT_MODES } from '../constants';
 import avatar from '../assets/static/avatar.jpg';
 
@@ -176,14 +175,25 @@ MultipleFieldsRenderTable.args = {
             title: 'Account',
             field: 'address',
             width: '50%',
-            render: (address: string, rowData: { icon: IconProps, title: string }) => {
-                if(!rowData) return null;
-                return <div style={{ display: 'flex', alignItems: 'center', columnGap: '8px' }}>
-                    <Icon {...rowData?.icon} />
-                    <Text>{rowData.title}</Text>
-                    <Text color={'grey-500'}>{address}</Text>
-                </div>
-            }
+            render: (
+                address: string,
+                rowData: { icon: IconProps; title: string }
+            ) => {
+                if (!rowData) return null;
+                return (
+                    <div
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            columnGap: '8px',
+                        }}
+                    >
+                        <Icon {...rowData?.icon} />
+                        <Text>{rowData.title}</Text>
+                        <Text color={'grey-500'}>{address}</Text>
+                    </div>
+                );
+            },
         },
         { title: 'Balance', field: 'balance', width: '50%' },
     ],
@@ -194,9 +204,9 @@ MultipleFieldsRenderTable.args = {
             icon: {
                 size: 24,
                 name: 'Account',
-                file: avatar
+                file: avatar,
             },
-            balance: '123.00 KSM'
+            balance: '123.00 KSM',
         },
         {
             title: 'One more account: ',
@@ -204,9 +214,9 @@ MultipleFieldsRenderTable.args = {
             icon: {
                 size: 24,
                 name: 'Account',
-                file: avatar
+                file: avatar,
             },
-            balance: '456.00 KSM'
+            balance: '456.00 KSM',
         },
     ],
 };

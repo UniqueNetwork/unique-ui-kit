@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import Text from './Text';
+import { Text } from './Text';
 
 it('checks children prop', () => {
     render(<Text>Test</Text>);

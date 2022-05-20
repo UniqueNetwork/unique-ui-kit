@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import { Button, Dropdown } from '../index';
+import { Button, Dropdown } from '..';
 
 const mockFunction = jest.fn();
 const options = [
@@ -34,7 +34,6 @@ it('it should open dropdown on click by wrapper and close on click outside', () 
         </Dropdown>
     );
     const dropdown = getByTestId('dropdown-wrapper');
-    fireEvent.mouseEnter(dropdown);
     fireEvent.mouseDown(dropdown);
     const dropdownOptions = queryByRole('listbox');
     expect(dropdownOptions).toBeInTheDocument();

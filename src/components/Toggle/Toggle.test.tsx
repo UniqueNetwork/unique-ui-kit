@@ -1,5 +1,5 @@
 import { render, fireEvent } from '@testing-library/react';
-import Toggle from './Toggle';
+import { Toggle } from './Toggle';
 
 const mockOnChange = jest.fn();
 

@@ -2,12 +2,15 @@
  * @author Roman Beganov <rbeganov@usetech.com>
  */
 
-import React, { FC, Fragment } from 'react';
-import { BreadcrumbsProps } from '../../types';
-import Icon from '../Icon/Icon';
+import { Fragment } from 'react';
+import { Icon } from '../Icon';
 import './Breadcrumbs.scss';
 
-const Breadcrumbs: FC<BreadcrumbsProps> = ({ options }: BreadcrumbsProps) => (
+export interface BreadcrumbsProps {
+    options: { title: string; link?: string }[];
+}
+
+export const Breadcrumbs = ({ options }: BreadcrumbsProps) => (
     <div className="unique-breadcrumbs-wrapper">
         {options.map((option, index) => {
             const last = index === options.length - 1;
@@ -36,5 +39,3 @@ const Breadcrumbs: FC<BreadcrumbsProps> = ({ options }: BreadcrumbsProps) => (
         })}
     </div>
 );
-
-export default Breadcrumbs;

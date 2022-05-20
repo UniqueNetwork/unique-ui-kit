@@ -2,18 +2,19 @@
  * @author Sergey Kozlov <skozlov@usetech.com>
  */
 import classNames from 'classnames';
-import { ComponentProps, InputPropsBase } from '../../types';
+import { ComponentProps } from '../../types';
 import './Textarea.scss';
+import { InputBaseProps } from '../InputText';
 
-interface TextareaPropsBase extends InputPropsBase {
+interface BaseTextareaProps extends InputBaseProps {
     // number of rows to display in textarea
     rows?: number;
 }
 
-export type TextareaProps = TextareaPropsBase &
+export type TextareaProps = BaseTextareaProps &
     Omit<ComponentProps, 'onChange'>;
 
-const Textarea = ({
+export const Textarea = ({
     id,
     label,
     additionalText,
@@ -62,5 +63,3 @@ const Textarea = ({
         </div>
     );
 };
-
-export default Textarea;

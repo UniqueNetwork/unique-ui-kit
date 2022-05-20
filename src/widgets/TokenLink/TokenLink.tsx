@@ -2,11 +2,10 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import React, { FC } from 'react';
 import { Avatar, Link, Text } from '../../components';
 import './TokenLink.scss';
 
-interface ITokenLink {
+export interface ITokenLinkProps {
     image: string;
     title: string;
     link: {
@@ -15,12 +14,10 @@ interface ITokenLink {
     };
 }
 
-const TokenLink: FC<ITokenLink> = ({ image, title, link }: ITokenLink) => (
+export const TokenLink = ({ image, title, link }: ITokenLinkProps) => (
     <div className="unique-token-link">
         <Avatar src={image} size={326} type="square" />
         <Text size="l">{title}</Text>
         <Link href={link.href} title={link.title} />
     </div>
 );
-
-export default TokenLink;

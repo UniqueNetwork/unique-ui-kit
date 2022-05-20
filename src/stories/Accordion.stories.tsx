@@ -1,6 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Accordion, Icon } from '../components';
-import { useState } from 'react';
 
 export default {
     title: 'Components/Accordion',

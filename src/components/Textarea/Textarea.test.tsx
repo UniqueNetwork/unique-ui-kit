@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import Textarea from './Textarea';
+import { Textarea } from './Textarea';
 
 const mockFunction = jest.fn();
 

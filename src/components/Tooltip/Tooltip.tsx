@@ -38,7 +38,7 @@ const staticSide = {
     left: 'right',
 };
 
-const Tooltip = ({
+export const Tooltip = ({
     offset: offsetUser = 10,
     content,
     placement: placementUser,
@@ -136,5 +136,3 @@ const Tooltip = ({
         </>
     );
 };
-
-export default Tooltip;
