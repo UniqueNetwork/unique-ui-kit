@@ -1,16 +1,20 @@
-import React, { Key, ReactNode, useState } from 'react';
+import React, { isValidElement, Key, ReactNode, useState } from 'react';
 import { ComponentProps, SelectOptionProps } from '../../types';
 import classNames from 'classnames';
 import './Dropdown.scss';
+import { Icon, IconProps } from '../index';
 
-export interface DropdownProps extends ComponentProps {
-    options: SelectOptionProps[];
+export interface DropdownProps extends Omit<ComponentProps, 'onChange'> {
+    options?: SelectOptionProps[];
     optionKey?: string;
     optionValue?: string;
     placement?: 'left' | 'right';
     children: JSX.Element;
-    onChange(option: SelectOptionProps): void;
+    iconLeft?: IconProps | ReactNode;
+    iconRight?: IconProps | ReactNode;
+    onChange?(option: SelectOptionProps): void;
     optionRender?(option: SelectOptionProps, isSelected: boolean): ReactNode;
+    dropdownRender?(): ReactNode;
 }
 
 export const Dropdown = ({
@@ -24,9 +28,12 @@ export const Dropdown = ({
     onChange,
     children,
     optionRender,
+    dropdownRender,
     placement = 'left',
+    iconLeft,
+    iconRight,
 }: DropdownProps) => {
-    const selected = options.find(
+    const selected = options?.find(
         (option) => option[optionKey as keyof SelectOptionProps] === value
     );
 
@@ -67,18 +74,31 @@ export const Dropdown = ({
                     disabled,
                 })}
                 onMouseDown={handleMouseDown}
-                data-testid={`dropdown-wrapper`}
+                data-testid="dropdown-wrapper"
             >
+                {iconLeft &&
+                    (isValidElement(iconLeft) ? (
+                        iconRight
+                    ) : (
+                        <Icon {...(iconLeft as IconProps)} />
+                    ))}
                 {children}
+                {iconRight &&
+                    (isValidElement(iconRight) ? (
+                        iconRight
+                    ) : (
+                        <Icon {...(iconRight as IconProps)} />
+                    ))}
             </div>
-            {dropped && options && (
+            {dropped && (
                 <div
                     className={classNames('dropdown-options', {
                         right: placement === 'right',
                     })}
                     role="listbox"
                 >
-                    {options.map((option) => {
+                    {dropdownRender?.()}
+                    {options?.map((option) => {
                         const isSelected =
                             option[optionKey as keyof SelectOptionProps] ===
                             selected?.[optionKey as keyof SelectOptionProps];
