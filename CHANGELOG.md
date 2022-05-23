@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.0.18
+
+Changes:
+
+- Component import types fix
+
 ## 0.0.17 May 17, 2022
 
 Changes:
