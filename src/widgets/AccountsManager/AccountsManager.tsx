@@ -1,14 +1,14 @@
 import React, { FC, ReactNode } from 'react';
 import { Dropdown, Icon, Text } from '../../components';
 import './AccountsManager.scss';
-import { Account, Network } from './types';
+import { IAccount, INetwork } from './types';
 import { AccountsManagerDropdown } from './components';
 
 export interface AccountsManagerProps {
-    accounts: Account[];
-    selectedAccount?: Account;
-    networks: Network[];
-    activeNetwork?: Network;
+    accounts: IAccount[];
+    selectedAccount?: IAccount;
+    networks: INetwork[];
+    activeNetwork?: INetwork;
     balance: string;
     deposit?: string;
     depositDescription?: ReactNode;
@@ -16,13 +16,13 @@ export interface AccountsManagerProps {
     symbol: string;
     isLoading?: boolean;
     avatarRender?(address: string): ReactNode;
-    onNetworkChange?(network: Network): void;
-    onAccountChange?(account: Account): void;
+    onNetworkChange?(network: INetwork): void;
+    onAccountChange?(account: IAccount): void;
     onManageBalanceClick?(): void;
     onCopyAddressClick?(address: string): void;
 }
 
-export const AccountsManager: FC<AccountsManagerProps> = (props) => {
+export const AccountsManager = (props: AccountsManagerProps) => {
     const { selectedAccount, activeNetwork, balance, symbol } = props;
     return (
         <Dropdown
@@ -46,5 +46,3 @@ export const AccountsManager: FC<AccountsManagerProps> = (props) => {
         </Dropdown>
     );
 };
-
-export default AccountsManager;

@@ -1,7 +1,7 @@
 import { AccountsManager } from '../widgets';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Text } from '../components';
-import { Account, Network } from '../widgets/AccountsManager/types';
+import { IAccount, INetwork } from '../widgets/AccountsManager/types';
 import { useState } from 'react';
 
 export default {
@@ -10,11 +10,11 @@ export default {
 } as ComponentMeta<typeof AccountsManager>;
 
 const Template: ComponentStory<typeof AccountsManager> = (args) => {
-    const [selectedAccount, setSelectedAccount] = useState<Account>({
+    const [selectedAccount, setSelectedAccount] = useState<IAccount>({
         name: 'hrumhrum10',
         address: '5Gxot0000000000000000000000004Y6cj',
     });
-    const [activeNetwork, setActiveNetwork] = useState<Network>({
+    const [activeNetwork, setActiveNetwork] = useState<INetwork>({
         id: 'quartz',
         name: 'Quartz',
         icon: { name: 'chain-quartz', size: 40 },

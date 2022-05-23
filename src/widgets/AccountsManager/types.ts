@@ -1,11 +1,11 @@
 import { IconProps, SelectOptionProps } from '../../types';
 
-export interface Account extends SelectOptionProps {
+export interface IAccount extends SelectOptionProps {
     address?: string;
     name?: string;
 }
 
-export interface Network {
+export interface INetwork {
     id: string;
     name: string;
     icon: IconProps;

@@ -1,20 +1,20 @@
-import React, { FC, ReactNode } from 'react';
-import { Account } from '../../types';
+import React, { ReactNode } from 'react';
+import { IAccount } from '../../types';
 import { Avatar, Icon, Text } from '../../../../components';
 import './AccountCard.scss';
 import defaultAvatarSrc from '../../../../assets/static/avatar.jpg';
 
-interface AccountCardProps extends Account {
+interface AccountCardProps extends IAccount {
     avatarRender?(address: string): ReactNode;
     onCopyAddressClick?(address: string): void;
 }
 
-const AccountCard: FC<AccountCardProps> = ({
+export const AccountCard = ({
     name,
     address,
     avatarRender,
     onCopyAddressClick,
-}) => {
+}: AccountCardProps) => {
     const shortAddress =
         address && address?.length > 13
             ? `${address.slice(0, 5)}...${address.slice(-5)}`
@@ -36,7 +36,7 @@ const AccountCard: FC<AccountCardProps> = ({
                     {onCopyAddressClick && (
                         <div
                             onClick={() =>
-                                address && onCopyAddressClick?.(address)
+                                address && onCopyAddressClick(address)
                             }
                             data-testid={`address-copy-${address}`}
                         >
@@ -48,5 +48,3 @@ const AccountCard: FC<AccountCardProps> = ({
         </div>
     );
 };
-
-export default AccountCard;

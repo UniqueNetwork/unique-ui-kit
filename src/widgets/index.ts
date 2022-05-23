@@ -1,4 +1,4 @@
-export { CollectionCard } from './CollectionCard/CollectionCard';
-export { TokenLink } from './TokenLink/TokenLink';
-export { CollectionLink } from './CollectionLink/CollectionLink';
-export { AccountsManager } from './AccountsManager/AccountsManager';
+export * from './CollectionCard';
+export * from './TokenLink';
+export * from './CollectionLink';
+export * from './AccountsManager';

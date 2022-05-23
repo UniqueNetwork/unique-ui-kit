@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Dropdown, Icon, Link, Text, Toggle } from '../../../../components';
 import './AccountsManagerDropdown.scss';
 import { AccountsManagerProps } from '../../AccountsManager';
 import { AccountCard } from '../index';
 
-const AccountsManagerDropdown: FC<AccountsManagerProps> = ({
+export const AccountsManagerDropdown = ({
     accounts,
     selectedAccount,
     networks,
@@ -19,7 +19,7 @@ const AccountsManagerDropdown: FC<AccountsManagerProps> = ({
     onNetworkChange,
     onManageBalanceClick,
     onCopyAddressClick,
-}) => {
+}: AccountsManagerProps) => {
     return (
         <div className={'accounts-manager-dropdown'}>
             <div className={'accounts-manager-accounts'}>
@@ -28,7 +28,7 @@ const AccountsManagerDropdown: FC<AccountsManagerProps> = ({
                 </Text>
                 <Dropdown
                     optionKey={'address'}
-                    options={accounts.map((account) => ({ ...account }))}
+                    options={accounts}
                     optionRender={(option) => (
                         <AccountCard
                             {...option}
@@ -37,7 +37,7 @@ const AccountsManagerDropdown: FC<AccountsManagerProps> = ({
                         />
                     )}
                     withTriangleIcon
-                    onChange={(account) => onAccountChange?.(account)}
+                    onChange={onAccountChange}
                 >
                     <div
                         className={'accounts-select'}
@@ -63,14 +63,14 @@ const AccountsManagerDropdown: FC<AccountsManagerProps> = ({
                     {deposit && (
                         <Text size={'s'}>{`${deposit} ${symbol}`}</Text>
                     )}
-                    {depositDescription || null}
+                    {depositDescription}
                     {manageBalanceLinkTitle && (
                         <div
                             className={'wallet-link'}
                             data-testid={`wallet-link`}
                         >
                             <Link
-                                onClick={() => onManageBalanceClick?.()}
+                                onClick={onManageBalanceClick}
                                 title={manageBalanceLinkTitle}
                             />
                             <Icon
@@ -92,7 +92,7 @@ const AccountsManagerDropdown: FC<AccountsManagerProps> = ({
                         <Text>{activeNetwork.name}</Text>
                     </div>
                 )}
-                {networks && networks.length > 0 && (
+                {networks?.length > 0 && (
                     <div className={'networks-list'}>
                         {networks.map((network) => (
                             <div
@@ -115,5 +115,3 @@ const AccountsManagerDropdown: FC<AccountsManagerProps> = ({
         </div>
     );
 };
-
-export default AccountsManagerDropdown;
