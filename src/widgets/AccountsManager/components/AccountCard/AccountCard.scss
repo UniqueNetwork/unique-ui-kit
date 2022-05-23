@@ -9,11 +9,12 @@
       max-width: 130px;
       text-overflow: ellipsis;
       overflow: hidden;
+      white-space: nowrap;
     }
     .account-card-address {
       display: flex;
       align-items: center;
-      column-gap: 4px;
+      column-gap: calc(var(--prop-gap) / 4);
     }
   }
 }

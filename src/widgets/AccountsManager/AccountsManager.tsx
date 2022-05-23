@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { Dropdown, Icon, Text } from '../../components';
 import './AccountsManager.scss';
 import { IAccount, INetwork } from './types';
@@ -27,17 +27,20 @@ export const AccountsManager = (props: AccountsManagerProps) => {
     return (
         <Dropdown
             dropdownRender={() => <AccountsManagerDropdown {...props} />}
-            withTriangleIcon
-            placement={'right'}
+            iconRight={{
+                name: 'triangle',
+                size: 8,
+            }}
+            placement="right"
         >
-            <div className={'unique-accounts-manager'}>
-                <div className={'accounts-manager-selected-account'}>
-                    <Text color={'blue-grey-500'} size={'s'}>
+            <div className="unique-accounts-manager">
+                <div className="accounts-manager-selected-account">
+                    <Text color="blue-grey-500" size="s">
                         {selectedAccount?.name}
                     </Text>
-                    <Text size={'m'}>{`${balance} ${symbol}`}</Text>
+                    <Text size="m">{`${balance} ${symbol}`}</Text>
                 </div>
-                <div className={'accounts-manager-network'}>
+                <div className="accounts-manager-network">
                     {activeNetwork && (
                         <Icon {...activeNetwork.icon} size={16} />
                     )}

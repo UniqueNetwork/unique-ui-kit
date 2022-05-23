@@ -21,16 +21,16 @@ export const AccountCard = ({
             : address;
 
     return (
-        <div className={'account-card'}>
+        <div className="account-card">
             {avatarRender && address ? (
                 avatarRender(address)
             ) : (
-                <Avatar src={defaultAvatarSrc} type={'circle'} />
+                <Avatar src={defaultAvatarSrc} type="circle" />
             )}
-            <div className={'account-card-content'}>
-                <Text size={'m'}>{name}</Text>
-                <div className={'account-card-address'}>
-                    <Text size={'s'} color={'grey-500'}>
+            <div className="account-card-content">
+                <Text size="m">{name}</Text>
+                <div className="account-card-address">
+                    <Text size="s" color="grey-500">
                         {shortAddress}
                     </Text>
                     {onCopyAddressClick && (
@@ -40,7 +40,7 @@ export const AccountCard = ({
                             }
                             data-testid={`address-copy-${address}`}
                         >
-                            <Icon size={16} name={'copy'} />
+                            <Icon size={16} name="copy" />
                         </div>
                     )}
                 </div>

@@ -21,13 +21,13 @@ export const AccountsManagerDropdown = ({
     onCopyAddressClick,
 }: AccountsManagerProps) => {
     return (
-        <div className={'accounts-manager-dropdown'}>
-            <div className={'accounts-manager-accounts'}>
-                <Text color={'grey-500'} size={'s'}>
+        <div className="accounts-manager-dropdown">
+            <div className="accounts-manager-accounts">
+                <Text color="grey-500" size="s">
                     Account
                 </Text>
                 <Dropdown
-                    optionKey={'address'}
+                    optionKey="address"
                     options={accounts}
                     optionRender={(option) => (
                         <AccountCard
@@ -36,12 +36,15 @@ export const AccountsManagerDropdown = ({
                             onCopyAddressClick={onCopyAddressClick}
                         />
                     )}
-                    withTriangleIcon
+                    iconRight={{
+                        name: 'triangle',
+                        size: 8,
+                    }}
                     onChange={onAccountChange}
                 >
                     <div
-                        className={'accounts-select'}
-                        data-testid={'accounts-select'}
+                        className="accounts-select"
+                        data-testid="accounts-select"
                     >
                         <AccountCard
                             {...selectedAccount}
@@ -51,22 +54,17 @@ export const AccountsManagerDropdown = ({
                     </div>
                 </Dropdown>
             </div>
-            <div className={'accounts-manager-wallet'}>
-                <Text color={'grey-500'} size={'s'}>
+            <div className="accounts-manager-wallet">
+                <Text color="grey-500" size="s">
                     Wallet
                 </Text>
-                <div
-                    className={'wallet-content'}
-                    data-testid={`wallet-content`}
-                >
-                    <Text size={'l'}>{`${balance} ${symbol}`}</Text>
-                    {deposit && (
-                        <Text size={'s'}>{`${deposit} ${symbol}`}</Text>
-                    )}
+                <div className="wallet-content" data-testid="wallet-content">
+                    <Text size="l">{`${balance} ${symbol}`}</Text>
+                    {deposit && <Text size="s">{`${deposit} ${symbol}`}</Text>}
                     {depositDescription}
                     {manageBalanceLinkTitle && (
                         <div
-                            className={'wallet-link'}
+                            className="wallet-link"
                             data-testid={`wallet-link`}
                         >
                             <Link
@@ -75,35 +73,35 @@ export const AccountsManagerDropdown = ({
                             />
                             <Icon
                                 size={12}
-                                name={'arrow-right'}
-                                color={'var(--color-primary-500)'}
+                                name="arrow-right"
+                                color="var(--color-primary-500)"
                             />
                         </div>
                     )}
                 </div>
             </div>
-            <div className={'accounts-manager-networks'}>
-                <Text color={'grey-500'} size={'s'}>
+            <div className="accounts-manager-networks">
+                <Text color="grey-500" size="s">
                     Active network
                 </Text>
                 {(!networks || networks.length === 0) && activeNetwork && (
-                    <div className={'network'}>
+                    <div className="network">
                         <Icon {...activeNetwork.icon} size={16} />
                         <Text>{activeNetwork.name}</Text>
                     </div>
                 )}
                 {networks?.length > 0 && (
-                    <div className={'networks-list'}>
+                    <div className="networks-list">
                         {networks.map((network) => (
                             <div
-                                className={'network'}
+                                className="network"
                                 key={`network-${network.id}`}
                                 data-testid={`network-${network.id}`}
                             >
                                 <Icon {...network.icon} size={16} />
                                 <Text>{network.name}</Text>
                                 <Toggle
-                                    label={''}
+                                    label=""
                                     onChange={() => onNetworkChange?.(network)}
                                     on={activeNetwork?.id === network.id}
                                 />

@@ -1,8 +1,8 @@
-import React, { FC, Key, ReactNode, useEffect, useState } from 'react';
+import React, { isValidElement, Key, ReactNode, useState } from 'react';
 import { ComponentProps, SelectOptionProps } from '../../types';
 import classNames from 'classnames';
 import './Dropdown.scss';
-import { Icon } from '../index';
+import { Icon, IconProps } from '../index';
 
 export interface DropdownProps extends Omit<ComponentProps, 'onChange'> {
     options?: SelectOptionProps[];
@@ -10,7 +10,8 @@ export interface DropdownProps extends Omit<ComponentProps, 'onChange'> {
     optionValue?: string;
     placement?: 'left' | 'right';
     children: JSX.Element;
-    withTriangleIcon?: boolean;
+    iconLeft?: IconProps | ReactNode;
+    iconRight?: IconProps | ReactNode;
     onChange?(option: SelectOptionProps): void;
     optionRender?(option: SelectOptionProps, isSelected: boolean): ReactNode;
     dropdownRender?(): ReactNode;
@@ -29,7 +30,8 @@ export const Dropdown = ({
     optionRender,
     dropdownRender,
     placement = 'left',
-    withTriangleIcon,
+    iconLeft,
+    iconRight,
 }: DropdownProps) => {
     const selected = options?.find(
         (option) => option[optionKey as keyof SelectOptionProps] === value
@@ -72,10 +74,21 @@ export const Dropdown = ({
                     disabled,
                 })}
                 onMouseDown={handleMouseDown}
-                data-testid={`dropdown-wrapper`}
+                data-testid="dropdown-wrapper"
             >
+                {iconLeft &&
+                    (isValidElement(iconLeft) ? (
+                        iconRight
+                    ) : (
+                        <Icon {...(iconLeft as IconProps)} />
+                    ))}
                 {children}
-                {withTriangleIcon && <Icon name="triangle" size={8} />}
+                {iconRight &&
+                    (isValidElement(iconRight) ? (
+                        iconRight
+                    ) : (
+                        <Icon {...(iconRight as IconProps)} />
+                    ))}
             </div>
             {dropped && (
                 <div
