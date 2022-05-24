@@ -15,7 +15,6 @@ export interface INetwork {
     icon: IconProps;
 }
 
-
 export interface AccountsManagerProps {
     accounts: IAccount[];
     selectedAccount?: IAccount;

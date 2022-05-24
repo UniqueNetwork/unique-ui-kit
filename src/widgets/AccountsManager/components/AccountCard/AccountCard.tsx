@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
-import { IAccount } from '../../types';
 import { Avatar, Icon, Text } from '../../../../components';
+import { IAccount } from '../../AccountsManager';
 import './AccountCard.scss';
 import defaultAvatarSrc from '../../../../assets/static/avatar.jpg';
 
