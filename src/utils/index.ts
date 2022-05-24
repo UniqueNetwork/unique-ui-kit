@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
-import { SortQuery, TableRow } from '../types';
+import { SortQuery, TableRowProps } from '../components';
 
 /** Functional methods */
 
 export const sortData = (
-    data: TableRow[],
+    data: TableRowProps[],
     query: SortQuery,
     compareFunc?: (a: any, b: any) => number
 ) => {

@@ -2,11 +2,10 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import React, { FC } from 'react';
 import classNames from 'classnames';
 import './Tabs.scss';
 
-interface TabsProps {
+export interface TabsProps {
     activeIndex: number;
     children?: JSX.Element[];
     labels?: string[];
@@ -15,7 +14,7 @@ interface TabsProps {
     onClick?(activeIndex: number): void;
 }
 
-const Tabs: FC<TabsProps> = ({
+export const Tabs = ({
     activeIndex,
     labels,
     children,
@@ -52,5 +51,3 @@ const Tabs: FC<TabsProps> = ({
             : children?.[activeIndex]}
     </div>
 );
-
-export default Tabs;

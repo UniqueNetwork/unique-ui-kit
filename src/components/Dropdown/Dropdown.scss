@@ -9,6 +9,16 @@
 
   .dropdown-wrapper {
     position: relative;
+
+    .icon-triangle {
+      position: absolute;
+      right: var(--prop-gap);
+      top: 50%;
+      margin-top: -4px;
+    }
+    &.dropped .icon-triangle {
+      transform: rotate(180deg);
+    }
   }
 
   .dropdown-options {

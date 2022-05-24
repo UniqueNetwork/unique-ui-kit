@@ -7,7 +7,7 @@ import {
 import event from '@testing-library/user-event';
 
 import { useEffect, useState } from 'react';
-import Suggest from './Suggest';
+import { Suggest } from './Suggest';
 
 describe('Suggest component', () => {
     it('should be render default value', () => {

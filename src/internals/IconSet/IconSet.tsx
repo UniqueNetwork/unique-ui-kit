@@ -2,18 +2,17 @@
  * @author Vaagn Mazmanyan <vmazmanyan@usetech.com>
  */
 
-import React, { FC } from 'react';
 import { Icon, Heading } from '../../components';
 import './IconSet.scss';
 
-interface IconSetProps {
+export interface IconSetProps {
     icons: {
         name: string;
         size?: number;
     }[];
 }
 
-const IconSet: FC<IconSetProps> = ({ icons }: IconSetProps) => (
+export const IconSet = ({ icons }: IconSetProps) => (
     <>
         <Heading size="2">Base icons</Heading>
         <div className={`unique-icon-set`}>
@@ -27,5 +26,3 @@ const IconSet: FC<IconSetProps> = ({ icons }: IconSetProps) => (
         </div>
     </>
 );
-
-export default IconSet;

@@ -6,7 +6,7 @@ import nft3 from '../assets/static/nft-3.png';
 import nft4 from '../assets/static/nft-4.png';
 import nft5 from '../assets/static/nft-5.png';
 import nft6 from '../assets/static/nft-6.png';
-import CollectionCard from './CollectionCard';
+import { CollectionCard } from '.';
 
 it('default props check', () => {
     render(
@@ -16,7 +16,7 @@ it('default props check', () => {
                 id: '',
                 symbol: '',
                 items: 0,
-                owner: ''
+                owner: '',
             }}
         />
     );
@@ -33,17 +33,17 @@ it('set data props check', () => {
                 id: '123456',
                 symbol: 'Duck',
                 items: 10000,
-                owner: '14KBS...trcQH'
+                owner: '14KBS...trcQH',
             }}
             links={[
                 {
                     title: 'Go to Block Explorer',
-                    onClick: () => console.log('Go to Block Explorer')
+                    onClick: () => console.log('Go to Block Explorer'),
                 },
                 {
                     title: 'Go to Wallet',
-                    onClick: () => console.log('Go to Wallet')
-                }
+                    onClick: () => console.log('Go to Wallet'),
+                },
             ]}
             tokens={[nft1, nft2, nft3, nft4, nft5, nft6]}
             actions={[
@@ -51,9 +51,9 @@ it('set data props check', () => {
                     title: 'Create token',
                     appearance: {
                         role: 'primary',
-                        size: 'small'
+                        size: 'small',
                     },
-                    onClick: () => console.log('Create token')
+                    onClick: () => console.log('Create token'),
                 },
                 {
                     title: 'Burn',
@@ -63,11 +63,11 @@ it('set data props check', () => {
                         iconLeft: {
                             name: 'burn',
                             size: 15,
-                            color: 'var(--color-blue-grey-300)'
-                        }
+                            color: 'var(--color-blue-grey-300)',
+                        },
                     },
-                    onClick: () => console.log('Burn')
-                }
+                    onClick: () => console.log('Burn'),
+                },
             ]}
         />
     );

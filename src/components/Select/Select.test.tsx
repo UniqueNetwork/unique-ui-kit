@@ -1,6 +1,6 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import Select from './Select';
+import { Select } from './Select';
 
 const mockFunction = jest.fn();
 const options = [
@@ -10,8 +10,8 @@ const options = [
         iconRight: {
             name: 'arrow-up',
             size: 12,
-            color: 'var(--color-blue-grey-300)'
-        }
+            color: 'var(--color-blue-grey-300)',
+        },
     },
     {
         id: 2,
@@ -19,12 +19,12 @@ const options = [
         iconLeft: {
             name: 'arrow-up',
             size: 12,
-            color: 'var(--color-blue-grey-300)'
-        }
+            color: 'var(--color-blue-grey-300)',
+        },
     },
     { id: 3, title: 'test title 3' },
     { id: 4, title: 'test title 4' },
-    { id: 5, title: 'test title 5' }
+    { id: 5, title: 'test title 5' },
 ];
 
 it('options prop check', () => {

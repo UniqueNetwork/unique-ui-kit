@@ -2,11 +2,16 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import React, { FC } from 'react';
-import { IconProps } from '../../types';
 import Icons from '../../assets/svg/icons.svg';
 
-const Icon: FC<IconProps> = ({
+export interface IconProps {
+    size: number;
+    name?: string;
+    file?: string;
+    color?: string;
+}
+
+export const Icon = ({
     name,
     file,
     size,
@@ -25,5 +30,3 @@ const Icon: FC<IconProps> = ({
             <use xlinkHref={`${Icons}#icon-${name}`} />
         </svg>
     );
-
-export default Icon;

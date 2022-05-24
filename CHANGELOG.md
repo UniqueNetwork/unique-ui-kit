@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.0.18 May 24, 2022
+
+Changes:
+
+- Account manager widget add
+- Modal component scroll fix
+- Component import types fix
+
 ## 0.0.17 May 17, 2022
 
 Changes:

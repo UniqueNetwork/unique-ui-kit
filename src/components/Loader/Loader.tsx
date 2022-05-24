@@ -2,7 +2,7 @@
  * @author Sergey Kozlov <skozlov@usetech.com>
  */
 
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import classNames from 'classnames';
 import { DimentionType, PlacementType } from '../../types';
 import './Loader.scss';
@@ -14,11 +14,11 @@ export interface LoaderProps {
     placement?: PlacementType;
 }
 
-const Loader = ({
+export const Loader = ({
     isFullPage = false,
     placement = 'right',
     size = 'small',
-    label
+    label,
 }: LoaderProps) => (
     <div
         className={classNames('unique-loader', {
@@ -36,5 +36,3 @@ const Loader = ({
         </div>
     </div>
 );
-
-export default Loader;

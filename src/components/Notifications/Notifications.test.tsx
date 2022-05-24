@@ -1,5 +1,5 @@
 import { fireEvent, render, act } from '@testing-library/react';
-import Notifications from './Notifications';
+import { Notifications } from './Notifications';
 import { useNotifications } from './hook/useNotifications';
 import { Button } from '../index';
 import { sleep } from '../../utils';

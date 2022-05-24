@@ -2,13 +2,13 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import React, { FC, Key, useEffect, useMemo, useState } from 'react';
+import { Key, useEffect, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import { Icon } from '..';
 import { ComponentProps, DimentionType, SelectOptionProps } from '../../types';
 import './Select.scss';
 
-interface SelectProps extends ComponentProps {
+export interface SelectProps extends ComponentProps {
     options: SelectOptionProps[];
     optionKey?: string;
     optionValue?: string;
@@ -22,7 +22,7 @@ interface SelectProps extends ComponentProps {
     onChange(option: SelectOptionProps | SelectOptionProps[]): void;
 }
 
-const Select: FC<SelectProps> = ({
+export const Select = ({
     id,
     value,
     autoFocus,
@@ -44,7 +44,7 @@ const Select: FC<SelectProps> = ({
     onBlur,
     multi = false,
     values,
-}) => {
+}: SelectProps) => {
     useEffect(() => {
         const defaultOption =
             defaultValue &&
@@ -242,5 +242,3 @@ const Select: FC<SelectProps> = ({
         </div>
     );
 };
-
-export default Select;

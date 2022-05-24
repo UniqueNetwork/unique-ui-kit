@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import event from '@testing-library/user-event';
-import Accordion from './Accordion';
-import { Icon } from '../index';
+import { Accordion } from './Accordion';
+import { Icon } from '..';
 
 describe('Accordion component', () => {
     it('should show only title', () => {

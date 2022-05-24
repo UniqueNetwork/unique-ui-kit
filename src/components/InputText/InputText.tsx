@@ -3,20 +3,30 @@
  */
 import classNames from 'classnames';
 import { Icon } from '..';
-import { ComponentProps, IconProps, InputPropsBase } from '../../types';
+import { ComponentProps, DimentionType } from '../../types';
 import './InputText.scss';
 import { ForwardedRef, forwardRef, ReactNode, isValidElement } from 'react';
+import { IconProps } from '../Icon';
 
 type IconType = IconProps | ReactNode;
 
-export type InputTextProps = InputPropsBase &
+export interface InputBaseProps {
+    additionalText?: string;
+    error?: boolean;
+    label?: string;
+    statusText?: string;
+    size?: DimentionType;
+    onChange?(value: string): void;
+}
+
+export type InputTextProps = InputBaseProps &
     Omit<ComponentProps, 'onChange'> & {
         iconLeft?: IconType;
         iconRight?: IconType;
         role?: 'number' | 'decimal';
     };
 
-const InputText = forwardRef(
+export const InputText = forwardRef(
     (
         {
             id,
@@ -90,5 +100,3 @@ const InputText = forwardRef(
         );
     }
 );
-
-export default InputText;
