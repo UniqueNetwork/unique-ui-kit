@@ -1,8 +1,8 @@
 import React from 'react';
 import { Dropdown, Icon, Link, Text, Toggle } from '../../../../components';
-import './AccountsManagerDropdown.scss';
 import { AccountsManagerProps } from '../../AccountsManager';
 import { AccountCard } from '../index';
+import './AccountsManagerDropdown.scss';
 
 export const AccountsManagerDropdown = ({
     accounts,
