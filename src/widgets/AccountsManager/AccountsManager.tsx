@@ -1,8 +1,20 @@
 import React, { ReactNode } from 'react';
-import { Dropdown, Icon, Text } from '../../components';
-import './AccountsManager.scss';
-import { IAccount, INetwork } from './types';
+import { Dropdown, Icon, IconProps, Text } from '../../components';
+import { SelectOptionProps } from '../../types';
 import { AccountsManagerDropdown } from './components';
+import './AccountsManager.scss';
+
+export interface IAccount extends SelectOptionProps {
+    address?: string;
+    name?: string;
+}
+
+export interface INetwork {
+    id: string;
+    name: string;
+    icon: IconProps;
+}
+
 
 export interface AccountsManagerProps {
     accounts: IAccount[];
