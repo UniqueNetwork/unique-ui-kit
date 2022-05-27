@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.0.19 May 27, 2022
+
+Changes:
+
+- New icons
+
 ## 0.0.18 May 24, 2022
 
 Changes:
