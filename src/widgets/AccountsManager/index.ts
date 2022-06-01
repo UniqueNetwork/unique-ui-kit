@@ -1,2 +1,6 @@
 export { AccountsManager } from './AccountsManager';
-export type { AccountsManagerProps } from './AccountsManager';
+export type {
+    AccountsManagerProps,
+    IAccount,
+    INetwork,
+} from './AccountsManager';
