@@ -22,8 +22,8 @@ export const Icon = forwardRef(
             ...props
         }: IconProps,
         ref: ForwardedRef<any>
-    ) => {
-        return file ? (
+    ) =>
+        file ? (
             <img width={size} height={size} src={file} ref={ref} {...props} />
         ) : (
             <span ref={ref}>
@@ -38,6 +38,5 @@ export const Icon = forwardRef(
                     <use xlinkHref={`${Icons}#icon-${name}`} />
                 </svg>
             </span>
-        );
-    }
+        )
 );
