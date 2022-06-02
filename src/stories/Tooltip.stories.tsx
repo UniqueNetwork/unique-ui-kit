@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Tooltip } from '../components';
+import { Icon, Tooltip } from '../components';
 
 export default {
     title: 'Components/Tooltip',
@@ -51,3 +51,12 @@ Placement.args = {
 };
 
 Placement.storyName = 'Default w/ placement';
+
+export const TooltipIcon = Template.bind({});
+
+TooltipIcon.args = {
+    content: <Icon size={30} name={'chain-opal'} />,
+    children: <p>Tooltip content</p>,
+};
+
+TooltipIcon.storyName = 'Tooltip icon';
