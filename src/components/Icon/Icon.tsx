@@ -26,17 +26,16 @@ export const Icon = forwardRef(
         file ? (
             <img width={size} height={size} src={file} ref={ref} {...props} />
         ) : (
-            <span ref={ref}>
-                <svg
-                    className={`icon icon-${name}`}
-                    fill={color}
-                    width={size}
-                    height={size}
-                    data-testid={`icon-${name}`}
-                    {...props}
-                >
-                    <use xlinkHref={`${Icons}#icon-${name}`} />
-                </svg>
-            </span>
+            <svg
+                className={`icon icon-${name}`}
+                fill={color}
+                width={size}
+                height={size}
+                data-testid={`icon-${name}`}
+                ref={ref}
+                {...props}
+            >
+                <use xlinkHref={`${Icons}#icon-${name}`} />
+            </svg>
         )
 );
