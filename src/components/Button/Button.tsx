@@ -61,6 +61,7 @@ export const Button = ({
             onClick={onClick}
             type={type}
             href={link}
+            disabled={disabled}
         >
             {title}
             {icon && <Icon {...icon} />}

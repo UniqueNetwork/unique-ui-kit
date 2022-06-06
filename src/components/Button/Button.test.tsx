@@ -1,4 +1,5 @@
 import { getByText, render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Button } from './Button';
 
 describe('Button component', () => {
@@ -64,5 +65,17 @@ describe('Button component', () => {
             'href',
             'https://www.test.com/'
         );
+    });
+
+    it('should be disabled button', async () => {
+        const mockOnClick = jest.fn();
+        const { getByText } = render(
+            <Button title="title" onClick={mockOnClick} disabled={true} />
+        );
+        const button = getByText(/title/i);
+        await userEvent.click(button);
+
+        expect(mockOnClick).not.toHaveBeenCalled();
+        expect(button).toBeDisabled();
     });
 });
