@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.0.20 June 6, 2022
+
+Changes:
+
+- Chip component add
+- Tag component add
+- Icon component forward ref add
+- IAccount and INetwork interfaces for AccountManager widget exports
+- Button component disabled prop fix
+
 ## 0.0.19 May 27, 2022
 
 Changes:
