@@ -74,6 +74,7 @@ const icons = [
     { name: 'success' },
     { name: 'empty-image' },
     { name: 'no-items' },
+    { name: 'trash' },
 ];
 
 Icon.args = {

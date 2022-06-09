@@ -5,10 +5,12 @@
 import classNames from 'classnames';
 import './Checkbox.scss';
 import { Icon, IconProps } from '..';
+import { ReactNode } from 'react';
+import { ComponentProps } from '../../types';
 
-export interface CheckboxProps {
+export interface CheckboxProps extends Omit<ComponentProps, 'onChange'> {
     checked: boolean;
-    label: string;
+    label: ReactNode;
     size?: 's' | 'm';
     disabled?: boolean;
     onChange: (value: boolean) => void;
@@ -17,6 +19,8 @@ export interface CheckboxProps {
 }
 
 export const Checkbox = ({
+    id,
+    name,
     checked,
     label,
     disabled,
@@ -39,8 +43,8 @@ export const Checkbox = ({
         >
             <input
                 type="checkbox"
-                name={label}
-                id={label}
+                name={name}
+                id={id}
                 className="checkbox"
                 checked={checked}
                 onChange={(e) => e.preventDefault()}
