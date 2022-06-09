@@ -15,7 +15,7 @@ export interface SortQuery {
 }
 
 export interface TableColumnProps {
-    title: string;
+    title: ReactNode;
     width: string;
     /*
      * Key in object up to required value.
