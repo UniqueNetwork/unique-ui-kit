@@ -2,60 +2,84 @@
  * @author Roman Beganov <rbeganov@usetech.com>
  */
 
-import { useState } from 'react';
 import classNames from 'classnames';
 import './RadioGroup.scss';
+import { useState } from 'react';
+
+export type RadioOptionValueType = {
+    value: string;
+    label: string;
+    disabled?: boolean;
+};
 
 export interface RadioGroupProps {
-    options: {
-        value: string | number;
-        disabled?: boolean;
-        selected?: boolean;
-    }[];
+    options: RadioOptionValueType[];
     size?: 's' | 'm';
     align?: 'vertical' | 'horizontal';
-    onChange?: () => void;
+    onChange?: (value: RadioOptionValueType) => void;
+    value?: string;
+    defaultValue?: string | null;
 }
 
 export const RadioGroup = ({
     options,
     onChange,
+    value: userValue,
     size = 's',
     align = 'vertical',
+    defaultValue = null,
 }: RadioGroupProps) => {
-    const [value, setValue] = useState(
-        (options.filter((option) => option.selected)[0] || options[0]).value
-    );
+    const [defaultRadioValue, setDefaultRadioValue] = useState(() => {
+        if (!defaultValue && !userValue) {
+            return options[0]?.value ?? null;
+        }
+        return defaultValue;
+    });
+
+    const handleChange = (radio: RadioOptionValueType) => {
+        if (defaultRadioValue) {
+            setDefaultRadioValue(radio.value);
+        }
+        onChange?.(radio);
+    };
+
     return (
         <div className={`unique-radio-group-wrapper ${align}`}>
-            {options.map((radio) => (
-                <div
-                    className={classNames(
-                        'unique-radio-wrapper',
-                        `radio-size-${size}`,
-                        {
-                            disabled: radio.disabled,
-                        }
-                    )}
-                    key={radio.value}
-                    {...(!radio.disabled && {
-                        onClick: () => setValue(radio.value),
-                    })}
-                >
-                    <input
-                        type="radio"
-                        className="radio"
-                        checked={radio.value === value}
-                        onChange={onChange}
-                    />
-                    <span
-                        className={classNames('inner', {
-                            checked: radio.value === value,
-                        })}
-                    />
-                    <label>{radio.value}</label>
-                </div>
-            ))}
+            {options.map((radio) => {
+                const { disabled, value: radioValue, label } = radio;
+                const value = defaultRadioValue ?? userValue;
+
+                const isChecked = radioValue === value;
+                return (
+                    <div
+                        className={classNames(
+                            'unique-radio-item',
+                            `radio-size-${size}`,
+                            {
+                                disabled,
+                            }
+                        )}
+                        key={radioValue}
+                    >
+                        <label htmlFor={radioValue}>
+                            <input
+                                type="radio"
+                                id={radioValue}
+                                checked={isChecked}
+                                onChange={() => handleChange(radio)}
+                                hidden={true}
+                                disabled={disabled}
+                            />
+                            <span
+                                className={classNames('inner', {
+                                    checked: isChecked,
+                                })}
+                            />
+                            <span className={'label'}>{label}</span>
+                        </label>
+                    </div>
+                );
+            })}
         </div>
     );
 };
