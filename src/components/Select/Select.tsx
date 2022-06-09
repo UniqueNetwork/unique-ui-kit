@@ -2,7 +2,7 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import { Key, useEffect, useMemo, useState } from 'react';
+import { Key, ReactNode, useEffect, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import { Icon } from '..';
 import { ComponentProps, DimentionType, SelectOptionProps } from '../../types';
@@ -14,7 +14,7 @@ export interface SelectProps extends ComponentProps {
     optionValue?: string;
     additionalText?: string | number;
     error?: boolean;
-    label?: string;
+    label?: ReactNode;
     statusText?: string;
     size?: DimentionType;
     multi?: boolean;
