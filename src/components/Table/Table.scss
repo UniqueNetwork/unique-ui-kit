@@ -52,7 +52,7 @@
             background-repeat: repeat-x;
             color: var(--color-blue-grey-600);
 
-            div {
+            &>div {
                 padding: 0 16px;
 
                 a {

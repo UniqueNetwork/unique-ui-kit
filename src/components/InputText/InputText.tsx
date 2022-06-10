@@ -13,7 +13,7 @@ type IconType = IconProps | ReactNode;
 export interface InputBaseProps {
     additionalText?: string;
     error?: boolean;
-    label?: string;
+    label?: ReactNode;
     statusText?: string;
     size?: DimentionType;
     onChange?(value: string): void;
