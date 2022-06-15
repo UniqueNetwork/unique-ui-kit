@@ -23,7 +23,6 @@ export * from './Stepper';
 export * from './Textarea';
 export * from './Upload';
 export * from './Accordion';
-export * from './Scrollbar';
 export * from './Tooltip';
 export * from './Dropdown';
 export * from './Suggest';
