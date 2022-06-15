@@ -11,7 +11,7 @@ import {
     useState,
 } from 'react';
 
-import { Icon, InputText, Scrollbar } from '..';
+import { Icon, InputText } from '..';
 import { InputTextProps } from '../InputText';
 
 import './Suggest.scss';
@@ -274,7 +274,7 @@ export const Suggest = <T,>({
                         {isLoading && !isVisibleIntersectionObserver ? (
                             <SuggestSpinner loadingText={loadingText} />
                         ) : (
-                            <Scrollbar autoHeightMax={250}>
+                            <>
                                 <suggestComponents.SuggestWrapper
                                     suggestions={filteredSuggestions}
                                 >
@@ -332,7 +332,7 @@ export const Suggest = <T,>({
                                         message={noSuggestMessage}
                                     />
                                 )}
-                            </Scrollbar>
+                            </>
                         )}
                     </div>
                 )}

@@ -69,6 +69,8 @@
         top: calc(100% + 5px);
         width: 100%;
         padding: 8px;
+        max-height: 250px;
+        overflow-y: auto;
 
         &.empty {
             height: auto;

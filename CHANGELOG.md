@@ -71,7 +71,6 @@ Changes:
 
 Changes:
 
-- Scrollbar component add (https://www.npmjs.com/package/react-custom-scrollbars)
 - Tooltip component add (https://www.npmjs.com/package/@floating-ui/react-dom)
 - TokenLink widget add
 
