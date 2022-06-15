@@ -1,0 +1,23 @@
+@import '../../assets/styles/index.scss';
+
+.unique-skeleton {
+    background: rgba(130, 130, 130, 0.2);
+    animation: wave 2s infinite ease-out;
+    background: linear-gradient(
+        to right,
+        var(--color-blue-grey-100) 8%,
+        var(--color-grey-100) 18%,
+        var(--color-blue-grey-100) 33%
+    );
+    background-size: 800px 100px;
+    align-items: center;
+
+    @keyframes wave {
+        0% {
+            background-position: -400px 0;
+        }
+        100% {
+            background-position: 400px 0;
+        }
+    }
+}
