@@ -94,10 +94,10 @@ export const Notifications = ({
                 .map((item) => ({ ...item, state: 'closed' }))
         );
 
-    const getDefaulticon = (severity: NotificationSeverity): IconProps =>
+    const getDefaultIcon = (severity: NotificationSeverity): IconProps =>
         severity === 'info'
-            ? { name: 'success', size: 32 }
-            : { name: 'warning', size: 32 };
+            ? { name: 'success', size: 32, color: '#fff' }
+            : { name: 'warning', size: 32, color: '#fff' };
 
     useEffect(() => {
         return () => timerId.current && clearInterval(timerId.current);
@@ -123,7 +123,7 @@ export const Notifications = ({
                             ])}
                             onClick={() => closable && close(index)}
                         >
-                            <Icon {...(icon || getDefaulticon(severity))} />
+                            <Icon {...(icon || getDefaultIcon(severity))} />
                             <Text
                                 color="var(---color-additional-light)"
                                 size="m"
