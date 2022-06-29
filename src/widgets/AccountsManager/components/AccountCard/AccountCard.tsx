@@ -35,9 +35,11 @@ export const AccountCard = ({
                     </Text>
                     {onCopyAddressClick && (
                         <div
-                            onClick={() =>
-                                address && onCopyAddressClick(address)
-                            }
+                            className="address-copy"
+                            onClick={(event) => {
+                                address && onCopyAddressClick(address);
+                                event.stopPropagation();
+                            }}
                             data-testid={`address-copy-${address}`}
                         >
                             <Icon size={16} name="copy" />

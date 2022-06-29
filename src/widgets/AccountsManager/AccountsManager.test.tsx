@@ -57,7 +57,7 @@ it('should correct render props in dropdown', () => {
     );
 
     const dropdown = getByTestId('dropdown-wrapper');
-    fireEvent.mouseDown(dropdown);
+    fireEvent.click(dropdown);
 
     expect(getByTestId('wallet-content')).toBeInTheDocument();
     expect(
@@ -74,9 +74,9 @@ it('should change account by select', () => {
     );
 
     const dropdown = getByTestId('dropdown-wrapper');
-    fireEvent.mouseDown(dropdown);
+    fireEvent.click(dropdown);
     const accountsSelect = getByTestId('accounts-select');
-    fireEvent.mouseDown(accountsSelect);
+    fireEvent.click(accountsSelect);
 
     const option = getByText(mockProps.accounts[1].name);
     fireEvent.click(option);
@@ -91,7 +91,7 @@ it('should change network by toggle', () => {
     );
 
     const dropdown = getByTestId('dropdown-wrapper');
-    fireEvent.mouseDown(dropdown);
+    fireEvent.click(dropdown);
 
     const networkToggle = getByTestId(`network-${mockProps.networks[1].id}`);
     fireEvent.click(
@@ -108,7 +108,7 @@ it('should copy account address', () => {
     );
 
     const dropdown = getByTestId('dropdown-wrapper');
-    fireEvent.mouseDown(dropdown);
+    fireEvent.click(dropdown);
 
     const copyIcon = getByTestId(
         `address-copy-${mockProps.selectedAccount.address}`
@@ -127,7 +127,7 @@ it('should have clickable link to balance manager', () => {
     );
 
     const dropdown = getByTestId('dropdown-wrapper');
-    fireEvent.mouseDown(dropdown);
+    fireEvent.click(dropdown);
 
     const link = getByText(mockProps.manageBalanceLinkTitle);
     fireEvent.click(link);

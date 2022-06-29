@@ -1,10 +1,17 @@
-import React, { isValidElement, Key, ReactNode, useState } from 'react';
+import React, {
+    isValidElement,
+    Key,
+    ReactNode,
+    useEffect,
+    useState,
+} from 'react';
 import { ComponentProps, SelectOptionProps } from '../../types';
 import classNames from 'classnames';
 import './Dropdown.scss';
 import { Icon, IconProps } from '../index';
 
 export interface DropdownProps extends Omit<ComponentProps, 'onChange'> {
+    open?: boolean;
     options?: SelectOptionProps[];
     optionKey?: string;
     optionValue?: string;
@@ -13,6 +20,7 @@ export interface DropdownProps extends Omit<ComponentProps, 'onChange'> {
     iconLeft?: IconProps | ReactNode;
     iconRight?: IconProps | ReactNode;
     onChange?(option: SelectOptionProps): void;
+    onOpenChange?(open: boolean): void;
     optionRender?(option: SelectOptionProps, isSelected: boolean): ReactNode;
     dropdownRender?(): ReactNode;
 }
@@ -32,16 +40,23 @@ export const Dropdown = ({
     placement = 'left',
     iconLeft,
     iconRight,
+    open,
+    onOpenChange,
 }: DropdownProps) => {
     const selected = options?.find(
         (option) => option[optionKey as keyof SelectOptionProps] === value
     );
 
-    const [dropped, setDropped] = useState<boolean>(false);
+    const [dropped, setDropped] = useState<boolean>(!!open);
+
+    useEffect(() => {
+        setDropped(!!open);
+    }, [open, setDropped]);
 
     const handleClickOutside = () => {
         document.removeEventListener('mousedown', handleClickOutside);
         setDropped(false);
+        onOpenChange?.(false);
     };
 
     const handleMouseLeave = () => {
@@ -54,11 +69,14 @@ export const Dropdown = ({
 
     const handleOptionSelect = (option: SelectOptionProps) => {
         setDropped(false);
+        onOpenChange?.(false);
         onChange?.(option);
     };
 
-    const handleMouseDown = () => {
-        !disabled && setDropped(!dropped);
+    const handleMouseClick = () => {
+        if (disabled) return;
+        setDropped(!dropped);
+        onOpenChange?.(!dropped);
     };
 
     return (
@@ -73,7 +91,7 @@ export const Dropdown = ({
                     dropped,
                     disabled,
                 })}
-                onMouseDown={handleMouseDown}
+                onClick={handleMouseClick}
                 data-testid="dropdown-wrapper"
             >
                 {iconLeft &&
