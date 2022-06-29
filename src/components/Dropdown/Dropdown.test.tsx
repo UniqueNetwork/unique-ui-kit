@@ -34,7 +34,7 @@ it('it should open dropdown on click by wrapper and close on click outside', () 
         </Dropdown>
     );
     const dropdown = getByTestId('dropdown-wrapper');
-    fireEvent.mouseDown(dropdown);
+    fireEvent.click(dropdown);
     const dropdownOptions = queryByRole('listbox');
     expect(dropdownOptions).toBeInTheDocument();
 
@@ -50,7 +50,7 @@ it('it should call onChange on click by option', () => {
         </Dropdown>
     );
     const dropdownWrapper = getByTestId('dropdown-wrapper');
-    fireEvent.mouseDown(dropdownWrapper);
+    fireEvent.click(dropdownWrapper);
     const option = getByText('test title 3');
     fireEvent.click(option);
     expect(mockFunction.mock.calls.length).toBe(1);
