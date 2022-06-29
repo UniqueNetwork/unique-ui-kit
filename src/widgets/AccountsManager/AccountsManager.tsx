@@ -16,6 +16,7 @@ export interface INetwork {
 }
 
 export interface AccountsManagerProps {
+    open?: boolean;
     accounts: IAccount[];
     selectedAccount?: IAccount;
     networks: INetwork[];
@@ -31,10 +32,19 @@ export interface AccountsManagerProps {
     onAccountChange?(account: IAccount): void;
     onManageBalanceClick?(): void;
     onCopyAddressClick?(address: string): void;
+    onOpenChange?(open: boolean): void;
 }
 
 export const AccountsManager = (props: AccountsManagerProps) => {
-    const { selectedAccount, activeNetwork, balance, symbol } = props;
+    const {
+        open,
+        selectedAccount,
+        activeNetwork,
+        balance,
+        symbol,
+        onCopyAddressClick,
+        onOpenChange,
+    } = props;
     return (
         <Dropdown
             dropdownRender={() => <AccountsManagerDropdown {...props} />}
@@ -43,13 +53,30 @@ export const AccountsManager = (props: AccountsManagerProps) => {
                 size: 8,
             }}
             placement="right"
+            open={open}
+            onOpenChange={onOpenChange}
         >
             <div className="unique-accounts-manager">
                 <div className="accounts-manager-selected-account">
-                    <Text color="blue-grey-500" size="s">
-                        {selectedAccount?.name}
-                    </Text>
-                    <Text size="m">{`${balance} ${symbol}`}</Text>
+                    <div className="accounts-manager-selected-account-name">
+                        <Text color="blue-grey-500" size="s">
+                            {selectedAccount?.name}
+                        </Text>
+                        <div
+                            className="address-copy"
+                            onClick={(event) => {
+                                event.stopPropagation();
+                                selectedAccount?.address &&
+                                    onCopyAddressClick?.(
+                                        selectedAccount.address
+                                    );
+                            }}
+                            data-testid={`selected-address-copy-${selectedAccount?.address}`}
+                        >
+                            <Icon size={16} name="copy" />
+                        </div>
+                    </div>
+                    <Text size="s">{`${balance} ${symbol}`}</Text>
                 </div>
                 <div className="accounts-manager-network">
                     {activeNetwork && (
