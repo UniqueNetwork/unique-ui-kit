@@ -4,17 +4,28 @@
   border-radius: calc(var(--prop-gap) / 2);
   display: flex;
   position: relative;
-  padding: calc(var(--prop-gap) / 2) calc(var(--prop-gap) * 2) calc(var(--prop-gap) / 2) var(--prop-gap);
+  padding: calc(var(--prop-gap) * 1.5 / 4) calc(var(--prop-gap) * 2) calc(var(--prop-gap) * 1.5 / 4) var(--prop-gap);
   .accounts-manager-selected-account {
     display: flex;
     flex-direction: column;
-    margin: calc(var(--gap) / 2) 0;
+    margin: calc(var(--prop-gap) / 2) 0;
     border-right: 1px solid var(--color-blue-grey-200);
     padding-right: var(--prop-gap);
+    cursor: pointer;
+    .accounts-manager-selected-account-name {
+      display: flex;
+      column-gap: calc(var(--prop-gap) / 4);
+      .account-copy {
+        cursor: pointer;
+      }
+    }
   }
   .accounts-manager-network {
     display: flex;
     align-items: center;
     padding-left: var(--prop-gap);
+  }
+  .account-copy {
+    cursor: pointer;
   }
 }
