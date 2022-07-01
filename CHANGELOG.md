@@ -1,5 +1,32 @@
 # CHANGELOG
 
+## 0.0.26 July 01, 2022
+
+Changes:
+
+- Text component appearance add
+- Select component defaultValue fix
+
+## 0.0.25 June 29, 2022
+
+Changes:
+
+- AccountManager widget update
+- Notification component icons
+- Chip and Link component styles
+
+## 0.0.24 June 19, 2022
+
+Changes:
+
+- Suggest component scroll
+
+## 0.0.23 June 17, 2022
+
+Changes:
+
+- Remove depricated dependencies
+
 ## 0.0.22 June 15, 2022
 
 Changes:
