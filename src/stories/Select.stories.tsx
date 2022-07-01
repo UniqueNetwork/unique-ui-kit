@@ -179,6 +179,7 @@ export const Value = Template.bind({});
 
 Value.args = {
     placeholder: 'Placeholder',
+    optionKey: 'title',
     defaultValue: 'Option 4',
     options: optionsDefault,
 };
@@ -211,6 +212,7 @@ export const MinimalLibraryIcons = Template.bind({});
 MinimalLibraryIcons.args = {
     placeholder: 'Placeholder',
     options: optionsLibraryIcons,
+    defaultValue: 'identity',
 };
 
 MinimalLibraryIcons.storyName = 'Minimal w/ library icons';

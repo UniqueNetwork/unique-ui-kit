@@ -50,7 +50,7 @@ export const Select = ({
             defaultValue &&
             options.find(
                 (option) =>
-                    (option as SelectOptionProps)[optionValue] === defaultValue
+                    (option as SelectOptionProps)[optionKey] === defaultValue
             );
         defaultOption && onChange(defaultOption);
     }, []);
@@ -162,8 +162,8 @@ export const Select = ({
                 >
                     {multi &&
                         selectedMulti.length > 0 &&
-                        selectedMulti.map((selectedOption) => (
-                            <div className={'select-tag'}>
+                        selectedMulti.map((selectedOption, index) => (
+                            <div className={'select-tag'} key={index}>
                                 {
                                     selectedOption?.[
                                         optionValue as keyof SelectOptionProps
