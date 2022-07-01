@@ -15,6 +15,6 @@ export const Default = Template.bind({});
 
 Default.args = {
     image: collection,
-    title: 'CryptoDuckies оч классные и позитивные [id 123]',
+    title: 'CryptoDuckies',
     count: 9999
 };

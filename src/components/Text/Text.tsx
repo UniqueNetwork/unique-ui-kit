@@ -12,6 +12,7 @@ export interface ITextProps {
     weight?: 'light' | 'regular' | 'bold';
     color?: string;
     className?: string;
+    appearance?: 'inline' | 'block';
 }
 
 export const Text = ({
@@ -20,6 +21,7 @@ export const Text = ({
     weight = 'regular',
     color = 'secondary-500',
     className,
+    appearance = 'inline',
 }: ITextProps) => {
     return (
         <span
@@ -28,6 +30,7 @@ export const Text = ({
                 `size-${size}`,
                 `weight-${weight}`,
                 `color-${color}`,
+                `appearance-${appearance}`,
                 className
             )}
         >

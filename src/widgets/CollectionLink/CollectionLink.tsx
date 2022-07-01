@@ -18,7 +18,9 @@ export const CollectionLink = ({
 }: ICollectionLinkProps) => (
     <a className="unique-collection-link" href="#">
         <Avatar src={image} size={326} type="square" />
-        <Text size="l">{title}</Text>
+        <Text size="l" appearance="block">
+            {title}
+        </Text>
         <Text size="s" color="grey-500">
             Items:&nbsp;
         </Text>

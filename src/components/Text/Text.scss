@@ -18,4 +18,9 @@
             @include font-weight($weight);
         }
     }
+    @each $appearance in inline, block {
+        &[class*='appearance-#{$appearance}'] {
+            display: $appearance;
+        }
+    }
 }
