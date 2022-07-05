@@ -14,6 +14,8 @@ export interface SortQuery {
     mode: number;
 }
 
+type ColumnPadding = 8 | 16 | 32;
+
 export interface TableColumnProps {
     title: ReactNode;
     width: string;
@@ -31,6 +33,7 @@ export interface TableColumnProps {
 
 export interface TableProps {
     columns: TableColumnProps[];
+    columnPadding?: ColumnPadding;
     data: TableRowProps[];
     onSort?(sorting: SortQuery): void;
 }
@@ -39,7 +42,7 @@ export interface TableRowProps {
     [key: string]: string | {};
 }
 
-export const Table = ({ columns, data, onSort }: TableProps) => {
+export const Table = ({ columns, columnPadding = 16, data, onSort }: TableProps) => {
     const [sortQuery, setSortQuery] = useState<SortQuery>({
         field: '',
         mode: 0,
@@ -80,7 +83,11 @@ export const Table = ({ columns, data, onSort }: TableProps) => {
                                     active: isQueryField && !isInitialMode,
                                 })}
                                 key={`${field}-${columnIndex}`}
-                                style={{ width: `calc(${width} - 32px)` }}
+                                style={{
+                                    width: `calc(${width} - ${columnPadding}px)`,
+                                    paddingLeft: `${columnPadding / 2}px`,
+                                    paddingRight: `${columnPadding / 2}px`,
+                                }}
                             >
                                 {title}
                                 {isSortable && (
@@ -122,7 +129,9 @@ export const Table = ({ columns, data, onSort }: TableProps) => {
                             <div
                                 key={`${column.field}-${columnIndex}`}
                                 style={{
-                                    width: `calc(${column.width} - 32px)`,
+                                    width: `calc(${column.width} - ${columnPadding}px)`,
+                                    paddingLeft: `${columnPadding / 2}px`,
+                                    paddingRight: `${columnPadding / 2}px`,
                                 }}
                             >
                                 {column.render?.(
