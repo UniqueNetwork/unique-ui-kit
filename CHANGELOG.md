@@ -4,8 +4,11 @@
 
 Changes:
 
+- Notification component memoization fix
 - Pagination component page change fix
 - Modal and Tooltip components z-index fix
+- AccountManager widget css fix
+- New icons
 
 ## 0.0.26 July 01, 2022
 
