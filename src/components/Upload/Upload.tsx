@@ -3,7 +3,7 @@
  */
 
 import classNames from 'classnames';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Icon } from '../';
 
 import './Upload.scss';
@@ -17,87 +17,93 @@ export interface UploadProps {
     upload?: string;
 }
 
-export const Upload = ({
-    onChange,
-    className,
-    type = 'circle',
-    accept = 'image/*',
-    disabled = false,
-    upload,
-}: UploadProps) => {
-    const inputFile = useRef<HTMLInputElement>(null);
-    const [selectedFile, setSelectedFile] =
-        useState<Blob | undefined>(undefined);
+export const Upload = React.memo(
+    ({
+        onChange,
+        className,
+        type = 'circle',
+        accept = 'image/*',
+        disabled = false,
+        upload,
+    }: UploadProps) => {
+        const inputFile = useRef<HTMLInputElement>(null);
+        const [objectUrl, setObjectUrl] = useState<string | undefined>();
 
-    useEffect(() => {
-        if (!upload) {
-            return;
-        }
-        const getBlob = async () => {
-            const blob = await fetch(upload).then((response) =>
-                response.blob()
-            );
-            setSelectedFile(blob);
+        const onChangeFile = (file: Blob | undefined) => {
+            if (!inputFile.current) return;
+            if (!file) {
+                setObjectUrl(undefined);
+                onChange?.(null);
+                inputFile.current.value = '';
+                return;
+            }
+            const url = URL.createObjectURL(file);
+            setObjectUrl(url);
+            onChange?.({ url, file });
         };
 
-        getBlob();
-    }, [upload]);
+        useEffect(() => {
+            setObjectUrl(upload);
+        }, [upload]);
 
-    useEffect(() => {
-        if (!selectedFile) {
-            return;
-        }
+        useEffect(
+            () => () => {
+                objectUrl && URL.revokeObjectURL(objectUrl);
+            },
+            [objectUrl]
+        );
 
-        const objectUrl = URL.createObjectURL(selectedFile);
-        onChange?.({ url: objectUrl, file: selectedFile });
-
-        return () => URL.revokeObjectURL(objectUrl);
-    }, [selectedFile]);
-
-    return (
-        <div className={classNames('unique-upload', className)}>
-            {selectedFile ? (
-                <div className={classNames('preview', type)}>
+        return (
+            <div className={classNames('unique-upload', className)}>
+                {objectUrl ? (
+                    <div className={classNames('preview', type)}>
+                        <div
+                            className="image"
+                            style={{
+                                backgroundImage: `url(${objectUrl})`,
+                            }}
+                        />
+                        <span
+                            onClick={() => {
+                                onChangeFile(undefined);
+                            }}
+                        >
+                            <Icon name="close-circle" size={13} />
+                        </span>
+                    </div>
+                ) : (
                     <div
-                        className="image"
-                        style={{
-                            backgroundImage: `url(${URL.createObjectURL(
-                                selectedFile
-                            )})`,
-                        }}
-                    ></div>
-                    <span
+                        className={classNames('upload', type, { disabled })}
                         onClick={() => {
-                            setSelectedFile(undefined);
-                            onChange?.(null);
+                            inputFile.current?.click();
+                        }}
+                        onDragOver={(event) => {
+                            event.stopPropagation();
+                            event.preventDefault();
+                        }}
+                        onDrop={(event) => {
+                            onChangeFile(event.dataTransfer.files[0]);
+                            event.stopPropagation();
+                            event.preventDefault();
                         }}
                     >
-                        <Icon name="close-circle" size={13} />
-                    </span>
-                </div>
-            ) : (
-                <div
-                    className={classNames('upload', type, { disabled })}
-                    onClick={() => {
-                        inputFile.current?.click();
+                        <Icon name="file-arrow-up" size={38} />
+                    </div>
+                )}
+                <input
+                    ref={inputFile}
+                    type="file"
+                    disabled={disabled}
+                    accept={accept}
+                    onChange={(e) => {
+                        if (!e.target.files || e.target.files.length === 0) {
+                            onChangeFile(undefined);
+                            return;
+                        }
+                        onChangeFile(e.target.files[0]);
                     }}
-                >
-                    <Icon name="file-arrow-up" size={38} />
-                </div>
-            )}
-            <input
-                ref={inputFile}
-                type="file"
-                disabled={disabled}
-                accept={accept}
-                onChange={(e) => {
-                    if (!e.target.files || e.target.files.length === 0) {
-                        setSelectedFile(undefined);
-                        return;
-                    }
-                    setSelectedFile(e.target.files[0]);
-                }}
-            />
-        </div>
-    );
-};
+                />
+            </div>
+        );
+    }
+);
