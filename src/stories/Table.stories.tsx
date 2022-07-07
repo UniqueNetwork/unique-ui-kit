@@ -60,9 +60,7 @@ export default {
     component: Table,
 } as ComponentMeta<typeof Table>;
 
-const Template: ComponentStory<typeof Table> = ({ data, columns }) => (
-    <Table data={data} columns={columns} />
-);
+const Template: ComponentStory<typeof Table> = (props) => <Table {...props} />;
 
 const TemplateBE: ComponentStory<typeof Table> = ({ data, columns }) => {
     const onSort = (sortQuery: SortQuery) => {
@@ -81,6 +79,15 @@ Default.args = {
 };
 
 Default.storyName = 'Default';
+
+export const DefaultNoData = Template.bind({});
+
+DefaultNoData.args = {
+    columns,
+    data: [],
+};
+
+DefaultNoData.storyName = 'Default w/o data';
 
 export const DefaultIcons = Template.bind({});
 

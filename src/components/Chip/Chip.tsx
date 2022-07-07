@@ -7,7 +7,7 @@ import { VFC } from 'react';
 import { Icon, IconProps } from '../Icon';
 import './Chip.scss';
 
-interface ChipProps {
+export interface ChipProps {
     label: string;
     iconLeft?: IconProps;
     onClose?(): void;

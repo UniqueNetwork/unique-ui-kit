@@ -1,7 +1,9 @@
 import React, {
     createContext,
     ReactNode,
+    useCallback,
     useEffect,
+    useMemo,
     useRef,
     useState,
 } from 'react';
@@ -33,6 +35,7 @@ export interface NotificationsProps {
     placement?: NotificationPlacement;
     closable?: boolean;
     closingDelay?: number;
+    maxAlerts?: number;
 }
 
 const noop = () => {};
@@ -49,6 +52,7 @@ export const Notifications = ({
     placement = 'right',
     closable = true,
     closingDelay = 5000,
+    maxAlerts = 5,
 }: NotificationsProps) => {
     const [alerts, setAlerts] = useState<AlertProps[]>([]);
     const alertKey = useRef(0);
@@ -57,42 +61,54 @@ export const Notifications = ({
     const clearingLoop = () => {
         timerId.current && clearInterval(timerId.current);
         timerId.current = setInterval(() => {
-            setAlerts((alerts) =>
-                alerts
+            setAlerts((alerts) => {
+                if (!alerts.length) alerts;
+                return alerts
                     .filter((alert) => alert.state !== 'closed')
                     .map((alert, index) => ({
                         ...alert,
                         state: index === 0 ? 'closed' : alert.state,
-                    }))
-            );
+                    }));
+            });
         }, closingDelay);
     };
 
-    const push = (props: AlertProps) => {
-        setAlerts((alerts) => [
-            ...alerts.filter((item) => item.state !== 'closed'),
-            {
-                key: `notification-alert-${(alertKey.current += 1)}`,
-                ...props,
-            },
-        ]);
-        clearingLoop();
-    };
+    const push = useCallback(
+        (props: AlertProps) => {
+            setAlerts((alerts) => [
+                ...alerts
+                    .filter((item) => item.state !== 'closed')
+                    .slice(1 - maxAlerts),
+                {
+                    key: `notification-alert-${(alertKey.current += 1)}`,
+                    ...props,
+                },
+            ]);
+            clearingLoop();
+        },
+        [setAlerts, maxAlerts]
+    );
 
-    const close = (index: number) =>
-        setAlerts((alerts) =>
-            alerts.map((item, itemIndex) => ({
-                ...item,
-                state: itemIndex === index ? 'closed' : item.state,
-            }))
-        );
+    const close = useCallback(
+        (index: number) =>
+            setAlerts((alerts) =>
+                alerts.map((item, itemIndex) => ({
+                    ...item,
+                    state: itemIndex === index ? 'closed' : item.state,
+                }))
+            ),
+        [setAlerts]
+    );
 
-    const clearAll = () =>
-        setAlerts((alerts) =>
-            alerts
-                .filter((item) => item.state !== 'closed')
-                .map((item) => ({ ...item, state: 'closed' }))
-        );
+    const clearAll = useCallback(
+        () =>
+            setAlerts((alerts) =>
+                alerts
+                    .filter((item) => item.state !== 'closed')
+                    .map((item) => ({ ...item, state: 'closed' }))
+            ),
+        [setAlerts]
+    );
 
     const getDefaultIcon = (severity: NotificationSeverity): IconProps =>
         severity === 'info'
@@ -103,14 +119,17 @@ export const Notifications = ({
         return () => timerId.current && clearInterval(timerId.current);
     }, [closingDelay]);
 
+    const value = useMemo(
+        () => ({
+            push,
+            close,
+            clearAll,
+        }),
+        [push, close, clearAll]
+    );
+
     return (
-        <NotificationsContext.Provider
-            value={{
-                push,
-                close,
-                clearAll,
-            }}
-        >
+        <NotificationsContext.Provider value={value}>
             {children}
             <div className={classNames('notification-container', placement)}>
                 {alerts.map(

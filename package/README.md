@@ -18,4 +18,4 @@ npm i @unique-nft/ui-kit
 
 ## Storybook
 
-Unique network UI library storybook is [here](https://dev-storybook.unique.network/).
+Unique network UI library storybook is [here](https://storybook.dev.uniquenetwork.dev/).

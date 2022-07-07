@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.0.27 July 07, 2022
+
+Changes:
+
+- Notification component memoization fix
+- Pagination component page change fix
+- Upload component drag-n-drop add, memoization fix
+- Table component no data message add
+- Modal and Tooltip components z-index fix
+- AccountManager widget css fix
+- New icons
+
 ## 0.0.26 July 01, 2022
 
 Changes:
