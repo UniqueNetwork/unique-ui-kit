@@ -18,6 +18,13 @@
       padding: 5px calc(var(--prop-gap) / 2);
       cursor: pointer;
     }
+    .dropdown-options {
+      max-height: 288px;
+      overflow-y: auto;
+    }
+    .icon.icon-copy:hover {
+      fill: var(--color-primary-500);
+    }
   }
   .accounts-manager-wallet {
     display: flex;
