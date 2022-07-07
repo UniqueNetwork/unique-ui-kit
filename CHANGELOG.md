@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.0.27 July 07, 2022
+
+Changes:
+
+- Pagination component page change fix
+- Modal and Tooltip components z-index fix
+
 ## 0.0.26 July 01, 2022
 
 Changes:

@@ -82,6 +82,10 @@ export const Pagination = ({
         prevIndex !== undefined && onPageChange(currentIndex);
     }, [currentIndex]);
 
+    useEffect(() => {
+        setCurrentIndex(current);
+    }, [current]);
+
     return (
         <div className="unique-pagination-wrapper">
             {withPerPageSelector && (
