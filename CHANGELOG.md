@@ -6,6 +6,7 @@ Changes:
 
 - Notification component memoization fix
 - Pagination component page change fix
+- Upload component drag-n-drop add, memoization fix
 - Table component no data message add
 - Modal and Tooltip components z-index fix
 - AccountManager widget css fix
