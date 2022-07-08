@@ -7,19 +7,22 @@ import './CollectionLink.scss';
 
 export interface ICollectionLinkProps {
     image: string;
-    title: string;
     count: number;
+    link: {
+        title: string;
+        href: string;
+    };
 }
 
 export const CollectionLink = ({
     image,
-    title,
     count,
+    link,
 }: ICollectionLinkProps) => (
-    <a className="unique-collection-link" href="#">
+    <a className="unique-collection-link" href={link.href}>
         <Avatar src={image} size={326} type="square" />
         <Text size="l" appearance="block">
-            {title}
+            {link.title}
         </Text>
         <Text size="s" color="grey-500">
             Items:&nbsp;

@@ -5,10 +5,8 @@
     font-size: var(--prop-font-size);
     font-weight: var(--prop-font-weight);
     width: 326px;
-
-    * {
-        display: block;
-    }
+    text-decoration: none;
+    display: block;
 
     .unique-avatar {
         margin-bottom: 8px;

@@ -2,7 +2,6 @@
 @import '../../assets/styles/utils.scss';
 
 .unique-text {
-    display: inline-block;
     @each $color, $value in $base-colors-map {
         &[class*='#{$color}'] {
             color: $value;

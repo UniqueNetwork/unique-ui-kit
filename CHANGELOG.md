@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.0.28 July 11, 2022
+
+Changes:
+
+- TokenLink and CollectionLink widgets fix
+
 ## 0.0.27 July 07, 2022
 
 Changes:

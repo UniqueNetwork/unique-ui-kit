@@ -12,6 +12,7 @@
     border-width: 1px;
     border-style: solid;
     text-decoration: none;
+    white-space: nowrap;
 
     &.primary {
         background: var(--color-primary-500);

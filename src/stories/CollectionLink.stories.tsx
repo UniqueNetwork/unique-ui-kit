@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { CollectionLink } from '../widgets';
-import collection from '../assets/static/nft-9.png';
+import Collection from '../assets/static/nft-9.png';
 
 export default {
     title: 'Widgets/CollectionLink',
@@ -14,7 +14,10 @@ const Template: ComponentStory<typeof CollectionLink> = (args) => (
 export const Default = Template.bind({});
 
 Default.args = {
-    image: collection,
-    title: 'CryptoDuckies',
-    count: 9999
+    image: Collection,
+    link: {
+        title: 'CryptoDuckies',
+        href: '#',
+    },
+    count: 9999,
 };
