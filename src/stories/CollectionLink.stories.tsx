@@ -16,5 +16,6 @@ export const Default = Template.bind({});
 Default.args = {
     image: collection,
     title: 'CryptoDuckies',
-    count: 9999
+    count: 9999,
+    link: '/?path=/story/widgets-collectionlink--default',
 };
