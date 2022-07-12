@@ -109,6 +109,8 @@ export const Tooltip = ({
                 left: x ?? '',
             }}
             className={'unique-tooltip'}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
         >
             {children}
             <div
