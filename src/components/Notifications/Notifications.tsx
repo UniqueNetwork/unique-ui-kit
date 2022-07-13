@@ -62,7 +62,7 @@ export const Notifications = ({
         timerId.current && clearInterval(timerId.current);
         timerId.current = setInterval(() => {
             setAlerts((alerts) => {
-                if (!alerts.length) alerts;
+                if (!alerts.length) return alerts;
                 return alerts
                     .filter((alert) => alert.state !== 'closed')
                     .map((alert, index) => ({

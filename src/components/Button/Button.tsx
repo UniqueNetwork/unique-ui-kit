@@ -3,14 +3,13 @@
  */
 
 import classNames from 'classnames';
-import { DimentionType } from '../../types';
+import { ComponentProps, DimentionType } from '../../types';
 import { Icon, IconProps } from '..';
 
 import './Button.scss';
 
-export interface ButtonProps {
+export interface ButtonBaseProps {
     title: string;
-    disabled?: boolean;
     size?: DimentionType;
     role?:
         | 'primary'
@@ -21,12 +20,17 @@ export interface ButtonProps {
         | 'ghost';
     type?: 'submit' | 'button';
     wide?: boolean;
-    className?: string;
     iconLeft?: IconProps;
     iconRight?: IconProps;
     link?: string;
     onClick?: () => void;
 }
+
+export type ButtonProps = ButtonBaseProps &
+    Pick<
+        ComponentProps,
+        'className' | 'disabled' | 'id' | 'tabIndex' | 'testid'
+    >;
 
 export const Button = ({
     title,
@@ -40,6 +44,7 @@ export const Button = ({
     type = 'button',
     link,
     onClick,
+    testid,
 }: ButtonProps) => {
     const icon = iconLeft || iconRight;
     const Button = link ? 'a' : 'button';
@@ -62,6 +67,7 @@ export const Button = ({
             type={type}
             href={link}
             disabled={disabled}
+            data-testid={testid}
         >
             {title}
             {icon && <Icon {...icon} />}
