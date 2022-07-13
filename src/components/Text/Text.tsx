@@ -5,15 +5,18 @@
 import { ReactNode } from 'react';
 import classNames from 'classnames';
 import './Text.scss';
+import { ComponentProps } from '../../types';
 
-export interface ITextProps {
+export interface ITextBaseProps {
     children: ReactNode;
     size?: 'xs' | 's' | 'm' | 'l';
     weight?: 'light' | 'regular' | 'bold';
     color?: string;
-    className?: string;
     appearance?: 'inline' | 'block';
 }
+
+export type TextProps = ITextBaseProps &
+    Pick<ComponentProps, 'className' | 'id' | 'testid'>;
 
 export const Text = ({
     children,
@@ -22,7 +25,9 @@ export const Text = ({
     color = 'secondary-500',
     className,
     appearance = 'inline',
-}: ITextProps) => {
+    testid,
+    ...rest
+}: TextProps) => {
     return (
         <span
             className={classNames(
@@ -33,6 +38,8 @@ export const Text = ({
                 `appearance-${appearance}`,
                 className
             )}
+            data-testid={testid}
+            {...rest}
         >
             {children}
         </span>
