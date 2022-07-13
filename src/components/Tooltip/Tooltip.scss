@@ -1,33 +1,81 @@
-.unique-tooltip {
-    position: absolute;
-    padding: 8px 15px;
-    max-width: 400px;
-    box-sizing: border-box;
-    white-space: pre-line;
-    background-color: var(--color-secondary-500);
-    border-radius: 2px;
-    z-index: 100;
-    line-height: 22px;
-    color: var(--color-additional-light);
+@import '../../assets/styles/index.scss';
 
-    .arrow {
-        position: absolute;
-        background-color: var(--color-secondary-500);
-        width: 8px;
-        height: 8px;
-        transform: rotate(45deg);
-    }
-}
-
-.unique-tooltip-content,
 .unique-tooltip {
     font-family: var(--prop-font-family);
     font-size: var(--prop-font-size);
     font-weight: var(--prop-font-weight);
-}
+    position: fixed;
+    padding: 8px 15px;
+    max-width: 350px;
+    width: fit-content;
+    background-color: var(--color-secondary-500);
+    color: var(--color-additional-light);
+    border-radius: 2px;
+    z-index: 100;
+    line-height: 22px;
+    display: inline-flex;
 
-@media (max-width: 480px) {
-    .unique-tooltip {
-        max-width: 280px;
+    &:before {
+        position: absolute;
+        content: '';
+        left: -15px;
+        top: -15px;
+        width: calc(100% + 15px);
+        height: calc(100% + 15px);
+    }
+
+    .arrow {
+        position: absolute;
+
+        .icon {
+            width: 8px;
+            height: 8px;
+            transform: rotate(45deg);
+            background-color: var(--color-secondary-500);
+        }
+    }
+
+    .vertical {
+        &.top {
+            top: -4px;
+        }
+
+        &.bottom {
+            bottom: -4px;
+        }
+
+        &.left {
+            left: 10px;
+        }
+
+        &.middle {
+            left: calc(50% - 4px);
+        }
+
+        &.right {
+            left: calc(100% - 24px);
+        }
+    }
+
+    .horizontal {
+        &.right {
+            right: -4px;
+        }
+
+        &.left {
+            left: -4px;
+        }
+
+        &.middle {
+            top: calc(50% - 4px);
+        }
+
+        &.top {
+            top: 11px;
+        }
+
+        &.bottom {
+            bottom: 11px;
+        }
     }
 }

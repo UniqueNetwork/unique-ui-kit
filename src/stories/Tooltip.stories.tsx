@@ -1,62 +1,110 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Icon, Tooltip } from '../components';
+import { TooltipSet } from '../internals';
+import { Icon, Text, TooltipAlign } from '../components';
 
 export default {
     title: 'Components/Tooltip',
-    component: Tooltip,
-} as ComponentMeta<typeof Tooltip>;
+    component: TooltipSet,
+} as ComponentMeta<typeof TooltipSet>;
 
-const Template: ComponentStory<typeof Tooltip> = ({ children, ...args }) => (
-    <Tooltip {...args}>{children}</Tooltip>
+const TemplatePallete: ComponentStory<typeof TooltipSet> = (args) => (
+    <TooltipSet {...args} />
 );
 
-export const Default = Template.bind({});
+const manualAligns = [
+    { appearance: 'vertical', vertical: 'top', horizontal: 'left' },
+    { appearance: 'vertical', vertical: 'top', horizontal: 'middle' },
+    { appearance: 'vertical', vertical: 'top', horizontal: 'right' },
+    { appearance: 'vertical', vertical: 'bottom', horizontal: 'left' },
+    { appearance: 'vertical', vertical: 'bottom', horizontal: 'middle' },
+    { appearance: 'vertical', vertical: 'bottom', horizontal: 'right' },
+    { appearance: 'horizontal', vertical: 'top', horizontal: 'right' },
+    { appearance: 'horizontal', vertical: 'middle', horizontal: 'right' },
+    { appearance: 'horizontal', vertical: 'bottom', horizontal: 'right' },
+    { appearance: 'horizontal', vertical: 'top', horizontal: 'left' },
+    { appearance: 'horizontal', vertical: 'middle', horizontal: 'left' },
+    { appearance: 'horizontal', vertical: 'bottom', horizontal: 'left' },
+];
+
+const defaultAligns = [
+    {
+        message: 'This is a single-line tooltip',
+        link: 'single-line',
+        icon: {
+            name: 'chain-quartz',
+        },
+    },
+    {
+        message:
+            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, quod ipsum mollitia exercitationem a animi perferendis porro aspernatur neque voluptatum repellat asperiores, distinctio ratione voluptates quibusdam odit. Atque, commodi fugiat',
+        link: 'multi-line',
+        icon: { name: 'chain-opal' },
+        align: {
+            appearance: 'horizontal',
+            vertical: 'top',
+            horizontal: 'right',
+        },
+    },
+];
+
+export const Default = TemplatePallete.bind({});
 
 Default.args = {
-    content: <span>Tooltip</span>,
-    children: (
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Accusantium at deserunt dolorem doloribus, facilis hic laborum
-            libero maxime non perspiciatis placeat provident quae quam repellat
-            rerum ut veniam. Accusantium, aperiam consequuntur, cumque
-            doloremque eligendi error eveniet hic impedit, ipsa natus nemo
-            nesciunt non officiis quibusdam repudiandae rerum totam voluptatem!
-            Accusantium aliquid architecto assumenda beatae corporis culpa,
-            cupiditate deleniti dolores eaque explicabo facilis id laborum
-            magnam neque obcaecati odit porro quibusdam recusandae, sequi
-            tempore veniam, vitae voluptas voluptatem voluptates voluptatum.
-        </p>
-    ),
+    tooltips: defaultAligns.map((align) => ({
+        children: <Text size="s">{align.link}</Text>,
+        message: align.message,
+    })),
 };
 
 Default.storyName = 'Default';
 
-export const Offset = Template.bind({});
+export const DefaultIcon = TemplatePallete.bind({});
 
-Offset.args = {
-    content: <span>Tooltip</span>,
-    offset: 50,
-    children: <p>Content shifted by 50px</p>,
+DefaultIcon.args = {
+    tooltips: defaultAligns.map((align) => ({
+        children: (
+            <Icon
+                size={30}
+                name={align.icon.name}
+                color="var(--color-primary-500)"
+            />
+        ),
+        align: align.align as TooltipAlign,
+        message: align.message,
+    })),
 };
 
-Offset.storyName = 'Default w/ offset';
+DefaultIcon.storyName = 'Default w/ Icon';
 
-export const Placement = Template.bind({});
+export const DefaultSingleline = TemplatePallete.bind({});
 
-Placement.args = {
-    content: <span>Tooltip</span>,
-    children: <p>Content is on the right</p>,
-    placement: 'right',
+DefaultSingleline.args = {
+    tooltips: manualAligns.map((align) => ({
+        children: (
+            <Text size="s">
+                {align.appearance} {align.vertical} {align.horizontal}
+            </Text>
+        ),
+        align: align as TooltipAlign,
+        message: 'This is a single-line tooltip',
+    })),
 };
 
-Placement.storyName = 'Default w/ placement';
+DefaultSingleline.storyName = 'Manual single-line';
 
-export const TooltipIcon = Template.bind({});
+export const DefaultMultiline = TemplatePallete.bind({});
 
-TooltipIcon.args = {
-    content: <Icon size={30} name={'chain-opal'} />,
-    children: <p>Tooltip content</p>,
+DefaultMultiline.args = {
+    tooltips: manualAligns.map((align) => ({
+        children: (
+            <Text size="s">
+                {align.appearance} {align.vertical} {align.horizontal}
+            </Text>
+        ),
+        align: align as TooltipAlign,
+        message:
+            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe, quod ipsum mollitia exercitationem a animi perferendis porro aspernatur neque voluptatum repellat asperiores, distinctio ratione voluptates quibusdam odit. Atque, commodi fugiat',
+    })),
 };
 
-TooltipIcon.storyName = 'Tooltip icon';
+DefaultMultiline.storyName = 'Manual multi-line';

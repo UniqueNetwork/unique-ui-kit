@@ -2,7 +2,7 @@
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
 
-import { Avatar, Link, Text } from '../../components';
+import { Avatar, Text } from '../../components';
 import './TokenLink.scss';
 
 export interface ITokenLinkProps {
@@ -15,9 +15,13 @@ export interface ITokenLinkProps {
 }
 
 export const TokenLink = ({ image, title, link }: ITokenLinkProps) => (
-    <div className="unique-token-link">
+    <a href={link.href} className="unique-token-link">
         <Avatar src={image} size={326} type="square" />
-        <Text size="l">{title}</Text>
-        <Link href={link.href} title={link.title} />
-    </div>
+        <Text size="l" appearance="block">
+            {title}
+        </Text>
+        <Text size="s" color="primary-500" appearance="block">
+            {link.title}
+        </Text>
+    </a>
 );

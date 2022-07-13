@@ -40,9 +40,9 @@ export const InputText = forwardRef(
             iconLeft,
             iconRight,
             onChange,
-            testid,
             role,
             size = 'middle',
+            testid,
             ...rest
         }: InputTextProps,
         ref: ForwardedRef<HTMLInputElement>
@@ -78,10 +78,10 @@ export const InputText = forwardRef(
                     <input
                         type={'text'}
                         id={id}
-                        data-testid={testid}
                         disabled={disabled}
                         value={value}
                         ref={ref}
+                        data-testid={testid}
                         {...(onChange && {
                             onChange: (e) =>
                                 onChange(

@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.0.28 July 13, 2022
+
+Changes:
+
+- Tooltip new version add
+- TokenLink and CollectionLink widgets fix
+- Notification fix
+- Button, InputText and Text components data-testid add
+
 ## 0.0.27 July 07, 2022
 
 Changes:

@@ -19,7 +19,7 @@
         "declarationDir": "types",
         "downlevelIteration": true
     },
-    "include": ["./src/components", "./src/types"],
+    "include": ["./src/components", "./src/types", "./src"],
     "exclude": [
         "**/node_modules",
         "**/dist",
