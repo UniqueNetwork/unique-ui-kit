@@ -12,6 +12,7 @@ export * from './Loader';
 export * from './Modal';
 export * from './Pagination';
 export * from './RadioGroup';
+export * from './Scrollbar';
 export * from './Select';
 export * from './Skeleton';
 export * from './Table';

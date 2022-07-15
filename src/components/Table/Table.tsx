@@ -35,7 +35,7 @@ export interface TableProps {
     columns: TableColumnProps[];
     columnPadding?: ColumnPadding;
     data: TableRowProps[];
-    noDataMessage?: string;
+    noDataMessage?: string | null;
     onSort?(sorting: SortQuery): void;
 }
 
@@ -152,16 +152,18 @@ export const Table = ({
                     ))}
                 </div>
             ) : (
-                <div className="unique-table-no-data">
-                    <Icon name="no-accounts" size={40} />
-                    <Text
-                        color="var(---color-blue-grey-500)"
-                        size="m"
-                        weight="light"
-                    >
-                        {noDataMessage}
-                    </Text>
-                </div>
+                noDataMessage && (
+                    <div className="unique-table-no-data">
+                        <Icon name="no-accounts" size={40} />
+                        <Text
+                            color="var(---color-blue-grey-500)"
+                            size="m"
+                            weight="light"
+                        >
+                            {noDataMessage}
+                        </Text>
+                    </div>
+                )
             )}
         </div>
     );
