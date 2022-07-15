@@ -22,6 +22,19 @@ const Template: ComponentStory<typeof Scrollbar> = (args) => (
         dolor sit amet consectetur adipisicing elit. Nesciunt aliquam harum
         tenetur veniam id quod quasi hic. Laboriosam facere, consequatur
         delectus modi suscipit voluptatum distinctio impedit voluptates fuga
+        quia illo! Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Nesciunt aliquam harum tenetur veniam id quod quasi hic. Laboriosam
+        facere, consequatur delectus modi suscipit voluptatum distinctio impedit
+        voluptates fuga quia illo! Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Nesciunt aliquam harum tenetur veniam id quod quasi
+        hic. Laboriosam facere, consequatur delectus modi suscipit voluptatum
+        distinctio impedit voluptates fuga quia illo! Lorem ipsum dolor sit amet
+        consectetur adipisicing elit. Nesciunt aliquam harum tenetur veniam id
+        quod quasi hic. Laboriosam facere, consequatur delectus modi suscipit
+        voluptatum distinctio impedit voluptates fuga quia illo! Lorem ipsum
+        dolor sit amet consectetur adipisicing elit. Nesciunt aliquam harum
+        tenetur veniam id quod quasi hic. Laboriosam facere, consequatur
+        delectus modi suscipit voluptatum distinctio impedit voluptates fuga
         quia illo!
     </Scrollbar>
 );
