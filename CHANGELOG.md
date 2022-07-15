@@ -6,6 +6,7 @@ Changes:
 
 -   Scrollbar component add (https://www.npmjs.com/package/react-custom-scrollbars-2)
 -   Table component with no data fix
+-   Button component icons disabled fix
 -   New icons
 
 ## 0.0.29 July 13, 2022

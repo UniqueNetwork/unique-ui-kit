@@ -97,8 +97,15 @@
     &.disabled:active {
         cursor: default;
         color: var(--color-blue-grey-300);
-        border-color: var(--color-blue-grey-300);
-        background: var(--color-grey-100);
+
+        &:not(.ghost) {
+            border-color: var(--color-blue-grey-300);
+            background: var(--color-grey-100);
+        }
+
+        & > svg {
+            fill: var(--color-blue-grey-300);
+        }
     }
 
     &.size-middle {
