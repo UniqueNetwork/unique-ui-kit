@@ -7,14 +7,14 @@
     width: 326px;
     text-decoration: none;
     display: block;
+    word-break: break-all;
 
     .unique-avatar {
-        margin-bottom: 8px;
+        margin-bottom: calc(var(--prop-gap) / 2);
     }
 
-    .unique-text {
-        margin-bottom: 2px;
-        max-height: 80px;
+    &__description {
         overflow: hidden;
+        max-height: 6em;
     }
 }
