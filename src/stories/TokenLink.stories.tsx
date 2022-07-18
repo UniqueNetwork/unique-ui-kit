@@ -18,6 +18,6 @@ Default.args = {
     title: 'Chel #5498',
     link: {
         href: '#',
-        title: 'Chelobrick [id 3245]',
+        title: 'Chelobrickweuyriwueyruiweyuiryweuiyriuewyriuyweiuryiweyrwyeoiruwoeurpiweuriyweiruiweyr [id 3245]',
     },
 };
