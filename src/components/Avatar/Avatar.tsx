@@ -21,7 +21,9 @@ export const Avatar = ({
     <img
         width={size}
         height={size}
-        className={`unique-avatar ${type}`}
+        className={
+            src ? `unique-avatar ${type}` : `unique-avatar ${type} empty`
+        }
         src={src || defaultSrc}
     />
 );
