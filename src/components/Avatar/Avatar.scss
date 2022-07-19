@@ -1,6 +1,8 @@
 @import '../../assets/styles/index.scss';
 
 .unique-avatar {
+    background-color: #f5f6f7;
+
     &.circle {
         border-radius: 50%;
         outline: 1px solid var(--color-grey-200);

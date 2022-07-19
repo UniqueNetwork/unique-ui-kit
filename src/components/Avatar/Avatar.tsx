@@ -3,20 +3,25 @@
  */
 
 import './Avatar.scss';
-import EmptyCircle from '../../assets/static/empty-circle.svg';
-import EmptySquare from '../../assets/static/empty-square.svg';
+import Empty from '../../assets/static/empty.svg';
 
 export interface IAvatarProps {
     src?: string;
     size?: number;
+    defaultSrc?: string;
     type?: 'circle' | 'square';
 }
 
-export const Avatar = ({ src, size = 38, type = 'square' }: IAvatarProps) => (
+export const Avatar = ({
+    src,
+    size = 38,
+    type = 'square',
+    defaultSrc = Empty,
+}: IAvatarProps) => (
     <img
         width={size}
         height={size}
         className={`unique-avatar ${type}`}
-        src={src || (type === 'square' && EmptySquare) || EmptyCircle}
+        src={src || defaultSrc}
     />
 );

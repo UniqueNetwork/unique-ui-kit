@@ -18,6 +18,7 @@ const icons = [
     { name: 'chain-opal', size: 40 },
     { name: 'chain-kusama', size: 40 },
     { name: 'chain-unique', size: 40 },
+    { name: 'chain-polkadot', size: 40 },
     { name: 'social-discord', size: 40 },
     { name: 'social-github', size: 40 },
     { name: 'social-subsocial', size: 40 },
