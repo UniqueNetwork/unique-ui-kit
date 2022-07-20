@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.0.31 July 21, 2022
+
+Changes:
+
+-   Avatar component empty icon fix
+
 ## 0.0.30 July 15, 2022
 
 Changes:

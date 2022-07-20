@@ -13,17 +13,14 @@ export interface IAvatarProps {
 }
 
 export const Avatar = ({
-    src,
+    src = Empty,
     size = 38,
     type = 'square',
-    defaultSrc = Empty,
 }: IAvatarProps) => (
     <img
         width={size}
         height={size}
-        className={
-            src ? `unique-avatar ${type}` : `unique-avatar ${type} empty`
-        }
-        src={src || defaultSrc}
+        className={`unique-avatar ${type}`}
+        src={src}
     />
 );
