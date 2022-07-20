@@ -9,4 +9,8 @@
     &.square {
         border-radius: var(--prop-border-radius);
     }
+
+    &.empty {
+        background-color: #f5f6f7;
+    }
 }

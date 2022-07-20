@@ -12,7 +12,7 @@ import {
     Text,
 } from '../../components';
 import './CollectionCard.scss';
-import nocollection from '../../assets/static/nocollection.svg';
+import Empty from '../../assets/static/empty.svg';
 
 export interface ICollectionCardProps {
     avatar?: string;
@@ -43,7 +43,7 @@ export interface ICollectionCardProps {
 }
 
 export const CollectionCard = ({
-    avatar = nocollection,
+    avatar = Empty,
     title,
     meta,
     badge,
