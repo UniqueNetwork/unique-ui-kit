@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import { ComponentProps } from '../../types';
 import './Textarea.scss';
 import { InputBaseProps } from '../InputText';
+import { forwardRef, LegacyRef } from 'react';
 
 interface BaseTextareaProps extends InputBaseProps {
     // number of rows to display in textarea
@@ -14,52 +15,58 @@ interface BaseTextareaProps extends InputBaseProps {
 export type TextareaProps = BaseTextareaProps &
     Omit<ComponentProps, 'onChange'>;
 
-export const Textarea = ({
-    id,
-    label,
-    additionalText,
-    statusText,
-    className,
-    error,
-    disabled,
-    value = '',
-    onChange,
-    testid,
-    size = 'middle',
-    rows = 3,
-    ...rest
-}: TextareaProps) => {
-    return (
-        <div
-            className={classNames(
-                'unique-textarea-text',
-                `size-${size}`,
-                className,
-                { error }
-            )}
-        >
-            {label && <label htmlFor={id}>{label}</label>}
-            {additionalText && (
-                <div className="additional-text">{additionalText}</div>
-            )}
+export const Textarea = forwardRef(
+    (
+        {
+            id,
+            label,
+            additionalText,
+            statusText,
+            className,
+            error,
+            disabled,
+            value = '',
+            onChange,
+            testid,
+            size = 'middle',
+            rows = 3,
+            ...rest
+        }: TextareaProps,
+        ref: LegacyRef<HTMLTextAreaElement>
+    ) => {
+        return (
             <div
-                className={classNames('textarea-wrapper', {
-                    disabled,
-                })}
+                className={classNames(
+                    'unique-textarea-text',
+                    `size-${size}`,
+                    className,
+                    { error }
+                )}
             >
-                <textarea
-                    id={id}
-                    data-testid={testid}
-                    disabled={disabled}
-                    value={value}
-                    rows={rows}
-                    {...(onChange && {
-                        onChange: (e) => onChange(e.target.value),
+                {label && <label htmlFor={id}>{label}</label>}
+                {additionalText && (
+                    <div className="additional-text">{additionalText}</div>
+                )}
+                <div
+                    className={classNames('textarea-wrapper', {
+                        disabled,
                     })}
-                    {...rest}
-                />
+                >
+                    <textarea
+                        id={id}
+                        data-testid={testid}
+                        disabled={disabled}
+                        value={value}
+                        rows={rows}
+                        ref={ref}
+                        {...(onChange && {
+                            onChange: (e) => onChange(e.target.value),
+                        })}
+                        {...rest}
+                    />
+                </div>
+                {statusText && <div className="status-text">{statusText}</div>}
             </div>
-            {statusText && <div className="status-text">{statusText}</div>}
-        </div>
-    );
-};
+        );
+    }
+);
