@@ -26,3 +26,13 @@ Circle.args = {
 };
 
 Circle.storyName = 'Circle 64px';
+
+export const Empty = Template.bind({});
+
+Empty.args = {
+    size: 64,
+    type: 'circle'
+};
+
+Empty.storyName = 'Empty';
+

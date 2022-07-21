@@ -4,8 +4,9 @@
 
 import classNames from 'classnames';
 import './Tabs.scss';
+import { ComponentProps } from '../../types';
 
-export interface TabsProps {
+export interface ITabsBaseProps {
     activeIndex: number;
     children?: JSX.Element[];
     labels?: string[];
@@ -14,6 +15,8 @@ export interface TabsProps {
     onClick?(activeIndex: number): void;
 }
 
+export type TabsProps = ITabsBaseProps & Pick<ComponentProps, 'testid'>;
+
 export const Tabs = ({
     activeIndex,
     labels,
@@ -21,12 +24,14 @@ export const Tabs = ({
     disabledIndexes,
     type = 'default',
     onClick,
+    testid,
 }: TabsProps) => (
     <div
         className={classNames(type, {
             'unique-tabs-labels': labels,
             'unique-tabs-contents': children,
         })}
+        data-testid={testid}
     >
         {labels
             ? labels.map((label, index) => {

@@ -44,6 +44,7 @@ export const Select = ({
     onBlur,
     multi = false,
     values,
+    testid,
 }: SelectProps) => {
     useEffect(() => {
         const defaultOption =
@@ -149,6 +150,7 @@ export const Select = ({
                 onBlur={onBlur}
                 tabIndex={tabIndex}
                 id={id}
+                data-testid={testid}
             >
                 <Icon name="triangle" size={8} />
                 <div
