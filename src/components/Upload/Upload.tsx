@@ -7,15 +7,17 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Icon } from '../';
 
 import './Upload.scss';
+import { ComponentProps } from '../../types';
 
-export interface UploadProps {
+export interface IUploadBaseProps {
     onChange?: (data: { url: string; file: Blob } | null) => void;
-    className?: string;
-    disabled?: boolean;
     type?: 'circle' | 'square';
     accept?: string;
     upload?: string;
 }
+
+export type UploadProps = IUploadBaseProps &
+    Pick<ComponentProps, 'className' | 'disabled' | 'testid'>;
 
 export const Upload = React.memo(
     ({
@@ -25,6 +27,7 @@ export const Upload = React.memo(
         accept = 'image/*',
         disabled = false,
         upload,
+        testid,
     }: UploadProps) => {
         const inputFile = useRef<HTMLInputElement>(null);
         const [objectUrl, setObjectUrl] = useState<string | undefined>();
@@ -102,6 +105,7 @@ export const Upload = React.memo(
                         }
                         onChangeFile(e.target.files[0]);
                     }}
+                    data-testid={testid}
                 />
             </div>
         );
