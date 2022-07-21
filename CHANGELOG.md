@@ -5,6 +5,9 @@
 Changes:
 
 -   Avatar component empty icon fix
+-   TokenLink widget update
+-   Heading, Select, Tabs and Upload components data-testid add
+-   New icons
 
 ## 0.0.30 July 15, 2022
 
