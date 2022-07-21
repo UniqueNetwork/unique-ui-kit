@@ -4,14 +4,22 @@
 
 import classNames from 'classnames';
 import './Heading.scss';
+import { ComponentProps } from '../../types';
 
-export interface IHeadingProps {
+export interface IHeadingBaseProps {
     children: string;
     size?: '1' | '2' | '3' | '4';
-    className?: string;
 }
 
-export const Heading = ({ children, size = '1', className }: IHeadingProps) => {
+export type HeadingProps = IHeadingBaseProps &
+    Pick<ComponentProps, 'className' | 'testid'>;
+
+export const Heading = ({
+    children,
+    size = '1',
+    className,
+    testid,
+}: HeadingProps) => {
     const Component = `h${size}` as keyof JSX.IntrinsicElements;
     return (
         <Component
@@ -20,6 +28,7 @@ export const Heading = ({ children, size = '1', className }: IHeadingProps) => {
                 `size-${size}`,
                 className
             )}
+            data-testid={testid}
         >
             {children}
         </Component>
