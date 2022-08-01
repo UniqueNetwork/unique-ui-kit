@@ -27,7 +27,11 @@ export interface TableColumnProps {
     iconLeft?: IconProps;
     iconRight?: IconProps;
     isSortable?: boolean;
-    render?(data: any, row?: any): ReactNode;
+    render?(
+        data: any,
+        row: any,
+        index: { rowIndex: number; columnIndex: number }
+    ): ReactNode;
     compareFunc?: (a: any, b: any) => number;
 }
 
@@ -131,8 +135,8 @@ export const Table = ({
             </div>
             {sortedData.length ? (
                 <div className="unique-table-data">
-                    {sortedData.map((row, index) => (
-                        <div className="unique-table-data-row" key={index}>
+                    {sortedData.map((row, rowIndex) => (
+                        <div className="unique-table-data-row" key={rowIndex}>
                             {columns.map((column, columnIndex) => (
                                 <div
                                     key={`${column.field}-${columnIndex}`}
@@ -144,7 +148,8 @@ export const Table = ({
                                 >
                                     {column.render?.(
                                         getDeepValue(row, column.field),
-                                        row
+                                        row,
+                                        { rowIndex, columnIndex }
                                     ) || getDeepValue(row, column.field)}
                                 </div>
                             ))}
