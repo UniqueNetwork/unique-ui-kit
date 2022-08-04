@@ -109,7 +109,7 @@ IconLeftAndRight.args = {
     },
 };
 
-IconLeftAndRight.storyName = 'Minimal w/ icon to left and right';
+IconLeftAndRight.storyName = 'Minimal w/ both icons';
 
 export const Disabled = Template.bind({});
 
@@ -126,8 +126,8 @@ DoubleIcon.args = {
     value: 'Value',
     iconRight: (
         <>
-            <Icon size={20} name={'pencil'} />
-            <Icon size={20} name={'magnify'} />
+            <Icon size={18} name={'pencil'} />
+            <Icon size={18} name={'magnify'} />
         </>
     ),
 };

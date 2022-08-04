@@ -1,14 +1,12 @@
 /**
  * @author Pavel Kalachev <pkalachev@usetech.com>
  */
-import classNames from 'classnames';
-import { Icon } from '..';
-import { ComponentProps, DimentionType } from '../../types';
-import './InputText.scss';
-import { ForwardedRef, forwardRef, ReactNode, isValidElement } from 'react';
-import { IconProps } from '../Icon';
 
-type IconType = IconProps | ReactNode;
+import { ForwardedRef, forwardRef, ReactNode } from 'react';
+import classNames from 'classnames';
+import { ComponentProps, DimentionType } from '../../types';
+import { IconType, userIcon } from '../Icon';
+import './InputText.scss';
 
 export interface InputBaseProps {
     additionalText?: string;
@@ -20,7 +18,7 @@ export interface InputBaseProps {
 }
 
 export type InputTextProps = InputBaseProps &
-    Omit<ComponentProps, 'onChange'> & {
+    ComponentProps & {
         iconLeft?: IconType;
         iconRight?: IconType;
         role?: 'number' | 'decimal';
@@ -46,57 +44,50 @@ export const InputText = forwardRef(
             ...rest
         }: InputTextProps,
         ref: ForwardedRef<HTMLInputElement>
-    ) => {
-        const userIcon = (icon: IconType) =>
-            isValidElement(icon)
-                ? icon
-                : icon && <Icon {...(icon as IconProps)} />;
+    ) => (
+        <div
+            className={classNames(
+                'unique-input-text',
+                `size-${size}`,
+                className,
+                { error }
+            )}
+        >
+            {label && <label htmlFor={id}>{label}</label>}
+            {additionalText && (
+                <div className="additional-text">{additionalText}</div>
+            )}
 
-        return (
             <div
-                className={classNames(
-                    'unique-input-text',
-                    `size-${size}`,
-                    className,
-                    { error }
-                )}
+                className={classNames('input-wrapper', {
+                    'with-icon': iconLeft || iconRight,
+                    'to-left': iconLeft,
+                    'to-right': iconRight,
+                    disabled,
+                })}
             >
-                {label && <label htmlFor={id}>{label}</label>}
-                {additionalText && (
-                    <div className="additional-text">{additionalText}</div>
-                )}
-
-                <div
-                    className={classNames('input-wrapper', {
-                        'with-icon': iconLeft || iconRight,
-                        'to-left': iconLeft,
-                        'to-right': iconRight,
-                        disabled,
+                {userIcon(iconLeft)}
+                <input
+                    type={'text'}
+                    id={id}
+                    disabled={disabled}
+                    value={value}
+                    ref={ref}
+                    data-testid={testid}
+                    {...(onChange && {
+                        onChange: (e) =>
+                            onChange(
+                                e.target.value.replace(
+                                    role === 'number' ? /\D/g : /[]/,
+                                    ''
+                                )
+                            ),
                     })}
-                >
-                    {userIcon(iconLeft)}
-                    <input
-                        type={'text'}
-                        id={id}
-                        disabled={disabled}
-                        value={value}
-                        ref={ref}
-                        data-testid={testid}
-                        {...(onChange && {
-                            onChange: (e) =>
-                                onChange(
-                                    e.target.value.replace(
-                                        role === 'number' ? /\D/g : /[]/,
-                                        ''
-                                    )
-                                ),
-                        })}
-                        {...rest}
-                    />
-                    {userIcon(iconRight)}
-                </div>
-                {statusText && <div className="status-text">{statusText}</div>}
+                    {...rest}
+                />
+                {userIcon(iconRight)}
             </div>
-        );
-    }
+            {statusText && <div className="status-text">{statusText}</div>}
+        </div>
+    )
 );

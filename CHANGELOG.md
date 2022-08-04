@@ -4,8 +4,13 @@
 
 Changes:
 
--   Table component cellIndex and rowIndex to render add
+-   InputPassword component add
+-   Table component cell and row indexes add
 -   Tooltip component clickable children content fix
+-   useCopyToClipboard hook add
+-   AccountsManager widget copy address button fix
+-   InputText component fix
+-   Icon component fix
 
 ## 0.0.31 July 21, 2022
 
