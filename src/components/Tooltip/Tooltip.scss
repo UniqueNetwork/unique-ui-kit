@@ -24,6 +24,10 @@
         height: calc(100% + 15px);
     }
 
+    .content {
+        z-index: 101;
+    }
+
     .arrow {
         position: absolute;
 

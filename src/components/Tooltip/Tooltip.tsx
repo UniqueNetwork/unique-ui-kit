@@ -194,7 +194,14 @@ export const Tooltip: React.FC<TooltipProps> = (props) => {
             >
                 <div className="icon" />
             </div>
-            {children}
+            {typeof children === 'string' ? (
+                <div
+                    className="content"
+                    dangerouslySetInnerHTML={{ __html: children }}
+                ></div>
+            ) : (
+                <div className="content">{children}</div>
+            )}
         </div>
     ) : null;
 

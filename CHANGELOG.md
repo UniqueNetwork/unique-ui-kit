@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.0.32 August 5, 2022
+
+Changes:
+
+-   Table component cellIndex and rowIndex to render add
+-   Tooltip component clickable children content fix
+
 ## 0.0.31 July 21, 2022
 
 Changes:
