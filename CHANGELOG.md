@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.0.32 August 5, 2022
+## 0.0.33 August 5, 2022
 
 Changes:
 
@@ -11,6 +11,7 @@ Changes:
 -   useCopyToClipboard hook add
 -   AccountsManager widget copy address button fix
 -   InputText component fix
+-   Pagination component fix
 -   Icon component fix
 
 ## 0.0.31 July 21, 2022
