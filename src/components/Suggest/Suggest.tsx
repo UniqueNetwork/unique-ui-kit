@@ -31,6 +31,7 @@ import { useIsFirstRender, useIntersectionObserver } from '../../utils/hooks';
 
 export interface SuggestProps<SuggestOption> {
     // function will call every time need to update suggestions
+    className?: string;
     onSuggestionsFetchRequested?(
         inputValue: string,
         currentSuggests: SuggestOption[]
@@ -89,6 +90,7 @@ export const Suggest = <T,>({
     loadingText = 'Please wait',
     getActiveSuggestOption,
     onLoadMore,
+    className,
 }: SuggestProps<T>) => {
     const { statusText, ...inputProps } = _inputProps || {};
     const { intersectionObserverRef, isVisibleIntersectionObserver } =
@@ -148,6 +150,9 @@ export const Suggest = <T,>({
     }, [inputValue]);
 
     useEffect(() => {
+        if (showSuggestions) {
+            inputRef.current?.focus();
+        }
         if (!showSuggestions) {
             setSearchUser(false);
         }
@@ -179,7 +184,6 @@ export const Suggest = <T,>({
         if (inputProps?.disabled) {
             return;
         }
-        inputRef.current?.focus();
         setShowSuggestions((prevState) =>
             inputValue.length === 0 ? !prevState : true
         );
@@ -214,9 +218,13 @@ export const Suggest = <T,>({
 
     return (
         <div
-            className={classNames('unique-suggestion-wrapper', {
-                error: inputProps.error,
-            })}
+            className={classNames(
+                'unique-suggestion-wrapper',
+                {
+                    error: inputProps.error,
+                },
+                className
+            )}
         >
             <div
                 className={'unique-suggestion'}
@@ -227,33 +235,13 @@ export const Suggest = <T,>({
                 <div
                     className={'suggest-input'}
                     onClick={handleToggleOpenSuggest}
+                    data-testid={showSuggestions ? 'dropped' : 'undropped'}
                 >
                     <InputText
-                        iconRight={
-                            <div className={'icon-right-wrapper'}>
-                                {activeValue && !inputProps?.disabled && (
-                                    <div
-                                        className={'icon-clear'}
-                                        onClick={handleClearValue}
-                                    >
-                                        <Icon
-                                            size={19}
-                                            color="var(--color-blue-grey-400)"
-                                            name="circle-close"
-                                        />
-                                    </div>
-                                )}
-                                <Icon
-                                    name="triangle"
-                                    size={8}
-                                    color="var(--color-blue-grey-500)"
-                                />
-                            </div>
-                        }
                         className={classNames({
                             dropped: showSuggestions,
+                            empty: !activeValue,
                         })}
-                        data-testid={showSuggestions ? 'dropped' : undefined}
                         {...inputProps}
                         onChange={(value) => {
                             !showSuggestions && setShowSuggestions(true);
@@ -263,6 +251,37 @@ export const Suggest = <T,>({
                         value={inputValue}
                         ref={inputRef}
                     />
+                    {!showSuggestions && activeValue && (
+                        <div className="suggest-active-value">
+                            <suggestComponents.SuggestItem
+                                suggestion={activeValue}
+                                suggestionValue={inputValue}
+                            />
+                        </div>
+                    )}
+                    <div
+                        className={classNames('icon-right-wrapper', {
+                            dropped: showSuggestions,
+                        })}
+                    >
+                        {activeValue && !inputProps?.disabled && (
+                            <div
+                                className={'icon-clear'}
+                                onClick={handleClearValue}
+                            >
+                                <Icon
+                                    size={19}
+                                    color="var(--color-blue-grey-400)"
+                                    name="circle-close"
+                                />
+                            </div>
+                        )}
+                        <Icon
+                            name="triangle"
+                            size={8}
+                            color="var(--color-blue-grey-500)"
+                        />
+                    </div>
                 </div>
 
                 {showSuggestions && (
