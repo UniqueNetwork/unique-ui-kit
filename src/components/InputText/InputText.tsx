@@ -18,7 +18,7 @@ export interface InputBaseProps {
 }
 
 export type InputTextProps = InputBaseProps &
-    ComponentProps & {
+    Omit<ComponentProps, 'onChange'> & {
         iconLeft?: IconType;
         iconRight?: IconType;
         role?: 'number' | 'decimal';
