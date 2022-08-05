@@ -131,6 +131,7 @@ CustomItemComponents.args = {
                             height: '24px',
                             borderRadius: '50%',
                             marginRight: '10px',
+                            minWidth: '24px',
                         }}
                     />
 
@@ -242,6 +243,7 @@ CustomSuggestListComponents.args = {
                             height: '24px',
                             borderRadius: '50%',
                             marginRight: '10px',
+                            minWidth: '24px',
                         }}
                     />
 

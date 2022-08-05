@@ -27,7 +27,7 @@ describe('Suggest component', () => {
         expect(getByRole('textbox')).toHaveValue(values[1].name);
         expect(getByTestId('icon-circle-close')).toBeInTheDocument();
         expect(queryByTestId('dropped')).not.toBeInTheDocument();
-        expect(queryAllByRole('option').length).toBe(0);
+        expect(queryAllByRole('option').length).toBe(1);
     });
 
     it('should be default state', () => {
@@ -140,7 +140,7 @@ describe('Suggest component', () => {
 
         expect(mockOnChange.mock.calls[0][0]).toEqual(values[1]);
         expect(queryByTestId('dropped')).not.toBeInTheDocument();
-        expect(queryAllByRole('option').length).toBe(0);
+        expect(queryAllByRole('option').length).toBe(1);
         expect(getByTestId('icon-circle-close')).toBeInTheDocument();
         expect(input).toHaveValue(values[1].name);
 
@@ -266,14 +266,14 @@ describe('Suggest component', () => {
         await event.type(input, '{backspace}{backspace}');
         fireEvent.keyDown(input, { keyCode: 27 });
 
-        expect(queryAllByRole('option').length).toBe(0);
+        expect(queryAllByRole('option').length).toBe(1);
         expect(getByRole('textbox')).toHaveValue('Label');
         expect(getByTestId('icon-circle-close')).toBeInTheDocument();
 
         await event.type(input, 'ololo');
         fireEvent.keyDown(input, { keyCode: 27 });
 
-        expect(queryAllByRole('option').length).toBe(0);
+        expect(queryAllByRole('option').length).toBe(1);
         expect(getByRole('textbox')).toHaveValue('Label');
         expect(getByTestId('icon-circle-close')).toBeInTheDocument();
     });
@@ -338,7 +338,7 @@ describe('Suggest component', () => {
         expect(input).toBeDisabled();
         expect(input).toHaveValue(values[0].name);
         expect(queryByTestId('icon-circle-close')).not.toBeInTheDocument();
-        expect(queryAllByRole('option').length).toBe(0);
+        expect(queryAllByRole('option').length).toBe(1);
     });
 
     it('should be disabled when input prop have disabled and not exist default value', async () => {
