@@ -46,6 +46,7 @@ const icons = [
     { name: 'upload' },
     { name: 'menu' },
     { name: 'checked' },
+    { name: 'check-circle' },
     { name: 'magnify' },
     { name: 'triangle' },
     { name: 'eye' },
