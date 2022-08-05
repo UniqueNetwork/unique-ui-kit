@@ -3,6 +3,7 @@ import { Dropdown, Icon, Link, Text, Toggle } from '../../../../components';
 import { AccountsManagerProps } from '../../AccountsManager';
 import { AccountCard } from '../index';
 import './AccountsManagerDropdown.scss';
+import { useCopyToClipboard } from '../../../../utils/hooks';
 
 export const AccountsManagerDropdown = ({
     accounts,
@@ -18,8 +19,9 @@ export const AccountsManagerDropdown = ({
     onAccountChange,
     onNetworkChange,
     onManageBalanceClick,
-    onCopyAddressClick,
 }: AccountsManagerProps) => {
+    const [copied, copy] = useCopyToClipboard();
+
     return (
         <div className="accounts-manager-dropdown">
             <div className="accounts-manager-accounts">
@@ -33,7 +35,7 @@ export const AccountsManagerDropdown = ({
                         <AccountCard
                             {...option}
                             avatarRender={avatarRender}
-                            onCopyAddressClick={onCopyAddressClick}
+                            onCopyAddressClick={copy}
                         />
                     )}
                     iconRight={{
@@ -49,7 +51,7 @@ export const AccountsManagerDropdown = ({
                         <AccountCard
                             {...selectedAccount}
                             avatarRender={avatarRender}
-                            onCopyAddressClick={onCopyAddressClick}
+                            onCopyAddressClick={copy}
                         />
                     </div>
                 </Dropdown>

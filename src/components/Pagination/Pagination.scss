@@ -69,10 +69,12 @@
 
     .per-page-selector-wrapper {
         display: flex;
-        gap: 10px;
+        gap: calc(var(--prop-gap) / 2);
         align-items: center;
         margin-right: 40px;
-
+        .unique-text:first-child {
+            padding-right: var(--prop-gap);
+        }
         .unique-select {
             width: 70px;
         }
