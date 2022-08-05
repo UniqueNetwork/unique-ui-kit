@@ -4,7 +4,7 @@
 
 import { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { Icon, InputText, Select } from '..';
+import { Icon, InputText, Select, Text } from '..';
 import { usePrevious } from '../../utils';
 import './Pagination.scss';
 
@@ -90,7 +90,8 @@ export const Pagination = ({
         <div className="unique-pagination-wrapper">
             {withPerPageSelector && (
                 <div className="per-page-selector-wrapper">
-                    {size} Items
+                    <Text weight={'light'}>{size} Items</Text>
+                    <Text weight={'light'}>Results on the page</Text>
                     <Select
                         options={pageSizes.map((option) => ({
                             id: option.toString(),
