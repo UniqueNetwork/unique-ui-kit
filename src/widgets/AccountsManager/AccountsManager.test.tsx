@@ -1,4 +1,4 @@
-import { fireEvent, render } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import React from 'react';
 import { AccountsManager } from '../index';
 
@@ -101,11 +101,13 @@ it('should change network by toggle', () => {
     expect(mockFunction).toHaveBeenCalledWith(mockProps.networks[1]);
 });
 
-it('should copy account address', () => {
-    const mockFunction = jest.fn();
-    const { getByTestId } = render(
-        <AccountsManager {...mockProps} onCopyAddressClick={mockFunction} />
-    );
+it('should copy account address', async () => {
+    Object.defineProperty(navigator, 'clipboard', {
+        value: {
+            writeText: jest.fn(),
+        },
+    });
+    const { getByTestId } = render(<AccountsManager {...mockProps} />);
 
     const dropdown = getByTestId('dropdown-wrapper');
     fireEvent.click(dropdown);
@@ -113,9 +115,11 @@ it('should copy account address', () => {
     const copyIcon = getByTestId(
         `address-copy-${mockProps.selectedAccount.address}`
     );
-    fireEvent.click(copyIcon);
-    expect(mockFunction.mock.calls.length).toBe(1);
-    expect(mockFunction).toHaveBeenCalledWith(
+    act(() => {
+        fireEvent.click(copyIcon);
+    });
+
+    expect(navigator.clipboard.writeText).toHaveBeenCalledWith(
         mockProps.selectedAccount.address
     );
 });
