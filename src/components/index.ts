@@ -5,6 +5,7 @@ export * from './Checkbox';
 export * from './Chip';
 export * from './Heading';
 export * from './Icon';
+export * from './InputPassword';
 export * from './InputText';
 export * from './Layout';
 export * from './Link';

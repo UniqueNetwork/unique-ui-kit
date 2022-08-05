@@ -3,6 +3,7 @@ import { Dropdown, Icon, IconProps, Text } from '../../components';
 import { SelectOptionProps } from '../../types';
 import { AccountsManagerDropdown } from './components';
 import './AccountsManager.scss';
+import { useCopyToClipboard } from '../../utils/hooks';
 
 export interface IAccount extends SelectOptionProps {
     address?: string;
@@ -31,7 +32,6 @@ export interface AccountsManagerProps {
     onNetworkChange?(network: INetwork): void;
     onAccountChange?(account: IAccount): void;
     onManageBalanceClick?(): void;
-    onCopyAddressClick?(address: string): void;
     onOpenChange?(open: boolean): void;
 }
 
@@ -42,9 +42,11 @@ export const AccountsManager = (props: AccountsManagerProps) => {
         activeNetwork,
         balance,
         symbol,
-        onCopyAddressClick,
         onOpenChange,
     } = props;
+
+    const [copied, copy] = useCopyToClipboard();
+
     return (
         <Dropdown
             dropdownRender={() => <AccountsManagerDropdown {...props} />}
@@ -66,10 +68,7 @@ export const AccountsManager = (props: AccountsManagerProps) => {
                             className="address-copy"
                             onClick={(event) => {
                                 event.stopPropagation();
-                                selectedAccount?.address &&
-                                    onCopyAddressClick?.(
-                                        selectedAccount.address
-                                    );
+                                copy(`${selectedAccount?.address}`);
                             }}
                             data-testid={`selected-address-copy-${selectedAccount?.address}`}
                         >

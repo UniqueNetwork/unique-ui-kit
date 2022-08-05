@@ -3,7 +3,7 @@
  */
 
 import Icons from '../../assets/svg/icons.svg';
-import { ForwardedRef, forwardRef } from 'react';
+import { ForwardedRef, forwardRef, isValidElement, ReactNode } from 'react';
 
 export interface IconProps {
     size: number;
@@ -11,6 +11,11 @@ export interface IconProps {
     file?: string;
     color?: string;
 }
+
+export type IconType = IconProps | ReactNode;
+
+export const userIcon = (icon: IconType) =>
+    icon && (isValidElement(icon) ? icon : <Icon {...(icon as IconProps)} />);
 
 export const Icon = forwardRef(
     (

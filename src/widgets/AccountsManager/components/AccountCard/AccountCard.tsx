@@ -3,22 +3,23 @@ import { Avatar, Icon, Text } from '../../../../components';
 import { IAccount } from '../../AccountsManager';
 import './AccountCard.scss';
 import defaultAvatarSrc from '../../../../assets/static/avatar.jpg';
+import { useCopyToClipboard } from '../../../../utils/hooks';
 
 interface AccountCardProps extends IAccount {
     avatarRender?(address: string): ReactNode;
-    onCopyAddressClick?(address: string): void;
 }
 
 export const AccountCard = ({
     name,
     address,
     avatarRender,
-    onCopyAddressClick,
 }: AccountCardProps) => {
     const shortAddress =
         address && address?.length > 13
             ? `${address.slice(0, 5)}...${address.slice(-5)}`
             : address;
+
+    const [copied, copy] = useCopyToClipboard();
 
     return (
         <div className="account-card">
@@ -33,18 +34,16 @@ export const AccountCard = ({
                     <Text size="s" color="grey-500">
                         {shortAddress}
                     </Text>
-                    {onCopyAddressClick && (
-                        <div
-                            className="address-copy"
-                            onClick={(event) => {
-                                address && onCopyAddressClick(address);
-                                event.stopPropagation();
-                            }}
-                            data-testid={`address-copy-${address}`}
-                        >
-                            <Icon size={16} name="copy" />
-                        </div>
-                    )}
+                    <div
+                        className="address-copy"
+                        onClick={(event) => {
+                            event.stopPropagation();
+                            copy(address!);
+                        }}
+                        data-testid={`address-copy-${address}`}
+                    >
+                        <Icon size={16} name="copy" />
+                    </div>
                 </div>
             </div>
         </div>

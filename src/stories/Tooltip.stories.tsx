@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { TooltipSet } from '../internals';
-import { Icon, Text, TooltipAlign } from '../components';
+import { Icon, Link, Text, TooltipAlign } from '../components';
 
 export default {
     title: 'Components/Tooltip',
@@ -28,7 +28,13 @@ const manualAligns = [
 
 const defaultAligns = [
     {
-        message: 'This is a single-line tooltip',
+        message: (
+            <span>
+                Lorem ipsum dolor sit amet{' '}
+                <Link href="https://unique.network" title="consectetur" />{' '}
+                adipisicing elit
+            </span>
+        ),
         link: 'single-line',
         icon: {
             name: 'chain-quartz',
