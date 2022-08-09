@@ -4,7 +4,8 @@
 
 Changes:
 
--   InputPassword component fix
+-   InputPassword component auto-fill fix
+-   Table component custom noDataIcon fix
 
 ## 0.0.33 August 5, 2022
 

@@ -40,6 +40,7 @@ export interface TableProps {
     columnPadding?: ColumnPadding;
     data: TableRowProps[];
     noDataMessage?: string | null;
+    noDataIcon?: ReactNode | null;
     onSort?(sorting: SortQuery): void;
 }
 
@@ -52,6 +53,7 @@ export const Table = ({
     columnPadding = 16,
     data,
     noDataMessage = 'Nothing found',
+    noDataIcon = <Icon name="no-accounts" size={40} />,
     onSort,
 }: TableProps) => {
     const [sortQuery, setSortQuery] = useState<SortQuery>({
@@ -159,7 +161,7 @@ export const Table = ({
             ) : (
                 noDataMessage && (
                     <div className="unique-table-no-data">
-                        <Icon name="no-accounts" size={40} />
+                        {noDataIcon}
                         <Text
                             color="var(---color-blue-grey-500)"
                             size="m"
