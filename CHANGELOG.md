@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.0.34 August 12, 2022
+
+Changes:
+
+-   InputPassword component fix
+
 ## 0.0.33 August 5, 2022
 
 Changes:

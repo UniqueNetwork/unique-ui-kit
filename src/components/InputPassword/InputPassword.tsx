@@ -62,7 +62,7 @@ export const InputPassword = forwardRef(
                         })}
                         {...rest}
                     />
-                    {userIcon({
+                    {value && userIcon({
                         name: visibility ? 'eye' : 'eye-closed',
                         size: 20,
                         ...{
