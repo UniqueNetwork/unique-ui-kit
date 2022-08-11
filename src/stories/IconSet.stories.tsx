@@ -84,6 +84,7 @@ const icons = [
     { name: 'bundle' },
     { name: 'confetti' },
     { name: 'puzzle' },
+    { name: 'calendar' },
 ];
 
 Icon.args = {
