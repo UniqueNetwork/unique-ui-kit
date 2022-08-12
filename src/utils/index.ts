@@ -8,7 +8,7 @@ export const sortData = (
     query: SortQuery,
     compareFunc?: (a: any, b: any) => number
 ) => {
-    const sorted = [...data].sort((a, b) =>
+    const sorted = [...data].sort((a: any, b: any) =>
         compareFunc
             ? compareFunc(a[query.field], b[query.field])
             : (a[query.field] as string)?.localeCompare(

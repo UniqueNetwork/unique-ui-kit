@@ -7,8 +7,8 @@ import { Avatar, Text } from '../../components';
 import './TokenLink.scss';
 
 export interface ITokenLinkProps {
-    image: string;
     title: string;
+    image?: string;
     link?: string;
     meta?: ReactNode;
     onTokenClick(): void;

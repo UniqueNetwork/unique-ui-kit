@@ -45,7 +45,6 @@ export interface TableProps {
 }
 
 export interface TableRowProps {
-    // [key: string]: string | {};
     key?: React.Key;
 }
 
