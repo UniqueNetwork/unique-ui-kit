@@ -184,17 +184,12 @@ export const Select = ({
                                 </div>
                             </div>
                         ))}
-                    {!multi &&
-                        selected?.[optionKey as keyof SelectOptionProps] && (
-                            <>
-                                {
-                                    selected?.[
-                                        optionValue as keyof SelectOptionProps
-                                    ]
-                                }
-                                {icon && <Icon {...icon} />}
-                            </>
-                        )}
+                    {!multi && (
+                        <>
+                            {selected?.[optionValue as keyof SelectOptionProps]}
+                            {icon && <Icon {...icon} />}
+                        </>
+                    )}
                     {!(multi && selectedMulti.length) &&
                         !(!multi && selected) &&
                         placeholder && (

@@ -81,6 +81,10 @@ const icons = [
     { name: 'empty-image' },
     { name: 'no-items' },
     { name: 'trash' },
+    { name: 'bundle' },
+    { name: 'confetti' },
+    { name: 'puzzle' },
+    { name: 'calendar' },
 ];
 
 Icon.args = {

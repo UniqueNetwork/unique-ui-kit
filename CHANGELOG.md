@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.0.34 August 12, 2022
+
+Changes:
+
+-   InputTag component add
+-   Modal component style fix
+-   InputPassword component auto-fill fix
+-   Select component falsy value fix
+-   Table component custom noDataIcon fix, row key fix
+-   TokenLink widget empty image fix
+-   New icons
+
 ## 0.0.33 August 5, 2022
 
 Changes:

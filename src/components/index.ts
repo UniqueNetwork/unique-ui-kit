@@ -29,3 +29,4 @@ export * from './Tooltip';
 export * from './Dropdown';
 export * from './Suggest';
 export * from './Notifications';
+export * from './InputTag';
