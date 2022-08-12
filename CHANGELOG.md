@@ -7,6 +7,7 @@ Changes:
 -   InputTag component add
 -   Modal component style fix
 -   InputPassword component auto-fill fix
+-   Select component falsy value fix
 -   Table component custom noDataIcon fix, row key fix
 -   New icons
 
