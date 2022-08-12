@@ -4,8 +4,10 @@
 
 Changes:
 
+-   InputTag component add
+-   Modal component style fix
 -   InputPassword component auto-fill fix
--   Table component custom noDataIcon fix
+-   Table component custom noDataIcon fix, row key fix
 -   New icons
 
 ## 0.0.33 August 5, 2022

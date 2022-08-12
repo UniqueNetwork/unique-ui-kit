@@ -45,7 +45,8 @@ export interface TableProps {
 }
 
 export interface TableRowProps {
-    [key: string]: string | {};
+    // [key: string]: string | {};
+    key?: React.Key;
 }
 
 export const Table = ({
@@ -138,7 +139,10 @@ export const Table = ({
             {sortedData.length ? (
                 <div className="unique-table-data">
                     {sortedData.map((row, rowIndex) => (
-                        <div className="unique-table-data-row" key={rowIndex}>
+                        <div
+                            className="unique-table-data-row"
+                            key={row.key || rowIndex}
+                        >
                             {columns.map((column, columnIndex) => (
                                 <div
                                     key={`${column.field}-${columnIndex}`}
