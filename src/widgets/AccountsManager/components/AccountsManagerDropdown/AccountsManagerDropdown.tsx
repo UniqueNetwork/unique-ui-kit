@@ -15,6 +15,7 @@ export const AccountsManagerDropdown = ({
     manageBalanceLinkTitle,
     balance,
     symbol,
+    isTouch,
     avatarRender,
     onAccountChange,
     onNetworkChange,
@@ -43,6 +44,7 @@ export const AccountsManagerDropdown = ({
                         size: 8,
                     }}
                     onChange={onAccountChange}
+                    isTouch={isTouch}
                 >
                     <div
                         className="accounts-select"

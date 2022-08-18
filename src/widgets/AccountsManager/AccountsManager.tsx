@@ -4,6 +4,7 @@ import { SelectOptionProps } from '../../types';
 import { AccountsManagerDropdown } from './components';
 import './AccountsManager.scss';
 import { useCopyToClipboard } from '../../utils/hooks';
+import { isTouchDevice } from '../../utils';
 
 export interface IAccount extends SelectOptionProps {
     address?: string;
@@ -28,6 +29,8 @@ export interface AccountsManagerProps {
     manageBalanceLinkTitle?: string;
     symbol: string;
     isLoading?: boolean;
+    isTouch?: boolean;
+    verticalOffset?: number | string;
     avatarRender?(address: string): ReactNode;
     onNetworkChange?(network: INetwork): void;
     onAccountChange?(account: IAccount): void;
@@ -42,14 +45,19 @@ export const AccountsManager = (props: AccountsManagerProps) => {
         activeNetwork,
         balance,
         symbol,
+        isTouch,
+        verticalOffset,
         onOpenChange,
     } = props;
 
     const [copied, copy] = useCopyToClipboard();
+    const touchDevice = isTouch || isTouchDevice;
 
     return (
         <Dropdown
-            dropdownRender={() => <AccountsManagerDropdown {...props} />}
+            dropdownRender={() => (
+                <AccountsManagerDropdown {...props} isTouch={touchDevice} />
+            )}
             iconRight={{
                 name: 'triangle',
                 size: 8,
@@ -57,6 +65,8 @@ export const AccountsManager = (props: AccountsManagerProps) => {
             placement="right"
             open={open}
             onOpenChange={onOpenChange}
+            isTouch={touchDevice}
+            verticalOffset={verticalOffset}
         >
             <div className="unique-accounts-manager">
                 <div className="accounts-manager-selected-account">

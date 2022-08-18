@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.0.35 August 19, 2022
+
+Changes:
+
+-   AccountsManager widget responsive add
+
 ## 0.0.34 August 12, 2022
 
 Changes:
