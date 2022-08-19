@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Dropdown, Icon, Link, Text, Toggle } from '../../../../components';
 import { AccountsManagerProps } from '../../AccountsManager';
 import { AccountCard } from '../index';
@@ -20,8 +20,13 @@ export const AccountsManagerDropdown = ({
     onAccountChange,
     onNetworkChange,
     onManageBalanceClick,
+    onCopyAddressClick,
 }: AccountsManagerProps) => {
     const [copied, copy] = useCopyToClipboard();
+
+    useEffect(() => {
+        copied && onCopyAddressClick?.(copied);
+    }, [copied]);
 
     return (
         <div className="accounts-manager-dropdown">
