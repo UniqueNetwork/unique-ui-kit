@@ -4,7 +4,10 @@
 
 Changes:
 
--   AccountsManager widget responsive add
+-   AccountsManager widget responsive add, onCopyAddressClick handler add
+-   Upload component validation add
+-   Notification component context memo add
+-   Link component children add
 -   Avatar component size prop fix
 -   Pagination component static text fix
 
