@@ -47,3 +47,13 @@ Disabled.args = {
 };
 
 Disabled.storyName = 'Default w/o disabled';
+
+export const WithValidation = Template.bind({});
+
+WithValidation.args = {
+    beforeUpload: ({ file }) => {
+        return file.size < 3000;
+    },
+};
+
+WithValidation.storyName = 'Default w/ validation (max: 2 kb)';
