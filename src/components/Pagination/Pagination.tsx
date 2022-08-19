@@ -90,7 +90,7 @@ export const Pagination = ({
         <div className="unique-pagination-wrapper">
             {withPerPageSelector && (
                 <div className="per-page-selector-wrapper">
-                    <Text weight={'light'}>{size} Items</Text>
+                    <Text weight={'light'}>{size} items</Text>
                     <Text weight={'light'}>Results on the page</Text>
                     <Select
                         options={pageSizes.map((option) => ({

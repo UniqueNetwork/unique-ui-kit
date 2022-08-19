@@ -1,9 +1,10 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import { Dropdown, Icon, IconProps, Text } from '../../components';
 import { SelectOptionProps } from '../../types';
 import { AccountsManagerDropdown } from './components';
 import './AccountsManager.scss';
 import { useCopyToClipboard } from '../../utils/hooks';
+import { isTouchDevice } from '../../utils';
 
 export interface IAccount extends SelectOptionProps {
     address?: string;
@@ -28,11 +29,14 @@ export interface AccountsManagerProps {
     manageBalanceLinkTitle?: string;
     symbol: string;
     isLoading?: boolean;
+    isTouch?: boolean;
+    verticalOffset?: number | string;
     avatarRender?(address: string): ReactNode;
     onNetworkChange?(network: INetwork): void;
     onAccountChange?(account: IAccount): void;
     onManageBalanceClick?(): void;
     onOpenChange?(open: boolean): void;
+    onCopyAddressClick?(address: string): void;
 }
 
 export const AccountsManager = (props: AccountsManagerProps) => {
@@ -42,14 +46,24 @@ export const AccountsManager = (props: AccountsManagerProps) => {
         activeNetwork,
         balance,
         symbol,
+        isTouch,
+        verticalOffset,
         onOpenChange,
+        onCopyAddressClick,
     } = props;
 
     const [copied, copy] = useCopyToClipboard();
+    const touchDevice = isTouch || isTouchDevice;
+
+    useEffect(() => {
+        copied && onCopyAddressClick?.(copied);
+    }, [copied]);
 
     return (
         <Dropdown
-            dropdownRender={() => <AccountsManagerDropdown {...props} />}
+            dropdownRender={() => (
+                <AccountsManagerDropdown {...props} isTouch={touchDevice} />
+            )}
             iconRight={{
                 name: 'triangle',
                 size: 8,
@@ -57,6 +71,8 @@ export const AccountsManager = (props: AccountsManagerProps) => {
             placement="right"
             open={open}
             onOpenChange={onOpenChange}
+            isTouch={touchDevice}
+            verticalOffset={verticalOffset}
         >
             <div className="unique-accounts-manager">
                 <div className="accounts-manager-selected-account">

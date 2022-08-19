@@ -36,6 +36,7 @@ const data = [
         from: { title: '14KBS...trcQH' },
         to: { title: 'YqEew...11IJK' },
         amount: '2 QTZ',
+        key: '9666737-0',
     },
     {
         ext: { title: '9666828-1' },
@@ -43,6 +44,7 @@ const data = [
         from: { title: '23AFx...oPPwR' },
         to: { title: '77NNm...lLk2L' },
         amount: '1 QTZ',
+        key: '9666828-1',
     },
     {
         ext: { title: '9666919-2' },
@@ -50,6 +52,7 @@ const data = [
         from: { title: 'D3ws3...xpSm8' },
         to: { title: '21adF...99Ikkl' },
         amount: '3 QTZ',
+        key: '9666919-2',
     },
 ];
 

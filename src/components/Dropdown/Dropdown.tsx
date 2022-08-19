@@ -19,6 +19,8 @@ export interface DropdownProps extends Omit<ComponentProps, 'onChange'> {
     children: JSX.Element;
     iconLeft?: IconProps | ReactNode;
     iconRight?: IconProps | ReactNode;
+    isTouch?: boolean;
+    verticalOffset?: number | string;
     onChange?(option: SelectOptionProps): void;
     onOpenChange?(open: boolean): void;
     optionRender?(option: SelectOptionProps, isSelected: boolean): ReactNode;
@@ -41,6 +43,8 @@ export const Dropdown = ({
     iconLeft,
     iconRight,
     open,
+    isTouch,
+    verticalOffset,
     onOpenChange,
 }: DropdownProps) => {
     const selected = options?.find(
@@ -81,7 +85,9 @@ export const Dropdown = ({
 
     return (
         <div
-            className={classNames('unique-dropdown', className)}
+            className={classNames('unique-dropdown', className, {
+                touch: isTouch,
+            })}
             onMouseLeave={handleMouseLeave}
             onMouseEnter={handleMouseEnter}
             id={id}
@@ -112,8 +118,15 @@ export const Dropdown = ({
                 <div
                     className={classNames('dropdown-options', {
                         right: placement === 'right',
+                        touch: isTouch,
                     })}
                     role="listbox"
+                    {...(verticalOffset && {
+                        style: {
+                            top: verticalOffset,
+                            height: `calc(100vh - (${verticalOffset} + 36px))`,
+                        },
+                    })}
                 >
                     {dropdownRender?.()}
                     {options?.map((option) => {

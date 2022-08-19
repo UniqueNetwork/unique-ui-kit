@@ -4,7 +4,7 @@ import avatar from '../assets/static/avatar.jpg';
 
 export default {
     title: 'Components/Avatar',
-    component: Avatar
+    component: Avatar,
 } as ComponentMeta<typeof Avatar>;
 
 const Template: ComponentStory<typeof Avatar> = (args) => <Avatar {...args} />;
@@ -12,7 +12,7 @@ const Template: ComponentStory<typeof Avatar> = (args) => <Avatar {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-    src: avatar
+    src: avatar,
 };
 
 Default.storyName = 'Default';
@@ -22,7 +22,7 @@ export const Circle = Template.bind({});
 Circle.args = {
     src: avatar,
     size: 64,
-    type: 'circle'
+    type: 'circle',
 };
 
 Circle.storyName = 'Circle 64px';
@@ -31,8 +31,7 @@ export const Empty = Template.bind({});
 
 Empty.args = {
     size: 64,
-    type: 'circle'
+    type: 'circle',
 };
 
 Empty.storyName = 'Empty';
-

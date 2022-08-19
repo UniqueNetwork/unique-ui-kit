@@ -1,7 +1,7 @@
 import { AccountsManager } from '../widgets';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Text } from '../components';
-import { IAccount, INetwork } from '../widgets/AccountsManager/types';
+import { IAccount, INetwork } from '../widgets/AccountsManager';
 import { useState } from 'react';
 
 export default {
@@ -96,3 +96,37 @@ Wallet.args = {
 };
 
 Wallet.storyName = 'Wallet';
+
+export const WalletTouch = Template.bind({});
+
+WalletTouch.args = {
+    balance: '98989888.0089',
+    manageBalanceLinkTitle: 'Manage my balance',
+    symbol: 'KSM',
+    isTouch: true,
+    verticalOffset: '100px',
+    accounts: [
+        {
+            name: 'hrumhrum10',
+            address: '5Gxot0000000000000000000000004Y6cj',
+        },
+        {
+            name: 'hrumhrum99',
+            address: '5Gdfg0000000000000000000000005B36l',
+        },
+    ],
+    networks: [
+        {
+            id: 'quartz',
+            name: 'Quartz',
+            icon: { name: 'chain-quartz', size: 40 },
+        },
+        {
+            id: 'opal',
+            name: 'Opal',
+            icon: { name: 'chain-opal', size: 40 },
+        },
+    ],
+};
+
+WalletTouch.storyName = 'Wallet w/ touch device';

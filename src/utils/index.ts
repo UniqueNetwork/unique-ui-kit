@@ -22,6 +22,8 @@ export const sortData = (
         : sorted;
 };
 
+export const isTouchDevice = 'ontouchstart' in document.documentElement;
+
 /** Hooks */
 
 export const usePrevious = <T>(value: T): T => {
