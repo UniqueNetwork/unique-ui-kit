@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import { Dropdown, Icon, IconProps, Text } from '../../components';
 import { SelectOptionProps } from '../../types';
 import { AccountsManagerDropdown } from './components';
@@ -33,6 +33,7 @@ export interface AccountsManagerProps {
     onAccountChange?(account: IAccount): void;
     onManageBalanceClick?(): void;
     onOpenChange?(open: boolean): void;
+    onCopyAddressClick?(address: string): void;
 }
 
 export const AccountsManager = (props: AccountsManagerProps) => {
@@ -43,9 +44,14 @@ export const AccountsManager = (props: AccountsManagerProps) => {
         balance,
         symbol,
         onOpenChange,
+        onCopyAddressClick,
     } = props;
 
     const [copied, copy] = useCopyToClipboard();
+
+    useEffect(() => {
+        copied && onCopyAddressClick?.(copied);
+    }, [copied]);
 
     return (
         <Dropdown

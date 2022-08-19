@@ -14,6 +14,7 @@ export interface IUploadBaseProps {
     type?: 'circle' | 'square';
     accept?: string;
     upload?: string;
+    beforeUpload?: (data: { url: string; file: Blob }) => boolean;
 }
 
 export type UploadProps = IUploadBaseProps &
@@ -28,9 +29,16 @@ export const Upload = React.memo(
         disabled = false,
         upload,
         testid,
+        beforeUpload,
     }: UploadProps) => {
         const inputFile = useRef<HTMLInputElement>(null);
         const [objectUrl, setObjectUrl] = useState<string | undefined>();
+
+        const onValidate = (file: Blob | undefined) => {
+            if (!file) return true;
+            const url = URL.createObjectURL(file);
+            return beforeUpload ? beforeUpload({ url, file }) : true;
+        };
 
         const onChangeFile = (file: Blob | undefined) => {
             if (!inputFile.current) return;
@@ -103,7 +111,13 @@ export const Upload = React.memo(
                             onChangeFile(undefined);
                             return;
                         }
-                        onChangeFile(e.target.files[0]);
+                        const file = e.target.files[0];
+                        if (onValidate(file)) {
+                            onChangeFile(e.target.files[0]);
+                        } else {
+                            if (!inputFile.current) return;
+                            inputFile.current.value = '';
+                        }
                     }}
                     data-testid={testid}
                 />
