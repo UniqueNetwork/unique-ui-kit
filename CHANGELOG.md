@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.0.36 August 26, 2022
+
+Changes:
+
+-   AccountsManager widget styles fix
+
 ## 0.0.35 August 19, 2022
 
 Changes:
