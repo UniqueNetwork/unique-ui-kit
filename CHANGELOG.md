@@ -8,7 +8,7 @@ Changes:
 -   Upload component validation add
 -   Notification component context memo add
 -   Link component children add
--   Avatar component size prop fix
+-   Avatar component size prop fix, src empty string fix
 -   Pagination component static text fix
 
 ## 0.0.34 August 12, 2022
