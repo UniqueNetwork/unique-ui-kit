@@ -121,7 +121,12 @@ export const Dropdown = ({
                         touch: isTouch,
                     })}
                     role="listbox"
-                    {...(verticalOffset && { style: { top: verticalOffset } })}
+                    {...(verticalOffset && {
+                        style: {
+                            top: verticalOffset,
+                            height: `calc(100vh - (${verticalOffset} + 36px))`,
+                        },
+                    })}
                 >
                     {dropdownRender?.()}
                     {options?.map((option) => {

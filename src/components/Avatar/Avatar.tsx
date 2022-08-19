@@ -7,7 +7,7 @@ import Empty from '../../assets/static/empty.svg';
 
 export interface IAvatarProps {
     src?: string;
-    size?: number;
+    size?: number | string;
     defaultSrc?: string;
     type?: 'circle' | 'square';
 }

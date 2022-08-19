@@ -5,6 +5,8 @@
 Changes:
 
 -   AccountsManager widget responsive add
+-   Avatar component size prop fix
+-   Pagination component static text fix
 
 ## 0.0.34 August 12, 2022
 
