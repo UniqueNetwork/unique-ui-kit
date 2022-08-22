@@ -5,6 +5,7 @@
 import { AnchorHTMLAttributes } from 'react';
 import classNames from 'classnames';
 import './Link.scss';
+import classNames from 'classnames';
 
 export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
     title?: string;
@@ -20,7 +21,7 @@ export const Link = ({
     className,
     ...rest
 }: LinkProps) => (
-    <a className={classNames('unique-link', role, className)} {...rest}>
+    <a className={classNames(`unique-link ${role}`, className)} {...rest}>
         {children || title}
     </a>
 );

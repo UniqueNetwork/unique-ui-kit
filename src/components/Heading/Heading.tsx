@@ -5,9 +5,10 @@
 import classNames from 'classnames';
 import './Heading.scss';
 import { ComponentProps } from '../../types';
+import { ReactNode } from 'react';
 
 export interface IHeadingBaseProps {
-    children: string;
+    children: ReactNode;
     size?: '1' | '2' | '3' | '4';
 }
 
