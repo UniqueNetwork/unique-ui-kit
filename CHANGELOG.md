@@ -6,6 +6,7 @@ Changes:
 
 -   Alert component add
 -   AccountsManager widget styles fix
+-   Link component props fix
 
 ## 0.0.35 August 19, 2022
 
