@@ -59,6 +59,7 @@
       align-items: baseline;
       display: flex;
       column-gap: calc(var(--prop-gap) / 4);
+      word-break: break-word;
       button {
         color: var(--color-additional-light);
         padding: 0;

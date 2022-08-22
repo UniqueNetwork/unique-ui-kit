@@ -2,12 +2,12 @@
  * @author Roman Beganov <rbeganov@usetech.com>
  */
 
-import { Fragment } from 'react';
+import { Fragment, isValidElement, ReactNode } from 'react';
 import { Icon } from '../Icon';
 import './Breadcrumbs.scss';
 
 export interface BreadcrumbsProps {
-    options: { title: string; link?: string }[];
+    options: (ReactNode | { title: string; link?: string })[];
 }
 
 export const Breadcrumbs = ({ options }: BreadcrumbsProps) => (
@@ -28,10 +28,21 @@ export const Breadcrumbs = ({ options }: BreadcrumbsProps) => (
                         />
                     )}
                     {last ? (
-                        <span className="breadcrumb-item">{option.title}</span>
+                        isValidElement(option) ? (
+                            option
+                        ) : (
+                            <span className="breadcrumb-item">
+                                {(option as { title: string }).title}
+                            </span>
+                        )
+                    ) : isValidElement(option) ? (
+                        option
                     ) : (
-                        <a className="breadcrumb-item" href={option.link}>
-                            {option.title}
+                        <a
+                            className="breadcrumb-item"
+                            href={(option as { link: string })?.link}
+                        >
+                            {(option as { title: string })?.title}
                         </a>
                     )}
                 </Fragment>
