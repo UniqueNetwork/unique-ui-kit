@@ -5,7 +5,6 @@
 import { AnchorHTMLAttributes } from 'react';
 import classNames from 'classnames';
 import './Link.scss';
-import classNames from 'classnames';
 
 export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
     title?: string;

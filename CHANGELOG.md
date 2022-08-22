@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 0.0.36 August 26, 2022
+## 0.0.36 August 22, 2022
 
 Changes:
 
