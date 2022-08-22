@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 0.0.36 August 22, 2022
+
+Changes:
+
+-   Alert component add
+-   AccountsManager widget styles fix
+-   Link component props fix
+-   Breadcrumbs component options fix
+-   Heading component children fix
+-   InputTag component style fix
+-   New icons
+
 ## 0.0.35 August 19, 2022
 
 Changes:

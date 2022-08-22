@@ -53,6 +53,8 @@
         }
     }
     .accounts-manager-networks {
+        display: flex;
+        flex-direction: column;
         padding-top: calc(var(--prop-gap) * 1.5);
         border-top: 1px dashed var(--color-blue-grey-300);
         row-gap: calc(var(--prop-gap) / 2);
