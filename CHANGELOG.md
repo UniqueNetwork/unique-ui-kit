@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.0.37 August 31, 2022
+
+Changes:
+
+-   AccountsManager widget responsive fix, stake button add
+-   Avatar component props fix
+-   Icon component props fix
+-   New icons
+
 ## 0.0.36 August 22, 2022
 
 Changes:

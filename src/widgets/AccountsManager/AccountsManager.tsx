@@ -31,12 +31,15 @@ export interface AccountsManagerProps {
     isLoading?: boolean;
     isTouch?: boolean;
     verticalOffset?: number | string;
+    stakeVisibility?: boolean;
+    isStakeDisabled?: boolean;
     avatarRender?(address: string): ReactNode;
     onNetworkChange?(network: INetwork): void;
     onAccountChange?(account: IAccount): void;
     onManageBalanceClick?(): void;
     onOpenChange?(open: boolean): void;
     onCopyAddressClick?(address: string): void;
+    onStakeClick?(): void;
 }
 
 export const AccountsManager = (props: AccountsManagerProps) => {
@@ -76,6 +79,7 @@ export const AccountsManager = (props: AccountsManagerProps) => {
         >
             <div className="unique-accounts-manager">
                 <div className="accounts-manager-selected-account">
+                    <Icon size={20} name="user" />
                     <div className="accounts-manager-selected-account-name">
                         <Text color="blue-grey-500" size="s">
                             {selectedAccount?.name}
@@ -95,7 +99,11 @@ export const AccountsManager = (props: AccountsManagerProps) => {
                 </div>
                 <div className="accounts-manager-network">
                     {activeNetwork && (
-                        <Icon {...activeNetwork.icon} size={16} />
+                        <Icon
+                            {...activeNetwork.icon}
+                            className="active-network-icon"
+                            size={16}
+                        />
                     )}
                 </div>
             </div>

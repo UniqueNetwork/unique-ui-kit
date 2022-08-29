@@ -1,5 +1,12 @@
 import React, { useEffect } from 'react';
-import { Dropdown, Icon, Link, Text, Toggle } from '../../../../components';
+import {
+    Button,
+    Dropdown,
+    Icon,
+    Link,
+    Text,
+    Toggle,
+} from '../../../../components';
 import { AccountsManagerProps } from '../../AccountsManager';
 import { AccountCard } from '../index';
 import './AccountsManagerDropdown.scss';
@@ -16,11 +23,14 @@ export const AccountsManagerDropdown = ({
     balance,
     symbol,
     isTouch,
+    stakeVisibility,
+    isStakeDisabled,
     avatarRender,
     onAccountChange,
     onNetworkChange,
     onManageBalanceClick,
     onCopyAddressClick,
+    onStakeClick,
 }: AccountsManagerProps) => {
     const [copied, copy] = useCopyToClipboard();
 
@@ -89,6 +99,14 @@ export const AccountsManagerDropdown = ({
                     )}
                 </div>
             </div>
+            {stakeVisibility && (
+                <Button
+                    title="Stake"
+                    role="primary"
+                    disabled={isStakeDisabled}
+                    onClick={onStakeClick}
+                />
+            )}
             <div className="accounts-manager-networks">
                 <Text color="grey-500" size="s">
                     Active network
