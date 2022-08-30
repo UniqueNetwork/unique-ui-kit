@@ -32,6 +32,9 @@ const Template: ComponentStory<typeof AccountsManager> = (args) => {
                     console.log('manage balance link click')
                 }
                 onCopyAddressClick={() => console.log('copy address click')}
+                stakeVisibility
+                isStakeDisabled={false}
+                onStakeClick={() => console.log('stake button click')}
             />
         </div>
     );

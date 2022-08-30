@@ -42,6 +42,7 @@ const icons = [
     { name: 'badge-coin' },
     { name: 'clock' },
     { name: 'gear' },
+    { name: 'user-circle' },
     { name: 'user' },
     { name: 'upload' },
     { name: 'menu' },
